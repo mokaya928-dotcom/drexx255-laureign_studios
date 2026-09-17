@@ -758,34 +758,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const studioChapterHtml = `
       <section class="chapter-section chapter-section-studio" id="studio" data-chapter="studio">
-        <div class="chapter-marquee">
-          <div class="chapter-eyebrow-row">
-            <span class="chapter-badge">📸 CHAPTER 01 · CONTROLLED STUDIO LIGHTING</span>
-            <span class="chapter-count-tag">${studioList.length} Studio Packages</span>
+        <header class="chapter-header">
+          <div class="chapter-header-top">
+            <span class="chapter-badge">Chapter 01 · Studio Sessions</span>
+            <span class="chapter-count-tag">${studioList.length} Packages</span>
           </div>
           <h2 class="chapter-title">Studio &amp; Portrait Sessions</h2>
           <p class="chapter-desc">
-            Master continuous and strobe studio lighting, customized creative backdrops, graduation cap &amp; gown milestones, and high-fashion styled portraiture.
+            Master continuous and strobe studio lighting, customized backdrops, graduation cap &amp; gown milestones, and high-fashion styled portraiture.
           </p>
-          <div class="chapter-highlights-row">
-            <span class="chapter-highlight-item">✨ 12 In-Studio Sessions</span>
-            <span class="chapter-highlight-item">· 💡 Master Strobe &amp; Constant Lighting</span>
-            <span class="chapter-highlight-item">· 🚪 Private Changing Suites</span>
-            <span class="chapter-highlight-item">· ⚡ 48-Hour Retouching</span>
-          </div>
-          <div class="chapter-actions-row">
-            <button type="button" class="btn-chapter-share" onclick="window.copySectionShareLink('studio')" title="Copy direct link to Studio Sessions">
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-              <span>Share Studio Link</span>
-            </button>
-            <a href="https://wa.me/${PACKAGES_CONFIG.whatsappNumber}?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20Studio%20Sessions%20%F0%9F%93%B8" target="_blank" rel="noopener" class="btn-chapter-wa">
-              <span>💬 WhatsApp Studio Desk</span>
-            </a>
-          </div>
           <div class="chapter-subcat-bar">
             ${studioSubcatsHtml}
           </div>
-        </div>
+        </header>
         <div class="chapter-cards-grid" id="grid-studio">
           ${studioCardsHtml}
         </div>
@@ -795,11 +780,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Transition Divider Studio -> Outdoor
     const toOutdoorDivider = `
       <div class="chapter-transition-divider" aria-hidden="true">
-        <span class="chapter-divider-line"></span>
-        <div class="chapter-divider-badge" onclick="window.scrollToSection('outdoor')">
-          <span>Entering Chapter 02: Outdoor Sessions</span>
-          <span class="divider-arrow">↓</span>
-        </div>
         <span class="chapter-divider-line"></span>
       </div>
     `;
@@ -818,38 +798,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const outdoorChapterHtml = `
       <section class="chapter-section chapter-section-outdoor" id="outdoor" data-chapter="outdoor">
-        <div class="chapter-marquee">
-          <div class="chapter-eyebrow-row">
-            <span class="chapter-badge">🌿 CHAPTER 02 · ON-LOCATION &amp; NATURAL LIGHT</span>
-            <span class="chapter-count-tag">${outdoorList.length} Outdoor Sessions</span>
+        <header class="chapter-header">
+          <div class="chapter-header-top">
+            <span class="chapter-badge">Chapter 02 · Outdoor Sessions</span>
+            <span class="chapter-count-tag">${outdoorList.length} Packages</span>
           </div>
           <h2 class="chapter-title">Outdoor &amp; Natural Light Sessions</h2>
           <p class="chapter-desc">
             Sunlit golden hours, lush scenic gardens, parks, resorts &amp; on-location lifestyle portraiture across Kakamega &amp; Western Kenya.
           </p>
-          <div class="chapter-policy-banner">
-            <span class="policy-icon">✨</span>
-            <span><b>Official Studio Policy:</b> Minimum <b>7 Retouched Images</b> per Outdoor Session · No single image packages available for outdoor shoots.</span>
-          </div>
-          <div class="chapter-highlights-row">
-            <span class="chapter-highlight-item">🌿 12 Outdoor Lifestyle Shoots</span>
-            <span class="chapter-highlight-item">· ☀️ Golden Hour &amp; Natural Ambient Light</span>
-            <span class="chapter-highlight-item">· 📍 Kakamega &amp; Regional Locations</span>
-            <span class="chapter-highlight-item">· ⚡ 48-Hour Turnaround</span>
-          </div>
-          <div class="chapter-actions-row">
-            <button type="button" class="btn-chapter-share" onclick="window.copySectionShareLink('outdoor')" title="Copy direct link to Outdoor Sessions (share to someone to view starting from outdoor)">
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-              <span>Share Outdoor Sessions Link</span>
-            </button>
-            <a href="https://wa.me/${PACKAGES_CONFIG.whatsappNumber}?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20Outdoor%20%26%20Natural%20Light%20Shoots%20%F0%9F%8C%BF" target="_blank" rel="noopener" class="btn-chapter-wa">
-              <span>💬 WhatsApp Outdoor Desk</span>
-            </a>
-          </div>
           <div class="chapter-subcat-bar">
             ${outdoorSubcatsHtml}
           </div>
-        </div>
+        </header>
         <div class="chapter-cards-grid" id="grid-outdoor">
           ${outdoorCardsHtml}
         </div>
@@ -859,11 +820,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Transition Divider Outdoor -> Events
     const toEventsDivider = `
       <div class="chapter-transition-divider" aria-hidden="true">
-        <span class="chapter-divider-line"></span>
-        <div class="chapter-divider-badge" onclick="window.scrollToSection('events')">
-          <span>Entering Chapter 03: Weddings &amp; Events</span>
-          <span class="divider-arrow">↓</span>
-        </div>
         <span class="chapter-divider-line"></span>
       </div>
     `;
@@ -882,34 +838,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const eventsChapterHtml = `
       <section class="chapter-section chapter-section-events" id="events" data-chapter="events">
-        <div class="chapter-marquee">
-          <div class="chapter-eyebrow-row">
-            <span class="chapter-badge">💍 CHAPTER 03 · WEDDINGS &amp; CELEBRATIONS</span>
-            <span class="chapter-count-tag">${eventsList.length} Event Coverages</span>
+        <header class="chapter-header">
+          <div class="chapter-header-top">
+            <span class="chapter-badge">Chapter 03 · Weddings &amp; Events</span>
+            <span class="chapter-count-tag">${eventsList.length} Packages</span>
           </div>
           <h2 class="chapter-title">Weddings &amp; Event Coverage</h2>
           <p class="chapter-desc">
             Full-day holy matrimony, traditional ruracio, private birthday bashes, corporate summits, galas &amp; dignified memorial tributes.
           </p>
-          <div class="chapter-highlights-row">
-            <span class="chapter-highlight-item">💍 10 Event Coverages</span>
-            <span class="chapter-highlight-item">· 🎬 Multi-Camera 4K Cinematography</span>
-            <span class="chapter-highlight-item">· 🎙️ Master Audio Recording</span>
-            <span class="chapter-highlight-item">· 🚁 Drone Coverage</span>
-          </div>
-          <div class="chapter-actions-row">
-            <button type="button" class="btn-chapter-share" onclick="window.copySectionShareLink('events')" title="Copy direct link to Weddings &amp; Events">
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-              <span>Share Events Link</span>
-            </button>
-            <a href="https://wa.me/${PACKAGES_CONFIG.whatsappNumber}?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20Wedding%20%26%20Event%20Coverage%20%F0%9F%92%8D" target="_blank" rel="noopener" class="btn-chapter-wa">
-              <span>💬 WhatsApp Events Desk</span>
-            </a>
-          </div>
           <div class="chapter-subcat-bar">
             ${eventsSubcatsHtml}
           </div>
-        </div>
+        </header>
         <div class="chapter-cards-grid" id="grid-events">
           ${eventsCardsHtml}
         </div>
@@ -919,11 +860,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Transition Divider Events -> Commercial
     const toCommercialDivider = `
       <div class="chapter-transition-divider" aria-hidden="true">
-        <span class="chapter-divider-line"></span>
-        <div class="chapter-divider-badge" onclick="window.scrollToSection('commercial')">
-          <span>Entering Chapter 04: Commercial &amp; Brand Growth</span>
-          <span class="divider-arrow">↓</span>
-        </div>
         <span class="chapter-divider-line"></span>
       </div>
     `;
@@ -942,33 +878,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const commercialChapterHtml = `
       <section class="chapter-section chapter-section-commercial" id="commercial" data-chapter="commercial">
-        <div class="chapter-marquee">
-          <div class="chapter-eyebrow-row">
-            <span class="chapter-badge">🚀 CHAPTER 04 · ENTERPRISE &amp; CREATIVE</span>
-            <span class="chapter-count-tag">${commercialList.length} Business Suites</span>
+        <header class="chapter-header">
+          <div class="chapter-header-top">
+            <span class="chapter-badge">Chapter 04 · Commercial Suites</span>
+            <span class="chapter-count-tag">${commercialList.length} Packages</span>
           </div>
           <h2 class="chapter-title">Commercial &amp; Brand Growth</h2>
           <p class="chapter-desc">
             High-conversion e-commerce product shoots, hotel &amp; luxury hospitality showcases, corporate executive suites &amp; graphic design services.
           </p>
-          <div class="chapter-highlights-row">
-            <span class="chapter-highlight-item">🚀 5 Enterprise Suites</span>
-            <span class="chapter-highlight-item">· 🏷️ Full Commercial Licensing Included</span>
-            <span class="chapter-highlight-item">· 📐 Print &amp; Web Ready 300 DPI</span>
-          </div>
-          <div class="chapter-actions-row">
-            <button type="button" class="btn-chapter-share" onclick="window.copySectionShareLink('commercial')" title="Copy direct link to Commercial Suites">
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-              <span>Share Commercial Link</span>
-            </button>
-            <a href="https://wa.me/${PACKAGES_CONFIG.whatsappNumber}?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20Commercial%20Branding%20%F0%9F%9A%80" target="_blank" rel="noopener" class="btn-chapter-wa">
-              <span>💬 WhatsApp Commercial Desk</span>
-            </a>
-          </div>
           <div class="chapter-subcat-bar">
             ${commercialSubcatsHtml}
           </div>
-        </div>
+        </header>
         <div class="chapter-cards-grid" id="grid-commercial">
           ${commercialCardsHtml}
         </div>

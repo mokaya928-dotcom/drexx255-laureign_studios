@@ -682,7 +682,7 @@ html:not([data-theme="dark"]) .packages-mobile-toggle:hover {
   line-height: 1.1;
   letter-spacing: -0.03em;
   color: var(--head);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   max-width: 860px;
   margin-left: auto;
   margin-right: auto;
@@ -698,13 +698,38 @@ html:not([data-theme="dark"]) .packages-mobile-toggle:hover {
 
 .hero-desc {
   font-family: var(--font-text);
-  font-size: 17px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.55;
   letter-spacing: -0.015em;
   color: var(--muted);
-  max-width: 700px;
-  margin: 0 auto 32px;
+  max-width: 620px;
+  margin: 0 auto 20px;
   font-weight: 400;
+}
+
+@media (max-width: 640px) {
+  .hero-section {
+    padding: 22px 14px 14px;
+  }
+  .hero-tag {
+    margin-bottom: 12px;
+    font-size: 11px;
+    padding: 5px 14px;
+    letter-spacing: 0.05em;
+  }
+  .hero-title {
+    font-size: clamp(23px, 6.2vw, 26px);
+    line-height: 1.2;
+    margin-bottom: 8px;
+    padding: 0 4px;
+    word-break: normal;
+  }
+  .hero-desc {
+    font-size: 13.5px;
+    line-height: 1.45;
+    margin-bottom: 16px;
+    padding: 0 8px;
+  }
 }
 
 /* ==================== HERO 3D IMAGE SWAP ANIMATION ==================== */
@@ -3806,7 +3831,8 @@ html:not([data-theme="dark"]) .packages-mobile-toggle:hover {
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.7);
   margin-bottom: 14px;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
+  max-height: 400px;
 }
 .mount-preview-frame picture {
   display: block;
@@ -3817,6 +3843,7 @@ html:not([data-theme="dark"]) .packages-mobile-toggle:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 15%;
   display: block;
 }
 .mount-size-indicator {
