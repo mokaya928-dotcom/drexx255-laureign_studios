@@ -384,11 +384,16 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
 
         <div class="mount-preview-frame js-card-zoom-trigger" data-pkg-id="${pkg.id}" style="cursor:pointer;" title="Click to enlarge & zoom photo for ${pkg.title}">
-          <picture>
-            ${webpSource}
-            <img src="${pkg.image}" alt="${pkg.title}" loading="${isEager ? 'eager' : 'lazy'}" decoding="async" ${isEager ? 'fetchpriority="high"' : ''}>
-          </picture>
-          <span class="mount-zoom-badge">🔍 Zoom Photo</span>
+          ${pkg.image && (pkg.image.endsWith('.mp4') || pkg.image.endsWith('.webm')) ? `
+            <video src="${pkg.image}" autoplay loop muted playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;"></video>
+            <span class="mount-zoom-badge">🎬 Video Reel</span>
+          ` : `
+            <picture>
+              ${webpSource}
+              <img src="${pkg.image}" alt="${pkg.title}" loading="${isEager ? 'eager' : 'lazy'}" decoding="async" ${isEager ? 'fetchpriority="high"' : ''}>
+            </picture>
+            <span class="mount-zoom-badge">🔍 Zoom Photo</span>
+          `}
         </div>
 
         <div class="mount-price-box">
@@ -2143,12 +2148,42 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  // Floating Back Up Arrow (Scroll to top) listener & Sticky Controls Bar State
+  // Floating Back Up Arrow (Scroll to top) listener & Smart Sticky Controls Bar State
   const backToTopBtn = document.getElementById("backToTopBtn");
   const controlsBarEl = document.getElementById("packagesBrowse");
+  const searchInputEl = document.getElementById("searchInput");
+  let lastScrollY = window.scrollY;
+
+  window.toggleStickySearch = function(forceState) {
+    if (!controlsBarEl) return;
+    const isCurrentlyOpen = controlsBarEl.classList.contains("search-open");
+    const nextState = typeof forceState === "boolean" ? forceState : !isCurrentlyOpen;
+    controlsBarEl.classList.toggle("search-open", nextState);
+    if (nextState && searchInputEl) {
+      setTimeout(() => searchInputEl.focus(), 60);
+    }
+  };
+
+  if (searchInputEl && controlsBarEl) {
+    searchInputEl.addEventListener("focus", () => {
+      controlsBarEl.classList.add("search-open");
+    });
+    searchInputEl.addEventListener("input", (e) => {
+      if (e.target.value.trim().length > 0) {
+        controlsBarEl.classList.add("search-open");
+        controlsBarEl.classList.add("search-active");
+      } else {
+        controlsBarEl.classList.remove("search-active");
+      }
+    });
+  }
+
   window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+    const delta = currentScrollY - lastScrollY;
+
     if (backToTopBtn) {
-      if (window.scrollY > 280) {
+      if (currentScrollY > 280) {
         backToTopBtn.classList.add("visible");
       } else {
         backToTopBtn.classList.remove("visible");
@@ -2157,12 +2192,30 @@ document.addEventListener("DOMContentLoaded", () => {
     if (controlsBarEl) {
       const rect = controlsBarEl.getBoundingClientRect();
       const stickyThreshold = window.innerWidth <= 768 ? 68 : 82;
-      if (rect.top <= stickyThreshold) {
+      const isStuck = rect.top <= stickyThreshold;
+
+      if (isStuck) {
         controlsBarEl.classList.add("is-stuck");
       } else {
         controlsBarEl.classList.remove("is-stuck");
+        controlsBarEl.classList.remove("search-open");
+        controlsBarEl.classList.remove("is-hidden");
+      }
+
+      // Smart Directional Scroll (Safari-style: Auto-hide on rapid scroll-down, smooth reveal on scroll-up)
+      if (!isManualScrolling && isStuck && currentScrollY > 480) {
+        const hasActiveQuery = searchInputEl && searchInputEl.value.trim().length > 0;
+        const isSearchOpen = controlsBarEl.classList.contains("search-open");
+        if (delta > 10 && !hasActiveQuery && !isSearchOpen) {
+          controlsBarEl.classList.add("is-hidden");
+        } else if (delta < -8) {
+          controlsBarEl.classList.remove("is-hidden");
+        }
+      } else if (!isStuck) {
+        controlsBarEl.classList.remove("is-hidden");
       }
     }
+    lastScrollY = currentScrollY;
   }, { passive: true });
 
   // ------------------------------------------------------------
