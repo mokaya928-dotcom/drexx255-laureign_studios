@@ -12213,8 +12213,8 @@ html[data-theme="light"] .review-profile-img {
   display: inline;
 }
 
-/* Tablet & Intermediate Screens (641px - 1024px) */
-@media (min-width: 641px) and (max-width: 1024px) {
+/* Tablet Screens (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
   .chapter-cards-grid,
   .packages-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -12228,23 +12228,24 @@ html[data-theme="light"] .review-profile-img {
 
 /* Mobile Screens (max-width: 768px) */
 @media (max-width: 768px) {
-  /* 1. Chapter Marquees & Section Layout */
+  /* 1. Chapter Header & Section Layout */
   .chapter-section {
     gap: 12px !important;
-    scroll-margin-top: 90px !important;
-    margin-bottom: 14px !important;
+    scroll-margin-top: 85px !important;
+    margin-bottom: 20px !important;
   }
-  .chapter-marquee {
-    padding: 14px 12px 12px !important;
-    border-radius: 14px !important;
-    gap: 8px !important;
-  }
-  .chapter-eyebrow-row {
+  .chapter-header {
+    max-width: 100% !important;
+    padding: 0 4px !important;
     gap: 4px !important;
+    margin-bottom: 6px !important;
+  }
+  .chapter-header-top {
+    gap: 6px !important;
   }
   .chapter-badge {
-    font-size: 9.5px !important;
-    padding: 3px 8px !important;
+    font-size: 10px !important;
+    padding: 3px 9px !important;
     letter-spacing: 0.6px !important;
   }
   .chapter-count-tag {
@@ -12252,76 +12253,50 @@ html[data-theme="light"] .review-profile-img {
     padding: 2.5px 7px !important;
   }
   .chapter-title {
-    font-size: 19px !important;
-    line-height: 1.2 !important;
+    font-size: 20px !important;
+    line-height: 1.25 !important;
     margin: 1px 0 0 !important;
   }
   .chapter-desc {
-    font-size: 12px !important;
-    line-height: 1.4 !important;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 2 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
-  }
-  /* Hide bulky 4-bullet highlights row on mobile to save ~50px of vertical space */
-  .chapter-highlights-row {
-    display: none !important;
-  }
-  .chapter-actions-row {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 6px !important;
-    padding-top: 2px !important;
-  }
-  .btn-chapter-share,
-  .btn-chapter-wa {
-    width: 100% !important;
-    padding: 7.5px 8px !important;
-    font-size: 11px !important;
-    justify-content: center !important;
-    border-radius: 999px !important;
-    white-space: nowrap !important;
-  }
-  .chapter-policy-banner {
-    padding: 6px 10px !important;
-    font-size: 11px !important;
-    border-radius: 8px !important;
-    margin: 2px 0 !important;
-    line-height: 1.35 !important;
+    font-size: 12.5px !important;
+    line-height: 1.45 !important;
+    margin: 0 0 2px !important;
   }
   .chapter-subcat-bar {
     gap: 5px !important;
-    padding: 2px 0 3px !important;
+    padding: 4px 0 2px !important;
   }
   .subcat-pill {
-    padding: 4px 9px !important;
-    font-size: 10.5px !important;
+    padding: 4.5px 10px !important;
+    font-size: 11px !important;
     border-radius: 999px !important;
   }
   .chapter-transition-divider {
-    padding: 10px 0 !important;
-    gap: 8px !important;
-  }
-  .chapter-divider-badge {
-    padding: 5px 12px !important;
-    font-size: 10px !important;
+    padding: 14px 0 !important;
   }
 
-  /* 2. Grid & Package Cards (Main Directory Page) */
+  /* 2. Grid & Package Cards (Strictly 1 Column on Mobile, Preserving Photo Intactness) */
   .chapter-cards-grid,
   .packages-grid {
+    display: grid !important;
     grid-template-columns: 1fr !important;
-    gap: 12px !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
   }
 
   .pkg-card,
   .mount-card,
   .pkg-card.mount-card {
-    padding: 10px 10px 10px !important;
-    border-radius: 12px !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 12px 12px 14px !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
     height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
 
   .pkg-top-meta-row {
@@ -12356,22 +12331,36 @@ html[data-theme="light"] .review-profile-img {
     gap: 4px !important;
   }
 
-  /* Cinematic Compact Photo Preview Frame (16:9 ratio, max-height 150px) */
+  /* Portrait Photo Preview Frame: Preserves Portrait Photography Intact! */
   .pkg-card.mount-card .mount-preview-frame,
   .mount-preview-frame {
-    aspect-ratio: 16 / 9 !important;
-    max-height: 150px !important;
-    margin-bottom: 6px !important;
-    border-radius: 9px !important;
+    width: 100% !important;
+    aspect-ratio: 4 / 5 !important;
+    max-height: 380px !important;
+    margin-bottom: 8px !important;
+    border-radius: 12px !important;
+    background: #090c13 !important;
+    overflow: hidden !important;
+    position: relative !important;
+    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  }
+  .mount-preview-frame picture {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
   }
   .mount-preview-frame img {
+    width: 100% !important;
+    height: 100% !important;
     object-fit: cover !important;
+    object-position: center 15% !important;
+    display: block !important;
   }
   .mount-zoom-badge {
-    bottom: 5px !important;
-    right: 5px !important;
-    padding: 2.5px 6px !important;
-    font-size: 9.5px !important;
+    bottom: 6px !important;
+    right: 6px !important;
+    padding: 3px 8px !important;
+    font-size: 10px !important;
   }
 
   /* Compact Price Box */
