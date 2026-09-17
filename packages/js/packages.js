@@ -359,23 +359,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const targetUrl = getPackageShowcaseUrl(pkg);
     const isStudioOrOutdoor = pkg.pathway === "studio" || pkg.pathway === "outdoor";
     const isDesign = pkg.subcat === "graphic-design" || (pkg.category && pkg.category.includes("graphic")) || pkg.id.includes("graphic");
-    const hasReel = !!activeReels[pkg.id];
     const basePrice = lowestOpt.price || 0;
-    const currentPrice = hasReel ? basePrice + 1500 : basePrice;
 
-    const waText = hasReel
-      ? `Hello Laureign Studios! 🎬 I want to book ${pkg.title} WITH the 45s–60s 4K Video Reel (+KSh 1,500). Total: KSh ${formatMoney(currentPrice)} 📸✨`
-      : `Hello Laureign Studios! I want to inquire about ${pkg.title} 📸`;
+    const waText = `Hello Laureign Studios! I want to inquire about ${pkg.title} 📸`;
     const waUrl = `https://wa.me/${PACKAGES_CONFIG.whatsappNumber}?text=${encodeURIComponent(waText)}`;
 
     const isEager = Boolean(isAboveTheFold);
     const webpSource = pkg.imageWebp ? `<source srcset="${pkg.imageWebp}" type="image/webp">` : '';
 
     return `
-      <article class="pkg-card mount-card ${hasReel ? 'has-reel-selected' : ''}" id="pkg-${pkg.id}" data-subcat="${pkg.subcat || ''}" data-pathway="${pkg.pathway || ''}">
+      <article class="pkg-card mount-card" id="pkg-${pkg.id}" data-subcat="${pkg.subcat || ''}" data-pathway="${pkg.pathway || ''}">
         <div class="pkg-top-meta-row">
           <span class="mount-tag-pill">${pkg.catLabel}</span>
           ${pkg.badge ? `<span class="mount-discount-pill">${pkg.badge}</span>` : ''}
+          ${isStudioOrOutdoor && !isDesign ? `<span class="mount-reel-subtle-pill" title="Optional 4K Video Reel available for this shoot (+KSh 1,500)">🎬 +4K Reel Available</span>` : ''}
         </div>
         <h4 class="mount-name"><a href="${targetUrl}">${pkg.title}</a></h4>
         <div class="mount-dimensions">
@@ -401,52 +398,23 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="mount-price-lbl">Starting Package Rate</span>
             <div>
               <span style="font-size:12px;color:var(--muted);margin-right:4px;">From</span>
-              <span class="mount-new-price" id="pkg-price-${pkg.id}">${PACKAGES_CONFIG.currency}${formatMoney(currentPrice)}</span>
+              <span class="mount-new-price" id="pkg-price-${pkg.id}">${PACKAGES_CONFIG.currency}${formatMoney(basePrice)}</span>
             </div>
           </div>
-          ${hasReel ? `<div class="mount-reel-included-badge">✨ Shoot + 4K Video Reel Included</div>` : ''}
         </div>
-
-        ${isStudioOrOutdoor && !isDesign ? `
-        <div class="card-reel-box ${hasReel ? 'reel-selected' : ''}" id="reel-box-${pkg.id}">
-          <div class="reel-box-top">
-            <div class="reel-box-title-group">
-              <span class="reel-box-icon">🎬</span>
-              <span class="reel-box-title">Optional 4K Video Reel</span>
-            </div>
-            <span class="reel-box-rate-badge">+KSh 1,500</span>
-          </div>
-
-          <p class="reel-box-text">
-            45s–60s vertical video cut to trending audio for TikTok, Instagram &amp; Status.
-          </p>
-
-          <div class="reel-box-action-row">
-            <label class="reel-box-checkbox-label" for="reel-toggle-${pkg.id}" title="Click to include 4K Video Reel">
-              <input type="checkbox" class="reel-box-input js-card-reel-toggle" id="reel-toggle-${pkg.id}" data-pkg-id="${pkg.id}" ${hasReel ? 'checked' : ''}>
-              <span class="reel-box-custom-check"></span>
-              <span class="reel-box-toggle-text">${hasReel ? '✓ Reel Added (+1,500)' : '+ Add Reel to Shoot'}</span>
-            </label>
-
-            <button type="button" class="btn-reel-preview js-open-reels-modal" data-pkg-id="${pkg.id}" data-pkg-title="${pkg.title}" title="Watch sample vertical video reels">
-              <span>▶ View Reel Samples</span>
-            </button>
-          </div>
-        </div>
-        ` : ''}
 
         <p class="mount-sub-desc">${pkg.tagline}</p>
 
         <div class="pkg-card-actions">
-          <a href="${targetUrl}${hasReel ? '?reel=1' : ''}" class="btn-open-package-main">
+          <a href="${targetUrl}" class="btn-open-package-main">
             <span class="btn-text-full">View Packages &amp; Rates &rsaquo;</span>
             <span class="btn-text-short">View Rates &rsaquo;</span>
           </a>
           <a href="${waUrl}" id="wa-btn-${pkg.id}" target="_blank" rel="noopener" class="btn-card-wa-clean">
             <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
             <span id="wa-btn-text-${pkg.id}">
-              <span class="wa-text-full">${hasReel ? 'Book Shoot + Reel on WhatsApp' : 'Quick WhatsApp Inquiry'}</span>
-              <span class="wa-text-short">${hasReel ? 'Shoot + Reel' : 'WhatsApp'}</span>
+              <span class="wa-text-full">Quick WhatsApp Inquiry</span>
+              <span class="wa-text-short">WhatsApp</span>
             </span>
           </a>
         </div>

@@ -3822,6 +3822,34 @@ html:not([data-theme="dark"]) .packages-mobile-toggle:hover {
   box-sizing: border-box;
 }
 
+.mount-reel-subtle-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #34d399;
+  white-space: nowrap;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.mount-reel-subtle-pill:hover {
+  background: rgba(16, 185, 129, 0.20);
+  border-color: rgba(16, 185, 129, 0.50);
+}
+
+html[data-theme="light"] .mount-reel-subtle-pill {
+  background: rgba(16, 185, 129, 0.10);
+  border-color: rgba(5, 150, 105, 0.30);
+  color: #059669;
+}
+
 .mount-zoom-badge {
   position: absolute;
   bottom: 8px;
@@ -10076,9 +10104,10 @@ html[data-theme="light"] .cat-dir-footer {
 }
 
 /* ============================================================
-   CARD REEL UPSELL BOX & LIVE SELECTION ENGINE
+   CARD REEL UPSELL BOX (HIDDEN - STREAMLINED TO COMPACT TOP PILL)
    ============================================================ */
 .card-reel-box {
+  display: none !important;
   background: rgba(234, 179, 8, 0.04);
   border: 1px solid rgba(234, 179, 8, 0.22);
   border-radius: 12px;
@@ -12371,10 +12400,12 @@ html[data-theme="light"] .review-profile-img {
   .chapter-cards-grid {
     display: grid !important;
     grid-template-columns: 1fr !important;
-    gap: 16px !important;
+    gap: 22px !important;
     width: 100% !important;
     max-width: 440px !important;
     margin: 0 auto !important;
+    padding: 0 16px !important;
+    box-sizing: border-box !important;
   }
 
   .pkg-card,
@@ -12382,9 +12413,9 @@ html[data-theme="light"] .review-profile-img {
   .pkg-card.mount-card {
     width: 100% !important;
     box-sizing: border-box !important;
-    padding: 12px 12px 14px !important;
-    border-radius: 16px !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+    padding: 18px 16px 20px !important;
+    border-radius: 20px !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.20), 0 14px 34px rgba(0, 0, 0, 0.55) !important;
     height: auto !important;
     display: flex !important;
     flex-direction: column !important;
@@ -12478,52 +12509,13 @@ html[data-theme="light"] .review-profile-img {
     margin-top: 2px !important;
   }
 
-  /* Ultra-Compact Reel Upsell Box (hides repetitive paragraph on mobile) */
+  /* Hidden Reel Upsell Box (Streamlined to top badge) */
   .card-reel-box {
-    padding: 5px 8px !important;
-    margin: 4px 0 6px !important;
-    border-radius: 8px !important;
-  }
-  .reel-box-top {
-    margin-bottom: 0 !important;
-  }
-  .reel-box-title {
-    font-size: 11px !important;
-  }
-  .reel-box-rate-badge {
-    font-size: 9.5px !important;
-    padding: 1.5px 5px !important;
-  }
-  /* HIDE the long repetitive explainer text on mobile */
-  .reel-box-text {
     display: none !important;
   }
-  .reel-box-action-row {
-    margin-top: 4px !important;
-    gap: 5px !important;
-  }
-  .reel-box-checkbox-label {
-    font-size: 10.5px !important;
-    gap: 4px !important;
-  }
-  .reel-box-custom-check {
-    width: 14px !important;
-    height: 14px !important;
-  }
-  .btn-reel-preview {
-    padding: 3px 6px !important;
+  .mount-reel-subtle-pill {
     font-size: 9.5px !important;
-    border-radius: 5px !important;
-  }
-  .mount-reel-option-strip {
-    padding: 3px 8px !important;
-    font-size: 10px !important;
-    margin-bottom: 5px !important;
-    border-radius: 999px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    white-space: nowrap !important;
-    width: fit-content !important;
+    padding: 2px 7px !important;
   }
 
   /* Sub-Description Clamped to 1-2 lines */
@@ -12769,7 +12761,8 @@ html[data-theme="light"] .review-profile-img {
   .pkg-card,
   .mount-card,
   .pkg-card.mount-card {
-    padding: 9px 8px 9px !important;
+    padding: 18px 16px 20px !important;
+    border-radius: 20px !important;
   }
   .pkg-card.mount-card .mount-preview-frame,
   .mount-preview-frame {
