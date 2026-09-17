@@ -11976,124 +11976,64 @@ html[data-theme="light"] .review-profile-img {
   margin-bottom: 24px;
 }
 
-/* 3. Chapter Cover Marquee (Apple-Grade Magazine Entrance) */
-.chapter-marquee {
+/* 3. Streamlined Chapter Header (Clean, Contained Width, Non-Overdone) */
+.chapter-header {
   position: relative;
-  border-radius: 28px;
-  padding: 40px 36px;
-  background: rgba(18, 22, 34, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  overflow: hidden;
+  max-width: 800px;
+  margin: 0 0 10px 0;
+  padding: 4px 0 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 6px;
   transition: all 0.3s ease;
 }
 
-/* Thematic Chapter Accents */
-/* Outdoor Sessions: Emerald Glow & Sunshine Lifestyle */
-.chapter-section-outdoor .chapter-marquee {
-  background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.16) 0%, rgba(5, 150, 105, 0.04) 50%, rgba(13, 17, 27, 0.95) 100%);
-  border: 1px solid rgba(16, 185, 129, 0.32);
-  border-top: 3px solid #10b981;
-  box-shadow: 0 25px 70px rgba(6, 78, 59, 0.25), 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-/* Studio Sessions: Warm Gold Strobe Glow */
-.chapter-section-studio .chapter-marquee {
-  background: radial-gradient(circle at 50% 0%, rgba(234, 179, 8, 0.14) 0%, rgba(202, 138, 4, 0.04) 50%, rgba(13, 17, 27, 0.95) 100%);
-  border: 1px solid rgba(234, 179, 8, 0.28);
-  border-top: 3px solid #eab308;
-  box-shadow: 0 25px 70px rgba(161, 98, 7, 0.18), 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-/* Weddings & Events: Royal Sapphire Glow */
-.chapter-section-events .chapter-marquee {
-  background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.04) 50%, rgba(13, 17, 27, 0.95) 100%);
-  border: 1px solid rgba(59, 130, 246, 0.30);
-  border-top: 3px solid #3b82f6;
-  box-shadow: 0 25px 70px rgba(29, 78, 216, 0.2), 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-/* Commercial & Branding: Modern Violet Glow */
-.chapter-section-commercial .chapter-marquee {
-  background: radial-gradient(circle at 50% 0%, rgba(236, 72, 153, 0.14) 0%, rgba(219, 39, 119, 0.04) 50%, rgba(13, 17, 27, 0.95) 100%);
-  border: 1px solid rgba(236, 72, 153, 0.30);
-  border-top: 3px solid #ec4899;
-  box-shadow: 0 25px 70px rgba(190, 24, 93, 0.18), 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* Light mode marquee overrides */
-[data-theme="light"] .chapter-marquee {
-  background: #ffffff;
-  border-color: #e2e8f0;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
-}
-[data-theme="light"] .chapter-section-outdoor .chapter-marquee {
-  background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.10) 0%, #ffffff 70%);
-  border-color: rgba(16, 185, 129, 0.35);
-  border-top: 3px solid #059669;
-}
-[data-theme="light"] .chapter-section-studio .chapter-marquee {
-  background: radial-gradient(circle at 50% 0%, rgba(234, 179, 8, 0.10) 0%, #ffffff 70%);
-  border-color: rgba(234, 179, 8, 0.35);
-  border-top: 3px solid #d97706;
-}
-[data-theme="light"] .chapter-section-events .chapter-marquee {
-  background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.10) 0%, #ffffff 70%);
-  border-color: rgba(59, 130, 246, 0.35);
-  border-top: 3px solid #2563eb;
-}
-[data-theme="light"] .chapter-section-commercial .chapter-marquee {
-  background: radial-gradient(circle at 50% 0%, rgba(236, 72, 153, 0.08) 0%, #ffffff 70%);
-  border-color: rgba(236, 72, 153, 0.30);
-  border-top: 3px solid #db2777;
-}
-
-/* Marquee Elements */
-.chapter-eyebrow-row {
+.chapter-header-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
+  margin-bottom: 2px;
 }
+
 .chapter-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 11.5px;
+  gap: 5px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  padding: 6px 14px;
+  letter-spacing: 0.8px;
+  padding: 3.5px 11px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(234, 179, 8, 0.12);
+  border: 1px solid rgba(234, 179, 8, 0.28);
   color: var(--gold-soft, #fde047);
 }
+
 .chapter-section-outdoor .chapter-badge {
   color: #34d399;
-  background: rgba(16, 185, 129, 0.14);
-  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.30);
 }
+
 .chapter-section-events .chapter-badge {
   color: #60a5fa;
-  background: rgba(59, 130, 246, 0.14);
-  border-color: rgba(59, 130, 246, 0.35);
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.30);
 }
+
 .chapter-section-commercial .chapter-badge {
   color: #f472b6;
-  background: rgba(236, 72, 153, 0.14);
-  border-color: rgba(236, 72, 153, 0.35);
+  background: rgba(236, 72, 153, 0.12);
+  border-color: rgba(236, 72, 153, 0.30);
 }
 
 .chapter-count-tag {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   color: var(--muted, #94a3b8);
   background: rgba(255, 255, 255, 0.05);
-  padding: 4px 10px;
+  padding: 2.5px 8px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -12105,137 +12045,26 @@ html[data-theme="light"] .review-profile-img {
 
 .chapter-title {
   font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(26px, 4vw, 38px);
+  font-size: clamp(22px, 3.5vw, 32px);
   font-weight: 700;
   color: var(--head, #ffffff);
-  line-height: 1.15;
-  margin: 2px 0 0;
-  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.01em;
 }
 [data-theme="light"] .chapter-title {
   color: #0f172a;
 }
 
 .chapter-desc {
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 13.5px;
+  line-height: 1.5;
   color: var(--muted, #94a3b8);
-  max-width: 760px;
-  margin: 0;
+  max-width: 680px;
+  margin: 0 0 2px 0;
 }
 [data-theme="light"] .chapter-desc {
   color: #475569;
-}
-
-/* Policy Callout Banner */
-.chapter-policy-banner {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.45;
-  width: fit-content;
-  max-width: 100%;
-}
-.chapter-section-outdoor .chapter-policy-banner {
-  background: rgba(16, 185, 129, 0.12);
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  color: #6ee7b7;
-}
-[data-theme="light"] .chapter-section-outdoor .chapter-policy-banner {
-  background: #ecfdf5;
-  border-color: #a7f3d0;
-  color: #047857;
-}
-
-/* Highlights row */
-.chapter-highlights-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 16px;
-  font-size: 12.5px;
-  color: #cbd5e1;
-  padding-top: 4px;
-}
-[data-theme="light"] .chapter-highlights-row {
-  color: #475569;
-}
-.chapter-highlight-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* Chapter Action Buttons */
-.chapter-actions-row {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding-top: 8px;
-}
-.btn-chapter-share {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  user-select: none;
-}
-.btn-chapter-share:hover {
-  background: rgba(255, 255, 255, 0.16);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-.chapter-section-outdoor .btn-chapter-share {
-  background: rgba(16, 185, 129, 0.15);
-  border-color: rgba(16, 185, 129, 0.45);
-  color: #34d399;
-}
-.chapter-section-outdoor .btn-chapter-share:hover {
-  background: rgba(16, 185, 129, 0.25);
-  border-color: #34d399;
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.25);
-}
-[data-theme="light"] .btn-chapter-share {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
-  color: #0f172a;
-}
-[data-theme="light"] .chapter-section-outdoor .btn-chapter-share {
-  background: #ecfdf5;
-  border-color: #6ee7b7;
-  color: #047857;
-}
-
-.btn-chapter-wa {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  border-radius: 999px;
-  background: #25D366;
-  color: #000000 !important;
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.25);
-}
-.btn-chapter-wa:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(37, 211, 102, 0.35);
 }
 
 /* In-Chapter Subcategory Pills */
