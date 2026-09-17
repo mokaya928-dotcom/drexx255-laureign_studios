@@ -3903,8 +3903,8 @@ html[data-theme="light"] .mount-reel-subtle-pill {
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.7);
   margin-bottom: 14px;
-  aspect-ratio: 4 / 5;
-  max-height: 400px;
+  aspect-ratio: 1 / 1;
+  max-height: 340px;
 }
 .mount-preview-frame picture {
   display: block;
@@ -12457,8 +12457,8 @@ html[data-theme="light"] .review-profile-img {
   .pkg-card.mount-card .mount-preview-frame,
   .mount-preview-frame {
     width: 100% !important;
-    aspect-ratio: 4 / 5 !important;
-    max-height: 380px !important;
+    aspect-ratio: 1 / 1 !important;
+    max-height: 280px !important;
     margin-bottom: 8px !important;
     border-radius: 12px !important;
     background: #090c13 !important;
@@ -12766,8 +12766,8 @@ html[data-theme="light"] .review-profile-img {
   }
   .pkg-card.mount-card .mount-preview-frame,
   .mount-preview-frame {
-    aspect-ratio: 4 / 5 !important;
-    max-height: 360px !important;
+    aspect-ratio: 1 / 1 !important;
+    max-height: 240px !important;
   }
   .pkg-card.mount-card .mount-name,
   .mount-name {
