@@ -870,163 +870,34 @@ html:not([data-theme="dark"]) .packages-mobile-toggle:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.65) 48%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 55%, rgba(0, 0, 0, 0) 100%);
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 28px 22px 18px;
-  text-align: left;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 20px 20px;
+  text-align: center;
   pointer-events: none;
   z-index: 10;
 }
 
-.hero-swap-tag {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: var(--gold-soft, #fde047);
-  margin-bottom: 3px;
-}
-
-.hero-swap-title {
+.hero-swap-caption {
   font-family: var(--font-display, Georgia, serif);
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
   color: #ffffff;
-  line-height: 1.25;
-  margin: 0 0 3px;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.85);
+  letter-spacing: 0.03em;
+  line-height: 1.35;
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 @media (max-width: 640px) {
-  .hero-swap-title {
-    font-size: 16.5px;
+  .hero-swap-caption {
+    font-size: 14.5px;
   }
 }
 
-.hero-swap-sub {
-  font-size: 12px;
-  color: rgba(248, 250, 252, 0.82);
-  font-weight: 400;
-  line-height: 1.35;
-  margin: 0;
-}
 
-/* Floating overlay buttons inside stage */
-.hero-swap-floating-bar {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  right: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 25;
-  pointer-events: none;
-}
-
-.hero-swap-btn-trigger {
-  pointer-events: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 8px 14px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-}
-
-.hero-swap-btn-trigger:hover {
-  background: var(--gold, #eab308);
-  color: #000000;
-  border-color: var(--gold, #eab308);
-  transform: scale(1.06);
-}
-
-/* Side navigation arrows */
-.hero-swap-nav-arrows {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 14px;
-}
-
-.hero-swap-arrow {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: #ffffff;
-  font-size: 22px;
-  line-height: 1;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.hero-swap-arrow:hover {
-  background: rgba(234, 179, 8, 0.2);
-  border-color: var(--gold, #eab308);
-  color: var(--gold-soft, #fde047);
-  transform: scale(1.1);
-}
-
-.hero-swap-arrow:active {
-  transform: scale(0.95);
-}
-
-/* Look selector pills */
-.hero-swap-pills-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 16px auto 20px;
-  max-width: 720px;
-}
-
-.hero-swap-look-pill {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: var(--muted, #cbd5e1);
-  font-size: 12px;
-  font-weight: 600;
-  padding: 7px 15px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hero-swap-look-pill:hover {
-  background: rgba(255, 255, 255, 0.14);
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-1px);
-}
-
-.hero-swap-look-pill.active {
-  background: linear-gradient(135deg, rgba(234, 179, 8, 0.25) 0%, rgba(202, 138, 4, 0.15) 100%);
-  border-color: var(--gold, #eab308);
-  color: var(--gold-soft, #fde047);
-  box-shadow: 0 0 12px rgba(234, 179, 8, 0.3);
-}
 
 .hero-showcase-actions {
   display: flex;

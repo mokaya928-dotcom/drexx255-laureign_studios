@@ -4961,12 +4961,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function initHeroSwapAnimation() {
     const stage = document.getElementById("heroSwapStage");
     const deck = document.getElementById("heroSwapDeck");
-    const counter = document.getElementById("heroSwapCounter");
-    const pillsWrap = document.getElementById("heroSwapPills");
-    const triggerBtn = document.getElementById("swapTriggerBtn");
-    const centerBtn = document.getElementById("swapActionCenterBtn");
-    const prevBtn = document.getElementById("heroSwapPrev");
-    const nextBtn = document.getElementById("heroSwapNext");
     if (!deck) return;
 
     const cards = Array.from(deck.querySelectorAll(".hero-swap-card"));
@@ -4977,26 +4971,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let autoSwapTimer = null;
 
     function renderDeckPositions() {
-      const total = cards.length;
       cards.forEach((card, idx) => {
         card.className = "hero-swap-card";
         if (idx === currentIndex) {
           card.classList.add("is-active");
         }
       });
-
-      // Update counter
-      if (counter) {
-        counter.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
-      }
-
-      // Update selector pills
-      if (pillsWrap) {
-        const pills = pillsWrap.querySelectorAll(".hero-swap-look-pill");
-        pills.forEach((p, idx) => {
-          p.classList.toggle("active", idx === currentIndex);
-        });
-      }
     }
 
     function slideDeck(direction = "right") {
@@ -5028,25 +5008,8 @@ document.addEventListener("DOMContentLoaded", () => {
         currentIndex = nextIndex;
         currentCard.className = "hero-swap-card";
         nextCard.className = "hero-swap-card is-active";
-
-        if (counter) {
-          counter.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(cards.length).padStart(2, "0")}`;
-        }
-        if (pillsWrap) {
-          const pills = pillsWrap.querySelectorAll(".hero-swap-look-pill");
-          pills.forEach((p, idx) => {
-            p.classList.toggle("active", idx === currentIndex);
-          });
-        }
-
         isSwapping = false;
       }, 550);
-    }
-
-    function goToIndex(targetIdx) {
-      if (isSwapping || targetIdx === currentIndex || targetIdx >= cards.length) return;
-      const direction = targetIdx > currentIndex ? "right" : "left";
-      slideDeck(direction);
     }
 
     // Auto-swap loop (every 4.5s)
@@ -5064,85 +5027,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Click triggers
-    if (triggerBtn) {
-      triggerBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        slideDeck("right");
-        startAutoSwap();
-      });
-    }
-
-    if (centerBtn) {
-      centerBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        slideDeck("right");
-        startAutoSwap();
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        slideDeck("right");
-        startAutoSwap();
-      });
-    }
-
-    if (prevBtn) {
-      prevBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        slideDeck("left");
-        startAutoSwap();
-      });
-    }
-
-    function openHeroPhotoZoom(index) {
-      const heroItems = cards.map(c => ({
-        url: c.dataset.img || (c.querySelector("img") ? c.querySelector("img").src : ""),
-        title: c.dataset.title || "Studio Highlight",
-        catLabel: c.dataset.tag || "Studio Showcase",
-        turnaround: "24–48 Hours",
-        price: 2500
-      }));
-      openLightbox(heroItems, index);
-    }
-
-    // Direct card clicks
-    cards.forEach((card, idx) => {
-      card.addEventListener("click", (e) => {
-        // If clicking Zoom button
-        if (e.target.closest(".js-swap-zoom-btn")) {
-          e.stopPropagation();
-          openHeroPhotoZoom(currentIndex);
-          return;
-        }
-
+    // Tapping or clicking the image slides to next photo
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
         slideDeck("right");
         startAutoSwap();
       });
     });
-
-    // Zoom buttons inside cards or top bar
-    document.querySelectorAll(".js-swap-zoom-btn").forEach(btn => {
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        openHeroPhotoZoom(currentIndex);
-      });
-    });
-
-    // Selector pills clicks
-    if (pillsWrap) {
-      pillsWrap.querySelectorAll(".hero-swap-look-pill").forEach((pill) => {
-        pill.addEventListener("click", () => {
-          const target = parseInt(pill.dataset.target, 10);
-          if (!isNaN(target)) {
-            goToIndex(target);
-            startAutoSwap();
-          }
-        });
-      });
-    }
 
     // Touch Swipe support for mobile
     if (stage) {
