@@ -191,18 +191,18 @@
           <span class="pulse-dot"></span>
           <span>Official Rates &amp; Live Studio Highlights</span>
         </div>
-        <div class="hero-swap-counter-badge" id="heroSwapCounter">01 / 06</div>
+        <div class="hero-swap-counter-badge" id="heroSwapCounter">01 / 02</div>
       </div>
 
-      <!-- 3D Interactive Card Swap Stage -->
+      <!-- Interactive 2-Image Slide Stage -->
       <div class="hero-swap-stage" id="heroSwapStage">
         <!-- Floating Controls inside Stage -->
         <div class="hero-swap-floating-bar">
-          <button type="button" class="hero-swap-btn-trigger" id="swapTriggerBtn" aria-label="Swap Photo">
+          <button type="button" class="hero-swap-btn-trigger" id="swapTriggerBtn" aria-label="Slide Photo">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M7 16V4M7 4L3 8M7 4L11 8M17 8V20M17 20L21 16M17 20L13 16"/>
             </svg>
-            <span>⇄ Tap to Swap</span>
+            <span>⇄ Slide Photo</span>
           </button>
           <button type="button" class="hero-swap-btn-trigger js-swap-zoom-btn" title="Inspect Fullscreen Photo">
             <span>🔍 Zoom</span>
@@ -210,7 +210,7 @@
         </div>
 
         <div class="hero-swap-deck" id="heroSwapDeck">
-          <!-- Card 1: Editorial Portrait (DSC02822 WebP) -->
+          <!-- Image 1: Editorial Portrait (DSC02822 WebP) -->
           <div class="hero-swap-card is-active" data-index="0" data-tag="📸 Studio Master Lighting" data-title="Editorial Portrait Session" data-img="samples/studio/landscape/DSC02822.webp">
             <picture>
               <source srcset="samples/studio/landscape/DSC02822.webp" type="image/webp">
@@ -219,90 +219,20 @@
             <div class="hero-swap-overlay">
               <span class="hero-swap-tag">📸 Studio Master Lighting</span>
               <h2 class="hero-swap-title">Editorial Portrait Session</h2>
-              <div class="hero-swap-hint-row">
-                <span>Touch / Tap to Swap Next Photo</span>
-                <span>🔍 Tap to Enlarge</span>
-              </div>
+              <p class="hero-swap-sub">Controlled Strobe &amp; Continuous Light · Kakamega Studio</p>
             </div>
           </div>
 
-          <!-- Card 2: High-Fashion Beauty (DSC02891 WebP) -->
-          <div class="hero-swap-card is-next" data-index="1" data-tag="✨ High-Fashion Beauty" data-title="Creative Glamour &amp; Beauty" data-img="samples/studio/landscape/DSC02891.webp">
+          <!-- Image 2: High-Fashion Beauty (DSC02891 WebP) -->
+          <div class="hero-swap-card" data-index="1" data-tag="✨ Fine-Art Retouching" data-title="High-Fashion &amp; Glamour" data-img="samples/studio/landscape/DSC02891.webp">
             <picture>
               <source srcset="samples/studio/landscape/DSC02891.webp" type="image/webp">
               <img src="samples/studio/landscape/DSC02891.jpg" alt="High-Fashion Beauty by Laureign Studios" loading="eager" fetchpriority="high" decoding="async" width="1080" height="1920">
             </picture>
             <div class="hero-swap-overlay">
               <span class="hero-swap-tag">✨ Fine-Art Retouching</span>
-              <h2 class="hero-swap-title">High-Fashion &amp; Beauty</h2>
-              <div class="hero-swap-hint-row">
-                <span>Touch / Tap to Swap Next Photo</span>
-                <span>🔍 Tap to Enlarge</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 3: Crisp White Shirt (images/work-1) -->
-          <div class="hero-swap-card is-prev" data-index="2" data-tag="👔 Studio Minimalist" data-title="Crisp White Shirt Look" data-img="images/work-1.jpg">
-            <picture>
-              <source srcset="images/work-1_thumb.webp" type="image/webp">
-              <img src="images/work-1_thumb.jpg" alt="White Shirt Studio Session" loading="lazy" decoding="async" width="800" height="1200">
-            </picture>
-            <div class="hero-swap-overlay">
-              <span class="hero-swap-tag">👔 Timeless Minimalist</span>
-              <h2 class="hero-swap-title">White Shirt Session</h2>
-              <div class="hero-swap-hint-row">
-                <span>Touch / Tap to Swap Next Photo</span>
-                <span>🔍 Tap to Enlarge</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 4: Outdoor Golden Hour (images/work-7) -->
-          <div class="hero-swap-card is-hidden" data-index="3" data-tag="🌿 Natural Golden Light" data-title="Outdoor Lifestyle Story" data-img="images/work-7.jpg">
-            <picture>
-              <source srcset="images/work-7_thumb.webp" type="image/webp">
-              <img src="images/work-7_thumb.jpg" alt="Outdoor Golden Hour Session" loading="lazy" decoding="async" width="800" height="1200">
-            </picture>
-            <div class="hero-swap-overlay">
-              <span class="hero-swap-tag">🌿 Natural Golden Light</span>
-              <h2 class="hero-swap-title">Outdoor Lifestyle Story</h2>
-              <div class="hero-swap-hint-row">
-                <span>Touch / Tap to Swap Next Photo</span>
-                <span>🔍 Tap to Enlarge</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 5: Graduation Milestones (images/work-3) -->
-          <div class="hero-swap-card is-hidden" data-index="4" data-tag="🎓 Milestone Success" data-title="Graduation &amp; Headshots" data-img="images/work-3.jpg">
-            <picture>
-              <source srcset="images/work-3_thumb.webp" type="image/webp">
-              <img src="images/work-3_thumb.jpg" alt="Graduation & Headshots" loading="lazy" decoding="async" width="800" height="1200">
-            </picture>
-            <div class="hero-swap-overlay">
-              <span class="hero-swap-tag">🎓 Milestone Success</span>
-              <h2 class="hero-swap-title">Graduation &amp; Headshots</h2>
-              <div class="hero-swap-hint-row">
-                <span>Touch / Tap to Swap Next Photo</span>
-                <span>🔍 Tap to Enlarge</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 6: Silk Wrap & Glamour (images/work-4) -->
-          <div class="hero-swap-card is-hidden" data-index="5" data-tag="🌹 Studio Glamour" data-title="Luxury Silk Wrap" data-img="images/work-4.jpg">
-            <picture>
-              <source srcset="images/work-4_thumb.webp" type="image/webp">
-              <img src="images/work-4_thumb.jpg" alt="Luxury Silk Wrap" loading="lazy" decoding="async" width="800" height="1200">
-            </picture>
-            <div class="hero-swap-overlay">
-              <span class="hero-swap-tag">✨ Luxury Silk Wrap</span>
-              <h2 class="hero-swap-title">Silk Wrap &amp; Glamour</h2>
-              <div class="hero-swap-hint-row">
-                <span>Touch / Tap to Swap Next Photo</span>
-                <span>🔍 Tap to Enlarge</span>
-              </div>
+              <h2 class="hero-swap-title">High-Fashion &amp; Glamour</h2>
+              <p class="hero-swap-sub">Signature Tones &amp; High-Resolution Gallery</p>
             </div>
           </div>
         </div>
@@ -312,19 +242,15 @@
       <div class="hero-swap-nav-arrows">
         <button type="button" class="hero-swap-arrow" id="heroSwapPrev" aria-label="Previous Photo" title="Previous Photo">‹</button>
         <button type="button" class="hero-btn-primary" id="swapActionCenterBtn" style="padding: 10px 22px; font-size: 13.5px;">
-          <span>⇄ Swap Look</span>
+          <span>⇄ Slide Photo</span>
         </button>
         <button type="button" class="hero-swap-arrow" id="heroSwapNext" aria-label="Next Photo" title="Next Photo">›</button>
       </div>
 
       <!-- Direct Style Selector Pills -->
       <div class="hero-swap-pills-row" id="heroSwapPills">
-        <button type="button" class="hero-swap-look-pill active" data-target="0">01 Portrait</button>
+        <button type="button" class="hero-swap-look-pill active" data-target="0">01 Studio Portrait</button>
         <button type="button" class="hero-swap-look-pill" data-target="1">02 High Fashion</button>
-        <button type="button" class="hero-swap-look-pill" data-target="2">03 White Shirt</button>
-        <button type="button" class="hero-swap-look-pill" data-target="3">04 Golden Hour</button>
-        <button type="button" class="hero-swap-look-pill" data-target="4">05 Graduation</button>
-        <button type="button" class="hero-swap-look-pill" data-target="5">06 Silk Wrap</button>
       </div>
 
       <!-- Direct Exploration Actions -->

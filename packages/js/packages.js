@@ -4957,7 +4957,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.togglePackagesDrawer = togglePackagesDrawer;
   window.openLightbox = openLightbox;
 
-  // ==================== HERO 3D IMAGE SWAP ANIMATION ====================
+  // ==================== HERO 2-IMAGE SLIDE ANIMATION ====================
   function initHeroSwapAnimation() {
     const stage = document.getElementById("heroSwapStage");
     const deck = document.getElementById("heroSwapDeck");
@@ -4978,19 +4978,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderDeckPositions() {
       const total = cards.length;
-      const nextIdx = (currentIndex + 1) % total;
-      const prevIdx = (currentIndex - 1 + total) % total;
-
       cards.forEach((card, idx) => {
-        card.classList.remove("is-active", "is-next", "is-prev", "is-hidden", "swapping-out-right", "swapping-out-left");
+        card.className = "hero-swap-card";
         if (idx === currentIndex) {
           card.classList.add("is-active");
-        } else if (idx === nextIdx) {
-          card.classList.add("is-next");
-        } else if (idx === prevIdx) {
-          card.classList.add("is-prev");
-        } else {
-          card.classList.add("is-hidden");
         }
       });
 
@@ -5008,52 +4999,62 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    function updateDeck(direction = "right") {
-      if (isSwapping) return;
+    function slideDeck(direction = "right") {
+      if (isSwapping || cards.length < 2) return;
       isSwapping = true;
 
       const currentCard = cards[currentIndex];
-      const exitClass = direction === "left" ? "swapping-out-left" : "swapping-out-right";
+      const nextIndex = direction === "right"
+        ? (currentIndex + 1) % cards.length
+        : (currentIndex - 1 + cards.length) % cards.length;
+      const nextCard = cards[nextIndex];
 
-      // Animate current active card out
-      currentCard.classList.add(exitClass);
+      // Remove existing animation classes
+      currentCard.classList.remove("is-active", "slide-out-right", "slide-in-right", "slide-out-left", "slide-in-left");
+      nextCard.classList.remove("is-active", "slide-out-right", "slide-in-right", "slide-out-left", "slide-in-left");
+
+      if (direction === "right") {
+        // Image slides from left to right and disappears with opacity
+        currentCard.classList.add("slide-out-right");
+        // Other image comes in from right to left
+        nextCard.classList.add("slide-in-right");
+      } else {
+        // Reverse direction
+        currentCard.classList.add("slide-out-left");
+        nextCard.classList.add("slide-in-left");
+      }
 
       setTimeout(() => {
-        // Calculate next index
-        if (direction === "left") {
-          currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-        } else {
-          currentIndex = (currentIndex + 1) % cards.length;
+        currentIndex = nextIndex;
+        currentCard.className = "hero-swap-card";
+        nextCard.className = "hero-swap-card is-active";
+
+        if (counter) {
+          counter.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(cards.length).padStart(2, "0")}`;
+        }
+        if (pillsWrap) {
+          const pills = pillsWrap.querySelectorAll(".hero-swap-look-pill");
+          pills.forEach((p, idx) => {
+            p.classList.toggle("active", idx === currentIndex);
+          });
         }
 
-        renderDeckPositions();
-        currentCard.classList.remove(exitClass);
         isSwapping = false;
-      }, 400);
+      }, 550);
     }
 
     function goToIndex(targetIdx) {
-      if (isSwapping || targetIdx === currentIndex) return;
-      isSwapping = true;
-      const currentCard = cards[currentIndex];
+      if (isSwapping || targetIdx === currentIndex || targetIdx >= cards.length) return;
       const direction = targetIdx > currentIndex ? "right" : "left";
-      const exitClass = direction === "left" ? "swapping-out-left" : "swapping-out-right";
-
-      currentCard.classList.add(exitClass);
-      setTimeout(() => {
-        currentIndex = targetIdx;
-        renderDeckPositions();
-        currentCard.classList.remove(exitClass);
-        isSwapping = false;
-      }, 400);
+      slideDeck(direction);
     }
 
-    // Auto-swap loop (every 3.8s)
+    // Auto-swap loop (every 4.5s)
     function startAutoSwap() {
       stopAutoSwap();
       autoSwapTimer = setInterval(() => {
-        updateDeck("right");
-      }, 3800);
+        slideDeck("right");
+      }, 4500);
     }
 
     function stopAutoSwap() {
@@ -5067,7 +5068,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (triggerBtn) {
       triggerBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        updateDeck("right");
+        slideDeck("right");
         startAutoSwap();
       });
     }
@@ -5075,7 +5076,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (centerBtn) {
       centerBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        updateDeck("right");
+        slideDeck("right");
         startAutoSwap();
       });
     }
@@ -5083,7 +5084,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (nextBtn) {
       nextBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        updateDeck("right");
+        slideDeck("right");
         startAutoSwap();
       });
     }
@@ -5091,7 +5092,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (prevBtn) {
       prevBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        updateDeck("left");
+        slideDeck("left");
         startAutoSwap();
       });
     }
@@ -5111,26 +5112,14 @@ document.addEventListener("DOMContentLoaded", () => {
     cards.forEach((card, idx) => {
       card.addEventListener("click", (e) => {
         // If clicking Zoom button
-        if (e.target.closest(".js-swap-zoom-btn") || e.target.closest(".hero-swap-hint-row")) {
+        if (e.target.closest(".js-swap-zoom-btn")) {
           e.stopPropagation();
           openHeroPhotoZoom(currentIndex);
           return;
         }
 
-        // If clicking the active card, swap to next
-        if (idx === currentIndex) {
-          updateDeck("right");
-          startAutoSwap();
-        } else if (card.classList.contains("is-next")) {
-          updateDeck("right");
-          startAutoSwap();
-        } else if (card.classList.contains("is-prev")) {
-          updateDeck("left");
-          startAutoSwap();
-        } else {
-          goToIndex(idx);
-          startAutoSwap();
-        }
+        slideDeck("right");
+        startAutoSwap();
       });
     });
 
@@ -5177,9 +5166,9 @@ document.addEventListener("DOMContentLoaded", () => {
           // Horizontal swipe threshold
           if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
             if (deltaX < 0) {
-              updateDeck("right");
+              slideDeck("right");
             } else {
-              updateDeck("left");
+              slideDeck("left");
             }
           }
         }

@@ -758,16 +758,21 @@ html:not([data-theme="dark"]) .packages-mobile-toggle:hover {
   max-width: 440px;
   height: 540px;
   margin: 0 auto 20px;
-  perspective: 1200px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #0b0e17;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 24px rgba(234, 179, 8, 0.15);
   user-select: none;
   touch-action: pan-y;
 }
 
 @media (max-width: 640px) {
   .hero-swap-stage {
-    max-width: 310px;
+    max-width: 320px;
     height: 440px;
     margin-bottom: 16px;
+    border-radius: 20px;
   }
 }
 
@@ -775,70 +780,81 @@ html:not([data-theme="dark"]) .packages-mobile-toggle:hover {
   position: relative;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
+  overflow: hidden;
+  border-radius: inherit;
 }
 
 .hero-swap-card {
   position: absolute;
   inset: 0;
-  border-radius: 24px;
+  border-radius: inherit;
   overflow: hidden;
   background: #0b0e17;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 24px rgba(234, 179, 8, 0.15);
   cursor: pointer;
-  transition: transform 0.55s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.45s ease, filter 0.45s ease, box-shadow 0.4s ease;
-  will-change: transform, opacity;
-}
-
-/* 3D Stack Layer 1: Active Front Card */
-.hero-swap-card.is-active {
-  transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
-  z-index: 10;
-  opacity: 1;
-  filter: brightness(1);
-  pointer-events: auto;
-}
-
-/* 3D Stack Layer 2: Peeking Next Card (Shifted right & down with rotation) */
-.hero-swap-card.is-next {
-  transform: translate3d(24px, 14px, -45px) scale(0.93) rotate(3.5deg);
-  z-index: 9;
-  opacity: 0.85;
-  filter: brightness(0.75);
-  pointer-events: auto;
-}
-
-/* 3D Stack Layer 3: Peeking Prev Card (Shifted left & down with counter-rotation) */
-.hero-swap-card.is-prev {
-  transform: translate3d(-24px, 16px, -80px) scale(0.87) rotate(-3.5deg);
-  z-index: 8;
-  opacity: 0.6;
-  filter: brightness(0.55);
-  pointer-events: auto;
-}
-
-/* 3D Stack Layer 4: Hidden Cards in background */
-.hero-swap-card.is-hidden {
-  transform: translate3d(0, 24px, -120px) scale(0.8);
-  z-index: 1;
   opacity: 0;
   pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 0.5s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+  z-index: 1;
 }
 
-/* Swap Animation: Active Card Flying Out */
-.hero-swap-card.swapping-out-right {
-  transform: translate3d(120%, -15px, 0) rotate(12deg) scale(0.95);
-  opacity: 0;
-  transition: transform 0.42s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.35s ease;
-  z-index: 20;
+/* Active front card */
+.hero-swap-card.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+  z-index: 5;
 }
 
-.hero-swap-card.swapping-out-left {
-  transform: translate3d(-120%, -15px, 0) rotate(-12deg) scale(0.95);
-  opacity: 0;
-  transition: transform 0.42s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.35s ease;
-  z-index: 20;
+/* Slide from left to right and disappear with opacity */
+.hero-swap-card.slide-out-right {
+  opacity: 0 !important;
+  transform: translate3d(80px, 0, 0) !important;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.45s ease !important;
+  z-index: 4;
+}
+
+/* Other image comes in from right to left */
+.hero-swap-card.slide-in-right {
+  animation: heroSlideInFromRight 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  z-index: 6;
+}
+
+@keyframes heroSlideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(80px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Reverse: slide out to left with opacity */
+.hero-swap-card.slide-out-left {
+  opacity: 0 !important;
+  transform: translate3d(-80px, 0, 0) !important;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.45s ease !important;
+  z-index: 4;
+}
+
+/* Reverse: enter from left to right */
+.hero-swap-card.slide-in-left {
+  animation: heroSlideInFromLeft 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  z-index: 6;
+}
+
+@keyframes heroSlideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-80px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .hero-swap-card img {
@@ -848,51 +864,53 @@ html:not([data-theme="dark"]) .packages-mobile-toggle:hover {
   display: block;
 }
 
+/* Bottom gradient so that text is crystal clear below the image */
 .hero-swap-overlay {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.3) 45%, rgba(0, 0, 0, 0.92) 100%);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.65) 48%, rgba(0, 0, 0, 0) 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 24px 22px;
+  padding: 28px 22px 18px;
   text-align: left;
   pointer-events: none;
+  z-index: 10;
 }
 
 .hero-swap-tag {
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   color: var(--gold-soft, #fde047);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .hero-swap-title {
   font-family: var(--font-display, Georgia, serif);
-  font-size: 23px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
   color: #ffffff;
-  line-height: 1.2;
-  margin: 0 0 6px;
+  line-height: 1.25;
+  margin: 0 0 3px;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.85);
 }
 
 @media (max-width: 640px) {
   .hero-swap-title {
-    font-size: 18px;
+    font-size: 16.5px;
   }
 }
 
-.hero-swap-hint-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 11.5px;
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 500;
-  margin-top: 4px;
+.hero-swap-sub {
+  font-size: 12px;
+  color: rgba(248, 250, 252, 0.82);
+  font-weight: 400;
+  line-height: 1.35;
+  margin: 0;
 }
 
 /* Floating overlay buttons inside stage */

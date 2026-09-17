@@ -24,7 +24,9 @@
 
   <script>
     // Seamlessly preserve query strings (e.g. ?pkg=graduation) and anchors (e.g. #book)
-    var target = "/packages" + window.location.search + window.location.hash;
+    var target = (window.location.protocol === 'file:')
+      ? "packages/index.html" + window.location.search + window.location.hash
+      : "/packages" + window.location.search + window.location.hash;
     window.location.replace(target);
   </script>
 
