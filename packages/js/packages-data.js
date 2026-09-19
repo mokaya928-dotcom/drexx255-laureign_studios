@@ -915,7 +915,8 @@ const PACKAGES_DATA = [
     "tagline": "Sculpted luxury silk drape sessions with studio drapery wardrobe provided",
     "image": "samples/studio/silk-wrap/cover_thumb.jpg",
     "imageWebp": "samples/studio/silk-wrap/cover_thumb.webp",
-    "imageHighRes": "samples/studio/silk-wrap/_R2A6339.jpg",
+    "imagePosition": "center 42%",
+    "imageHighRes": "samples/studio/silk-wrap/cover.JPG",
     "badge": "✨ Luxury Silk Wardrobe",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
@@ -1272,13 +1273,13 @@ const PACKAGES_DATA = [
     "subcat": "maternity-kids",
     "catLabel": "Maternity & Baby Bump",
     "title": "Maternity & Baby Bump Shoot (Studio)",
-    "tagline": "Celebrate expecting motherhood in cozy studio comfort with radiant lighting & wraps",
+    "tagline": "Dedicated Solo, Couple & Family maternity collections celebrating maternal glow, love & family legacy",
     "image": "samples/studio/baby-bump/cover_thumb.jpg",
     "imageWebp": "samples/studio/baby-bump/cover_thumb.webp",
     "imageHighRes": "samples/studio/baby-bump/cover.jpg",
     "badge": "🍼 Motherhood Glow",
     "turnaround": "2–3 Business Days",
-    "depositRate": "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
+    "depositRate": "Booking deposit: KSh 500 to KSh 3,500 (lock your slot)",
     "sampleFolder": "samples/studio/baby-bump",
     "samples": [
       {
@@ -1349,62 +1350,116 @@ const PACKAGES_DATA = [
     ],
     "options": [
       {
-        "id": "starter",
-        "name": "Single Image (Starter)",
-        "price": 300,
-        "deposit": 200,
-        "summary": "1 retouched maternity portrait (Pay per image)",
-        "inclusions": [
-          "1 Magazine-Grade Retouched Maternity Image",
-          "Studio Lighting & Bump Posing Assistance",
-          "Extra Retouched Photos: KSh 300 each",
-          "Unedited / RAW Soft Copies: KSh 150 each",
-          "15 Mins Studio Session",
-          "Delivered via WhatsApp & Cloud"
-        ]
-      },
-      {
-        "id": "silver",
-        "name": "Silver",
-        "price": 2000,
+        "id": "essence",
+        "name": "Maternity Essence (Solo)",
+        "price": 2500,
         "deposit": 500,
-        "summary": "8 retouched images, 1 outfit, 30 min session",
+        "summary": "30 Mins, 2 outfits, 5 retouched photos",
         "inclusions": [
-          "8 Retouched Maternity Images (Save KSh 400 vs single rate!)",
-          "1 Outfit of Choice",
-          "Comfortable Studio Session with Rest Breaks",
-          "30 Mins Studio Session",
-          "Delivered via WhatsApp & Cloud"
+          "Elegant maternity portraits",
+          "2 Outfits maximum",
+          "Guided posing & studio lighting",
+          "5 professionally edited photos",
+          "High-resolution digital delivery"
         ]
       },
       {
-        "id": "gold",
-        "name": "Gold (Mother + Partner)",
+        "id": "special",
+        "name": "Maternity Special 👑 (Solo)",
         "popular": true,
-        "price": 3500,
-        "deposit": 900,
-        "summary": "16 retouched images, 2 outfits, partner included, 45 min session",
+        "price": 4500,
+        "deposit": 1000,
+        "summary": "60 Mins, 3 outfits, 10 retouched photos",
         "inclusions": [
-          "16 Retouched Maternity Images (Save KSh 1,300 vs single rate!)",
-          "2 Outfits (Studio Silk Wrap or Personal Gown)",
-          "Partner & Sibling Shots Included",
-          "45 Mins Studio Session",
-          "Delivered via WhatsApp & Cloud"
+          "Multiple maternity poses (close-up & full-length)",
+          "3 Outfits maximum",
+          "Professional retouching",
+          "10 professionally edited photos",
+          "High-resolution digital gallery"
         ]
       },
       {
-        "id": "platinum",
-        "name": "Platinum (VIP + Makeup)",
-        "price": 5500,
-        "deposit": 1400,
-        "summary": "25 retouched images, pro makeup included, up to 5 outfits, 1 hr session",
+        "id": "signature",
+        "name": "Maternity Signature (Solo)",
+        "price": 7000,
+        "deposit": 1500,
+        "summary": "90 Mins, 4 outfits, 15 retouched photos",
         "inclusions": [
-          "25 Retouched Maternity Images",
-          "Professional Studio Makeup Artist Included",
-          "Up to 5 Outfit & Drapery Changes",
-          "Partner, Siblings & Full Family Inclusions",
-          "1 Hour Dedicated Studio Session",
-          "Delivered via WhatsApp & Cloud"
+          "Complete maternity portrait experience",
+          "4 Outfits maximum & creative portraits",
+          "Multiple poses & compositions, elegant setups",
+          "Professional retouching & color grading",
+          "15 professionally edited photos & cloud gallery"
+        ]
+      },
+      {
+        "id": "luxe",
+        "name": "Maternity Luxe 👑 (Solo + Mounts)",
+        "price": 12000,
+        "deposit": 3000,
+        "summary": "120 Mins, 6 outfits, 20 photos, A2 & A3 mounts",
+        "inclusions": [
+          "Most luxurious maternity experience",
+          "6 Outfits maximum & multiple elegant setups",
+          "Fine-art, full-length & intimate bump portraits",
+          "20 professionally edited photos",
+          "1 A2 Elegant Photo Mount + 1 A3 Photo Mount Included"
+        ]
+      },
+      {
+        "id": "couple",
+        "name": "Couple Maternity (2 People)",
+        "price": 4500,
+        "deposit": 1000,
+        "summary": "1 Hour, 2 people, 8 edited photos",
+        "inclusions": [
+          "Couple maternity portraits (mother + partner/friend)",
+          "Individual mother & partner bump portraits",
+          "Guided posing & professional editing",
+          "8 professionally edited photos",
+          "High-resolution digital gallery"
+        ]
+      },
+      {
+        "id": "trio",
+        "name": "Maternity Trio (3 People)",
+        "price": 7500,
+        "deposit": 1500,
+        "summary": "1 Hour, 3 people, 15 edited photos",
+        "inclusions": [
+          "Perfect for growing families (3 people)",
+          "Individual, couple & family group portraits",
+          "Mother & bump portraits with child/partner",
+          "15 professionally edited photos",
+          "High-resolution digital gallery"
+        ]
+      },
+      {
+        "id": "family",
+        "name": "Maternity Family (4 People)",
+        "price": 10500,
+        "deposit": 2500,
+        "summary": "90 Mins, 4 people, 22 edited photos",
+        "inclusions": [
+          "Warm & elegant family maternity experience (4 people)",
+          "Individual, couple & whole family portraits",
+          "Parents & children bump portraits",
+          "22 professionally edited photos",
+          "High-resolution digital gallery"
+        ]
+      },
+      {
+        "id": "legacy",
+        "name": "Maternity Legacy 👑 (Up to 6 People + Mounts)",
+        "price": 15000,
+        "deposit": 3500,
+        "summary": "2 Hours, up to 6 people, 25 photos, A2 & A3 mounts",
+        "inclusions": [
+          "Complete family heirloom experience (up to 6 people)",
+          "Creative group, couple & individual portraits",
+          "Full family portraits & directed posing",
+          "25 professionally edited photos",
+          "1 Elegant A2 Photo Mount + 1 A3 Photo Mount Included"
         ]
       }
     ]
@@ -2729,9 +2784,9 @@ const PACKAGES_DATA = [
     "catLabel": "Outdoor Maternity",
     "title": "Outdoor Baby Bump Lifestyle",
     "tagline": "Bespoke natural light maternity celebration in scenic nature (Minimum 7 images · No single image for outdoor)",
-    "image": "samples/outdoor/outdoor-baby-bump/cover_thumb.jpg",
-    "imageWebp": "samples/outdoor/outdoor-baby-bump/cover_thumb.webp",
-    "imageHighRes": "samples/outdoor/outdoor-baby-bump/cover.jpg",
+    "image": "samples/outdoor/outdoor-baby-bump/2N4A9118_thumb.jpg",
+    "imageWebp": "samples/outdoor/outdoor-baby-bump/2N4A9118_thumb.webp",
+    "imageHighRes": "samples/outdoor/outdoor-baby-bump/2N4A9118.jpg",
     "badge": "🍼 Min 7 Images (No Single Image)",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
@@ -6483,8 +6538,8 @@ const PACKAGES_DATA = [
     "catLabel": "Outdoor Silk Wrap",
     "title": "Outdoor Luxury Silk Wrap Shoot",
     "tagline": "Breathtaking 6-meter flying satin silk wrap session in natural golden-hour wind & outdoor bokeh",
-    "image": "samples/outdoor/outdoor-silk-wrap/_R2A6339.jpg",
-    "imageHighRes": "samples/outdoor/outdoor-silk-wrap/_R2A6339.jpg",
+    "image": "samples/outdoor/outdoor-silk-wrap/O13A0286.jpg",
+    "imageHighRes": "samples/outdoor/outdoor-silk-wrap/O13A0286.jpg",
     "badge": "✨ Flying Silk Satin",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",

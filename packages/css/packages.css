@@ -1430,12 +1430,7 @@ html:not([data-theme="dark"]) .packages-mobile-toggle:hover {
 }
 
 .meta-count-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-  font-size: 13.5px;
-  color: var(--muted);
+  display: none !important;
 }
 
 .packages-grid {
@@ -3897,14 +3892,19 @@ html[data-theme="light"] .mount-reel-subtle-pill {
 }
 .mount-preview-frame {
   position: relative;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   background: #0a0a0c;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
   margin-bottom: 14px;
+  width: 100%;
+  max-width: 100%;
   aspect-ratio: 1 / 1;
-  max-height: 340px;
+  max-height: none;
+  margin-left: 0;
+  margin-right: 0;
+  display: block;
 }
 .mount-preview-frame picture {
   display: block;
@@ -3919,8 +3919,12 @@ html[data-theme="light"] .mount-reel-subtle-pill {
   max-height: none !important;
   object-fit: cover !important;
   -o-object-fit: cover !important;
-  object-position: center 18%;
+  object-position: center 15% !important;
   display: block;
+}
+#pkg-silk-wrap .mount-preview-frame img,
+.mount-preview-frame[data-pkg-id="silk-wrap"] img {
+  object-position: center 42% !important;
 }
 .mount-size-indicator {
   position: absolute;
@@ -5544,27 +5548,27 @@ html[data-theme="dark"] .addon-card:hover,
   border-color: rgba(255, 255, 255, 0.22) !important;
 }
 
-/* Authentic Apple Elevated Package & Mount Cards (Lighter Dark Glass Surface & Rim Highlight) */
+/* Authentic Apple Elevated Package & Mount Cards (Dark Glass Surface & Rim Highlight) */
 html[data-theme="dark"] .pkg-card,
 html[data-theme="dark"] .mount-card,
 :root:not([data-theme="light"]) .pkg-card,
 :root:not([data-theme="light"]) .mount-card {
-  background: linear-gradient(180deg, rgba(38, 42, 54, 0.90) 0%, rgba(24, 27, 36, 0.94) 100%) !important;
-  backdrop-filter: blur(24px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  background: linear-gradient(180deg, rgba(26, 30, 42, 0.78) 0%, rgba(14, 17, 26, 0.88) 100%) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
   border-radius: 22px !important;
   padding: 24px 22px 26px !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.20), 0 18px 42px -8px rgba(0, 0, 0, 0.65) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 14px 36px -6px rgba(0, 0, 0, 0.60) !important;
 }
 
 html[data-theme="dark"] .pkg-card:hover,
 html[data-theme="dark"] .mount-card:hover,
 :root:not([data-theme="light"]) .pkg-card:hover,
 :root:not([data-theme="light"]) .mount-card:hover {
-  background: linear-gradient(180deg, rgba(48, 54, 68, 0.95) 0%, rgba(30, 34, 46, 0.98) 100%) !important;
-  border-color: rgba(255, 255, 255, 0.30) !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32), 0 24px 54px -10px rgba(0, 0, 0, 0.75) !important;
+  background: linear-gradient(180deg, rgba(34, 40, 56, 0.88) 0%, rgba(20, 24, 36, 0.94) 100%) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 22px 50px -8px rgba(0, 0, 0, 0.72) !important;
   transform: translateY(-4px) !important;
 }
 
@@ -12094,93 +12098,57 @@ html[data-theme="light"] .review-profile-img {
   margin-bottom: 24px;
 }
 
-/* 3. Streamlined Chapter Header (Clean, Contained Width, Non-Overdone) */
-.chapter-header {
+/* 3. Apple Rectangle Chapter Header Banner */
+.chapter-header,
+.apple-chapter-card {
   position: relative;
-  max-width: 800px;
-  margin: 0 0 10px 0;
-  padding: 4px 0 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 24px 0;
+  padding: 24px 28px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  background: linear-gradient(180deg, rgba(26, 30, 42, 0.82) 0%, rgba(14, 17, 26, 0.90) 100%) !important;
+  backdrop-filter: blur(24px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 24px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 14px 34px -6px rgba(0, 0, 0, 0.55) !important;
+  box-sizing: border-box;
   transition: all 0.3s ease;
 }
 
-.chapter-header-top {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 2px;
-}
-
-.chapter-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  padding: 3.5px 11px;
-  border-radius: 999px;
-  background: rgba(234, 179, 8, 0.12);
-  border: 1px solid rgba(234, 179, 8, 0.28);
-  color: var(--gold-soft, #fde047);
-}
-
-.chapter-section-outdoor .chapter-badge {
-  color: #34d399;
-  background: rgba(16, 185, 129, 0.12);
-  border-color: rgba(16, 185, 129, 0.30);
-}
-
-.chapter-section-events .chapter-badge {
-  color: #60a5fa;
-  background: rgba(59, 130, 246, 0.12);
-  border-color: rgba(59, 130, 246, 0.30);
-}
-
-.chapter-section-commercial .chapter-badge {
-  color: #f472b6;
-  background: rgba(236, 72, 153, 0.12);
-  border-color: rgba(236, 72, 153, 0.30);
-}
-
-.chapter-count-tag {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--muted, #94a3b8);
-  background: rgba(255, 255, 255, 0.05);
-  padding: 2.5px 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-[data-theme="light"] .chapter-count-tag {
-  background: #f1f5f9;
-  border-color: #e2e8f0;
-  color: #64748b;
+[data-theme="light"] .chapter-header,
+[data-theme="light"] .apple-chapter-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.12) !important;
 }
 
 .chapter-title {
-  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(22px, 3.5vw, 32px);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Playfair Display", Georgia, serif;
+  font-size: clamp(22px, 3.2vw, 28px);
   font-weight: 700;
   color: var(--head, #ffffff);
-  line-height: 1.2;
+  line-height: 1.22;
   margin: 0;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
+
 [data-theme="light"] .chapter-title {
   color: #0f172a;
 }
 
 .chapter-desc {
-  font-size: 13.5px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.55;
   color: var(--muted, #94a3b8);
-  max-width: 680px;
-  margin: 0 0 2px 0;
+  max-width: 100%;
+  margin: 0;
 }
+
 [data-theme="light"] .chapter-desc {
   color: #475569;
 }
@@ -12232,12 +12200,113 @@ html[data-theme="light"] .review-profile-img {
   border-color: #0f172a !important;
 }
 
-/* Chapter Cards Grid */
+/* Chapter Cards Grid: Authentic Apple Dark Glass Enclosure */
 .chapter-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 28px;
   width: 100%;
+  background: linear-gradient(180deg, rgba(16, 20, 30, 0.58) 0%, rgba(10, 13, 20, 0.68) 100%);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 28px;
+  padding: 34px 32px 38px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10), 0 20px 48px -10px rgba(0, 0, 0, 0.55);
+  box-sizing: border-box;
+  position: relative;
+}
+
+[data-theme="light"] .chapter-cards-grid {
+  background: rgba(255, 255, 255, 0.60) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.07) !important;
+  border-radius: 28px !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Tablet Screens (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .chapter-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px !important;
+    padding: 28px 24px 32px !important;
+    border-radius: 26px !important;
+  }
+}
+
+/* Desktop Unified Vertical Card Layout: Clean, Full-Width Balanced Frame */
+@media (min-width: 769px) {
+  .pkg-card,
+  .mount-card,
+  .pkg-card.mount-card {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 22px 20px 24px !important;
+    border-radius: 22px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    height: 100% !important;
+  }
+
+  .pkg-card.mount-card .pkg-top-meta-row,
+  .pkg-top-meta-row {
+    margin-bottom: 6px !important;
+  }
+
+  .pkg-card.mount-card .mount-name,
+  .mount-name {
+    font-size: 20px !important;
+    line-height: 1.25 !important;
+    margin-top: 2px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .pkg-card.mount-card .mount-dimensions,
+  .mount-dimensions {
+    margin-bottom: 12px !important;
+    font-size: 12px !important;
+  }
+
+  .pkg-card.mount-card .mount-preview-frame,
+  .mount-preview-frame {
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    max-height: none !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    background: #090c13 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
+    margin: 0 0 14px 0 !important;
+    display: block !important;
+  }
+
+  .pkg-card.mount-card .mount-price-box,
+  .mount-price-box {
+    margin-bottom: 10px !important;
+  }
+
+  .pkg-card.mount-card .mount-sub-desc,
+  .mount-sub-desc {
+    font-size: 12.5px !important;
+    line-height: 1.45 !important;
+    margin-bottom: 14px !important;
+    color: var(--muted) !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    flex-grow: 1 !important;
+  }
+
+  .pkg-card.mount-card .pkg-card-actions,
+  .pkg-card-actions {
+    margin-top: auto !important;
+  }
 }
 
 /* Chapter Transition Divider */
@@ -12346,38 +12415,37 @@ html[data-theme="light"] .review-profile-img {
 /* Mobile Screens (max-width: 768px) */
 @media (max-width: 768px) {
   /* 1. Chapter Header & Section Layout */
-  .chapter-section {
-    gap: 12px !important;
-    scroll-margin-top: 85px !important;
-    margin-bottom: 20px !important;
-  }
-  .chapter-header {
+  .packages-section .wrap {
+    padding: 0 10px !important;
+    width: 100% !important;
     max-width: 100% !important;
-    padding: 0 4px !important;
-    gap: 4px !important;
-    margin-bottom: 6px !important;
+    box-sizing: border-box !important;
   }
-  .chapter-header-top {
+
+  .chapter-section {
+    gap: 14px !important;
+    scroll-margin-top: 85px !important;
+    margin-bottom: 24px !important;
+  }
+  .chapter-header,
+  .apple-chapter-card {
+    width: 100% !important;
+    max-width: 520px !important;
+    margin: 0 auto 16px !important;
+    padding: 22px 20px 24px !important;
+    border-radius: 22px !important;
     gap: 6px !important;
-  }
-  .chapter-badge {
-    font-size: 10px !important;
-    padding: 3px 9px !important;
-    letter-spacing: 0.6px !important;
-  }
-  .chapter-count-tag {
-    font-size: 10px !important;
-    padding: 2.5px 7px !important;
+    box-sizing: border-box !important;
   }
   .chapter-title {
     font-size: 20px !important;
     line-height: 1.25 !important;
-    margin: 1px 0 0 !important;
+    margin: 0 !important;
   }
   .chapter-desc {
-    font-size: 12.5px !important;
-    line-height: 1.45 !important;
-    margin: 0 0 2px !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
   }
   .chapter-subcat-bar {
     gap: 5px !important;
@@ -12392,7 +12460,7 @@ html[data-theme="light"] .review-profile-img {
     padding: 14px 0 !important;
   }
 
-  /* 2. Grid & Package Cards (Strictly 1 Column on Mobile, Preserving Photo Intactness) */
+  /* 2. Grid & Package Cards (Strictly 1 Column on Mobile, Centered under Dark Apple Glass) */
   .packages-grid {
     display: block !important;
     width: 100% !important;
@@ -12403,25 +12471,43 @@ html[data-theme="light"] .review-profile-img {
   .chapter-cards-grid {
     display: grid !important;
     grid-template-columns: 1fr !important;
-    gap: 22px !important;
+    gap: 20px !important;
     width: 100% !important;
-    max-width: 440px !important;
+    max-width: 520px !important;
     margin: 0 auto !important;
-    padding: 0 16px !important;
+    padding: 22px 18px 24px !important;
+    border-radius: 24px !important;
     box-sizing: border-box !important;
+    background: linear-gradient(180deg, rgba(16, 20, 30, 0.58) 0%, rgba(10, 13, 20, 0.68) 100%) !important;
+    backdrop-filter: blur(20px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10), 0 16px 40px -10px rgba(0, 0, 0, 0.55) !important;
+  }
+
+  [data-theme="light"] .chapter-cards-grid {
+    background: rgba(255, 255, 255, 0.60) !important;
+    border-color: rgba(0, 0, 0, 0.07) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
   }
 
   .pkg-card,
   .mount-card,
   .pkg-card.mount-card {
     width: 100% !important;
+    max-width: 100% !important;
     box-sizing: border-box !important;
-    padding: 18px 16px 20px !important;
+    padding: 20px 18px 22px !important;
     border-radius: 20px !important;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.20), 0 14px 34px rgba(0, 0, 0, 0.55) !important;
+    background: linear-gradient(180deg, rgba(26, 30, 42, 0.78) 0%, rgba(14, 17, 26, 0.88) 100%) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 10px 24px rgba(0, 0, 0, 0.45) !important;
     height: auto !important;
     display: flex !important;
     flex-direction: column !important;
+    margin: 0 auto !important;
   }
 
   .pkg-top-meta-row {
@@ -12456,18 +12542,21 @@ html[data-theme="light"] .review-profile-img {
     gap: 4px !important;
   }
 
-  /* Portrait Photo Preview Frame: Preserves Portrait Photography Intact! */
+  /* Photo Preview Frame: Clean Full-Width 1:1 Square Frame on Mobile */
   .pkg-card.mount-card .mount-preview-frame,
   .mount-preview-frame {
     width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 12px 0 !important;
     aspect-ratio: 1 / 1 !important;
-    max-height: 280px !important;
-    margin-bottom: 8px !important;
-    border-radius: 12px !important;
+    max-height: none !important;
+    border-radius: 14px !important;
     background: #090c13 !important;
     overflow: hidden !important;
     position: relative !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5) !important;
+    display: block !important;
   }
   .mount-preview-frame picture {
     display: block !important;
@@ -12482,8 +12571,12 @@ html[data-theme="light"] .review-profile-img {
     max-height: none !important;
     object-fit: cover !important;
     -o-object-fit: cover !important;
-    object-position: center 18% !important;
+    object-position: center 15% !important;
     display: block !important;
+  }
+  #pkg-silk-wrap .mount-preview-frame img,
+  .mount-preview-frame[data-pkg-id="silk-wrap"] img {
+    object-position: center 42% !important;
   }
   .mount-zoom-badge {
     bottom: 6px !important;
@@ -12764,16 +12857,36 @@ html[data-theme="light"] .review-profile-img {
 
 /* Small Smartphone View (max-width: 480px) */
 @media (max-width: 480px) {
+  .packages-section .wrap {
+    padding: 0 6px !important;
+  }
+  .chapter-header,
+  .apple-chapter-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 18px 16px 20px !important;
+    border-radius: 20px !important;
+  }
+  .chapter-cards-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 18px 14px 20px !important;
+    border-radius: 22px !important;
+    gap: 16px !important;
+  }
   .pkg-card,
   .mount-card,
   .pkg-card.mount-card {
     padding: 18px 16px 20px !important;
-    border-radius: 20px !important;
+    border-radius: 18px !important;
   }
   .pkg-card.mount-card .mount-preview-frame,
   .mount-preview-frame {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 10px 0 !important;
     aspect-ratio: 1 / 1 !important;
-    max-height: 240px !important;
+    max-height: none !important;
   }
   .pkg-card.mount-card .mount-name,
   .mount-name {
@@ -12799,6 +12912,299 @@ html[data-theme="light"] .review-profile-img {
   .showcase-title {
     font-size: 20px !important;
   }
+}
+
+/* ============================================================
+   MATERNITY EXPERIENCE ENHANCEMENTS (SOLO, GROUP & ADD-ONS)
+   ============================================================ */
+.maternity-category-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 24px auto 36px auto;
+  max-width: 860px;
+}
+
+.mat-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--head);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mat-nav-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.mat-nav-pill.active {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%) !important;
+  color: #ffffff !important;
+  border-color: #22c55e !important;
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35);
+}
+
+[data-theme="light"] .mat-nav-pill {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+[data-theme="light"] .mat-nav-pill:hover {
+  background: #e2e8f0;
+}
+
+[data-theme="light"] .mat-nav-pill.active {
+  background: #15803d !important;
+  color: #ffffff !important;
+  border-color: #15803d !important;
+}
+
+.maternity-group-heading {
+  text-align: center;
+  margin: 48px auto 20px auto;
+  padding-top: 12px;
+}
+
+.maternity-group-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gold-soft);
+  background: rgba(234, 179, 8, 0.12);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  margin-bottom: 10px;
+}
+
+.maternity-group-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--head);
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.maternity-group-subtitle {
+  font-size: 14.5px;
+  color: var(--muted);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+
+/* Package Card Media Showcase Frame */
+.pkg-card-media-preview {
+  position: relative;
+  width: 100%;
+  max-width: 275px;
+  aspect-ratio: 3 / 4;
+  max-height: 380px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 12px auto 16px auto;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #090c13;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] .pkg-card-media-preview {
+  border-color: rgba(0, 0, 0, 0.08);
+  background: #f1f5f9;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.pkg-card-media-preview img {
+  width: 100%;
+  height: 100%;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  -o-object-fit: cover !important;
+  object-position: center 10% !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.pkg-card-media-preview:hover img {
+  transform: scale(1.03);
+}
+
+.pkg-card-media-preview .media-preview-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Package Meta Strip (Session length & People) */
+.pkg-meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.pkg-meta-strip .meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold-soft);
+  background: rgba(234, 179, 8, 0.10);
+  border: 1px solid rgba(234, 179, 8, 0.25);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+[data-theme="light"] .pkg-meta-strip .meta-pill {
+  background: rgba(202, 138, 4, 0.10);
+  border-color: rgba(202, 138, 4, 0.25);
+  color: #854d0e;
+}
+
+/* Maternity Add-Ons Section */
+.maternity-addons-container {
+  margin-top: 56px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 24px;
+  padding: 36px 30px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+[data-theme="light"] .maternity-addons-container {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.maternity-addons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-top: 26px;
+}
+
+.mat-addon-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+
+.mat-addon-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(234, 179, 8, 0.4);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="light"] .mat-addon-card {
+  background: #f8fafc;
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .mat-addon-card:hover {
+  background: #ffffff;
+  border-color: #ca8a04;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.mat-addon-card .addon-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.mat-addon-card .addon-info {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.mat-addon-card .addon-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--head);
+  margin: 0;
+}
+
+.mat-addon-card .addon-rate {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--gold-soft);
+  white-space: nowrap;
+}
+
+.mat-addon-card .addon-desc {
+  font-size: 12.5px;
+  color: var(--ink);
+  line-height: 1.5;
+  margin: 0 0 14px 0;
+  flex: 1;
+}
+
+.mat-addon-card .addon-wa-btn {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--accent-green-bright);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  transition: all 0.2s ease;
+}
+
+.mat-addon-card .addon-wa-btn:hover {
+  color: #22c55e;
+  transform: translateX(2px);
+}
+
+/* ============================================================
+   PACKAGE-SPECIFIC PREVIEW FRAMING OVERRIDES
+   ============================================================ */
+#pkg-silk-wrap .mount-preview-frame img,
+.mount-preview-frame[data-pkg-id="silk-wrap"] img {
+  object-position: center 42% !important;
 }
 
 

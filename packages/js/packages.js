@@ -366,6 +366,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const isEager = Boolean(isAboveTheFold);
     const webpSource = pkg.imageWebp ? `<source srcset="${pkg.imageWebp}" type="image/webp">` : '';
+    const imgStyle = pkg.imagePosition ? `style="object-position: ${pkg.imagePosition} !important;"` : '';
 
     return `
       <article class="pkg-card mount-card" id="pkg-${pkg.id}" data-subcat="${pkg.subcat || ''}" data-pathway="${pkg.pathway || ''}">
@@ -374,6 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
           ${pkg.badge ? `<span class="mount-discount-pill">${pkg.badge}</span>` : ''}
           ${isStudioOrOutdoor && !isDesign ? `<span class="mount-reel-subtle-pill" title="Optional 4K Video Reel available for this shoot (+KSh 1,500)">🎬 +4K Reel Available</span>` : ''}
         </div>
+
         <h4 class="mount-name"><a href="${targetUrl}">${pkg.title}</a></h4>
         <div class="mount-dimensions">
           <span>⏱️ ${pkg.turnaround}</span>
@@ -382,12 +384,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <div class="mount-preview-frame js-card-zoom-trigger" data-pkg-id="${pkg.id}" style="cursor:pointer;" title="Click to enlarge & zoom photo for ${pkg.title}">
           ${pkg.image && (pkg.image.endsWith('.mp4') || pkg.image.endsWith('.webm')) ? `
-            <video src="${pkg.image}" autoplay loop muted playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;"></video>
+            <video src="${pkg.image}" autoplay loop muted playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;object-position:${pkg.imagePosition || 'center 20%'};display:block;"></video>
             <span class="mount-zoom-badge">🎬 Video Reel</span>
           ` : `
             <picture>
               ${webpSource}
-              <img src="${pkg.image}" alt="${pkg.title}" loading="${isEager ? 'eager' : 'lazy'}" decoding="async" ${isEager ? 'fetchpriority="high"' : ''}>
+              <img src="${pkg.image}" alt="${pkg.title}" loading="${isEager ? 'eager' : 'lazy'}" decoding="async" ${isEager ? 'fetchpriority="high"' : ''} ${imgStyle}>
             </picture>
             <span class="mount-zoom-badge">🔍 Zoom Photo</span>
           `}
@@ -647,20 +649,8 @@ document.addEventListener("DOMContentLoaded", () => {
         typoNoticeText = topRef.ref.label;
       }
 
-      if (resultsCount) {
-        const typoBadge = typoNoticeText
-          ? `<span style="display:inline-flex; align-items:center; gap:4px; font-size:12px; color:var(--gold-soft); background:rgba(234,179,8,0.12); padding:2px 8px; border-radius:999px; border:1px solid rgba(234,179,8,0.3);">💡 Matched ${escapeHtml(typoNoticeText)}</span>`
-          : "";
-        resultsCount.innerHTML = `
-          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-            <span>Found <b>${matched.length}</b> matching shoot${matched.length === 1 ? '' : 's'} for "${escapeHtml(searchQuery)}"</span>
-            ${typoBadge}
-            <button type="button" class="btn-reset-category" onclick="document.getElementById('searchClearBtn').click()">‹ Clear Search</button>
-          </div>
-          <span style="font-size:12.5px; color:var(--head-sub); font-weight:500;">Upfront Pricing · RAW Images @ KSh 150</span>
-        `;
-      }
-      if (metaCountBar) metaCountBar.style.display = "flex";
+      if (resultsCount) resultsCount.innerHTML = "";
+      if (metaCountBar) metaCountBar.style.display = "none";
 
       const searchBanner = `
         <div class="category-header-banner" style="grid-column: 1 / -1;">
@@ -705,15 +695,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 2. Multi-Chapter Continuous Scroll Mode (Default)
-    if (metaCountBar) metaCountBar.style.display = "flex";
-    if (resultsCount) {
-      resultsCount.innerHTML = `
-        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-          <span>Showing all <b>${PACKAGES_DATA.length}</b> official session packages organized across 4 chapters</span>
-        </div>
-        <span style="font-size:12.5px; color:var(--head-sub); font-weight:500;">Upfront Pricing · RAW Images @ KSh 150</span>
-      `;
-    }
+    if (metaCountBar) metaCountBar.style.display = "none";
+    if (resultsCount) resultsCount.innerHTML = "";
 
     currentRenderedPackages = PACKAGES_DATA;
 
@@ -721,28 +704,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // CHAPTER 1: STUDIO & PORTRAIT SESSIONS
     // ----------------------------------------------------
     const studioList = sortList(PACKAGES_DATA.filter(p => p.pathway === "studio"));
-    const studioSubcats = (PATHWAYS.find(p => p.id === "studio") || {}).subcategories || [];
-    const studioSubcatsHtml = studioSubcats.map((sub, i) => `
-      <button type="button" class="subcat-pill ${i === 0 ? 'active' : ''}" onclick="window.filterChapterSubcat('studio', '${sub.id}', this)">
-        ${sub.name}
-      </button>
-    `).join("");
     const studioCardsHtml = studioList.map((p, idx) => renderCardHtml(p, idx, idx < 2)).join("");
 
     const studioChapterHtml = `
       <section class="chapter-section chapter-section-studio" id="studio" data-chapter="studio">
-        <header class="chapter-header">
-          <div class="chapter-header-top">
-            <span class="chapter-badge">Chapter 01 · Studio Sessions</span>
-            <span class="chapter-count-tag">${studioList.length} Packages</span>
-          </div>
+        <header class="chapter-header apple-chapter-card">
           <h2 class="chapter-title">Studio &amp; Portrait Sessions</h2>
           <p class="chapter-desc">
             Master continuous and strobe studio lighting, customized backdrops, graduation cap &amp; gown milestones, and high-fashion styled portraiture.
           </p>
-          <div class="chapter-subcat-bar">
-            ${studioSubcatsHtml}
-          </div>
         </header>
         <div class="chapter-cards-grid" id="grid-studio">
           ${studioCardsHtml}
@@ -761,28 +731,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // CHAPTER 2: OUTDOOR & NATURAL LIGHT SESSIONS
     // ----------------------------------------------------
     const outdoorList = sortList(PACKAGES_DATA.filter(p => p.pathway === "outdoor"));
-    const outdoorSubcats = (PATHWAYS.find(p => p.id === "outdoor") || {}).subcategories || [];
-    const outdoorSubcatsHtml = outdoorSubcats.map((sub, i) => `
-      <button type="button" class="subcat-pill ${i === 0 ? 'active' : ''}" onclick="window.filterChapterSubcat('outdoor', '${sub.id}', this)">
-        ${sub.name}
-      </button>
-    `).join("");
     const outdoorCardsHtml = outdoorList.map((p, idx) => renderCardHtml(p, idx, false)).join("");
 
     const outdoorChapterHtml = `
       <section class="chapter-section chapter-section-outdoor" id="outdoor" data-chapter="outdoor">
-        <header class="chapter-header">
-          <div class="chapter-header-top">
-            <span class="chapter-badge">Chapter 02 · Outdoor Sessions</span>
-            <span class="chapter-count-tag">${outdoorList.length} Packages</span>
-          </div>
+        <header class="chapter-header apple-chapter-card">
           <h2 class="chapter-title">Outdoor &amp; Natural Light Sessions</h2>
           <p class="chapter-desc">
             Sunlit golden hours, lush scenic gardens, parks, resorts &amp; on-location lifestyle portraiture across Kakamega &amp; Western Kenya.
           </p>
-          <div class="chapter-subcat-bar">
-            ${outdoorSubcatsHtml}
-          </div>
         </header>
         <div class="chapter-cards-grid" id="grid-outdoor">
           ${outdoorCardsHtml}
@@ -801,28 +758,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // CHAPTER 3: WEDDINGS & EVENT COVERAGE
     // ----------------------------------------------------
     const eventsList = sortList(PACKAGES_DATA.filter(p => p.pathway === "events"));
-    const eventsSubcats = (PATHWAYS.find(p => p.id === "events") || {}).subcategories || [];
-    const eventsSubcatsHtml = eventsSubcats.map((sub, i) => `
-      <button type="button" class="subcat-pill ${i === 0 ? 'active' : ''}" onclick="window.filterChapterSubcat('events', '${sub.id}', this)">
-        ${sub.name}
-      </button>
-    `).join("");
     const eventsCardsHtml = eventsList.map((p, idx) => renderCardHtml(p, idx, false)).join("");
 
     const eventsChapterHtml = `
       <section class="chapter-section chapter-section-events" id="events" data-chapter="events">
-        <header class="chapter-header">
-          <div class="chapter-header-top">
-            <span class="chapter-badge">Chapter 03 · Weddings &amp; Events</span>
-            <span class="chapter-count-tag">${eventsList.length} Packages</span>
-          </div>
+        <header class="chapter-header apple-chapter-card">
           <h2 class="chapter-title">Weddings &amp; Event Coverage</h2>
           <p class="chapter-desc">
             Full-day holy matrimony, traditional ruracio, private birthday bashes, corporate summits, galas &amp; dignified memorial tributes.
           </p>
-          <div class="chapter-subcat-bar">
-            ${eventsSubcatsHtml}
-          </div>
         </header>
         <div class="chapter-cards-grid" id="grid-events">
           ${eventsCardsHtml}
@@ -841,28 +785,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // CHAPTER 4: COMMERCIAL & BRAND GROWTH
     // ----------------------------------------------------
     const commercialList = sortList(PACKAGES_DATA.filter(p => p.pathway === "commercial"));
-    const commercialSubcats = (PATHWAYS.find(p => p.id === "commercial") || {}).subcategories || [];
-    const commercialSubcatsHtml = commercialSubcats.map((sub, i) => `
-      <button type="button" class="subcat-pill ${i === 0 ? 'active' : ''}" onclick="window.filterChapterSubcat('commercial', '${sub.id}', this)">
-        ${sub.name}
-      </button>
-    `).join("");
     const commercialCardsHtml = commercialList.map((p, idx) => renderCardHtml(p, idx, false)).join("");
 
     const commercialChapterHtml = `
       <section class="chapter-section chapter-section-commercial" id="commercial" data-chapter="commercial">
-        <header class="chapter-header">
-          <div class="chapter-header-top">
-            <span class="chapter-badge">Chapter 04 · Commercial Suites</span>
-            <span class="chapter-count-tag">${commercialList.length} Packages</span>
-          </div>
+        <header class="chapter-header apple-chapter-card">
           <h2 class="chapter-title">Commercial &amp; Brand Growth</h2>
           <p class="chapter-desc">
             High-conversion e-commerce product shoots, hotel &amp; luxury hospitality showcases, corporate executive suites &amp; graphic design services.
           </p>
-          <div class="chapter-subcat-bar">
-            ${commercialSubcatsHtml}
-          </div>
         </header>
         <div class="chapter-cards-grid" id="grid-commercial">
           ${commercialCardsHtml}

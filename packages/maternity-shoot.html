@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/packages.css?v=darkglass_v2">
+  <link rel="stylesheet" href="css/packages.css?v=20260918_3_4_view">
   <script src="js/theme-switcher.js"></script>
 </head>
 <body>
@@ -251,129 +251,587 @@
   </section>
 
   <!-- EVERYTHING EXPLAINED: FULL TIERS BREAKDOWN -->
-  <section class="detailed-packages-sec">
+  <section class="detailed-packages-sec" id="packagesTiersSection">
     <div class="wrap">
       <div class="block-head" style="text-align:center;">
-        <h2 class="serif" style="font-size:36px;color:#14532d;">Maternity Packages &amp; Tiers</h2>
-        <p class="hint" style="max-width:640px;margin:8px auto 0;color:var(--muted);">Transparent pricing designed for maximum comfort and pampering for expectant mothers:</p>
+        <span class="maternity-group-badge">🍼 Complete Maternity Experience</span>
+        <h2 class="serif" style="font-size:38px;color:#14532d;">Maternity Photoshoot Packages</h2>
+        <p class="hint" style="max-width:680px;margin:8px auto 0;color:var(--muted);">
+          Transparent, all-inclusive pricing celebrating maternal beauty and togetherness. Explore our dedicated <b>Solo Maternity</b> collections or our celebrated <b>Group &amp; Family</b> experiences:
+        </p>
+
+        <!-- Category Quick Switcher -->
+        <div class="maternity-category-nav">
+          <button type="button" class="mat-nav-pill active" onclick="switchMaternityTab('solo-maternity', this)">
+            <span>🤰 Solo Maternity (4 Packages)</span>
+          </button>
+          <button type="button" class="mat-nav-pill" onclick="switchMaternityTab('group-maternity', this)">
+            <span>👨‍👩‍👧‍👦 Group &amp; Family Maternity (4 Packages)</span>
+          </button>
+          <button type="button" class="mat-nav-pill" onclick="switchMaternityTab('maternity-addons', this)">
+            <span>✨ Maternity Add-Ons (8 Options)</span>
+          </button>
+        </div>
       </div>
 
-      <div class="detail-card-grid">
-
-                <!-- Tier 0: Single Image (Starter) -->
-        <div class="detail-pkg-card">
-          <span class="pkg-type-tag">Maternity Glow · Entry Tier</span>
-          <h2 class="pkg-title-big">Single Image (Baby Bump Solo)</h2>
-          <div class="pkg-price-row">
-            <span class="pkg-price-val">KSh 300</span>
-            <span class="pkg-deposit-val">· Booking Deposit: KSh 200</span>
-          </div>
-          <p class="pkg-desc-text">
-            Capture your baby bump glow in a single stunning studio portrait without paying for a multi-image package.
+      <!-- ========================================== -->
+      <!-- PART 1: SOLO MATERNITY PACKAGES             -->
+      <!-- ========================================== -->
+      <div id="solo-maternity" class="maternity-section-anchor">
+        <div class="maternity-group-heading">
+          <span class="pkg-type-tag" style="margin-bottom:6px;">Section 1 · Dedicated Solo Sessions</span>
+          <h3 class="maternity-group-title">Solo Maternity Packages</h3>
+          <p class="maternity-group-subtitle">
+            An intimate studio haven celebrating the radiant strength, grace, and glowing memories of the expectant mother.
           </p>
-          <ul class="deliverables-list">
-            <li><b>1 Premium Retouched Baby Bump Portrait</b></li>
-            <li>Flattering Studio Maternity Lighting</li>
-            <li>Extra retouched photos: <b>KSh 300 each</b></li>
-            <li>Unedited / RAW soft copies: <b>KSh 150 each</b></li>
-            <li>10–15 Mins Studio Session</li>
-            <li>Delivered via WhatsApp & Cloud Gallery</li>
-          </ul>
-          <div class="card-actions">
-            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Maternity%20Single%20Image%20%28KSh%20300%29%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="btn-tier-wa">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
-              <span>Book Single Image via WhatsApp</span>
-            </a>
-            <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
-          </div>
         </div>
 
-<!-- Tier 1: Silver -->
-        <div class="detail-pkg-card">
-          <span class="pkg-type-tag">Solo Mom Starter</span>
-          <h2 class="pkg-title-big">Silver (Intimate Solo)</h2>
-          <div class="pkg-price-row">
-            <span class="pkg-price-val">KSh 2,000</span>
-            <span class="pkg-deposit-val">· Booking Deposit: KSh 500</span>
-          </div>
-          <p class="pkg-desc-text">
-            A serene, stress-free solo session highlighting the bump with classic black-and-white or warm studio glow.
-          </p>
-          <ul class="deliverables-list">
-            <li><b>8 Premium Edited High-Resolution Images</b> <span style="color:var(--gold-soft);font-size:12px;font-weight:600;">(Save KSh 400 vs single image rate!)</span></li>
-            <li>1 Outfit (Maternity Gown or Solo Wrap)</li>
-            <li>30 Minutes relaxed studio pace</li>
-            <li>Supportive posing with ample resting breaks</li>
-            <li>Digital gallery delivered within <b>48 hours</b></li>
-            <li>RAW Unedited Soft Copies: KSh 150 each</li>
-          </ul>
-          <div class="card-actions">
-            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Maternity%20Shoot%20%28Silver%20Tier%20-%20KSh%202%2C000%29%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="btn-tier-wa">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
-              <span>Book Silver via WhatsApp</span>
-            </a>
-            <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
-          </div>
-        </div>
+        <div class="detail-card-grid">
 
-        <!-- Tier 2: Gold -->
-        <div class="detail-pkg-card featured">
-          <div class="featured-ribbon">Mom's Favorite ⭐</div>
-          <span class="pkg-type-tag">Mom + Partner Inclusions</span>
-          <h2 class="pkg-title-big">Gold (Silk Wrap &amp; Partner)</h2>
-          <div class="pkg-price-row">
-            <span class="pkg-price-val">KSh 3,500</span>
-            <span class="pkg-deposit-val">· Booking Deposit: KSh 900</span>
-          </div>
-          <p class="pkg-desc-text">
-            Our most requested maternity shoot. Includes flowing silk wrap effects, dramatic lighting, and intimate portraits with the father-to-be.
-          </p>
-          <ul class="deliverables-list">
-            <li><b>16 Premium Edited High-Resolution Images</b> <span style="color:var(--gold-soft);font-size:12px;font-weight:600;">(Save KSh 1,300 vs single image rate!)</span></li>
-            <li>2 Outfits (Silk Wrap Drape + Glam Maternity Gown)</li>
-            <li>Partner joins for intimate couple bump portraits at no extra charge</li>
-            <li>Signature studio fan wind-effects on flowing fabrics</li>
-            <li>Comfort-first studio lounge with water &amp; refreshments</li>
-            <li>Express <b>24–48hr Turnaround</b> via cloud link</li>
-          </ul>
-          <div class="card-actions">
-            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Maternity%20Shoot%20%28Gold%20Tier%20-%20KSh%203%2C500%29%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="btn-tier-wa">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
-              <span>Book Gold via WhatsApp</span>
-            </a>
-            <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
-          </div>
-        </div>
+          <!-- Solo 1: Maternity Essence -->
+          <div class="detail-pkg-card" id="pkg-essence">
+            <span class="pkg-type-tag">Solo Maternity · Essential</span>
+            <h3 class="pkg-title-big">Maternity Essence</h3>
 
-        <!-- Tier 3: Platinum VIP -->
-        <div class="detail-pkg-card">
-          <span class="pkg-type-tag">VIP Goddess Suite + Makeup</span>
-          <h2 class="pkg-title-big">Platinum (VIP Goddess)</h2>
-          <div class="pkg-price-row">
-            <span class="pkg-price-val">KSh 5,500</span>
-            <span class="pkg-deposit-val">· Booking Deposit: KSh 1,400</span>
-          </div>
-          <p class="pkg-desc-text">
-            The full celebrity maternity pampering experience. Includes professional studio makeup, multiple silk colors, and family inclusions.
-          </p>
-          <ul class="deliverables-list">
-            <li><b>25 Magazine-Retouched High-Resolution Images</b> <span style="color:var(--gold-soft);font-size:12px;font-weight:600;">(Over KSh 10,000 total value!)</span></li>
-            <li><b>Professional Studio Makeup Included</b> (glam glow)</li>
-            <li>Up to 3 Outfit Changes (Gold, Emerald &amp; Ivory Silks)</li>
-            <li>Partner and older siblings warmly included</li>
-            <li>1 Hour dedicated private studio production</li>
-            <li>Express Priority 24hr Delivery</li>
-          </ul>
-          <div class="card-actions">
-            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Maternity%20Shoot%20%28Platinum%20VIP%20-%20KSh%205%2C500%29%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="btn-tier-wa">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
-              <span>Book Platinum VIP via WhatsApp</span>
-            </a>
-            <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
-          </div>
-        </div>
+            <!-- Showcase Sample Photo -->
+            <div class="pkg-card-media-preview" onclick="openLightbox('samples/studio/baby-bump/DSC07764_(2).jpg')" title="Click to view sample photo in high resolution">
+              <img src="samples/studio/baby-bump/DSC07764_(2).jpg" alt="Maternity Essence Sample Photo" loading="lazy">
+              <div class="media-preview-badge">
+                <span>🔍 Showcase Sample</span>
+              </div>
+            </div>
 
+            <div class="pkg-meta-strip">
+              <span class="meta-pill"><span class="pill-icon">⏱️</span> 30 Minutes Session</span>
+            </div>
+
+            <p class="pkg-desc-text">
+              A beautiful and intimate session celebrating the beauty of motherhood.
+            </p>
+
+            <div class="pkg-price-row">
+              <div>
+                <span class="pkg-price-val">Kshs 2,500</span>
+              </div>
+              <span class="pkg-deposit-val">· Deposit: KSh 500</span>
+            </div>
+
+            <ul class="deliverables-list">
+              <li><b>Elegant maternity portraits</b></li>
+              <li><b>2 Outfits maximum</b></li>
+              <li>Guided posing</li>
+              <li>Professional studio lighting</li>
+              <li><b>5 professionally edited photos</b></li>
+              <li>High-resolution digital delivery</li>
+            </ul>
+
+            <div class="card-actions">
+              <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Solo%20Maternity%20-%20Maternity%20Essence%20Package%20%28Kshs%202%2C500%29%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="btn-tier-wa">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+                <span>Book Maternity Essence via WhatsApp</span>
+              </a>
+              <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
+            </div>
+          </div>
+
+          <!-- Solo 2: Maternity Special 👑 -->
+          <div class="detail-pkg-card featured" id="pkg-special">
+            <div class="featured-ribbon">Mom's Favorite ⭐</div>
+            <span class="pkg-type-tag">Solo Maternity · Popular</span>
+            <h3 class="pkg-title-big">Maternity Special 👑</h3>
+
+            <!-- Showcase Sample Photo -->
+            <div class="pkg-card-media-preview" onclick="openLightbox('samples/studio/baby-bump/DSC07893_(2).jpg')" title="Click to view sample photo in high resolution">
+              <img src="samples/studio/baby-bump/DSC07893_(2).jpg" alt="Maternity Special Sample Photo" loading="lazy">
+              <div class="media-preview-badge">
+                <span>🔍 Showcase Sample</span>
+              </div>
+            </div>
+
+            <div class="pkg-meta-strip">
+              <span class="meta-pill"><span class="pill-icon">⏱️</span> 60 Minutes Session</span>
+            </div>
+
+            <p class="pkg-desc-text">
+              For mothers who want a little more variety while keeping the experience timeless and elegant.
+            </p>
+
+            <div class="pkg-price-row">
+              <div>
+                <span class="pkg-price-val">Kshs 4,500</span>
+              </div>
+              <span class="pkg-deposit-val">· Deposit: KSh 1,000</span>
+            </div>
+
+            <ul class="deliverables-list">
+              <li><b>3 Outfits maximum</b></li>
+              <li>Multiple maternity poses</li>
+              <li>Close-up &amp; full-length portraits</li>
+              <li>Professional retouching</li>
+              <li><b>10 professionally edited photos</b></li>
+              <li>High-resolution digital gallery</li>
+            </ul>
+
+            <div class="card-actions">
+              <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Solo%20Maternity%20-%20Maternity%20Special%20%F0%9F%91%91%20%28Kshs%204%2C500%29%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="btn-tier-wa">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+                <span>Book Maternity Special 👑 via WhatsApp</span>
+              </a>
+              <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
+            </div>
+          </div>
+
+          <!-- Solo 3: Maternity Signature -->
+          <div class="detail-pkg-card" id="pkg-signature">
+            <span class="pkg-type-tag">Solo Maternity · Signature</span>
+            <h3 class="pkg-title-big">Maternity Signature</h3>
+
+            <!-- Showcase Sample Photo -->
+            <div class="pkg-card-media-preview" onclick="openLightbox('samples/studio/baby-bump/DSC04963-2.jpg')" title="Click to view sample photo in high resolution">
+              <img src="samples/studio/baby-bump/DSC04963-2.jpg" alt="Maternity Signature Sample Photo" loading="lazy">
+              <div class="media-preview-badge">
+                <span>🔍 Showcase Sample</span>
+              </div>
+            </div>
+
+            <div class="pkg-meta-strip">
+              <span class="meta-pill"><span class="pill-icon">⏱️</span> 90 Minutes Session</span>
+            </div>
+
+            <p class="pkg-desc-text">
+              A complete maternity portrait experience designed to capture your confidence, beauty and connection with your baby.
+            </p>
+
+            <div class="pkg-price-row">
+              <div>
+                <span class="pkg-price-val">Kshs 7,000</span>
+              </div>
+              <span class="pkg-deposit-val">· Deposit: KSh 1,500</span>
+            </div>
+
+            <ul class="deliverables-list">
+              <li><b>4 Outfits maximum</b></li>
+              <li>Creative maternity portraits</li>
+              <li>Multiple poses &amp; compositions</li>
+              <li>Elegant studio setups</li>
+              <li>Professional retouching &amp; color grading</li>
+              <li><b>15 professionally edited photos</b></li>
+              <li>High-resolution digital gallery</li>
+            </ul>
+
+            <div class="card-actions">
+              <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Solo%20Maternity%20-%20Maternity%20Signature%20Package%20%28Kshs%207%2C000%29%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="btn-tier-wa">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+                <span>Book Maternity Signature via WhatsApp</span>
+              </a>
+              <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
+            </div>
+          </div>
+
+          <!-- Solo 4: Maternity Luxe 👑 -->
+          <div class="detail-pkg-card featured" id="pkg-luxe">
+            <div class="featured-ribbon">Most Luxurious 👑</div>
+            <span class="pkg-type-tag" style="background:rgba(234,179,8,0.18);border-color:rgba(234,179,8,0.5);color:var(--gold-soft);">Solo Maternity · Luxe Suite</span>
+            <h3 class="pkg-title-big">Maternity Luxe 👑</h3>
+
+            <!-- Showcase Sample Photo -->
+            <div class="pkg-card-media-preview" onclick="openLightbox('samples/studio/baby-bump/cover.jpg')" title="Click to view sample photo in high resolution">
+              <img src="samples/studio/baby-bump/cover.jpg" alt="Maternity Luxe Sample Photo" loading="lazy">
+              <div class="media-preview-badge">
+                <span>🔍 Showcase Sample</span>
+              </div>
+            </div>
+
+            <div class="pkg-meta-strip">
+              <span class="meta-pill"><span class="pill-icon">⏱️</span> 120 Minutes Session</span>
+              <span class="meta-pill" style="color:#4ade80;background:rgba(34,197,94,0.12);border-color:rgba(74,222,128,0.3);">🖼️ Includes 2 Photo Mounts</span>
+            </div>
+
+            <p class="pkg-desc-text">
+              Our most luxurious maternity experience, created for mothers who want a complete collection of their pregnancy memories.
+            </p>
+
+            <div class="pkg-price-row">
+              <div>
+                <span class="pkg-price-val">Kshs 12,000</span>
+              </div>
+              <span class="pkg-deposit-val">· Deposit: KSh 3,000</span>
+            </div>
+
+            <ul class="deliverables-list">
+              <li><b>6 Outfits Maximum</b></li>
+              <li>Multiple elegant setups</li>
+              <li>Fine-art maternity portraits</li>
+              <li>Full-length &amp; intimate portraits</li>
+              <li>Creative posing direction</li>
+              <li>Professional retouching &amp; color grading</li>
+              <li><b>20 professionally edited photos</b></li>
+              <li>High-resolution digital gallery</li>
+              <li><b>1 A2 Elegant Photo Mount</b></li>
+              <li><b>1 A3 Photo Mount</b></li>
+            </ul>
+
+            <div class="card-actions">
+              <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Solo%20Maternity%20-%20Maternity%20Luxe%20%F0%9F%91%91%20Package%20%28Kshs%2012%2C000%29%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="btn-tier-wa">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+                <span>Book Maternity Luxe 👑 via WhatsApp</span>
+              </a>
+              <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
+            </div>
+          </div>
+
+        </div>
       </div>
+
+      <!-- ========================================== -->
+      <!-- PART 2: GROUP & FAMILY MATERNITY PACKAGES  -->
+      <!-- ========================================== -->
+      <div id="group-maternity" class="maternity-section-anchor" style="margin-top:60px;">
+        <div class="maternity-group-heading">
+          <span class="pkg-type-tag" style="margin-bottom:6px;background:rgba(96,165,250,0.14);border-color:rgba(96,165,250,0.3);color:#93c5fd;">Section 2 · Mom, Partner &amp; Loved Ones</span>
+          <h3 class="maternity-group-title">Group &amp; Family Maternity Packages</h3>
+          <p class="maternity-group-subtitle">
+            Celebrate together! Whether you're joined by your partner, a best friend, your older children, or the whole family circle.
+          </p>
+        </div>
+
+        <div class="detail-card-grid">
+
+          <!-- Group 1: Couple Maternity -->
+          <div class="detail-pkg-card" id="pkg-couple">
+            <span class="pkg-type-tag">For Two People</span>
+            <h3 class="pkg-title-big">Couple Maternity</h3>
+
+            <!-- Showcase Sample Photo -->
+            <div class="pkg-card-media-preview" onclick="openLightbox('samples/outdoor/outdoor-baby-bump/DSC_3613.JPG')" title="Click to view sample photo in high resolution">
+              <img src="samples/outdoor/outdoor-baby-bump/DSC_3613.JPG" alt="Couple Maternity Sample Photo" loading="lazy">
+              <div class="media-preview-badge">
+                <span>🔍 Showcase Sample</span>
+              </div>
+            </div>
+
+            <div class="pkg-meta-strip">
+              <span class="meta-pill"><span class="pill-icon">👥</span> 2 People</span>
+              <span class="meta-pill"><span class="pill-icon">⏱️</span> 1 Hour</span>
+              <span class="meta-pill"><span class="pill-icon">📸</span> 8 Edited Photos</span>
+            </div>
+
+            <p class="pkg-desc-text">
+              A beautiful session celebrating pregnancy, love and togetherness. Ideal for mom and partner, mom and best friend, or mom and daughter/son.
+            </p>
+
+            <div class="pkg-price-row">
+              <div>
+                <span class="pkg-price-val">KES 4,500</span>
+              </div>
+              <span class="pkg-deposit-val">· Deposit: KSh 1,000</span>
+            </div>
+
+            <ul class="deliverables-list">
+              <li><b>Couple maternity portraits</b></li>
+              <li><b>Individual portraits of the mother</b></li>
+              <li><b>Partner &amp; bump portraits</b></li>
+              <li>Guided posing</li>
+              <li>Professional editing</li>
+              <li>High-resolution digital gallery</li>
+            </ul>
+
+            <div class="card-actions">
+              <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Couple%20Maternity%20Package%20%282%20People%20-%20KES%204%2C500%29%20%F0%9F%92%96" target="_blank" rel="noopener" class="btn-tier-wa">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+                <span>Book Couple Maternity via WhatsApp</span>
+              </a>
+              <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
+            </div>
+          </div>
+
+          <!-- Group 2: Maternity Trio -->
+          <div class="detail-pkg-card" id="pkg-trio">
+            <span class="pkg-type-tag">For 3 People</span>
+            <h3 class="pkg-title-big">Maternity Trio</h3>
+
+            <!-- Showcase Sample Photo -->
+            <div class="pkg-card-media-preview" onclick="openLightbox('samples/outdoor/outdoor-baby-bump/DSC_3684.jpg')" title="Click to view sample photo in high resolution">
+              <img src="samples/outdoor/outdoor-baby-bump/DSC_3684_thumb.jpg" alt="Maternity Trio Sample Photo" loading="lazy">
+              <div class="media-preview-badge">
+                <span>🔍 Showcase Sample</span>
+              </div>
+            </div>
+
+            <div class="pkg-meta-strip">
+              <span class="meta-pill"><span class="pill-icon">👥</span> 3 People</span>
+              <span class="meta-pill"><span class="pill-icon">⏱️</span> 1 Hour</span>
+              <span class="meta-pill"><span class="pill-icon">📸</span> 15 Edited Photos</span>
+            </div>
+
+            <p class="pkg-desc-text">
+              Perfect for a growing family celebrating this special season together.
+            </p>
+
+            <div class="pkg-price-row">
+              <div>
+                <span class="pkg-price-val">KES 7,500</span>
+              </div>
+              <span class="pkg-deposit-val">· Deposit: KSh 1,500</span>
+            </div>
+
+            <ul class="deliverables-list">
+              <li><b>Individual portraits</b></li>
+              <li><b>Couple portraits</b></li>
+              <li><b>Family portraits</b></li>
+              <li><b>Mother &amp; bump portraits</b></li>
+              <li>Guided posing</li>
+              <li><b>15 professionally edited photos</b></li>
+            </ul>
+
+            <div class="card-actions">
+              <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Maternity%20Trio%20Package%20%283%20People%20-%20KES%207%2C500%29%20%F0%9F%91%A8%E2%80%8D%F0%9F%91%A9%E2%80%8D%F0%9F%91%A6" target="_blank" rel="noopener" class="btn-tier-wa">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+                <span>Book Maternity Trio via WhatsApp</span>
+              </a>
+              <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
+            </div>
+          </div>
+
+          <!-- Group 3: Maternity Family -->
+          <div class="detail-pkg-card" id="pkg-family">
+            <span class="pkg-type-tag">For 4 People</span>
+            <h3 class="pkg-title-big">Maternity Family</h3>
+
+            <!-- Showcase Sample Photo -->
+            <div class="pkg-card-media-preview" onclick="openLightbox('samples/outdoor/outdoor-baby-bump/2N4A9177.jpg')" title="Click to view sample photo in high resolution">
+              <img src="samples/outdoor/outdoor-baby-bump/2N4A9177_thumb.jpg" alt="Maternity Family Sample Photo" loading="lazy">
+              <div class="media-preview-badge">
+                <span>🔍 Showcase Sample</span>
+              </div>
+            </div>
+
+            <div class="pkg-meta-strip">
+              <span class="meta-pill"><span class="pill-icon">👥</span> 4 People</span>
+              <span class="meta-pill"><span class="pill-icon">⏱️</span> 90 Minutes</span>
+              <span class="meta-pill"><span class="pill-icon">📸</span> 22 Edited Photos</span>
+            </div>
+
+            <p class="pkg-desc-text">
+              A warm and elegant family maternity experience.
+            </p>
+
+            <div class="pkg-price-row">
+              <div>
+                <span class="pkg-price-val">KES 10,500</span>
+              </div>
+              <span class="pkg-deposit-val">· Deposit: KSh 2,500</span>
+            </div>
+
+            <ul class="deliverables-list">
+              <li><b>Individual portraits</b></li>
+              <li><b>Couple &amp; family portraits</b></li>
+              <li><b>Mother &amp; bump portraits</b></li>
+              <li><b>Parent &amp; child portraits</b></li>
+              <li>Guided posing</li>
+              <li><b>22 professionally edited photos</b></li>
+              <li>Digital gallery</li>
+            </ul>
+
+            <div class="card-actions">
+              <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Maternity%20Family%20Package%20%284%20People%20-%20KES%2010%2C500%29%20%F0%9F%91%A8%E2%80%8D%F0%9F%91%A9%E2%80%8D%F0%9F%91%A7%E2%80%8D%F0%9F%91%A6" target="_blank" rel="noopener" class="btn-tier-wa">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+                <span>Book Maternity Family via WhatsApp</span>
+              </a>
+              <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
+            </div>
+          </div>
+
+          <!-- Group 4: Maternity Legacy 👑 -->
+          <div class="detail-pkg-card featured" id="pkg-legacy">
+            <div class="featured-ribbon">Legacy Collection 👑</div>
+            <span class="pkg-type-tag" style="background:rgba(234,179,8,0.18);border-color:rgba(234,179,8,0.5);color:var(--gold-soft);">Up to 6 People · Full Keepsake</span>
+            <h3 class="pkg-title-big">Maternity Legacy 👑</h3>
+
+            <!-- Showcase Sample Photo -->
+            <div class="pkg-card-media-preview" onclick="openLightbox('samples/outdoor/outdoor-baby-bump/2N4A9118.jpg')" title="Click to view sample photo in high resolution">
+              <img src="samples/outdoor/outdoor-baby-bump/2N4A9118.jpg" alt="Maternity Legacy Sample Photo" loading="lazy">
+              <div class="media-preview-badge">
+                <span>🔍 Showcase Sample</span>
+              </div>
+            </div>
+
+            <div class="pkg-meta-strip">
+              <span class="meta-pill"><span class="pill-icon">👥</span> Up to 6 People</span>
+              <span class="meta-pill"><span class="pill-icon">⏱️</span> 2 Hours</span>
+              <span class="meta-pill"><span class="pill-icon">📸</span> 25 Edited Photos</span>
+              <span class="meta-pill" style="color:#4ade80;background:rgba(34,197,94,0.12);border-color:rgba(74,222,128,0.3);">🖼️ Includes A2 &amp; A3 Mounts</span>
+            </div>
+
+            <p class="pkg-desc-text">
+              A complete maternity experience created to preserve this beautiful chapter with the people who matter most.
+            </p>
+
+            <div class="pkg-price-row">
+              <div>
+                <span class="pkg-price-val">KES 15,000</span>
+              </div>
+              <span class="pkg-deposit-val">· Deposit: KSh 3,500</span>
+            </div>
+
+            <ul class="deliverables-list">
+              <li><b>Individual portraits</b></li>
+              <li><b>Couple portraits</b></li>
+              <li><b>Mother &amp; bump portraits</b></li>
+              <li><b>Parent &amp; child portraits</b></li>
+              <li><b>Full family portraits</b></li>
+              <li>Creative group portraits</li>
+              <li>Guided posing &amp; direction</li>
+              <li><b>25 professionally edited photos</b></li>
+              <li>High-resolution digital gallery</li>
+              <li><b>1 Elegant A2 Photo Mount</b></li>
+              <li><b>1 A3 Photo Mount</b></li>
+            </ul>
+
+            <div class="card-actions">
+              <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Maternity%20Legacy%20%F0%9F%91%91%20Package%20%28Up%20to%206%20People%20-%20KES%2015%2C000%29%20%F0%9F%91%91" target="_blank" rel="noopener" class="btn-tier-wa">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+                <span>Book Maternity Legacy 👑 via WhatsApp</span>
+              </a>
+              <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- PART 3: MATERNITY GROUP ADD-ONS            -->
+      <!-- ========================================== -->
+      <div id="maternity-addons" class="maternity-addons-container">
+        <div class="services-out-header" style="text-align:center;">
+          <span class="services-out-badge">✨ Customize &amp; Upgrade</span>
+          <h3 class="services-out-title" style="font-size:28px;">Maternity Group Add-Ons</h3>
+          <p class="services-out-desc" style="max-width:640px;margin:8px auto 0;">
+            Tailor your solo, couple, or family session with professional artistry, extra retouched photos, and setup upgrades:
+          </p>
+        </div>
+
+        <div class="maternity-addons-grid">
+          <!-- 1. Professional Makeup -->
+          <div class="mat-addon-card">
+            <div class="addon-icon">💄</div>
+            <div class="addon-info">
+              <h4 class="addon-name">Professional Makeup</h4>
+              <span class="addon-rate">KES 1,500</span>
+            </div>
+            <p class="addon-desc">Camera-ready soft bump glam, hydra skin prep, and radiant maternity glow.</p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20add%20Professional%20Makeup%20%28KES%201%2C500%29%20to%20my%20Maternity%20Shoot%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="addon-wa-btn">
+              <span>+ Add Makeup via WhatsApp →</span>
+            </a>
+          </div>
+
+          <!-- 2. Additional Edited Photo -->
+          <div class="mat-addon-card">
+            <div class="addon-icon">📸</div>
+            <div class="addon-info">
+              <h4 class="addon-name">Additional Edited Photo</h4>
+              <span class="addon-rate">KES 450</span>
+            </div>
+            <p class="addon-desc">High-resolution magazine skin retouching &amp; color grading per extra photo.</p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20Additional%20Edited%20Photos%20%28KES%20450%20each%29%20for%20Maternity%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="addon-wa-btn">
+              <span>+ Add Photos via WhatsApp →</span>
+            </a>
+          </div>
+
+          <!-- 3. Additional Outfit/Look -->
+          <div class="mat-addon-card">
+            <div class="addon-icon">👗</div>
+            <div class="addon-info">
+              <h4 class="addon-name">Additional Outfit/Look</h4>
+              <span class="addon-rate">KES 500</span>
+            </div>
+            <p class="addon-desc">Extra outfit change, gown switch, or flowing silk wrap style variation.</p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20add%20an%20Additional%20Outfit%20Look%20%28KES%20500%29%20to%20my%20Maternity%20Shoot%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="addon-wa-btn">
+              <span>+ Add Outfit via WhatsApp →</span>
+            </a>
+          </div>
+
+          <!-- 4. Additional 30 Minutes -->
+          <div class="mat-addon-card">
+            <div class="addon-icon">⏳</div>
+            <div class="addon-info">
+              <h4 class="addon-name">Additional 30 Minutes</h4>
+              <span class="addon-rate">KES 1,500</span>
+            </div>
+            <p class="addon-desc">Extended relaxed studio time for comfortable pacing and soothing rest breaks.</p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20add%20Additional%2030%20Minutes%20%28KES%201%2C500%29%20to%20my%20Maternity%20Shoot%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="addon-wa-btn">
+              <span>+ Add Time via WhatsApp →</span>
+            </a>
+          </div>
+
+          <!-- 5. Creative Background/Setup -->
+          <div class="mat-addon-card">
+            <div class="addon-icon">🎨</div>
+            <div class="addon-info">
+              <h4 class="addon-name">Creative Background/Setup</h4>
+              <span class="addon-rate">From KES 1,000</span>
+            </div>
+            <p class="addon-desc">Floral arrangements, draped backdrops, textured arches, or themed styling.</p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20add%20a%20Creative%20Background%20Setup%20%28From%20KES%201%2C000%29%20to%20my%20Maternity%20Shoot%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="addon-wa-btn">
+              <span>+ Add Setup via WhatsApp →</span>
+            </a>
+          </div>
+
+          <!-- 6. Hair Styling -->
+          <div class="mat-addon-card">
+            <div class="addon-icon">💇‍♀️</div>
+            <div class="addon-info">
+              <h4 class="addon-name">Hair Styling</h4>
+              <span class="addon-rate">From KES 1,000</span>
+            </div>
+            <p class="addon-desc">On-site curls, sleek ponytails, or hair adjustments before stepping on set.</p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20add%20Hair%20Styling%20%28From%20KES%201%2C000%29%20to%20my%20Maternity%20Shoot%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="addon-wa-btn">
+              <span>+ Add Hair Styling via WhatsApp →</span>
+            </a>
+          </div>
+
+          <!-- 7. Same-Day Selected Photos -->
+          <div class="mat-addon-card">
+            <div class="addon-icon">⚡</div>
+            <div class="addon-info">
+              <h4 class="addon-name">Same-Day Selected Photos</h4>
+              <span class="addon-rate">From KES 2,000</span>
+            </div>
+            <p class="addon-desc">Priority same-day express turnaround for your top announcement photos.</p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20Same-Day%20Selected%20Photos%20%28From%20KES%202%2C000%29%20for%20my%20Maternity%20Shoot%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="addon-wa-btn">
+              <span>+ Add Express Delivery via WhatsApp →</span>
+            </a>
+          </div>
+
+          <!-- 8. Additional Person -->
+          <div class="mat-addon-card">
+            <div class="addon-icon">👥</div>
+            <div class="addon-info">
+              <h4 class="addon-name">Additional Person</h4>
+              <span class="addon-rate">KES 1,000</span>
+            </div>
+            <p class="addon-desc">Include an extra family member, grandparent, child, or close friend in the shoot.</p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20include%20an%20Additional%20Person%20%28KES%201%2C000%29%20in%20my%20Maternity%20Shoot%20%F0%9F%8D%BC" target="_blank" rel="noopener" class="addon-wa-btn">
+              <span>+ Add Person via WhatsApp →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function switchMaternityTab(targetId, btn) {
+      document.querySelectorAll('.mat-nav-pill').forEach(p => p.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  </script>
 
       <!-- EXTRA IMAGES & OVER-LIMIT ADD-ON BANNER -->
       <div class="extra-images-banner">
