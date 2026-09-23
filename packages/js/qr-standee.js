@@ -174,6 +174,24 @@
       console.error("Failed to render QR Code:", e);
       container.innerHTML = `<div style="padding:20px; color:#ef4444; font-size:12px; text-align:center;">Could not generate QR. Please check link format.</div>`;
     }
+
+    // Render clean responsive mobile card QR
+    const mobContainer = document.getElementById("qrMobileCodeContainer");
+    if (mobContainer) {
+      mobContainer.innerHTML = "";
+      try {
+        new QRCode(mobContainer, {
+          text: url,
+          width: 180,
+          height: 180,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: correctLevel
+        });
+      } catch (e) {
+        console.warn("Mobile QR error:", e);
+      }
+    }
   }
 
   function populateDestinationsDropdown(activeKey) {
@@ -389,6 +407,20 @@
       destEl.textContent = subText;
     }
 
+    // Update Mobile Screen QR Card centerpiece details
+    const mobBadgeEl = document.getElementById("qrMobileDestBadge");
+    if (mobBadgeEl) {
+      mobBadgeEl.textContent = badgeText;
+    }
+    const mobDestEl = document.getElementById("qrMobileDestText");
+    if (mobDestEl) {
+      mobDestEl.textContent = subText;
+    }
+    const mobOpenBtn = document.getElementById("qrMobileOpenBtn");
+    if (mobOpenBtn) {
+      mobOpenBtn.href = currentQrUrl;
+    }
+
     // Real-Time URL Verification strip
     const urlDisplay = document.getElementById("qrEncodedUrlDisplay");
     if (urlDisplay) {
@@ -411,6 +443,34 @@
       }
     }
   }
+
+  let currentQrViewMode = "card"; // Default on mobile & desktop: "card" for quick scan & share
+
+  function switchQrViewMode(mode) {
+    currentQrViewMode = (mode === "poster") ? "poster" : "card";
+    const btnCard = document.getElementById("btnQrViewCard");
+    const btnPoster = document.getElementById("btnQrViewPoster");
+    const cardWrap = document.getElementById("qrMobileCardWrapper");
+    const posterWrap = document.getElementById("qrPosterViewportWrapper");
+    const posterActions = document.getElementById("qrPosterActionsToolbar");
+
+    if (btnCard) btnCard.classList.toggle("active", currentQrViewMode === "card");
+    if (btnPoster) btnPoster.classList.toggle("active", currentQrViewMode === "poster");
+
+    if (cardWrap) cardWrap.style.display = (currentQrViewMode === "card") ? "flex" : "none";
+    if (posterWrap) posterWrap.style.display = (currentQrViewMode === "poster") ? "flex" : "none";
+    if (posterActions) posterActions.style.display = (currentQrViewMode === "poster") ? "flex" : "none";
+  }
+  window.switchQrViewMode = switchQrViewMode;
+
+  function shareQrOnWhatsApp() {
+    const item = QR_DESTINATIONS[currentTargetKey] || QR_DESTINATIONS.full;
+    const title = item.title || "Official Rates & Booking Portal";
+    const msg = `*LAUREIGN STUDIOS — OFFICIAL QR PASS*\n\n🌟 *${title}*\n🔗 *Open Link:* ${currentQrUrl}\n\n💳 *Cashless Remittance:*\nM-Pesa Till: 0790048905\nPaybill: 542542 · Acc: 486197 (Jane Akoth)\n\n📍 Kakamega Town along Mumias Rd, Opp. Jamia Mosque (Bukura Pharmacy Bldg, 1st Flr)`;
+    const waUrl = `https://wa.me/?text=${encodeURIComponent(msg)}`;
+    window.open(waUrl, "_blank");
+  }
+  window.shareQrOnWhatsApp = shareQrOnWhatsApp;
 
   function openQrModal(targetKey = null) {
     const modal = document.getElementById("qrStandeeModal");
@@ -463,9 +523,14 @@
     modal.classList.add("open");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+    switchQrViewMode("card");
+
+    if (!history.state || history.state.modal !== "qr") {
+      history.pushState({ modal: "qr" }, "", "#qr-code");
+    }
   }
 
-  function closeQrModal() {
+  function closeQrModal(fromHistory = false) {
     const modal = document.getElementById("qrStandeeModal");
     if (!modal) return;
 
@@ -477,6 +542,10 @@
         modal.style.display = "none";
       }
     }, 250);
+
+    if (!fromHistory && history.state && history.state.modal === "qr") {
+      history.back();
+    }
   }
 
   function onQrTargetChange(targetKey) {

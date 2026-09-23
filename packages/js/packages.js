@@ -246,8 +246,15 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.classList.toggle("active", isAct);
       if (isAct) activeBtn = btn;
     });
-    if (activeBtn && typeof activeBtn.scrollIntoView === "function") {
-      activeBtn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    if (activeBtn) {
+      // Smoothly center active chapter button strictly inside the horizontal scroll container
+      // DO NOT call activeBtn.scrollIntoView which causes vertical page jumping/shaking!
+      const navRect = nav.getBoundingClientRect();
+      const btnRect = activeBtn.getBoundingClientRect();
+      const offset = (btnRect.left + btnRect.width / 2) - (navRect.left + navRect.width / 2);
+      if (Math.abs(offset) > 12) {
+        nav.scrollBy({ left: offset, behavior: "smooth" });
+      }
     }
   }
 
@@ -1156,7 +1163,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Check if this package has curated event albums / subfolders
     if (pkg.albums && pkg.albums.length > 0) {
       renderMultiAlbumSamplesModal(pkg, null);
-      if (samplesModal) samplesModal.classList.add("open");
+      if (samplesModal) {
+        samplesModal.classList.add("open");
+        if (!history.state || history.state.modal !== "samples") {
+          history.pushState({ modal: "samples" }, "", "#samples");
+        }
+      }
       return;
     }
 
@@ -1244,11 +1256,19 @@ document.addEventListener("DOMContentLoaded", () => {
       };
     }
 
-    if (samplesModal) samplesModal.classList.add("open");
+    if (samplesModal) {
+      samplesModal.classList.add("open");
+      if (!history.state || history.state.modal !== "samples") {
+        history.pushState({ modal: "samples" }, "", "#samples");
+      }
+    }
   }
 
-  function closeSamplesModal() {
+  function closeSamplesModal(fromHistory = false) {
     if (samplesModal) samplesModal.classList.remove("open");
+    if (!fromHistory && history.state && history.state.modal === "samples") {
+      history.back();
+    }
   }
 
   // ------------------------------------------------------------
@@ -1279,9 +1299,12 @@ document.addEventListener("DOMContentLoaded", () => {
     sampleLightbox.setAttribute("aria-hidden", "false");
     updateLightboxView();
     document.body.style.overflow = "hidden";
+    if (!history.state || history.state.modal !== "lightbox") {
+      history.pushState({ modal: "lightbox" }, "", "#sample-viewer");
+    }
   }
 
-  function closeLightbox() {
+  function closeLightbox(fromHistory = false) {
     if (!sampleLightbox) return;
     sampleLightbox.classList.remove("open");
     sampleLightbox.setAttribute("aria-hidden", "true");
@@ -1291,6 +1314,9 @@ document.addEventListener("DOMContentLoaded", () => {
       sampleLightboxImg.classList.remove("zoomed");
     }
     document.body.style.overflow = "";
+    if (!fromHistory && history.state && history.state.modal === "lightbox") {
+      history.back();
+    }
   }
 
   function updateLightboxView() {
@@ -1659,7 +1685,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateModalPreview();
 
-    if (bookingModal) bookingModal.classList.add("open");
+    if (bookingModal) {
+      bookingModal.classList.add("open");
+      if (!history.state || history.state.modal !== "booking") {
+        history.pushState({ modal: "booking" }, "", "#book-now");
+      }
+    }
   }
 
   function updateModalPreview() {
@@ -1689,11 +1720,14 @@ document.addEventListener("DOMContentLoaded", () => {
     modalWaPreview.textContent = buildWhatsAppMessage(modalState.pkgId, modalState.optionIndex);
   }
 
-  function closeModal() {
+  function closeModal(fromHistory = false) {
     if (bookingModal) bookingModal.classList.remove("open");
+    if (!fromHistory && history.state && history.state.modal === "booking") {
+      history.back();
+    }
   }
 
-  if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeModal);
+  if (modalCloseBtn) modalCloseBtn.addEventListener("click", () => closeModal());
   if (bookingModal) {
     bookingModal.addEventListener("click", (e) => {
       if (e.target === bookingModal) closeModal();
@@ -1993,6 +2027,9 @@ document.addEventListener("DOMContentLoaded", () => {
       searchQuery = "";
       if (searchInput) searchInput.value = "";
       searchClearBtn.style.display = "none";
+      if (controlsBarEl) {
+        controlsBarEl.classList.remove("search-active");
+      }
       hideSearchSuggestions();
       renderPackages();
     });
@@ -2014,7 +2051,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const packagesMobileDrawer = document.getElementById("packagesMobileDrawer");
   const packagesDrawerBackdrop = document.getElementById("packagesDrawerBackdrop");
 
-  function togglePackagesDrawer(open) {
+  function togglePackagesDrawer(open, fromHistory = false) {
     if (!packagesMobileDrawer) return;
     const shouldOpen = open !== undefined ? open : !packagesMobileDrawer.classList.contains("open");
     if (packagesNavToggle) {
@@ -2025,6 +2062,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (packagesDrawerBackdrop) {
       packagesDrawerBackdrop.classList.toggle("open", shouldOpen);
       packagesDrawerBackdrop.hidden = !shouldOpen;
+    }
+    if (shouldOpen) {
+      if (!history.state || history.state.modal !== "drawer") {
+        history.pushState({ modal: "drawer" }, "", "#menu");
+      }
+    } else if (!fromHistory && history.state && history.state.modal === "drawer") {
+      history.back();
     }
   }
 
@@ -2043,21 +2087,79 @@ document.addEventListener("DOMContentLoaded", () => {
       togglePackagesDrawer(false);
       closeModal();
       closeInvoiceModal();
+      if (typeof closeLeadsModal === "function") closeLeadsModal();
+      if (typeof closeQrModal === "function") closeQrModal();
+    }
+  });
+
+  // Mobile Back Button & Screen Edge-Swipe Gesture Handler:
+  // Ensures pressing phone back smoothly dismisses active modals and keeps the user on the site & nav bar!
+  window.addEventListener("popstate", (e) => {
+    if (sampleLightbox && sampleLightbox.classList.contains("open")) {
+      closeLightbox(true);
+      return;
+    }
+    if (samplesModal && samplesModal.classList.contains("open")) {
+      closeSamplesModal(true);
+      return;
+    }
+    if (invoiceModal && invoiceModal.classList.contains("open")) {
+      closeInvoiceModal(true);
+      return;
+    }
+    if (bookingModal && bookingModal.classList.contains("open")) {
+      closeModal(true);
+      return;
+    }
+    const leadsModal = document.getElementById("leadsModal");
+    if (leadsModal && leadsModal.classList.contains("open")) {
+      if (typeof closeLeadsModal === "function") closeLeadsModal(true);
+      return;
+    }
+    const qrModal = document.getElementById("qrStandeeModal");
+    if (qrModal && qrModal.classList.contains("open")) {
+      if (typeof window.closeQrModal === "function") {
+        window.closeQrModal(true);
+      } else {
+        qrModal.classList.remove("open");
+        qrModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+      return;
+    }
+    if (packagesMobileDrawer && packagesMobileDrawer.classList.contains("open")) {
+      togglePackagesDrawer(false, true);
+      return;
+    }
+
+    // If navigating back to a chapter (#studio, #outdoor, etc.), keep the sticky chapter navigation in sync
+    const hash = window.location.hash.replace("#", "");
+    if (hash && ["studio", "outdoor", "events", "commercial"].includes(hash)) {
+      updateStickyNav(hash);
+      const sectionEl = document.getElementById(hash);
+      if (sectionEl) {
+        sectionEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   });
 
 
-  // Floating Back Up Arrow (Scroll to top) listener & Smart Sticky Controls Bar State
+  // Floating Back Up Arrow (Scroll to top) listener & Smart Zero-Jitter Sticky Controls State
   const backToTopBtn = document.getElementById("backToTopBtn");
   const controlsBarEl = document.getElementById("packagesBrowse");
   const searchInputEl = document.getElementById("searchInput");
-  let lastScrollY = window.scrollY;
+  const sentinelEl = document.getElementById("controlsStickySentinel");
+  let isCurrentlyStuck = false;
 
   window.toggleStickySearch = function(forceState) {
     if (!controlsBarEl) return;
     const isCurrentlyOpen = controlsBarEl.classList.contains("search-open");
     const nextState = typeof forceState === "boolean" ? forceState : !isCurrentlyOpen;
     controlsBarEl.classList.toggle("search-open", nextState);
+    const stickyBtn = document.getElementById("stickySearchBtn");
+    if (stickyBtn) {
+      stickyBtn.setAttribute("aria-expanded", String(nextState));
+    }
     if (nextState && searchInputEl) {
       setTimeout(() => searchInputEl.focus(), 60);
     }
@@ -2077,9 +2179,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function checkStickyControls() {
+    if (!controlsBarEl) return;
+    const headerOffset = window.innerWidth <= 768 ? 64 : 76;
+    const referenceTop = sentinelEl
+      ? sentinelEl.getBoundingClientRect().top
+      : controlsBarEl.getBoundingClientRect().top;
+
+    // 32px safe hysteresis deadband to completely eliminate any micro-bounce or jitter:
+    // - Transitions to stuck ONLY when sentinel has scrolled past header by at least 8px
+    // - Transitions back to un-stuck ONLY when sentinel scrolls down below header by at least 24px
+    if (!isCurrentlyStuck && referenceTop <= (headerOffset - 8)) {
+      isCurrentlyStuck = true;
+      controlsBarEl.classList.add("is-stuck");
+    } else if (isCurrentlyStuck && referenceTop >= (headerOffset + 24)) {
+      isCurrentlyStuck = false;
+      controlsBarEl.classList.remove("is-stuck");
+      controlsBarEl.classList.remove("search-open");
+      const stickyBtn = document.getElementById("stickySearchBtn");
+      if (stickyBtn) {
+        stickyBtn.setAttribute("aria-expanded", "false");
+      }
+    }
+    // Ensure sticky navigation bar is never rejected or auto-hidden while browsing packages
+    controlsBarEl.classList.remove("is-hidden");
+  }
+
   window.addEventListener("scroll", () => {
     const currentScrollY = window.scrollY;
-    const delta = currentScrollY - lastScrollY;
 
     if (backToTopBtn) {
       if (currentScrollY > 280) {
@@ -2088,34 +2215,12 @@ document.addEventListener("DOMContentLoaded", () => {
         backToTopBtn.classList.remove("visible");
       }
     }
-    if (controlsBarEl) {
-      const rect = controlsBarEl.getBoundingClientRect();
-      const stickyThreshold = window.innerWidth <= 768 ? 68 : 82;
-      const isStuck = rect.top <= stickyThreshold;
 
-      if (isStuck) {
-        controlsBarEl.classList.add("is-stuck");
-      } else {
-        controlsBarEl.classList.remove("is-stuck");
-        controlsBarEl.classList.remove("search-open");
-        controlsBarEl.classList.remove("is-hidden");
-      }
-
-      // Smart Directional Scroll (Safari-style: Auto-hide on rapid scroll-down, smooth reveal on scroll-up)
-      if (!isManualScrolling && isStuck && currentScrollY > 480) {
-        const hasActiveQuery = searchInputEl && searchInputEl.value.trim().length > 0;
-        const isSearchOpen = controlsBarEl.classList.contains("search-open");
-        if (delta > 10 && !hasActiveQuery && !isSearchOpen) {
-          controlsBarEl.classList.add("is-hidden");
-        } else if (delta < -8) {
-          controlsBarEl.classList.remove("is-hidden");
-        }
-      } else if (!isStuck) {
-        controlsBarEl.classList.remove("is-hidden");
-      }
-    }
-    lastScrollY = currentScrollY;
+    checkStickyControls();
   }, { passive: true });
+
+  // Run initial check on load in case of direct deep link or page reload mid-page
+  checkStickyControls();
 
   // ------------------------------------------------------------
   // Touch & Pointer Smooth Drag-to-Scroll Engine
@@ -2349,6 +2454,44 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   let currentInvoiceCategory = "studio";
+  let currentQuotationScope = "studio"; // "studio" (minimal, no heavy rules) vs "event" (detailed overtime & logistics rules)
+
+  const STUDIO_TERMS_POLICIES = [
+    { title: "⚡ 24–48h Fast Master Delivery", desc: "Master retouched high-resolution photographs delivered within 24–48 hours via private cloud link." },
+    { title: "📸 100% Free RAW Proofs", desc: "Complete archive of unedited camera proof photos provided complimentary with every studio session." },
+    { title: "✨ Studio Flow & Outfits", desc: "Professional strobe lighting, backdrop color choices & outfit changes per selected package tier." },
+    { title: "🔒 Booking Confirmation", desc: "Commitment deposit secures your allocated studio time slot on our daily shooting calendar." }
+  ];
+
+  const EVENT_TERMS_POLICIES = [
+    { title: "⏱️ Coverage Hours & Overtime", desc: "Agreed event coverage hours as specified. Extended coverage beyond agreed hours is billed at KSh 3,500 per hour." },
+    { title: "📍 Venue Access & Clearances", desc: "Client facilitates venue entry permits, sound/power feed access & designated staging area for media crew." },
+    { title: "🚗 Logistics & Out-of-Station", desc: "Assignments outside Kakamega County require client-facilitated transport and secure crew accommodation." },
+    { title: "🍱 Crew Welfare & Hydration", desc: "Full-day coverage exceeding 5 continuous hours requires client-provided crew catering and refreshments." },
+    { title: "🎬 Deliverable Milestones", desc: "Social media highlight teaser delivered within 4–7 days; master 4K film & photobooks delivered in 14–21 business days." },
+    { title: "🔒 Date Exclusivity & Cancellation", desc: "Advance deposit reserves crew and gear exclusively on your date. Rescheduling requires 5+ days prior notice." }
+  ];
+
+  function setQuotationScope(scope) {
+    currentQuotationScope = (scope === "event") ? "event" : "studio";
+    
+    const btnStudio = document.getElementById("btnScopeStudio");
+    const btnEvent = document.getElementById("btnScopeEvent");
+    if (btnStudio) btnStudio.classList.toggle("active", currentQuotationScope === "studio");
+    if (btnEvent) btnEvent.classList.toggle("active", currentQuotationScope === "event");
+
+    const printableSheet = document.getElementById("invoicePrintableSheet");
+    if (printableSheet) {
+      printableSheet.classList.toggle("is-scope-studio", currentQuotationScope === "studio");
+      printableSheet.classList.toggle("is-scope-event", currentQuotationScope === "event");
+    }
+
+    updateInvoiceDisplay();
+    showInvoiceToast(currentQuotationScope === "studio" 
+      ? "📸 Switched to Studio Shoot (Minimal & Compact Terms)" 
+      : "💍 Switched to Event Coverage (Detailed Rules & Overtime Agreement)");
+  }
+  window.setQuotationScope = setQuotationScope;
 
   function setInvoiceCategory(catKey, force = false) {
     if (!INVOICE_CATEGORIES[catKey]) catKey = "studio";
@@ -2357,6 +2500,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const catSelect = document.getElementById("invCategorySelect");
     if (catSelect && (catSelect.value !== catKey || force)) {
       catSelect.value = catKey;
+    }
+
+    // Auto-align scope with category unless already user-selected
+    if (catKey === "weddings" || catKey === "events") {
+      setQuotationScope("event");
+    } else if (catKey === "studio") {
+      setQuotationScope("studio");
     }
 
     updateInvoiceDisplay();
@@ -2564,13 +2714,13 @@ document.addEventListener("DOMContentLoaded", () => {
         currentInvoiceRef = `LS-REC-2026-${randNum}`;
       }
 
-      if (docBadge) docBadge.textContent = "OFFICIAL PAYMENT RECEIPT & TAX CLEARANCE";
-      if (refLabel) refLabel.textContent = "RECEIPT REF:";
+      if (docBadge) docBadge.textContent = "OFFICIAL COMMERCIAL RECEIPT";
+      if (refLabel) refLabel.textContent = "RECEIPT NO:";
       if (validityItem) validityItem.style.display = "none";
       if (sealStamp) sealStamp.classList.add("paid-stamp");
 
-      if (termsTitle) termsTitle.textContent = "Production Timeline & Delivery Policies";
-      if (termsNote) termsNote.textContent = "* Official studio payment receipt. Payment verified via cashless M-Pesa / Bank remittance. High-resolution master deliverables processed per agreed schedule.";
+      if (termsTitle) termsTitle.textContent = "Commercial Terms & Master Deliverable Release";
+      if (termsNote) termsNote.textContent = "* Official studio payment receipt. Cashless payment verified. Master deliverables released per agreed timeline.";
       if (btnPdfText) btnPdfText.textContent = "📥 Download Official Receipt (PDF)";
       if (btnWaText) btnWaText.textContent = "📲 Send Receipt via WhatsApp";
       if (topDownloadText) topDownloadText.textContent = "📥 Download Receipt (PDF)";
@@ -2882,6 +3032,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const detectedCat = detectCategoryFromPackage(pkgId);
     setInvoiceCategory(detectedCat);
     autoSuggestOccasionTitle(false);
+
+    // Auto-detect Studio Shoot (minimal rules) vs Event Coverage (detailed overtime/logistics agreement)
+    const isEventPkg = pkg.pathway === "events" || pkgId.includes("wedding") || pkgId.includes("burial") || pkgId.includes("ruracio") || pkgId.includes("corporate-event");
+    setQuotationScope(isEventPkg ? "event" : "studio");
 
     const isReceipt = invoiceMode === "receipt";
     const today = new Date();
@@ -3277,19 +3431,51 @@ document.addEventListener("DOMContentLoaded", () => {
     `).join("");
   }
 
+  // Helper: Kenyan Shillings number to words converter
+  function numberToWordsKenya(num) {
+    if (!num || isNaN(num) || num <= 0) return "Zero shillings only.";
+    const a = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+    const b = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+    function inWords(n) {
+      if (n === 0) return '';
+      if (n < 20) return a[n];
+      if (n < 100) return b[Math.floor(n / 10)] + (n % 10 ? '-' + a[n % 10] : '');
+      if (n < 1000) return a[Math.floor(n / 100)] + ' hundred' + (n % 100 ? ' ' + inWords(n % 100) : '');
+      if (n < 1000000) return inWords(Math.floor(n / 1000)) + ' thousand' + (n % 1000 ? ' ' + inWords(n % 1000) : '');
+      return inWords(Math.floor(n / 1000000)) + ' million' + (n % 1000000 ? ' ' + inWords(n % 1000000) : '');
+    }
+    const words = inWords(Math.round(num)).trim();
+    return words.charAt(0).toUpperCase() + words.slice(1) + ' shillings only.';
+  }
+
   // ============================================================
   // LIVE A4 INVOICE SHEET DISPLAY UPDATES & TOTALS
   // ============================================================
   function updateInvoiceDisplay() {
+    const isReceipt = invoiceMode === "receipt";
+
     // Meta displays
     const elRef = document.getElementById("invDisplayRef");
     const elDate = document.getElementById("invDisplayDateIssued");
     const elVal = document.getElementById("invDisplayValidity");
-    if (elRef) elRef.textContent = currentInvoiceRef;
+    const elValItem = document.getElementById("invValidityMetaItem");
+    const elDateLabel = document.getElementById("invDisplayDateLabel");
+    const elStatusPill = document.getElementById("invDisplayStatusPill");
+    const elWordmark = document.getElementById("invSheetMainWordmark");
+    const elDocType = document.getElementById("invDisplayDocType");
+
+    if (elRef) elRef.textContent = currentInvoiceRef.startsWith("#") ? currentInvoiceRef : `#${currentInvoiceRef}`;
     if (elDate) elDate.textContent = invoiceDateIssued;
+    if (elDateLabel) elDateLabel.textContent = isReceipt ? "Receipt Date" : "Invoice Date";
+
     const invValInput = document.getElementById("invValidityInput");
     const userValidity = invValInput && invValInput.value.trim();
-    if (elVal) elVal.textContent = userValidity || invoiceValidity || "14 Days";
+    if (elVal) {
+      elVal.textContent = isReceipt ? "Confirmed (Paid)" : (userValidity || invoiceValidity || "14 Days");
+    }
+    if (elValItem) {
+      elValItem.style.display = isReceipt ? "none" : "flex";
+    }
 
     // Client & Assignment Details
     const clientVal = (invClientInput && invClientInput.value.trim()) || "Valued Client";
@@ -3301,82 +3487,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const crewVal = (invCrewInput && invCrewInput.value.trim()) || "Studio Lead Photographer + Lighting Assistant";
     const notesVal = (invNotesInput && invNotesInput.value.trim()) || "";
 
-    // Main Production Category Document Title & Scope
-    const isReceipt = invoiceMode === "receipt";
     const cat = INVOICE_CATEGORIES[currentInvoiceCategory] || INVOICE_CATEGORIES["studio"];
     const elCatSelect = document.getElementById("invCategorySelect");
     if (elCatSelect && elCatSelect.value !== cat.id) {
       elCatSelect.value = cat.id;
     }
 
-    const elCatMainTitle = document.getElementById("invDisplayCategoryTitle");
-    const elScopePill = document.getElementById("invDisplayScopePill");
-    const elSheetCatVal = document.getElementById("invSheetCategoryVal");
-    const elHonorName = document.getElementById("invDisplayHonorName");
-    const elTargetDate = document.getElementById("invDisplayTargetDate");
-
-    if (elCatMainTitle) {
-      elCatMainTitle.textContent = isReceipt ? cat.receiptTitle : cat.quoteTitle;
-    }
-    if (elScopePill) {
-      elScopePill.textContent = cat.scope;
-    }
-    if (elSheetCatVal) {
-      elSheetCatVal.textContent = cat.name;
-    }
-    // Occasion / Event Title for specifications box
     const occInput = document.getElementById("invOccasionTitleInput");
     let occTitle = (occInput && occInput.value.trim()) || "";
     if (!occTitle) {
       occTitle = invoiceSessions.length > 0 ? invoiceSessions.map(s => s.title).join(" + ") : cat.name;
     }
 
-    const elClientSub = document.getElementById("invDisplayClientSub");
-    if (elClientSub) {
-      const honorText = (clientVal && clientVal !== "Valued Client") ? clientVal.toUpperCase() : "VALUED CLIENT";
-      const occBadge = (occTitle && occTitle !== cat.name)
-        ? ` &nbsp;·&nbsp; Commission: <span style="color:#047857; font-weight:700;">${escapeHtml(occTitle)}</span>`
-        : "";
-      elClientSub.innerHTML = `Curated Exclusively For: <b id="invDisplayHonorName" style="color:#047857; font-weight:800;">${escapeHtml(honorText)}</b>${occBadge} &nbsp;·&nbsp; Shoot Date: <span id="invDisplayTargetDate" style="font-weight:700; color:#0f172a;">${escapeHtml(dateVal)}</span>`;
-    } else {
-      if (elHonorName) {
-        elHonorName.textContent = (clientVal && clientVal !== "Valued Client") ? clientVal.toUpperCase() : "VALUED CLIENT";
-      }
-      if (elTargetDate) {
-        elTargetDate.textContent = dateVal;
-      }
-    }
-
     const elClient = document.getElementById("invSheetClient");
     const elPhone = document.getElementById("invSheetPhone");
     const elEmail = document.getElementById("invSheetEmail");
-    const elSDate = document.getElementById("invSheetDate");
-    const elSTime = document.getElementById("invSheetTime");
-    const elLoc = document.getElementById("invSheetLocation");
-    const elCrew = document.getElementById("invSheetCrew");
     const elBillingLoc = document.getElementById("invSheetBillingLoc");
     const elEventTitle = document.getElementById("invSheetEventTitle");
+    const elLoc = document.getElementById("invSheetLocation");
 
     if (elClient) elClient.textContent = clientVal;
-    if (elPhone) elPhone.textContent = phoneVal ? `📞 Phone: ${phoneVal}` : "📞 Phone: Not Specified";
-    if (elEmail) {
-      if (emailVal) {
-        elEmail.textContent = `✉️ Email: ${emailVal}`;
-        elEmail.style.display = "block";
-      } else {
-        elEmail.style.display = "none";
-      }
-    }
-    if (elBillingLoc) {
-      elBillingLoc.textContent = `📍 Destination: ${locVal || "Studio / On-Location"}`;
-    }
-    if (elEventTitle) {
-      elEventTitle.textContent = occTitle;
-    }
-    if (elSDate) elSDate.textContent = dateVal;
-    if (elSTime) elSTime.textContent = timeVal;
-    if (elLoc) elLoc.textContent = locVal;
-    if (elCrew) elCrew.textContent = crewVal;
+    if (elPhone) elPhone.textContent = phoneVal || "+254 790 048 905";
+    if (elEmail) elEmail.textContent = emailVal || "bookings@laureignstudios.co.ke";
+    if (elLoc) elLoc.textContent = locVal || "Kakamega Town (Mumias Rd)";
+    if (elBillingLoc) elBillingLoc.textContent = "542542-486197";
+    if (elEventTitle) elEventTitle.textContent = occTitle;
 
     // Financial calculations
     const basePrice = invoiceSessions.reduce((sum, s) => sum + ((s.rate || 0) * (s.qty || 1)), 0);
@@ -3388,105 +3523,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const deposit = Math.round(grandTotal * (depPercent / 100));
     const balance = Math.max(0, grandTotal - deposit);
 
-    // Render Table Rows in Live Sheet (Sample 5 & Sample 4: 5-Column Precision)
-    const tbody = document.getElementById("invTableBody");
-    if (tbody) {
-      let rowsHtml = "";
-
-      invoiceSessions.forEach((s, idx) => {
-        const qty = s.qty || 1;
-        const rate = s.rate || 0;
-        const lineTotal = rate * qty;
-        const numStr = String(idx + 1).padStart(2, '0');
-
-        let specHtml = "";
-        if (s.spec) {
-          const parts = s.spec.split(/[•\n]/).map(p => p.trim()).filter(Boolean);
-          if (parts.length > 1) {
-            specHtml = `<ul class="inv-inclusions-list">${parts.map(p => `<li>${escapeHtml(p)}</li>`).join("")}</ul>`;
-          } else {
-            specHtml = `<div style="font-size:11px; color:#475569; line-height:1.4; margin-top:2px;">${escapeHtml(s.spec)}</div>`;
-          }
-        } else {
-          specHtml = `<div style="font-size:11px; color:#475569; margin-top:2px;">Standard studio photography session &amp; digital master deliverables.</div>`;
-        }
-
-        rowsHtml += `
-          <tr>
-            <td class="col-num">${numStr}</td>
-            <td class="col-desc">
-              <div class="inv-item-title">${escapeHtml(s.title || "Studio Session")}</div>
-              <div class="inv-item-sub">${escapeHtml(s.tierName || "Selected Package Tier")}</div>
-              ${specHtml}
-            </td>
-            <td class="col-qty">${qty > 1 ? `${qty} Sessions` : "1 Session"}</td>
-            <td class="col-rate">KSh ${rate.toLocaleString()}</td>
-            <td class="col-amount">KSh ${lineTotal.toLocaleString()}</td>
-          </tr>
-        `;
-      });
-
-      invoiceAddons.forEach((a, aIdx) => {
-        const price = a.price || 0;
-        const numStr = String(invoiceSessions.length + aIdx + 1).padStart(2, '0');
-        rowsHtml += `
-          <tr>
-            <td class="col-num">${numStr}</td>
-            <td class="col-desc">
-              <div class="inv-item-title">Add-On: ${escapeHtml(a.name || "Creative Enhancement")}</div>
-              <div class="inv-item-sub">Selected Enhancement Upgrade</div>
-              <div style="font-size:11px; color:#475569; line-height:1.4; margin-top:2px;">${escapeHtml(a.spec || "Optional session / event deliverable enhancement.")}</div>
-            </td>
-            <td class="col-qty">1 Unit</td>
-            <td class="col-rate">KSh ${price.toLocaleString()}</td>
-            <td class="col-amount">KSh ${price.toLocaleString()}</td>
-          </tr>
-        `;
-      });
-
-      if (invoiceSessions.length === 0 && invoiceAddons.length === 0) {
-        rowsHtml = `<tr><td colspan="5" style="text-align:center; padding:24px; color:#64748b;">No shoot sessions or add-ons configured yet.</td></tr>`;
-      }
-
-      tbody.innerHTML = rowsHtml;
-    }
-
-    // Special Assignment Notes Box
-    const elNotesBox = document.getElementById("invDisplayNotesBox");
-    const elNotesText = document.getElementById("invDisplayNotesText");
-    if (elNotesBox && elNotesText) {
-      if (notesVal) {
-        elNotesText.textContent = notesVal;
-        elNotesBox.style.display = "block";
-      } else {
-        elNotesBox.style.display = "none";
-      }
-    }
-
-    // Special Discount Row
-    const elDiscRow = document.getElementById("invDiscountRow");
-    const elDiscAmt = document.getElementById("invDiscountAmt");
-    if (elDiscRow && elDiscAmt) {
-      if (discount > 0) {
-        elDiscAmt.textContent = `- KSh ${discount.toLocaleString()}`;
-        elDiscRow.style.display = "flex";
-      } else {
-        elDiscRow.style.display = "none";
-      }
-    }
-
-    // Totals Elements
-    const elBase = document.getElementById("invBaseAmt");
-    const elAddons = document.getElementById("invAddonsAmt");
-    const elGrand = document.getElementById("invGrandTotal");
-    const elGrandLbl = document.getElementById("invGrandTotalLabel");
-
-    if (elBase) elBase.textContent = `KSh ${basePrice.toLocaleString()}`;
-    if (elAddons) elAddons.textContent = `KSh ${addonsTotal.toLocaleString()}`;
-    if (elGrand) elGrand.textContent = `KSh ${grandTotal.toLocaleString()}`;
-    if (elGrandLbl) elGrandLbl.textContent = invoiceMode === "receipt" ? "TOTAL SHOOT INVESTMENT:" : "TOTAL PROJECT INVESTMENT:";
-
-    // Mode-Specific Financial Breakdown & Deposit Highlight Card
     const payStatusSelect = document.getElementById("invReceiptStatusSelect") || document.getElementById("invPaymentStatusSelect");
     const payMethodSelect = document.getElementById("invReceiptMethodSelect") || document.getElementById("invPaymentMethodSelect");
     const payRefInput = document.getElementById("invReceiptRefInput") || document.getElementById("invPaymentRefInput");
@@ -3508,155 +3544,317 @@ document.addEventListener("DOMContentLoaded", () => {
       printableSheet.classList.toggle("is-receipt-mode", isReceipt);
     }
 
-    const elStatusPill = document.getElementById("invDisplayStatusPill");
-    const elWordmark = document.getElementById("invSheetMainWordmark");
-    const elDocType = document.getElementById("invDisplayDocType");
-    const elPaidRow = document.getElementById("invPaidRow");
-    const elPaidLabel = document.getElementById("invPaidLabel");
-    const elPaidAmt = document.getElementById("invPaidAmt");
+    // Security Watermark Text
+    const watermarkEl = document.getElementById("invSecurityWatermark");
+    if (watermarkEl) {
+      if (isReceipt) {
+        watermarkEl.innerHTML = `
+          <div class="inv-watermark-row">LAUREIGN STUDIOS OFFICIAL &nbsp;•&nbsp; PAYMENT CONFIRMED &nbsp;•&nbsp; OFFICIAL RECEIPT</div>
+          <div class="inv-watermark-row">CASHLESS M-PESA VERIFIED &nbsp;•&nbsp; OFFICIAL STUDIO RECEIPT &nbsp;•&nbsp; TAX CLEARED</div>
+          <div class="inv-watermark-row">LAUREIGN STUDIOS OFFICIAL &nbsp;•&nbsp; PAYMENT CONFIRMED &nbsp;•&nbsp; OFFICIAL RECEIPT</div>
+          <div class="inv-watermark-row">CASHLESS M-PESA VERIFIED &nbsp;•&nbsp; OFFICIAL STUDIO RECEIPT &nbsp;•&nbsp; TAX CLEARED</div>
+        `;
+      } else {
+        watermarkEl.innerHTML = `
+          <div class="inv-watermark-row">LAUREIGN STUDIOS OFFICIAL &nbsp;•&nbsp; AUTHENTICATED &nbsp;•&nbsp; LAUREIGN STUDIOS OFFICIAL</div>
+          <div class="inv-watermark-row">OFFICIAL PROFORMA &nbsp;•&nbsp; NOTARY VERIFIED &nbsp;•&nbsp; SECURE RATE CARD</div>
+          <div class="inv-watermark-row">LAUREIGN STUDIOS OFFICIAL &nbsp;•&nbsp; AUTHENTICATED &nbsp;•&nbsp; LAUREIGN STUDIOS OFFICIAL</div>
+          <div class="inv-watermark-row">OFFICIAL PROFORMA &nbsp;•&nbsp; NOTARY VERIFIED &nbsp;•&nbsp; SECURE RATE CARD</div>
+        `;
+      }
+    }
+
+    if (isReceipt) {
+      if (elWordmark) elWordmark.textContent = "RECEIPT";
+      if (elDocType) elDocType.textContent = "RECEIPT TO";
+      if (elStatusPill) {
+        if (paymentStatus === "full") {
+          elStatusPill.className = "inv-meta-v status-paid";
+          elStatusPill.textContent = "PAID IN FULL";
+        } else {
+          elStatusPill.className = "inv-meta-v status-deposit";
+          elStatusPill.textContent = `DEPOSIT PAID (${depPercent}%)`;
+        }
+      }
+    } else {
+      if (elWordmark) elWordmark.textContent = "QUOTATION";
+      if (elDocType) elDocType.textContent = "INVOICE TO";
+      if (elStatusPill) {
+        elStatusPill.className = "inv-meta-v status-proforma";
+        elStatusPill.textContent = "PROFORMA / UNPAID";
+      }
+    }
+
+    // Render Table Rows in Live Sheet (4 Columns: Item Description, Unit Price, Qnt, Total)
+    const tbody = document.getElementById("invTableBody");
+    const elTableColDesc = document.getElementById("invTableColDesc");
+    if (elTableColDesc) {
+      elTableColDesc.textContent = isReceipt ? "Shoot Particulars Paid For" : "Item Description";
+    }
+
+    if (tbody) {
+      let rowsHtml = "";
+
+      if (isReceipt) {
+        // Commercial Receipt Table: concise particulars of what was paid for without repetitive text
+        invoiceSessions.forEach((s) => {
+          const qty = s.qty || 1;
+          const rate = s.rate || 0;
+          const lineTotal = rate * qty;
+
+          rowsHtml += `
+            <tr>
+              <td class="col-desc">
+                <div class="inv-item-title">${escapeHtml(s.title || "Studio Shoot Session")}</div>
+                <div class="inv-item-sub">Package Tier: ${escapeHtml(s.tierName || "Standard Package")} · Master Photography Deliverables</div>
+              </td>
+              <td class="col-price">KSh ${rate.toLocaleString()}</td>
+              <td class="col-qty">${String(qty).padStart(2, '0')}</td>
+              <td class="col-total">KSh ${lineTotal.toLocaleString()}</td>
+            </tr>
+          `;
+        });
+
+        invoiceAddons.forEach((a) => {
+          const price = a.price || 0;
+          rowsHtml += `
+            <tr>
+              <td class="col-desc">
+                <div class="inv-item-title">Add-On: ${escapeHtml(a.name || "Creative Enhancement")}</div>
+                <div class="inv-item-sub">Deliverable / Print Enhancement</div>
+              </td>
+              <td class="col-price">KSh ${price.toLocaleString()}</td>
+              <td class="col-qty">01</td>
+              <td class="col-total">KSh ${price.toLocaleString()}</td>
+            </tr>
+          `;
+        });
+
+        if (invoiceSessions.length === 0 && invoiceAddons.length === 0) {
+          rowsHtml = `<tr><td colspan="4" style="text-align:center; padding:18px; color:#64748b;">No shoot items configured.</td></tr>`;
+        }
+      } else {
+        // Quotation Itemized Deliverables Table
+        invoiceSessions.forEach((s) => {
+          const qty = s.qty || 1;
+          const rate = s.rate || 0;
+          const lineTotal = rate * qty;
+
+          let specHtml = "";
+          if (s.spec) {
+            const parts = s.spec.split(/[•\n]/).map(p => p.trim()).filter(Boolean);
+            if (parts.length > 1) {
+              specHtml = `<ul class="inv-inclusions-list">${parts.map(p => `<li>${escapeHtml(p)}</li>`).join("")}</ul>`;
+            } else {
+              specHtml = `<div style="font-size:10px; color:#475569; line-height:1.4; margin-top:2px;">${escapeHtml(s.spec)}</div>`;
+            }
+          } else {
+            specHtml = `<div style="font-size:10px; color:#475569; margin-top:2px;">Standard studio photography session &amp; master deliverables.</div>`;
+          }
+
+          rowsHtml += `
+            <tr>
+              <td class="col-desc">
+                <div class="inv-item-title">${escapeHtml(s.title || "Studio Session")}</div>
+                <div class="inv-item-sub">${escapeHtml(s.tierName || "Selected Package Tier")}</div>
+                ${specHtml}
+              </td>
+              <td class="col-price">KSh ${rate.toLocaleString()}</td>
+              <td class="col-qty">${String(qty).padStart(2, '0')}</td>
+              <td class="col-total">KSh ${lineTotal.toLocaleString()}</td>
+            </tr>
+          `;
+        });
+
+        invoiceAddons.forEach((a) => {
+          const price = a.price || 0;
+          rowsHtml += `
+            <tr>
+              <td class="col-desc">
+                <div class="inv-item-title">Add-On: ${escapeHtml(a.name || "Creative Enhancement")}</div>
+                <div class="inv-item-sub">Selected Enhancement Upgrade</div>
+                <div style="font-size:10px; color:#475569; line-height:1.4; margin-top:2px;">${escapeHtml(a.spec || "Deliverable enhancement upgrade.")}</div>
+              </td>
+              <td class="col-price">KSh ${price.toLocaleString()}</td>
+              <td class="col-qty">01</td>
+              <td class="col-total">KSh ${price.toLocaleString()}</td>
+            </tr>
+          `;
+        });
+
+        if (invoiceSessions.length === 0 && invoiceAddons.length === 0) {
+          rowsHtml = `<tr><td colspan="4" style="text-align:center; padding:24px; color:#64748b;">No shoot sessions or add-ons configured yet.</td></tr>`;
+        }
+      }
+
+      tbody.innerHTML = rowsHtml;
+    }
+
+    // Special Assignment Notes Box
+    const elNotesBox = document.getElementById("invDisplayNotesBox");
+    const elNotesText = document.getElementById("invDisplayNotesText");
+    if (elNotesBox && elNotesText) {
+      if (notesVal) {
+        elNotesText.textContent = notesVal;
+        elNotesBox.style.display = "block";
+      } else {
+        elNotesBox.style.display = "none";
+      }
+    }
+
+    // Mid-Section: Payment Method & Settlement Box
+    const elPayMethodTitle = document.getElementById("invPayMethodTitle");
+    const elPayChannelLine = document.getElementById("invPayChannelLine");
+    if (isReceipt) {
+      if (elPayMethodTitle) elPayMethodTitle.textContent = "Verified Settlement Voucher";
+      if (elPayChannelLine) {
+        elPayChannelLine.innerHTML = `
+          <div class="pay-line-item"><span class="check-box checked">☑</span> <b>Payment Channel:</b> <span>${escapeHtml(paymentMethod)}</span></div>
+          <div class="pay-line-item"><span class="check-box checked">☑</span> <b>Transaction Ref:</b> <span class="till-num" style="background:#f1f5f9; color:#0B4D3A; border-color:#0B4D3A; font-weight:800;">${escapeHtml(paymentRef)}</span></div>
+          <div class="pay-line-item"><span class="check-box checked">☑</span> <b>Settlement Status:</b> <span style="font-weight:700; color:#0B4D3A;">${paymentStatus === 'full' ? 'Payment Cleared in Full (Official Receipt)' : `Commitment Deposit Confirmed (${depPercent}%)`}</span></div>
+          <div class="pay-line-item"><span class="check-box checked">☑</span> <b>Cashier Validation:</b> <span style="font-weight:600; color:#475569;">Verified by Laureign Studios Cashier</span></div>
+        `;
+      }
+    } else {
+      if (elPayMethodTitle) elPayMethodTitle.textContent = "Payment Method";
+      if (elPayChannelLine) {
+        elPayChannelLine.innerHTML = `
+          <div class="pay-line-item"><span class="check-box checked">☑</span> <b>M-Pesa Buy Goods Till:</b> <span class="till-num">0790048905</span> (Laureign Studios)</div>
+          <div class="pay-line-item"><span class="check-box">☐</span> <b>M-Pesa Paybill:</b> <span>542542</span> Acc: <span>486197</span> (Jane Akoth)</div>
+          <div class="pay-line-item"><span class="check-box">☐</span> <b>Direct Bank Remittance:</b> <span>I&amp;M Bank Kenya · Acc: 486197</span></div>
+        `;
+      }
+    }
+
+    // Subtotals Block
+    const elBase = document.getElementById("invBaseAmt");
+    const elAddonsRow = document.getElementById("invAddonsRow");
+    const elAddons = document.getElementById("invAddonsAmt");
+    const elDiscRow = document.getElementById("invDiscountRow");
+    const elDiscAmt = document.getElementById("invDiscountAmt");
     const elDepositRow = document.getElementById("invDepositRow");
     const elDepositLabel = document.getElementById("invDepositLabel");
     const elDepositVal = document.getElementById("invDepositRequired");
     const elBalRow = document.getElementById("invBalanceRow");
     const elBalLabel = document.getElementById("invBalanceLabel");
     const elBalVal = document.getElementById("invBalanceDue");
+    const elPaidRow = document.getElementById("invPaidRow");
+    const elPaidLabel = document.getElementById("invPaidLabel");
+    const elPaidAmt = document.getElementById("invPaidAmt");
 
-    // Deposit Highlight Card (Left Side, Sample 5 Style)
-    const elDepAmt = document.getElementById("invDepDisplayAmt");
-    const elDepHeaderBadge = document.getElementById("invDepHeaderBadge");
-    const elDepPercentLabel = document.getElementById("invDepPercentLabel");
-    const elDepBalSub = document.getElementById("invDepBalanceSub");
-    const elDepBalSubAmt = document.getElementById("invDepBalanceSubAmt");
+    if (elBase) elBase.textContent = `KSh ${basePrice.toLocaleString()}`;
+    if (elAddonsRow && elAddons) {
+      if (addonsTotal > 0) {
+        elAddons.textContent = `KSh ${addonsTotal.toLocaleString()}`;
+        elAddonsRow.style.display = "flex";
+      } else {
+        elAddonsRow.style.display = "none";
+      }
+    }
 
-    const elPayChannelLine = document.getElementById("invPayChannelLine");
-    const elPayTillLine = document.getElementById("invPayTillLine");
-    const elPayAccountLine = document.getElementById("invPayAccountLine");
-    const elPayRefLine = document.getElementById("invPayRefLine");
-    const elTermsNote = document.getElementById("invTermsNote");
+    if (elDiscRow && elDiscAmt) {
+      if (discount > 0) {
+        elDiscAmt.textContent = `- KSh ${discount.toLocaleString()}`;
+        elDiscRow.style.display = "flex";
+      } else {
+        elDiscRow.style.display = "none";
+      }
+    }
 
     if (isReceipt) {
-      if (elWordmark) elWordmark.textContent = "RECEIPT";
-      if (elDocType) elDocType.textContent = "OFFICIAL PAYMENT RECEIPT";
-
-      if (paymentStatus === "full") {
-        if (elStatusPill) {
-          elStatusPill.className = "val status-paid";
-          elStatusPill.textContent = "✓ PAID IN FULL (RECEIPT)";
-        }
-        if (elPaidRow) {
-          elPaidRow.style.display = "flex";
-          if (elPaidLabel) elPaidLabel.textContent = "AMOUNT RECEIVED IN FULL:";
-          if (elPaidAmt) elPaidAmt.textContent = `KSh ${grandTotal.toLocaleString()}`;
-        }
-        if (elDepositRow) elDepositRow.style.display = "none";
-        if (elBalRow) {
-          elBalRow.style.display = "flex";
-          if (elBalLabel) elBalLabel.textContent = "BALANCE REMAINING:";
-          if (elBalVal) {
-            elBalVal.textContent = "KSh 0 (CLEARED)";
-            elBalVal.style.color = "#15803d";
-            elBalVal.style.fontWeight = "800";
-          }
-        }
-
-        // Highlight card in full receipt mode
-        if (elDepHeaderBadge) elDepHeaderBadge.textContent = "✓ PAYMENT RECEIVED IN FULL";
-        if (elDepAmt) elDepAmt.textContent = `KSh ${grandTotal.toLocaleString()}`;
-        if (elDepPercentLabel) elDepPercentLabel.textContent = "Official studio payment confirmation. Payment received in full.";
-        if (elDepBalSub) elDepBalSub.innerHTML = `Remaining balance: <b style="color:#15803d;">KSh 0 (PAID IN FULL)</b>. Master gallery authorized.`;
-
-      } else {
-        if (elStatusPill) {
-          elStatusPill.className = "val status-deposit";
-          elStatusPill.textContent = `✓ DEPOSIT RECEIVED (${depPercent}%)`;
-        }
-        if (elPaidRow) {
-          elPaidRow.style.display = "flex";
-          if (elPaidLabel) elPaidLabel.textContent = `DEPOSIT RECEIVED (${depPercent}%):`;
-          if (elPaidAmt) elPaidAmt.textContent = `KSh ${deposit.toLocaleString()}`;
-        }
-        if (elDepositRow) elDepositRow.style.display = "none";
-        if (elBalRow) {
-          elBalRow.style.display = "flex";
-          if (elBalLabel) elBalLabel.textContent = "BALANCE DUE ON DELIVERY:";
-          if (elBalVal) {
-            elBalVal.textContent = `KSh ${balance.toLocaleString()}`;
-            elBalVal.style.color = "#dc2626";
-            elBalVal.style.fontWeight = "800";
-          }
-        }
-
-        // Highlight card in deposit receipt mode
-        if (elDepHeaderBadge) elDepHeaderBadge.textContent = `✓ BOOKING DEPOSIT RECEIVED (${depPercent}%)`;
-        if (elDepAmt) elDepAmt.textContent = `KSh ${deposit.toLocaleString()}`;
-        if (elDepPercentLabel) elDepPercentLabel.textContent = `${depPercent}% commitment deposit confirmed and allocated to production.`;
-        if (elDepBalSub) elDepBalSub.innerHTML = `Balance due on master delivery: <b style="color:#dc2626;">KSh ${balance.toLocaleString()}</b>.`;
+      if (elDepositRow) elDepositRow.style.display = "none";
+      if (elPaidRow) {
+        elPaidRow.style.display = "flex";
+        if (elPaidLabel) elPaidLabel.textContent = paymentStatus === "full" ? "Amount Paid in Full" : `Deposit Paid (${depPercent}%)`;
+        if (elPaidAmt) elPaidAmt.textContent = `KSh ${(paymentStatus === "full" ? grandTotal : deposit).toLocaleString()}`;
       }
-
-      // Dynamic receipt clearance summary elements
-      const elClearanceBadge = document.getElementById("invReceiptClearanceBadge");
-      const elVerifyChannel = document.getElementById("receiptVerifyChannel");
-      const elVerifyCode = document.getElementById("receiptVerifyCode");
-      if (elClearanceBadge) {
-        elClearanceBadge.textContent = paymentStatus === "full"
-          ? "✓ PAYMENT RECEIVED IN FULL & DELIVERABLES AUTHORIZED"
-          : `✓ BOOKING DEPOSIT CONFIRMED (${depPercent}%) & PRODUCTION RESERVED`;
+      if (elBalRow) {
+        elBalRow.style.display = "flex";
+        if (elBalLabel) elBalLabel.textContent = paymentStatus === "full" ? "Balance Remaining" : "Balance Due on Delivery";
+        if (elBalVal) {
+          elBalVal.textContent = paymentStatus === "full" ? "KSh 0.00 (CLEARED)" : `KSh ${balance.toLocaleString()}`;
+          elBalVal.style.color = paymentStatus === "full" ? "#0B4D3A" : "#0f172a";
+          elBalVal.style.fontWeight = "800";
+        }
       }
-      if (elVerifyChannel) elVerifyChannel.textContent = paymentMethod;
-      if (elVerifyCode) elVerifyCode.textContent = paymentRef;
-
-      if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Payment Channel:</b> <span style="font-weight:700; color:#0f172a;">${escapeHtml(paymentMethod)}</span>`;
-      if (elPayTillLine) elPayTillLine.innerHTML = `<b>Payment Ref / Code:</b> <span class="till-num" style="background:#f1f5f9; color:#0f172a; border-color:#cbd5e1; font-weight:800;">${escapeHtml(paymentRef)}</span> &nbsp;<b>Bank:</b> I&amp;M Bank`;
-      if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Name Verified:</b> <span style="font-weight:800; color:#0f172a;">JANE AKOTH</span> (Acc: 486197)`;
-      if (elPayRefLine) elPayRefLine.innerHTML = `<b>Receipt Clearance:</b> <span style="font-weight:700; color:#0f172a;">✓ Validated &amp; Logged by Studio Reception (Strictly Cashless)</span>`;
-      if (elTermsNote) elTermsNote.textContent = "* Official studio receipt. Cashless payment verified. High-resolution master files and deliverables are processed per the agreed production timeline.";
     } else {
-      // Quotation mode
-      if (elWordmark) elWordmark.textContent = "QUOTATION";
-      if (elDocType) elDocType.textContent = "OFFICIAL PROFORMA RATE CARD";
-
-      if (elStatusPill) {
-        elStatusPill.className = "val status-proforma";
-        elStatusPill.textContent = "PROFORMA / UNPAID";
-      }
       if (elPaidRow) elPaidRow.style.display = "none";
       if (elDepositRow) {
         elDepositRow.style.display = "flex";
-        if (elDepositLabel) elDepositLabel.textContent = `REQUIRED BOOKING DEPOSIT (${depPercent}%):`;
+        if (elDepositLabel) elDepositLabel.textContent = `Booking Deposit (${depPercent}%)`;
         if (elDepositVal) elDepositVal.textContent = `KSh ${deposit.toLocaleString()}`;
       }
       if (elBalRow) {
         elBalRow.style.display = "flex";
-        if (elBalLabel) elBalLabel.textContent = `BALANCE DUE ON MASTER DELIVERY (${100 - depPercent}%):`;
+        if (elBalLabel) elBalLabel.textContent = "Balance Due on Delivery";
         if (elBalVal) {
           elBalVal.textContent = `KSh ${balance.toLocaleString()}`;
-          elBalVal.style.color = "";
-          elBalVal.style.fontWeight = "";
+          elBalVal.style.color = "#0f172a";
+          elBalVal.style.fontWeight = "700";
         }
       }
-
-      // Highlight card in quotation mode (Sample 5 Style)
-      if (elDepHeaderBadge) elDepHeaderBadge.textContent = `BOOKING DEPOSIT REQUIRED (${depPercent}%)`;
-      if (elDepAmt) elDepAmt.textContent = `KSh ${deposit.toLocaleString()}`;
-      if (elDepPercentLabel) elDepPercentLabel.textContent = `${depPercent}% commitment required to secure shoot date &amp; creative crew allocation.`;
-      if (elDepBalSub) elDepBalSub.innerHTML = `Remaining balance of <b id="invDepBalanceSubAmt">KSh ${balance.toLocaleString()}</b> payable upon master high-res delivery.`;
-
-      if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Remittance Channel:</b> <span id="invPayChannelVal">M-Pesa Till &amp; Paybill / Direct Bank Transfer</span>`;
-      if (elPayTillLine) elPayTillLine.innerHTML = `<b>Buy Goods Till:</b> <span class="till-num">0790048905</span> &nbsp;<b>Paybill:</b> <span class="till-num">542542</span> Acc: <span class="till-num">486197</span>`;
-      if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Name to Verify:</b> <span style="font-weight:800; color:#0f172a;">JANE AKOTH</span> (Laureign Studios)`;
-      const elBankLine = document.getElementById("invPayBankLine");
-      if (elBankLine) elBankLine.innerHTML = `<b>Direct Bank Remittance:</b> <span>I&amp;M Bank Kenya · Account No: <b>486197</b></span>`;
-      if (elTermsNote) elTermsNote.textContent = `* An ${depPercent}% commitment deposit confirms your booking and reserves our creative crew on your event date. The remaining ${100 - depPercent}% balance is payable upon delivery of your master high-resolution deliverables.`;
     }
 
-    // Dynamic Rubber Stamp Content & Live Up-To-Date Dates
+    // Grand Total Bar & Words
+    const targetAmt = isReceipt && paymentStatus === "deposit" ? deposit : grandTotal;
+    const elGrandWords = document.getElementById("invGrandTotalWords");
+    const elGrandLbl = document.getElementById("invGrandTotalLabel");
+    const elGrand = document.getElementById("invGrandTotal");
+
+    if (elGrandWords) elGrandWords.textContent = numberToWordsKenya(targetAmt);
+    if (elGrandLbl) elGrandLbl.textContent = isReceipt ? "TOTAL PAID" : "GRAND TOTAL";
+    if (elGrand) elGrand.textContent = `KSh ${targetAmt.toLocaleString()}`;
+
+    // Big Total Due Banner
+    const elTotalDueLbl = document.getElementById("invTotalDueLabel");
+    const elTotalDueAmt = document.getElementById("invTotalDueAmt");
+    if (isReceipt) {
+      if (paymentStatus === "full") {
+        if (elTotalDueLbl) elTotalDueLbl.textContent = "BALANCE DUE";
+        if (elTotalDueAmt) elTotalDueAmt.textContent = "KSH 0.00";
+      } else {
+        if (elTotalDueLbl) elTotalDueLbl.textContent = "BALANCE DUE ON DELIVERY";
+        if (elTotalDueAmt) elTotalDueAmt.textContent = `KSH ${balance.toLocaleString()}`;
+      }
+    } else {
+      if (elTotalDueLbl) elTotalDueLbl.textContent = deposit < grandTotal ? "INITIAL DEPOSIT DUE" : "TOTAL DUE";
+      if (elTotalDueAmt) elTotalDueAmt.textContent = `KSH ${deposit.toLocaleString()}`;
+    }
+
+    // Terms & Policies Section (Hidden in Receipt mode)
+    const elTermsCol = document.getElementById("invPayTermsCol");
+    const elTermsTitle = document.getElementById("invTermsTitle");
+    const elPolicyList = document.getElementById("invPolicyBulletList");
+    if (isReceipt) {
+      if (elTermsCol) elTermsCol.style.display = "none";
+    } else {
+      if (elTermsCol) elTermsCol.style.display = "block";
+      const isStudioScope = currentQuotationScope === "studio";
+      if (elTermsTitle) elTermsTitle.textContent = "Terms & Condition :";
+      if (elPolicyList) {
+        const activePolicies = isStudioScope ? STUDIO_TERMS_POLICIES : EVENT_TERMS_POLICIES;
+        if (activePolicies && activePolicies.length > 0) {
+          elPolicyList.innerHTML = activePolicies.slice(0, 3).map(p => `
+            <li><b>${escapeHtml(p.title)}:</b> ${escapeHtml(p.desc)}</li>
+          `).join("");
+        } else {
+          elPolicyList.innerHTML = `
+            <li>Payment should be made according to the agreed studio schedule.</li>
+            <li>Free RAW soft copies archive included complimentary with every session.</li>
+            <li>Commitment booking deposit secures your shoot date and locks creative crew allocation.</li>
+          `;
+        }
+      }
+    }
+
+    // Dynamic Rubber Stamp Content
     const elSealStamp = document.getElementById("invSealStamp");
     if (elSealStamp) {
       elSealStamp.classList.toggle("paid-stamp", isReceipt);
     }
     const elStampDate = document.getElementById("stampSvgDate");
     if (elStampDate) {
-      elStampDate.textContent = getFormattedStampDate(new Date());
+      elStampDate.textContent = `DATE: ${getFormattedStampDate(new Date())}`;
     }
     const elStampRef = document.getElementById("stampSvgRef");
     if (elStampRef) {
@@ -3915,13 +4113,21 @@ document.addEventListener("DOMContentLoaded", () => {
     invoiceModal.classList.add("open");
     invoiceModal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+
+    if (!history.state || history.state.modal !== "invoice") {
+      history.pushState({ modal: "invoice" }, "", "#quotation");
+    }
   }
 
-  function closeInvoiceModal() {
+  function closeInvoiceModal(fromHistory = false) {
     if (!invoiceModal) return;
     invoiceModal.classList.remove("open");
     invoiceModal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+
+    if (!fromHistory && history.state && history.state.modal === "invoice") {
+      history.back();
+    }
   }
 
   if (invoiceModal) {
@@ -3930,52 +4136,93 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Prepare the live invoice sheet for 100% crisp, non-blank PDF rendering
+  // Prepare the live invoice sheet for 100% crisp, non-blank, undistorted PDF & Image export
   function prepareInvoiceForExport() {
     const sourceSheet = document.getElementById("invoicePrintableSheet");
     if (!sourceSheet) return null;
 
-    const screenOnly = Array.from(sourceSheet.querySelectorAll(".inv-addons-selector-box, button, .inv-btn-action, .screen-only"));
+    // 1. Create an off-screen staging container mounted directly on body
+    // This completely bypasses mobile viewport, flex containers, modal constraints & media queries
+    const stagingWrapper = document.createElement("div");
+    stagingWrapper.id = "invoiceExportStaging";
+    stagingWrapper.style.cssText = "position: fixed; top: -99999px; left: 0; width: 794px !important; min-width: 794px !important; max-width: 794px !important; z-index: -9999; pointer-events: none; opacity: 1; background: #ffffff; margin: 0; padding: 0;";
+
+    // 2. Clone the sheet
+    const cloneSheet = sourceSheet.cloneNode(true);
+    cloneSheet.classList.add("pdf-export-mode");
+    cloneSheet.style.width = "794px";
+    cloneSheet.style.minWidth = "794px";
+    cloneSheet.style.maxWidth = "794px";
+    cloneSheet.style.margin = "0";
+    cloneSheet.style.padding = "26px 30px";
+    cloneSheet.style.boxSizing = "border-box";
+    cloneSheet.style.transform = "none";
+    cloneSheet.style.background = "#ffffff";
+    cloneSheet.style.overflow = "visible";
+    cloneSheet.style.maxHeight = "none";
+    cloneSheet.style.height = "auto";
+
+    // 3. Copy QR code and any canvas pixel buffers (cloneNode doesn't copy canvas pixels)
+    const origCanvases = sourceSheet.querySelectorAll("canvas");
+    const cloneCanvases = cloneSheet.querySelectorAll("canvas");
+    origCanvases.forEach((orig, idx) => {
+      const cln = cloneCanvases[idx];
+      if (cln) {
+        cln.width = orig.width;
+        cln.height = orig.height;
+        const ctx = cln.getContext("2d");
+        if (ctx) ctx.drawImage(orig, 0, 0);
+      }
+    });
+
+    // 4. Hide screen-only interactive buttons or controls in export clone
+    const screenOnly = Array.from(cloneSheet.querySelectorAll(".inv-addons-selector-box, button, .inv-btn-action, .screen-only"));
     screenOnly.forEach(el => {
-      el.dataset.origDisplay = el.style.display;
       el.style.display = "none";
     });
 
-    const origStyles = {
-      overflow: sourceSheet.style.overflow,
-      maxHeight: sourceSheet.style.maxHeight,
-      height: sourceSheet.style.height,
-      padding: sourceSheet.style.padding,
-      background: sourceSheet.style.background
-    };
-
-    sourceSheet.style.overflow = "visible";
-    sourceSheet.style.maxHeight = "none";
-    sourceSheet.style.height = "auto";
-    sourceSheet.style.padding = "32px 36px";
-    sourceSheet.style.background = "#ffffff";
+    stagingWrapper.appendChild(cloneSheet);
+    document.body.appendChild(stagingWrapper);
 
     return {
-      element: sourceSheet,
+      element: cloneSheet,
+      container: stagingWrapper,
       cleanup: () => {
-        sourceSheet.style.overflow = origStyles.overflow;
-        sourceSheet.style.maxHeight = origStyles.maxHeight;
-        sourceSheet.style.height = origStyles.height;
-        sourceSheet.style.padding = origStyles.padding;
-        sourceSheet.style.background = origStyles.background;
-        screenOnly.forEach(el => {
-          el.style.display = el.dataset.origDisplay || "";
-          delete el.dataset.origDisplay;
-        });
+        if (stagingWrapper && stagingWrapper.parentNode) {
+          stagingWrapper.parentNode.removeChild(stagingWrapper);
+        }
       }
     };
   }
 
-  // Generate Official PDF with html2pdf (Crisp, 100% Non-Blank Direct Rendering)
+  function triggerBlobDownload(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 2500);
+    showInvoiceToast(`✓ Official document saved to your device!`);
+  }
+
+  function triggerDataUrlDownload(canvas, filename, docName) {
+    const dataUri = canvas.toDataURL("image/png");
+    const a = document.createElement("a");
+    a.href = dataUri;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    showInvoiceToast(`✓ ${docName} PNG saved! (Check gallery / downloads)`);
+  }
+
+  // Generate Official PDF with html2pdf (Crisp, 1-Page A4 Precision, 100% Non-Blank)
   function downloadInvoicePdf() {
     if (typeof html2pdf === "undefined") {
       showInvoiceToast("Printing document format...");
-      window.print();
+      window.printInvoiceDocument();
       return;
     }
 
@@ -3984,7 +4231,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const isReceipt = invoiceMode === "receipt";
     const docName = isReceipt ? "Receipt" : "Quotation";
-    showInvoiceToast(`⏳ Compiling official PDF ${docName}...`);
+    showInvoiceToast(`⏳ Compiling official 1-page A4 PDF ${docName}...`);
 
     const clientVal = (invClientInput && invClientInput.value.trim()) || "Valued_Client";
     const cleanClient = clientVal.replace(/[^a-zA-Z0-9_-]/g, "_").slice(0, 20);
@@ -3992,31 +4239,144 @@ document.addEventListener("DOMContentLoaded", () => {
     const filename = `${docPrefix}_${currentInvoiceRef}_${cleanClient}.pdf`;
 
     const opt = {
-      margin: [10, 8, 10, 8],
+      margin: 0,
       filename: filename,
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: {
         scale: 2,
         useCORS: true,
+        allowTaint: true,
         logging: false,
         scrollX: 0,
         scrollY: 0,
+        windowWidth: 794,
+        width: 794,
         backgroundColor: '#ffffff'
       },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+      pagebreak: { mode: ['avoid-all'] }
     };
 
-    html2pdf().set(opt).from(exportContext.element).save().then(() => {
+    html2pdf().set(opt).from(exportContext.element).toPdf().get('pdf').then(pdfObj => {
       exportContext.cleanup();
-      showInvoiceToast(`✓ Official PDF ${docName} downloaded successfully!`);
+      const blob = pdfObj.output('blob');
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (isMobile && navigator.canShare && navigator.canShare({ files: [new File([blob], filename, { type: 'application/pdf' })] })) {
+        navigator.share({
+          files: [new File([blob], filename, { type: 'application/pdf' })],
+          title: `Laureign Studios ${docName}`,
+          text: `Official ${docName} from Laureign Studios for ${clientVal}`
+        }).then(() => {
+          showInvoiceToast(`✓ Official PDF ${docName} shared successfully!`);
+        }).catch(() => {
+          triggerBlobDownload(blob, filename);
+        });
+      } else {
+        triggerBlobDownload(blob, filename);
+      }
     }).catch(err => {
       exportContext.cleanup();
       console.error("PDF generation failed:", err);
-      showInvoiceToast("Falling back to print dialog...");
-      window.print();
+      showInvoiceToast("Direct PDF compilation busy. Rendering high-res image format...");
+      downloadInvoiceImage();
     });
   }
+
+  // Generate High-Resolution Image (PNG) for instant phone photo gallery saving & WhatsApp
+  function downloadInvoiceImage() {
+    const exportContext = prepareInvoiceForExport();
+    if (!exportContext) return;
+
+    const isReceipt = invoiceMode === "receipt";
+    const docName = isReceipt ? "Receipt" : "Quotation";
+    showInvoiceToast(`⏳ Rendering high-resolution ${docName} image...`);
+
+    const clientVal = (invClientInput && invClientInput.value.trim()) || "Valued_Client";
+    const cleanClient = clientVal.replace(/[^a-zA-Z0-9_-]/g, "_").slice(0, 20);
+    const docPrefix = isReceipt ? "Laureign_Studios_Receipt" : "Laureign_Studios_Quotation";
+    const filename = `${docPrefix}_${currentInvoiceRef}_${cleanClient}.png`;
+
+    const h2c = window.html2canvas || (window.html2pdf && window.html2pdf().html2canvas);
+    if (typeof h2c !== "function") {
+      exportContext.cleanup();
+      showInvoiceToast("Image export tool unavailable. Printing format...");
+      window.printInvoiceDocument();
+      return;
+    }
+
+    const h2cOptions = {
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      logging: false,
+      scrollX: 0,
+      scrollY: 0,
+      windowWidth: 794,
+      width: 794,
+      backgroundColor: "#ffffff"
+    };
+
+    h2c(exportContext.element, h2cOptions).then((canvas) => {
+      exportContext.cleanup();
+      if (!canvas) {
+        showInvoiceToast("Canvas generation empty.");
+        return;
+      }
+
+      if (canvas.toBlob) {
+        canvas.toBlob((blob) => {
+          if (!blob) {
+            triggerDataUrlDownload(canvas, filename, docName);
+            return;
+          }
+          const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+          if (isMobile && navigator.canShare && navigator.canShare({ files: [new File([blob], filename, { type: "image/png" })] })) {
+            navigator.share({
+              files: [new File([blob], filename, { type: "image/png" })],
+              title: `Laureign Studios ${docName}`,
+              text: `Official ${docName} from Laureign Studios for ${clientVal}`
+            }).then(() => {
+              showInvoiceToast(`✓ ${docName} saved & shared!`);
+            }).catch(() => {
+              triggerBlobDownload(blob, filename);
+            });
+          } else {
+            triggerBlobDownload(blob, filename);
+          }
+        }, "image/png", 1.0);
+      } else {
+        triggerDataUrlDownload(canvas, filename, docName);
+      }
+    }).catch((err) => {
+      exportContext.cleanup();
+      console.error("Image render failed:", err);
+      showInvoiceToast("Image render busy. Opening print format...");
+      window.printInvoiceDocument();
+    });
+  }
+  window.downloadInvoiceImage = downloadInvoiceImage;
+
+  // Direct Native High-Precision A4 Printing (Never blank / never clipped / exact 1-page fit)
+  function printInvoiceDocument() {
+    switchInvoiceTab("preview");
+    updateInvoiceDisplay();
+    const sourceSheet = document.getElementById("invoicePrintableSheet");
+    if (sourceSheet) {
+      sourceSheet.classList.add("pdf-export-mode");
+    }
+    document.body.classList.add("printing-invoice");
+
+    setTimeout(() => {
+      window.print();
+      setTimeout(() => {
+        document.body.classList.remove("printing-invoice");
+        if (sourceSheet) {
+          sourceSheet.classList.remove("pdf-export-mode");
+        }
+      }, 1200);
+    }, 150);
+  }
+  window.printInvoiceDocument = printInvoiceDocument;
 
   // Share PDF to WhatsApp via Web Share API or Auto-Download + WhatsApp Web fallback
   async function shareInvoicePdfWhatsApp() {
@@ -4038,19 +4398,22 @@ document.addEventListener("DOMContentLoaded", () => {
     showInvoiceToast(`⏳ Generating PDF ${docName} for WhatsApp...`);
 
     const opt = {
-      margin: [10, 8, 10, 8],
+      margin: 0,
       filename: filename,
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: {
         scale: 2,
         useCORS: true,
+        allowTaint: true,
         logging: false,
         scrollX: 0,
         scrollY: 0,
+        windowWidth: 794,
+        width: 794,
         backgroundColor: '#ffffff'
       },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+      pagebreak: { mode: ['avoid-all'] }
     };
 
     try {
@@ -4117,13 +4480,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const deposit = Math.round(grandTotal * (depPercent / 100));
     const balance = Math.max(0, grandTotal - deposit);
 
-    const payStatusSelect = document.getElementById("invPaymentStatusSelect");
-    const payMethodSelect = document.getElementById("invPaymentMethodSelect");
-    const payRefInput = document.getElementById("invPaymentRefInput");
+    const payStatusSelect = document.getElementById("invReceiptStatusSelect") || document.getElementById("invPaymentStatusSelect");
+    const payMethodSelect = document.getElementById("invReceiptMethodSelect") || document.getElementById("invPaymentMethodSelect");
+    const payRefInput = document.getElementById("invReceiptRefInput") || document.getElementById("invPaymentRefInput");
 
     const paymentStatus = payStatusSelect ? payStatusSelect.value : "full";
-    const paymentMethod = payMethodSelect ? payMethodSelect.value : "M-Pesa Paybill 542542 (Acc: 486197 - JANE AKOTH)";
-    const paymentRef = (payRefInput && payRefInput.value.trim()) || "SLD8927K";
+    let paymentMethod = "M-Pesa Buy Goods Till 0790048905 (Laureign Studios)";
+    if (payMethodSelect) {
+      if (payMethodSelect.tagName === "SELECT" && payMethodSelect.options[payMethodSelect.selectedIndex]) {
+        paymentMethod = payMethodSelect.options[payMethodSelect.selectedIndex].text || payMethodSelect.value;
+      } else {
+        paymentMethod = payMethodSelect.value || paymentMethod;
+      }
+    }
+    const paymentRef = (payRefInput && payRefInput.value.trim()) || "M-Pesa Verified";
 
     const clientPhone = normalizeKenyanPhone(rawPhone);
     const targetPhone = clientPhone || "254790048905";
@@ -4136,25 +4506,21 @@ document.addEventListener("DOMContentLoaded", () => {
       msg += `🔖 *Receipt Ref:* ${currentInvoiceRef}\n`;
       msg += `📅 *Date:* ${invoiceDateIssued}\n\n`;
 
-      msg += `👤 *Client / Invoiced To:* *${clientVal}*\n`;
-      msg += `🎯 *Occasion / Session:* *${occTitle}*\n`;
-      msg += `🏷️ *Production Scope:* *${catData.scope}*\n\n`;
+      msg += `👤 *Client / Payee:* *${clientVal}*\n`;
+      msg += `🎯 *Confirmed Shoot:* *${occTitle}*\n`;
+      msg += `🏷️ *Category:* *${catData.name}*\n\n`;
 
       if (rawPhone) msg += `📞 *Phone / WhatsApp:* ${rawPhone}\n`;
       if (emailVal) msg += `✉️ *Email:* ${emailVal}\n`;
       msg += `🗓️ *Shoot Date:* ${dateVal} (${timeVal})\n`;
       msg += `📍 *Location:* ${locVal}\n`;
-      msg += `🎥 *Assigned Crew:* ${crewVal}\n\n`;
+      msg += `🎥 *Lead Team:* ${crewVal}\n\n`;
 
-      msg += `*SHOOTS & SESSIONS COMPLETED:*\n`;
+      msg += `*SHOOT SESSIONS PAID FOR:*\n`;
       invoiceSessions.forEach((s, idx) => {
         const qty = s.qty || 1;
         const rate = s.rate || 0;
-        msg += `📸 *Shoot #${idx + 1}: ${s.title}* (${s.tierName})${qty > 1 ? ` ×${qty}` : ""}\n`;
-        msg += `   💰 Amount: KSh ${(rate * qty).toLocaleString()}\n`;
-        if (s.spec) {
-          msg += `   📋 Inclusions: ${s.spec.replace(/\n+/g, " • ")}\n`;
-        }
+        msg += `📸 *Shoot #${idx + 1}: ${s.title}* (${s.tierName})${qty > 1 ? ` ×${qty}` : ""}: KSh ${(rate * qty).toLocaleString()}\n`;
       });
 
       if (invoiceAddons.length > 0) {
@@ -4276,8 +4642,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const occInput = document.getElementById("invOccasionTitleInput");
     const occTitle = (occInput && occInput.value.trim()) || (getClientPossessive(clientVal) ? `${getClientPossessive(clientVal)} ${catData.name}` : `Bespoke ${catData.name}`);
 
-    const payRefInput = document.getElementById("invPaymentRefInput");
-    const paymentRef = (payRefInput && payRefInput.value.trim()) || currentInvoiceRef;
+    const payStatusSelect = document.getElementById("invReceiptStatusSelect") || document.getElementById("invPaymentStatusSelect");
+    const payMethodSelect = document.getElementById("invReceiptMethodSelect") || document.getElementById("invPaymentMethodSelect");
+    const payRefInput = document.getElementById("invReceiptRefInput") || document.getElementById("invPaymentRefInput");
+    const paymentStatus = payStatusSelect ? payStatusSelect.value : "full";
+    let paymentMethod = "M-Pesa Buy Goods Till 0790048905 (Laureign Studios)";
+    if (payMethodSelect) {
+      if (payMethodSelect.tagName === "SELECT" && payMethodSelect.options[payMethodSelect.selectedIndex]) {
+        paymentMethod = payMethodSelect.options[payMethodSelect.selectedIndex].text || payMethodSelect.value;
+      } else {
+        paymentMethod = payMethodSelect.value || paymentMethod;
+      }
+    }
+    const paymentRef = (payRefInput && payRefInput.value.trim()) || "M-Pesa Verified";
 
     const basePrice = invoiceSessions.reduce((sum, s) => sum + ((s.rate || 0) * (s.qty || 1)), 0);
     const addonsTotal = invoiceAddons.reduce((sum, a) => sum + (a.price || 0), 0);
@@ -4289,18 +4666,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const balance = Math.max(0, grandTotal - deposit);
 
     let text = isReceipt
-      ? `LAUREIGN STUDIOS — ${catData.receiptTitle}\n`
+      ? `LAUREIGN STUDIOS — OFFICIAL COMMERCIAL RECEIPT\n`
       : `LAUREIGN STUDIOS — ${catData.quoteTitle}\n`;
-    text += `Quotation Ref: ${currentInvoiceRef}\n`;
+    text += `${isReceipt ? "Receipt No" : "Quotation Ref"}: ${currentInvoiceRef}\n`;
     text += `Date: ${invoiceDateIssued}${isReceipt ? "" : " (Valid 14 Days)"}\n\n`;
-    text += `PREPARED FOR: ${clientVal}\n`;
-    text += `OCCASION / SESSION: ${occTitle}\n`;
-    text += `PRODUCTION CATEGORY: ${catData.name} (${catData.scope})\n\n`;
+    text += `${isReceipt ? "CLIENT / PAYEE" : "PREPARED FOR"}: ${clientVal}\n`;
+    text += `${isReceipt ? "CONFIRMED SHOOT" : "OCCASION / SESSION"}: ${occTitle}\n`;
+    text += `CATEGORY: ${catData.name}\n\n`;
     text += `Phone: ${phoneVal}\n`;
     if (emailVal) text += `Email: ${emailVal}\n`;
     text += `Shoot Date: ${dateVal} (${timeVal})\nLocation: ${locVal}\n\n`;
 
-    text += `PRODUCTION DELIVERABLES:\n`;
+    text += `${isReceipt ? "SHOOT PARTICULARS PAID FOR:" : "PRODUCTION DELIVERABLES:"}\n`;
     invoiceSessions.forEach((s, idx) => {
       const qty = s.qty || 1;
       const rate = s.rate || 0;
@@ -4320,11 +4697,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     text += `\nTotal Project Investment: KSh ${grandTotal.toLocaleString()}\n`;
     if (isReceipt) {
-      text += `Amount Received: KSh ${grandTotal.toLocaleString()} (PAID IN FULL)\nBalance: KSh 0 (CLEARED)\n\n`;
-      text += `Payment Channel: I&M Bank · M-Pesa Paybill 542542 (Acc: 486197 - JANE AKOTH)\nReceipt Ref: ${paymentRef}\nStatus: Cashless Verified · Laureign Studios`;
+      if (paymentStatus === "full") {
+        text += `Amount Cleared: KSh ${grandTotal.toLocaleString()} (PAID IN FULL)\nOutstanding Balance: KSh 0 (CLEARED)\n\n`;
+      } else {
+        text += `Booking Deposit Cleared: KSh ${deposit.toLocaleString()} (${depPercent}% PAID)\nBalance Due on Master Delivery: KSh ${balance.toLocaleString()}\n\n`;
+      }
+      text += `Payment Channel: ${paymentMethod}\nTransaction Code / Ref: ${paymentRef}\nStatus: Cashless Verified · Laureign Studios Official`;
     } else {
       text += `Official Booking Deposit Required (${depPercent}%): KSh ${deposit.toLocaleString()}\nBalance Due on Master Delivery (${100 - depPercent}%): KSh ${balance.toLocaleString()}\n\n`;
-      text += `OFFICIAL REMITTANCE:\nBank: I&M Bank Kenya (Acc: 486197)\nM-Pesa Paybill: 542542\nAccount No: 486197\nAccount Name: JANE AKOTH (Laureign Studios)\nStudio Direct Line: +254 790 048 905\nStudio Email: laureignstudios25@gmail.com\nStudio Location: Kakamega Town along Mumias Rd, Opp. Jamia Mosque (Bukura Pharmacy Bldg, 1st Floor)`;
+      text += `OFFICIAL REMITTANCE:\nBuy Goods Till: 0790048905\nM-Pesa Paybill: 542542 (Acc: 486197)\nAccount Name: JANE AKOTH (Laureign Studios)\nBank: I&M Bank Kenya (Acc: 486197)\nStudio Direct Line: +254 790 048 905\nStudio Location: Kakamega Town along Mumias Rd, Opp. Jamia Mosque (Bukura Pharmacy Bldg, 1st Floor)`;
     }
 
     navigator.clipboard.writeText(text).then(() => {
@@ -4476,14 +4857,20 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.add("open");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+    if (!history.state || history.state.modal !== "leads") {
+      history.pushState({ modal: "leads" }, "", "#leads-crm");
+    }
   }
 
-  function closeLeadsModal() {
+  function closeLeadsModal(fromHistory = false) {
     const modal = document.getElementById("leadsModal");
     if (!modal) return;
     modal.classList.remove("open");
     modal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+    if (!fromHistory && history.state && history.state.modal === "leads") {
+      history.back();
+    }
   }
 
   function renderLeadsTable(searchQuery = "") {

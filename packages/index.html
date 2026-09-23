@@ -209,6 +209,9 @@
     </div>
   </section>
 
+  <!-- Sticky Sentinel for zero-jitter hysteresis detection -->
+  <div id="controlsStickySentinel" style="position:relative; width:100%; height:1px; margin-top:-1px; pointer-events:none; visibility:hidden;" aria-hidden="true"></div>
+
   <!-- CONTROLS & SUB-CATEGORIES -->
   <section class="controls-bar" id="packagesBrowse" data-anchor="book"><div id="book"></div>
     <div class="wrap controls-inner">
@@ -235,7 +238,7 @@
 
       <!-- Sticky Chapter Navigation Strip -->
       <nav class="sticky-pathway-nav" id="stickyPathwayNav" aria-label="Photoshoot Chapters">
-        <button type="button" class="sticky-pathway-btn sticky-search-btn" id="stickySearchBtn" onclick="window.toggleStickySearch()" aria-label="Search packages" title="Search all packages">
+        <button type="button" class="sticky-pathway-btn sticky-search-btn" id="stickySearchBtn" onclick="window.toggleStickySearch()" aria-expanded="false" aria-label="Search packages" title="Search all packages">
           <span class="btn-icon">🔍</span>
           <span>Search</span>
         </button>
@@ -1272,35 +1275,45 @@
     <div class="invoice-modal-container">
       
       <!-- Top Action Strip (Screen Only) -->
+      <!-- Top Action Strip (Screen Only) -->
       <div class="invoice-modal-topbar">
-        <div class="inv-topbar-left">
-          <div style="display:flex; align-items:center; gap:8px;">
+        <!-- Main Top Bar Row: Identity & Close -->
+        <div class="inv-topbar-main-row">
+          <div class="inv-topbar-meta">
             <span class="inv-topbar-tag">📄 Studio Proposal Workstation</span>
-            <div class="inv-tab-switcher" id="invTabSwitcher">
-              <button type="button" class="inv-tab-btn active" id="tabBtnPreview" onclick="switchInvoiceTab('preview')">
-                📄 View Quotation Sheet
-              </button>
-              <button type="button" class="inv-tab-btn" id="tabBtnEdit" onclick="switchInvoiceTab('edit')">
-                ✏️ Edit Shoot &amp; Add-Ons
-              </button>
-            </div>
+            <h3 class="inv-topbar-title">Interactive Quotation &amp; Agreement Generator</h3>
           </div>
-          <h3 class="inv-topbar-title">Interactive Quotation &amp; Agreement Generator</h3>
+          <div class="inv-topbar-actions">
+            <button type="button" class="inv-btn-action pdf-btn desktop-only" id="invTopDownloadBtn" onclick="downloadInvoicePdf()" title="Download PDF document">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              <span id="invTopDownloadText">📥 PDF</span>
+            </button>
+            <button type="button" class="inv-btn-action img-btn desktop-only" id="invTopImgBtn" onclick="downloadInvoiceImage()" style="background:linear-gradient(135deg,#0284c7,#0369a1); color:#fff;" title="Save high-resolution image to phone or PC">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+              <span>🖼️ Image</span>
+            </button>
+            <button type="button" class="inv-btn-action wa-btn desktop-only" id="invTopWaBtn" onclick="shareInvoicePdfWhatsApp()" title="Share quotation to WhatsApp">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+              <span id="invTopWaText">📲 WhatsApp</span>
+            </button>
+            <button type="button" class="inv-btn-action print-btn desktop-only" onclick="window.printInvoiceDocument()" title="Print direct to A4">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+              <span>🖨️ Print</span>
+            </button>
+            <button type="button" class="inv-btn-close" onclick="closeInvoiceModal()" aria-label="Close invoice">&times;</button>
+          </div>
         </div>
-        <div class="inv-topbar-actions">
-          <button type="button" class="inv-btn-action pdf-btn" id="invTopDownloadBtn" onclick="downloadInvoicePdf()">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            <span id="invTopDownloadText">📥 Download PDF</span>
-          </button>
-          <button type="button" class="inv-btn-action wa-btn" id="invTopWaBtn" onclick="shareInvoicePdfWhatsApp()">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
-            <span id="invTopWaText">📲 WhatsApp</span>
-          </button>
-          <button type="button" class="inv-btn-action print-btn" onclick="window.print()">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-            <span>🖨️ Print</span>
-          </button>
-          <button type="button" class="inv-btn-close" onclick="closeInvoiceModal()" aria-label="Close invoice">&times;</button>
+
+        <!-- Mode & View Tab Switcher Strip (Full Width, Smooth Horizontal Swipe on Mobile) -->
+        <div class="inv-topbar-nav-strip">
+          <div class="inv-tab-switcher" id="invTabSwitcher">
+            <button type="button" class="inv-tab-btn active" id="tabBtnPreview" onclick="switchInvoiceTab('preview')">
+              <span>📄 View Quotation Sheet</span>
+            </button>
+            <button type="button" class="inv-tab-btn" id="tabBtnEdit" onclick="switchInvoiceTab('edit')">
+              <span>✏️ Edit Shoot &amp; Add-Ons</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -1331,6 +1344,19 @@
                   </button>
                   <button type="button" class="inv-mode-pill mode-receipt" id="btnModeReceipt" onclick="setInvoiceMode('receipt')">
                     <span>🧾 Official Receipt (Paid)</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Scope / Rules Switcher: Studio (Minimal) vs Event (Rules & Overtime) -->
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span class="inv-card-label" style="margin-bottom:0;">Quotation Scope:</span>
+                <div class="inv-scope-pill-group" id="invScopePillGroup">
+                  <button type="button" class="inv-scope-pill active" id="btnScopeStudio" onclick="setQuotationScope('studio')">
+                    <span>📸 Studio Shoot (Minimal)</span>
+                  </button>
+                  <button type="button" class="inv-scope-pill" id="btnScopeEvent" onclick="setQuotationScope('event')">
+                    <span>💍 Event Coverage (Detailed Rules)</span>
                   </button>
                 </div>
               </div>
@@ -1670,286 +1696,291 @@
               <div class="inv-watermark-row">LAUREIGN STUDIOS OFFICIAL &nbsp;•&nbsp; AUTHENTICATED &nbsp;•&nbsp; LAUREIGN STUDIOS OFFICIAL</div>
             </div>
 
-            <!-- Apple Luxury Executive Header: Studio Identity & Document Wordmark -->
-            <div class="inv-sheet-header" id="invSheetHeader">
-              <div class="inv-brand-col">
-                <div class="inv-brand-header-flex">
-                  <img src="images/logo.png" alt="Laureign Studios" class="inv-sheet-logo">
-                  <div class="inv-brand-titles-wrap">
-                    <span class="inv-brand-eyebrow">Creative Studio · Est. 2020</span>
-                    <h1 class="inv-brand-name"><span class="brand-part-main">LAUREIGN</span> <span class="brand-part-accent">STUDIOS</span></h1>
-                    <p class="inv-brand-tagline">Professional Photography &amp; Film</p>
-                  </div>
-                </div>
+            <!-- Top-Right Decorative Dots & Arc Accent (Green & Neutral Gray) -->
+            <div class="inv-top-decorative-accent" aria-hidden="true">
+              <svg viewBox="0 0 160 110" width="130" height="80" fill="none">
+                <path d="M 120,40 A 24,24 0 1 0 144,64" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+                <path d="M 75,22 A 14,14 0 1 0 89,36" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="120" cy="18" r="7" fill="#10b981"/>
+                <circle cx="95" cy="45" r="4.5" fill="#047857"/>
+                <circle cx="70" cy="18" r="3.5" fill="#0B4D3A"/>
+                <circle cx="128" cy="90" r="13" fill="#059669"/>
+                <circle cx="140" cy="42" r="3.5" fill="#94a3b8"/>
+              </svg>
+            </div>
 
-                <!-- Studio Physical Address & Direct Contact -->
-                <div class="inv-contact-mini">
-                  <div class="inv-contact-line">📍 Kakamega Town along Mumias Rd, Opp. Jamia Mosque / Kakamega Furniture (Bukura Pharmacy Bldg, 1st Floor)</div>
-                  <div class="inv-contact-line">
-                    <span>📞 +254 790 048 905</span>
-                    <span class="contact-sep">·</span>
-                    <span>✉️ laureignstudios25@gmail.com</span>
-                    <span class="contact-sep">·</span>
-                    <span>🌐 laureignstudios.co.ke</span>
+            <!-- Top-Left Studio Identity: Logo Mark & Typography Lockup -->
+            <div class="inv-brand-lockup">
+              <div class="inv-brand-logo-icon">
+                <svg viewBox="0 0 48 48" width="38" height="38" fill="none">
+                  <circle cx="24" cy="24" r="22" fill="#f0fdf4" stroke="#0B4D3A" stroke-width="2"/>
+                  <path d="M24 7 L28.5 17.5 L39.5 18.5 L31 26 L33.5 37 L24 31.5 L14.5 37 L17 26 L8.5 18.5 L19.5 17.5 Z" fill="#0B4D3A"/>
+                  <circle cx="24" cy="24" r="5" fill="#10b981"/>
+                </svg>
+              </div>
+              <div class="inv-brand-text-block">
+                <div class="inv-brand-title">LAUREIGN <span class="inv-brand-title-light">STUDIOS</span></div>
+                <div class="inv-brand-tagline">PROFESSIONAL PHOTOGRAPHY &amp; FILM</div>
+              </div>
+            </div>
+
+            <!-- Headline Row: Document Title, Green Badge, Metadata & Client Information -->
+            <div class="inv-headline-client-grid">
+              <!-- Left Column: Wordmark, Reference Badge & Sub-metadata -->
+              <div class="inv-doc-title-col">
+                <div class="inv-title-badge-wrap">
+                  <h2 class="inv-main-title" id="invSheetMainWordmark">QUOTATION</h2>
+                  <span class="inv-ref-badge" id="invDisplayRefBadge">
+                    <span id="invDisplayRef">#LS-QUO-2026</span>
+                  </span>
+                </div>
+                <div class="inv-meta-subrows">
+                  <div class="inv-meta-subrow">
+                    <span class="inv-meta-k">Account No</span>
+                    <span class="inv-meta-colon">:</span>
+                    <span class="inv-meta-v" id="invSheetBillingLoc">542542-486197</span>
+                  </div>
+                  <div class="inv-meta-subrow">
+                    <span class="inv-meta-k" id="invDisplayDateLabel">Invoice Date</span>
+                    <span class="inv-meta-colon">:</span>
+                    <span class="inv-meta-v" id="invDisplayDateIssued">22 Sep 2026</span>
+                  </div>
+                  <div class="inv-meta-subrow" id="invValidityMetaItem">
+                    <span class="inv-meta-k">Valid Until</span>
+                    <span class="inv-meta-colon">:</span>
+                    <span class="inv-meta-v" id="invDisplayValidity">14 Days</span>
+                  </div>
+                  <div class="inv-meta-subrow" id="invStatusMetaRow">
+                    <span class="inv-meta-k">Status</span>
+                    <span class="inv-meta-colon">:</span>
+                    <span class="inv-meta-v status-proforma" id="invDisplayStatusPill">PROFORMA / UNPAID</span>
                   </div>
                 </div>
               </div>
 
-              <!-- Document Wordmark & Metadata Column (Top Right, Sample 5 Style) -->
-              <div class="inv-meta-col">
-                <div class="inv-wordmark-wrap">
-                  <h2 class="inv-doc-wordmark" id="invSheetMainWordmark">QUOTATION</h2>
-                  <div class="inv-brand-badge" id="invDisplayDocType">OFFICIAL PROFORMA RATE CARD</div>
-                </div>
-
-                <div class="inv-ref-pill">
-                  <span class="inv-ref-label" id="invDisplayRefLabel">REF:</span>
-                  <span class="inv-ref-val" id="invDisplayRef">LS-QUO-2026-9051</span>
-                </div>
-                <div class="inv-meta-item">
-                  <span class="lbl" id="invDisplayDateLabel">Date Issued:</span>
-                  <span class="val" id="invDisplayDateIssued">16 Sept 2026</span>
-                </div>
-                <div class="inv-meta-item" id="invValidityMetaItem">
-                  <span class="lbl">Valid For:</span>
-                  <span class="val" id="invDisplayValidity">14 Days</span>
-                </div>
-                <div class="inv-meta-item">
-                  <span class="lbl">Status:</span>
-                  <span class="val status-proforma" id="invDisplayStatusPill">PROFORMA / UNPAID</span>
+              <!-- Right Column: INVOICE TO / Client Block -->
+              <div class="inv-client-info-col">
+                <div class="inv-to-header" id="invDisplayDocType">INVOICE TO</div>
+                <div class="inv-to-name" id="invSheetClient">Valued Client</div>
+                <div class="inv-to-org" id="invSheetEventTitle">Studio Portrait Session</div>
+                <div class="inv-to-contact-rows">
+                  <div class="inv-to-contact-row" id="invSheetPhoneRow">
+                    <span class="inv-to-k">Ph</span>
+                    <span class="inv-to-colon">:</span>
+                    <span class="inv-to-v" id="invSheetPhone">+254 790 048 905</span>
+                  </div>
+                  <div class="inv-to-contact-row" id="invSheetEmailRow">
+                    <span class="inv-to-k">Em</span>
+                    <span class="inv-to-colon">:</span>
+                    <span class="inv-to-v" id="invSheetEmail">bookings@laureignstudios.co.ke</span>
+                  </div>
+                  <div class="inv-to-contact-row" id="invSheetLocationRow">
+                    <span class="inv-to-k">Loc</span>
+                    <span class="inv-to-colon">:</span>
+                    <span class="inv-to-v" id="invSheetLocation">Kakamega Town (Mumias Rd)</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-
-            <!-- Billed To & Assignment Specifications (Executive 2-Column Grid, Sample 1 & Sample 5) -->
-            <div class="inv-specs-grid">
-              <div class="inv-client-box">
-                <span class="spec-label">CLIENT COMMISSION &amp; BILLING:</span>
-                <div class="spec-value highlight" id="invSheetClient">Valued Client</div>
-                <div class="spec-sub" id="invSheetPhone">📞 Phone: Not Specified</div>
-                <div class="spec-sub" id="invSheetEmail" style="display:none;"></div>
-                <div class="spec-sub" id="invSheetBillingLoc">📍 Destination: Kakamega Town (Mumias Rd) / Nairobi / Nationwide</div>
-              </div>
-              <div class="inv-event-box">
-                <span class="spec-label">ASSIGNMENT &amp; PRODUCTION SPECIFICATIONS:</span>
-                <div class="spec-value" id="invSheetEventTitle">Full-Day Wedding &amp; Event Production</div>
-                <div class="spec-category-tag" id="invSheetCategoryTag">CATEGORY: <span id="invSheetCategoryVal">STUDIO &amp; PORTRAIT SESSIONS</span></div>
-                <div class="spec-sub" id="invSheetScheduleRow">🗓️ <b>Date &amp; Hours:</b> <span id="invSheetDate">To Be Scheduled</span> &nbsp;(<span id="invSheetTime">Standard Coverage Session</span>)</div>
-                <div class="spec-sub" id="invSheetVenueRow">📍 <b>Venue / Location:</b> <span id="invSheetLocation">Laureign Studios (Kakamega Town, Mumias Rd, Opp. Jamia Mosque, Bukura Pharmacy Bldg, 1st Floor)</span></div>
-                <div class="spec-sub" id="invSheetCrewRow">🎥 <b>Assigned Crew:</b> <span id="invSheetCrew">Studio Lead Photographer + Lighting Assistant</span></div>
-              </div>
-            </div>
-
-            <!-- Itemized Deliverables Table (5-Column Precision Layout, Sample 5 & Sample 4) -->
+            <!-- Itemized Production Deliverables Table (Exact 4-Column Layout with Dotted Dividers) -->
             <div class="inv-table-wrap">
               <table class="inv-table">
                 <thead>
                   <tr>
-                    <th style="width:6%; text-align:center;">#</th>
-                    <th style="width:50%;">Description &amp; Production Deliverables</th>
-                    <th style="width:14%; text-align:center;">Qty / Time</th>
-                    <th style="width:15%; text-align:right;">Rate (KSh)</th>
-                    <th style="width:15%; text-align:right;">Amount (KSh)</th>
+                    <th class="th-desc" id="invTableColDesc">Item Description</th>
+                    <th class="th-price">Unit Price</th>
+                    <th class="th-qty">Qnt</th>
+                    <th class="th-total">Total</th>
                   </tr>
                 </thead>
                 <tbody id="invTableBody">
-                  <!-- Dynamically rendered via JS -->
+                  <!-- Dynamically populated via JS -->
                 </tbody>
               </table>
             </div>
 
-            <!-- Special Assignment Notes (Prints on invoice if provided) -->
+            <!-- Special Assignment Notes Box (Shows if custom notes provided) -->
             <div class="inv-notes-box" id="invDisplayNotesBox" style="display:none;">
-              <b>📝 Assignment Scope &amp; Production Deliverables:</b>
-              <div id="invDisplayNotesText" style="margin-top:4px;"></div>
+              <b>Special Assignment Scope:</b> <span id="invDisplayNotesText"></span>
             </div>
 
-            <!-- Split Financials Row: Deposit Highlight (Left) vs Summary Totals (Right, Sample 5) -->
-            <div class="inv-financials-row">
-              <!-- Left: Booking Deposit Highlight Card (Sample 5 Style) -->
-              <div class="inv-deposit-highlight-card" id="invDepositHighlightCard">
-                <div class="inv-dep-header-badge" id="invDepHeaderBadge">BOOKING DEPOSIT REQUIRED (80%)</div>
-                <div class="inv-dep-amount" id="invDepDisplayAmt">KSh 0</div>
-                <div class="inv-dep-percent-label" id="invDepPercentLabel">80% commitment required to secure shoot date &amp; creative crew allocation.</div>
-                <div class="inv-dep-balance-sub" id="invDepBalanceSub">
-                  Remaining balance of <b id="invDepBalanceSubAmt">KSh 0</b> payable upon master high-res delivery.
-                </div>
-                <div class="inv-dep-guarantee-pill">
-                  <span class="inv-dep-star">★</span> 100% Free Unedited RAW Proofs Included With Every Session
+            <!-- Mid-Section: Payment Method (Left) vs Subtotals (Right) -->
+            <div class="inv-mid-financials-grid">
+              <!-- Left Column: Payment Method / Settlement Voucher -->
+              <div class="inv-pay-method-block" id="invPayBox">
+                <div class="pay-method-title" id="invPayMethodTitle">Payment Method</div>
+                <div class="pay-method-lines" id="invPayChannelLine">
+                  <div class="pay-line-item"><span class="check-box" id="chkTill">☐</span> <b>M-Pesa Buy Goods Till:</b> <span class="till-num" id="invPayTillLine">0790048905</span> (Laureign Studios)</div>
+                  <div class="pay-line-item" id="invPayAccountLine"><span class="check-box" id="chkPaybill">☐</span> <b>M-Pesa Paybill:</b> <span>542542</span> Acc: <span>486197</span> (Jane Akoth)</div>
+                  <div class="pay-line-item" id="invPayBankLine"><span class="check-box" id="chkBank">☐</span> <b>Direct Bank:</b> <span>I&amp;M Bank Kenya · Acc: 486197</span></div>
+                  <div class="pay-line-item receipt-only-line" id="invPayRefLine" style="display:none;"><span class="check-box checked">☑</span> <b>Receipt Clearance:</b> <span id="receiptVerifyCode">M-Pesa Verified</span></div>
                 </div>
               </div>
 
-              <!-- Right: Itemized Summary Totals Column -->
-              <div class="inv-totals-col">
-                <div class="inv-tot-line">
-                  <span>Base Production / Sessions:</span>
-                  <span id="invBaseAmt">KSh 0</span>
+              <!-- Right Column: Subtotals with Dotted Row Dividers -->
+              <div class="inv-subtotals-block">
+                <div class="inv-subtot-row">
+                  <span class="subtot-label">Sub Total</span>
+                  <span class="subtot-colon">:</span>
+                  <span class="subtot-val" id="invBaseAmt">KSh 0.00</span>
                 </div>
-                <div class="inv-tot-line">
-                  <span>Selected Add-Ons &amp; Enhancements:</span>
-                  <span id="invAddonsAmt">KSh 0</span>
+                <div class="inv-subtot-row" id="invAddonsRow">
+                  <span class="subtot-label">Add-Ons &amp; Enhancements</span>
+                  <span class="subtot-colon">:</span>
+                  <span class="subtot-val" id="invAddonsAmt">KSh 0.00</span>
                 </div>
-                <div class="inv-tot-line" id="invDiscountRow" style="display:none; color:#15803d; font-weight:700;">
-                  <span>Special Client Discount:</span>
-                  <span id="invDiscountAmt">- KSh 0</span>
+                <div class="inv-subtot-row">
+                  <span class="subtot-label">Tax. Vat 16%</span>
+                  <span class="subtot-colon">:</span>
+                  <span class="subtot-val">Inclusive (0%)</span>
                 </div>
-                <div class="inv-tot-line">
-                  <span>Applicable Taxes &amp; VAT:</span>
-                  <span>Inclusive (0%)</span>
+                <div class="inv-subtot-row" id="invDiscountRow" style="display:none;">
+                  <span class="subtot-label">Special Discount</span>
+                  <span class="subtot-colon">:</span>
+                  <span class="subtot-val" id="invDiscountAmt">- KSh 0.00</span>
                 </div>
-                <div class="inv-tot-line grand-total">
-                  <span id="invGrandTotalLabel">TOTAL PROJECT INVESTMENT:</span>
-                  <span id="invGrandTotal">KSh 0</span>
+                <!-- Quotation Deposit & Balance Rows -->
+                <div class="inv-subtot-row" id="invDepositRow">
+                  <span class="subtot-label" id="invDepositLabel">Booking Deposit (80%)</span>
+                  <span class="subtot-colon">:</span>
+                  <span class="subtot-val" id="invDepositRequired">KSh 0.00</span>
                 </div>
-                <!-- Quotation Deposit Row -->
-                <div class="inv-tot-line deposit-required" id="invDepositRow">
-                  <span id="invDepositLabel">REQUIRED BOOKING DEPOSIT (80%):</span>
-                  <span id="invDepositRequired">KSh 0</span>
-                </div>
-                <!-- Balance Due Row -->
-                <div class="inv-tot-line balance-due" id="invBalanceRow">
-                  <span id="invBalanceLabel">BALANCE DUE ON MASTER DELIVERY (20%):</span>
-                  <span id="invBalanceDue">KSh 0</span>
+                <div class="inv-subtot-row" id="invBalanceRow">
+                  <span class="subtot-label" id="invBalanceLabel">Balance Due on Delivery</span>
+                  <span class="subtot-colon">:</span>
+                  <span class="subtot-val" id="invBalanceDue">KSh 0.00</span>
                 </div>
                 <!-- Receipt Paid Row -->
-                <div class="inv-tot-line receipt-paid" id="invPaidRow" style="display:none;">
-                  <span id="invPaidLabel">AMOUNT RECEIVED IN FULL:</span>
-                  <span id="invPaidAmt">KSh 0</span>
+                <div class="inv-subtot-row" id="invPaidRow" style="display:none;">
+                  <span class="subtot-label" id="invPaidLabel">Amount Received</span>
+                  <span class="subtot-colon">:</span>
+                  <span class="subtot-val" id="invPaidAmt">KSh 0.00</span>
                 </div>
               </div>
             </div>
 
-            <!-- Two-Column Terms & Verified Remittance Grid (Sample 1 & Sample 5) -->
-            <div class="inv-policies-remittance-grid">
-              <!-- Left Column: Production Policies & Deliverable Terms -->
+            <!-- Two-Tone Grand Total Bar (Italic Words Left, Bold Amount Right) -->
+            <div class="inv-grand-total-banner">
+              <div class="grand-total-words-side">
+                <span class="grand-total-words" id="invGrandTotalWords">Twelve thousand eight hundred shillings only.</span>
+              </div>
+              <div class="grand-total-amount-side">
+                <span class="gt-label" id="invGrandTotalLabel">GRAND TOTAL</span>
+                <span class="gt-colon">:</span>
+                <span class="gt-value" id="invGrandTotal">KSh 0.00</span>
+              </div>
+            </div>
+
+            <!-- Big Total Due Banner (Under Grand Total Bar) -->
+            <div class="inv-total-due-section">
+              <div class="total-due-label" id="invTotalDueLabel">TOTAL DUE</div>
+              <div class="total-due-amount" id="invTotalDueAmt">KSH 0.00</div>
+            </div>
+
+            <!-- Bottom Section: Terms & Conditions (Left) vs Signature, Notary Stamp & QR (Right) -->
+            <div class="inv-terms-signature-grid">
+              <!-- Left: Terms & Conditions (Quotation mode only; HIDDEN in receipt mode) -->
               <div class="inv-payment-terms-col" id="invPayTermsCol">
-                <div class="inv-terms-title" id="invTermsTitle">Studio Terms &amp; Production Policies</div>
-                <ul class="inv-policy-bullet-list" id="invPolicyBulletList">
-                  <li><b>Free RAW Soft Copies:</b> Complete archive of unedited high-resolution proof files provided complimentary via private cloud gallery.</li>
-                  <li><b>Booking &amp; Confirmation:</b> An advance commitment deposit confirms your date and reserves lighting kits &amp; creative crew.</li>
-                  <li><b>Master Turnaround:</b> Retouched master deliverables delivered within 48–72 hours (portraits) or 14–21 days (weddings &amp; events).</li>
-                  <li><b>Venue &amp; Entry Permits:</b> Client is responsible for any private location or park photography permit fees where applicable.</li>
+                <div class="inv-terms-title" id="invTermsTitle">Terms &amp; Condition :</div>
+                <ul class="inv-terms-square-list" id="invPolicyBulletList">
+                  <li>Payment should be made according to the agreed studio schedule.</li>
+                  <li>Free RAW soft copies archive included complimentary with every session.</li>
+                  <li>Commitment booking deposit secures your shoot date and locks creative crew allocation.</li>
                 </ul>
-                <!-- Receipt Mode Streamlined Payment Clearance (Shows only in Receipt mode) -->
-                <div class="inv-receipt-clearance-summary" id="invReceiptClearanceSummary">
-                  <div class="receipt-clearance-badge" id="invReceiptClearanceBadge">✓ PAYMENT VERIFIED &amp; DELIVERABLES AUTHORIZED</div>
-                  <div class="receipt-clearance-details">
-                    <div class="receipt-detail-item"><span>Remittance Verification:</span> <b id="receiptVerifyChannel">Cashless M-Pesa / Bank Verified</b></div>
-                    <div class="receipt-detail-item"><span>Payment Clearance Code:</span> <b id="receiptVerifyCode" style="font-family:monospace; color:#047857;">M-Pesa Verified</b></div>
-                    <div class="receipt-detail-item"><span>Delivery Channel:</span> <b>Private Cloud Gallery &amp; WhatsApp Master Download</b></div>
-                    <div class="receipt-detail-item"><span>Proof Archive:</span> <b>Complete RAW Camera Archive Included</b></div>
-                    <div class="receipt-detail-item"><span>Document Authentication:</span> <b>Official Studio Stamp &amp; Tax Cleared Voucher</b></div>
-                  </div>
-                </div>
-                <p class="inv-terms-note" id="invTermsNote">
-                  * Official studio quotation. The commitment deposit confirms your reservation. The remaining balance is payable upon master gallery delivery.
-                </p>
-                <div class="inv-brand-promise" id="invBrandPromise">
-                  <div class="promise-title">✨ LAUREIGN STUDIOS OFFICIAL PROMISE</div>
-                  <p class="promise-text">Every milestone. Captured with precision. Professional photography &amp; cinematic video by Laureign Studios.</p>
-                </div>
               </div>
 
-              <!-- Right Column: Official Payment Channels & Verified Till -->
-              <div class="inv-remittance-col">
-                <div class="inv-terms-title">Official Remittance Details</div>
-                <div class="inv-pay-box" id="invPayBox">
-                  <div class="pay-line" id="invPayChannelLine"><b>Remittance Channel:</b> <span id="invPayChannelVal">M-Pesa Till &amp; Paybill / Direct Bank Transfer</span></div>
-                  <div class="pay-line" id="invPayTillLine"><b>Buy Goods Till:</b> <span class="till-num">0790048905</span> &nbsp;<b>Paybill:</b> <span class="till-num">542542</span> Acc: <span class="till-num">486197</span></div>
-                  <div class="pay-line" id="invPayAccountLine"><b>Account Name to Verify:</b> <span style="font-weight:800; color:#0f172a;">JANE AKOTH</span> (Laureign Studios)</div>
-                  <div class="pay-line" id="invPayBankLine"><b>Bank Wire Remittance:</b> <span>I&amp;M Bank Kenya · Account No: <b>486197</b></span></div>
-                  <div class="pay-line cashless-warning" id="invPayRefLine" style="font-size:10px; color:#64748b; margin-top:4px;">🔒 Cashless accounting. Retain M-Pesa confirmation code for instant verification.</div>
-                  <!-- Official Studio Fraud Shield Notice -->
-                  <div class="inv-fraud-alert-banner" id="invFraudAlertBanner">
-                    <span class="fraud-shield-badge">🛡️ OFFICIAL BRAND SHIELD</span>
-                    <span class="fraud-shield-msg"><b>CRITICAL ANTI-FRAUD NOTICE:</b> All booking fees must be remitted strictly to Laureign Studios official registered Till (<b>0790048905</b>) or Paybill (<b>542542</b> / Jane Akoth) above. Laureign Studios representatives will <u>NEVER</u> ask you to send money to personal numbers. Verify this document via the QR code below.</span>
+              <!-- Right: Signature, Verified QR Code & Official Rubber Seal Stamp -->
+              <div class="inv-signature-notary-col">
+                <div class="inv-verify-qr-col" id="invVerifyQrCol">
+                  <div class="inv-qr-frame">
+                    <div id="invDocQrContainer" class="inv-doc-qr-container"></div>
+                  </div>
+                  <div class="inv-verify-meta">
+                    <span class="inv-verify-pill">🔒 VERIFIED</span>
+                    <span class="inv-verify-id" id="invVerifyDisplayRef">REF: LS-QUO-2026</span>
                   </div>
                 </div>
 
-                <!-- Executive Signature, Live Verification QR & Official Studio Stamp -->
-                <div class="inv-sheet-footer" style="padding-top:10px; margin-top:8px; border-top:1px dashed #cbd5e1;">
-                  <div class="inv-sign-col">
-                    <div class="inv-digital-sig">
-                      <svg class="sig-svg" viewBox="0 0 240 50" width="150" height="34" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M10,36 C18,32 30,12 42,15 C52,18 36,42 48,38 C58,34 74,18 84,21 C94,24 88,38 100,34 C112,30 128,15 142,19 C152,22 140,40 158,35 C172,31 192,16 210,20" />
-                        <path d="M35,28 C65,26 120,24 175,22" stroke-width="1.2" opacity="0.45" />
-                      </svg>
-                    </div>
-                    <div class="inv-sign-line">Authorized Studio Representative</div>
-                    <div class="inv-sign-role">Laureign Odhiambo · Creative Director</div>
-                    <div class="inv-ack-note" id="invAckNote" style="font-size:9.5px;">Authenticated Proforma Document. Thank you for choosing Laureign Studios!</div>
+                <div class="inv-signature-block">
+                  <div class="inv-signature-svg-wrap">
+                    <svg class="sig-svg" viewBox="0 0 240 50" width="130" height="30" fill="none" stroke="#0B4D3A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M10,36 C18,32 30,12 42,15 C52,18 36,42 48,38 C58,34 74,18 84,21 C94,24 88,38 100,34 C112,30 128,15 142,19 C152,22 140,40 158,35 C172,31 192,16 210,20" />
+                      <path d="M35,28 C65,26 120,24 175,22" stroke-width="1.2" opacity="0.45" />
+                    </svg>
                   </div>
+                  <div class="inv-sign-name">Laureign Odhiambo</div>
+                  <div class="inv-sign-role" id="invSignRole">Creative Director, Laureign Studios</div>
+                </div>
 
-                  <!-- Live Anti-Tamper Verification QR Block -->
-                  <div class="inv-verify-qr-col" id="invVerifyQrCol">
-                    <div class="inv-qr-frame">
-                      <div id="invDocQrContainer" class="inv-doc-qr-container"></div>
-                    </div>
-                    <div class="inv-verify-meta">
-                      <span class="inv-verify-pill">🔒 SCAN TO VERIFY</span>
-                      <span class="inv-verify-note">Official Anti-Fraud Audit</span>
-                      <span class="inv-verify-id" id="invVerifyDisplayRef">REF: LS-QUO-2026</span>
-                    </div>
-                  </div>
-
-                  <!-- Dynamic Authenticated Rubber Stamp (SCREAMING LAUREIGN STUDIOS OFFICIAL) -->
-                  <div class="inv-seal-col">
-                    <div class="inv-seal-stamp" id="invSealStamp" title="Official Laureign Studios Verified Seal">
-                      <svg class="official-studio-stamp-svg" viewBox="0 0 200 200" width="128" height="128">
-                        <defs>
-                          <path id="stampTopArc" d="M 26,100 A 74,74 0 1,1 174,100" fill="none"/>
-                          <path id="stampBottomArc" d="M 174,100 A 74,74 0 0,1 26,100" fill="none"/>
-                        </defs>
-                        <!-- Outer Security Notary Border -->
-                        <circle cx="100" cy="100" r="95" fill="none" stroke="#047857" stroke-width="2.6" stroke-dasharray="6,3.2"/>
-                        <circle cx="100" cy="100" r="88" fill="none" stroke="#047857" stroke-width="1.3"/>
-                        <circle cx="100" cy="100" r="62" fill="none" stroke="#047857" stroke-width="1.6"/>
-                        <circle cx="100" cy="100" r="58" fill="none" stroke="#047857" stroke-width="0.8" stroke-dasharray="3,2"/>
-
-                        <!-- Curved Branding Typography -->
-                        <text font-family="'Montserrat', 'Jost', -apple-system, sans-serif" font-size="11.2" font-weight="900" fill="#047857" letter-spacing="1.8">
-                          <textPath href="#stampTopArc" startOffset="50%" text-anchor="middle">
-                            ★ LAUREIGN STUDIOS OFFICIAL ★
-                          </textPath>
-                        </text>
-                        <text font-family="'Montserrat', 'Jost', -apple-system, sans-serif" font-size="8.8" font-weight="800" fill="#047857" letter-spacing="1.6">
-                          <textPath href="#stampBottomArc" startOffset="50%" text-anchor="middle">
-                            • AUTHENTICATED EXECUTIVE SEAL •
-                          </textPath>
-                        </text>
-
-                        <!-- Center Core Studio Marks -->
-                        <g text-anchor="middle" font-family="'Montserrat', 'Jost', -apple-system, sans-serif">
-                          <text x="100" y="74" font-size="8.5" fill="#047857" font-weight="900" letter-spacing="1.5">★ ★ ★ ★ ★</text>
-                          <text x="100" y="86" font-size="9.5" font-weight="900" fill="#047857" letter-spacing="1.2">LAUREIGN STUDIOS</text>
-                          <line x1="48" y1="90" x2="152" y2="90" stroke="#047857" stroke-width="1"/>
-                          <text x="100" y="102" font-size="9" font-weight="900" fill="#047857" letter-spacing="0.8" id="stampSvgTitle">OFFICIAL QUOTE</text>
-                          <text x="100" y="113" font-size="8.2" font-weight="800" fill="#047857" letter-spacing="0.6" id="stampSvgDate">DATE: 16 SEP 2026</text>
-                          <line x1="48" y1="117" x2="152" y2="117" stroke="#047857" stroke-width="1"/>
-                          <text x="100" y="127" font-size="7.5" font-weight="800" fill="#047857" letter-spacing="0.5" id="stampSvgRef">REF: LS-QUO-2026</text>
-                          <text x="100" y="137" font-size="6.5" font-weight="800" fill="#047857" letter-spacing="1">SECURITY VERIFIED</text>
-                        </g>
-                      </svg>
-                    </div>
-                  </div>
+                <!-- Dynamic Notary Rubber Stamp in Vivid Emerald Green -->
+                <div class="inv-seal-stamp" id="invSealStamp" title="Official Laureign Studios Verified Seal">
+                  <svg class="official-studio-stamp-svg" viewBox="0 0 200 200" width="94" height="94">
+                    <defs>
+                      <path id="stampTopArc" d="M 26,100 A 74,74 0 1,1 174,100" fill="none"/>
+                      <path id="stampBottomArc" d="M 174,100 A 74,74 0 0,1 26,100" fill="none"/>
+                    </defs>
+                    <circle cx="100" cy="100" r="95" fill="none" stroke="#047857" stroke-width="2.6" stroke-dasharray="6,3.2"/>
+                    <circle cx="100" cy="100" r="88" fill="none" stroke="#047857" stroke-width="1.3"/>
+                    <circle cx="100" cy="100" r="62" fill="none" stroke="#047857" stroke-width="1.6"/>
+                    <circle cx="100" cy="100" r="58" fill="none" stroke="#047857" stroke-width="0.8" stroke-dasharray="3,2"/>
+                    <text font-family="'Montserrat', sans-serif" font-size="11" font-weight="900" fill="#047857" letter-spacing="1.8">
+                      <textPath href="#stampTopArc" startOffset="50%" text-anchor="middle">★ LAUREIGN STUDIOS OFFICIAL ★</textPath>
+                    </text>
+                    <text font-family="'Montserrat', sans-serif" font-size="8.8" font-weight="800" fill="#047857" letter-spacing="1.6">
+                      <textPath href="#stampBottomArc" startOffset="50%" text-anchor="middle">• AUTHENTICATED EXECUTIVE SEAL •</textPath>
+                    </text>
+                    <g text-anchor="middle" font-family="'Montserrat', sans-serif">
+                      <text x="100" y="76" font-size="8.5" fill="#047857" font-weight="900" letter-spacing="1.5">★ ★ ★ ★ ★</text>
+                      <text x="100" y="88" font-size="9.5" font-weight="900" fill="#047857" letter-spacing="1.2">LAUREIGN STUDIOS</text>
+                      <line x1="48" y1="92" x2="152" y2="92" stroke="#047857" stroke-width="1"/>
+                      <text x="100" y="104" font-size="9" font-weight="900" fill="#047857" letter-spacing="0.8" id="stampSvgTitle">OFFICIAL QUOTE</text>
+                      <text x="100" y="115" font-size="8.2" font-weight="800" fill="#047857" letter-spacing="0.6" id="stampSvgDate">DATE: 22 SEP 2026</text>
+                      <line x1="48" y1="119" x2="152" y2="119" stroke="#047857" stroke-width="1"/>
+                      <text x="100" y="129" font-size="7.5" font-weight="800" fill="#047857" letter-spacing="0.5" id="stampSvgRef">REF: LS-QUO-2026</text>
+                      <text x="100" y="139" font-size="6.5" font-weight="800" fill="#047857" letter-spacing="1">SECURITY VERIFIED</text>
+                    </g>
+                  </svg>
                 </div>
               </div>
             </div>
 
-            <!-- Apple Minimalist 3-Column Footer Strip (Exact Sample 5 Aesthetic) -->
-            <div class="inv-document-footer-strip">
-              <div class="inv-footer-strip-col">
-                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <span>+254 790 048 905</span>
-              </div>
-              <div class="inv-footer-strip-col">
-                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>Kakamega Town (Opp. Jamia Mosque, 1st Flr) · Nairobi</span>
-              </div>
-              <div class="inv-footer-strip-col">
-                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <span>info@laureignstudios.co.ke · laureignstudios.co.ke</span>
+            <!-- Executive Footer Bar with Diagonal Green Stripes (Bottom-Right Corner Accent) -->
+            <div class="inv-executive-footer-bar">
+              <div class="inv-footer-top-accent"></div>
+              <div class="inv-footer-content-wrap">
+                <div class="inv-footer-contacts">
+                  <div class="footer-contact-item">
+                    <span class="f-icon">P</span>
+                    <span class="f-colon">:</span>
+                    <span class="f-text">+254 790 048 905</span>
+                  </div>
+                  <div class="footer-contact-item">
+                    <span class="f-icon">E</span>
+                    <span class="f-colon">:</span>
+                    <span class="f-text">bookings@laureignstudios.co.ke</span>
+                  </div>
+                  <div class="footer-contact-item">
+                    <span class="f-icon">W</span>
+                    <span class="f-colon">:</span>
+                    <span class="f-text">laureignstudios.co.ke</span>
+                  </div>
+                  <div class="footer-contact-item">
+                    <span class="f-icon">A</span>
+                    <span class="f-colon">:</span>
+                    <span class="f-text">Kakamega Town, Mumias Rd, Opp. Jamia Mosque (Bukura Pharmacy Bldg, 1st Fl)</span>
+                  </div>
+                </div>
+
+                <!-- Diagonal multi-band stripe accent in 4 green tones -->
+                <div class="inv-footer-diagonal-stripes" aria-hidden="true">
+                  <svg viewBox="0 0 160 80" preserveAspectRatio="none" width="160" height="80">
+                    <polygon points="50,80 75,80 135,0 110,0" fill="#064e3b" />
+                    <polygon points="75,80 100,80 160,0 135,0" fill="#0B4D3A" />
+                    <polygon points="100,80 125,80 185,0 160,0" fill="#10b981" />
+                    <polygon points="125,80 150,80 210,0 185,0" fill="#34d399" />
+                  </svg>
+                </div>
               </div>
             </div>
 
@@ -1958,29 +1989,100 @@
 
       </div>
 
-      <!-- Bottom Floating Dock (Screen Only) -->
-      <div class="invoice-bottom-dock">
-        <button type="button" class="inv-dock-btn" id="btnDownloadPdf" style="background:#059669; color:#ffffff;" onclick="downloadInvoicePdf()">
-          <span id="btnDownloadPdfText">📥 Download Official PDF</span>
-        </button>
-        <button type="button" class="inv-dock-btn wa" id="btnSendWa" onclick="shareInvoicePdfWhatsApp()">
-          <span id="btnSendWaText">📲 Send via WhatsApp</span>
-        </button>
-        <button type="button" class="inv-dock-btn email" id="btnSendEmail" onclick="sendInvoiceEmail()" title="Compose quotation or receipt email to client">
-          <span>📧 Email to Client</span>
-        </button>
-        <button type="button" class="inv-dock-btn print" onclick="window.print()">
-          <span>🖨️ Print / A4</span>
-        </button>
-        <button type="button" class="inv-dock-btn copy" onclick="copyInvoiceText()">
-          <span>📋 Copy Text</span>
-        </button>
-        <button type="button" class="inv-dock-btn edit" id="btnDockToggleEdit" onclick="toggleInvoiceEditTab()" style="background:rgba(255,255,255,0.12); color:#ffffff; border:1px solid rgba(255,255,255,0.2);">
-          <span id="dockToggleEditText">✏️ Edit Shoot &amp; Add-Ons</span>
-        </button>
-        <button type="button" class="inv-dock-btn close" onclick="closeInvoiceModal()">
-          <span>Close</span>
-        </button>
+      <!-- Bottom Floating Dock (Screen Only, Flexible Scrollable Toolbar) -->
+      <div class="invoice-bottom-dock-wrapper">
+        <div class="invoice-bottom-dock-hint">
+          <span>👈 Swipe for all actions 👉</span>
+        </div>
+        <div class="invoice-bottom-dock" id="invoiceBottomDock">
+          <!-- 1. WhatsApp Primary Action -->
+          <button type="button" class="inv-dock-card-btn inv-dock-wa" id="btnSendWa" onclick="shareInvoicePdfWhatsApp()">
+            <div class="dock-btn-icon-box wa">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+            </div>
+            <div class="dock-btn-text-wrap">
+              <span class="dock-btn-main" id="btnSendWaText">WhatsApp</span>
+              <span class="dock-btn-sub">Send to Client</span>
+            </div>
+          </button>
+
+          <!-- 2. Download Official PDF -->
+          <button type="button" class="inv-dock-card-btn inv-dock-pdf" id="btnDownloadPdf" onclick="downloadInvoicePdf()">
+            <div class="dock-btn-icon-box pdf">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            </div>
+            <div class="dock-btn-text-wrap">
+              <span class="dock-btn-main" id="btnDownloadPdfText">Download PDF</span>
+              <span class="dock-btn-sub">Official A4 Document</span>
+            </div>
+          </button>
+
+          <!-- 3. Save High-Res PNG Image -->
+          <button type="button" class="inv-dock-card-btn inv-dock-img" id="btnDownloadImg" onclick="downloadInvoiceImage()" title="Save quotation image directly to phone gallery">
+            <div class="dock-btn-icon-box img">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            </div>
+            <div class="dock-btn-text-wrap">
+              <span class="dock-btn-main">Save Image</span>
+              <span class="dock-btn-sub">Photo Gallery PNG</span>
+            </div>
+          </button>
+
+          <!-- 4. Edit Shoot & Add-Ons / View Sheet -->
+          <button type="button" class="inv-dock-card-btn inv-dock-edit" id="btnDockToggleEdit" onclick="toggleInvoiceEditTab()">
+            <div class="dock-btn-icon-box edit">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            </div>
+            <div class="dock-btn-text-wrap">
+              <span class="dock-btn-main" id="dockToggleEditText">Edit Shoot</span>
+              <span class="dock-btn-sub">Pricing &amp; Add-ons</span>
+            </div>
+          </button>
+
+          <!-- 5. Copy Text -->
+          <button type="button" class="inv-dock-card-btn inv-dock-copy" onclick="copyInvoiceText()" title="Copy clean quotation text for messaging">
+            <div class="dock-btn-icon-box copy">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            </div>
+            <div class="dock-btn-text-wrap">
+              <span class="dock-btn-main">Copy Text</span>
+              <span class="dock-btn-sub">Clipboard Message</span>
+            </div>
+          </button>
+
+          <!-- 6. Email to Client -->
+          <button type="button" class="inv-dock-card-btn inv-dock-email" id="btnSendEmail" onclick="sendInvoiceEmail()" title="Compose email with attached details">
+            <div class="dock-btn-icon-box email">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </div>
+            <div class="dock-btn-text-wrap">
+              <span class="dock-btn-main">Email</span>
+              <span class="dock-btn-sub">Send to Client</span>
+            </div>
+          </button>
+
+          <!-- 7. Print / A4 Sheet -->
+          <button type="button" class="inv-dock-card-btn inv-dock-print" onclick="window.printInvoiceDocument()" title="Print direct to A4 paper">
+            <div class="dock-btn-icon-box print">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            </div>
+            <div class="dock-btn-text-wrap">
+              <span class="dock-btn-main">Print</span>
+              <span class="dock-btn-sub">A4 Paper / Desk</span>
+            </div>
+          </button>
+
+          <!-- 8. Close Modal -->
+          <button type="button" class="inv-dock-card-btn inv-dock-close" onclick="closeInvoiceModal()" title="Close workstation">
+            <div class="dock-btn-icon-box close">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </div>
+            <div class="dock-btn-text-wrap">
+              <span class="dock-btn-main">Close</span>
+              <span class="dock-btn-sub">Return to Studio</span>
+            </div>
+          </button>
+        </div>
       </div>
 
     </div>
@@ -2159,6 +2261,58 @@
       </div>
 
       <div class="qr-modal-body">
+        <!-- Mobile/Desktop View Switcher: Mobile Card vs Print A4 Poster -->
+        <div class="qr-view-toggle-bar">
+          <button type="button" class="qr-view-tab-btn active" id="btnQrViewCard" onclick="switchQrViewMode('card')">
+            <span>📱 Mobile Screen QR Card (Instant Scan &amp; Share)</span>
+          </button>
+          <button type="button" class="qr-view-tab-btn" id="btnQrViewPoster" onclick="switchQrViewMode('poster')">
+            <span>📄 Full A4 Printable Poster (Reception Standee)</span>
+          </button>
+        </div>
+
+        <!-- MOBILE SCREEN QR CARD (Flexible & Quick on Phones) -->
+        <div class="qr-mobile-card-wrapper" id="qrMobileCardWrapper">
+          <div class="qr-mobile-card">
+            <div class="qr-mobile-card-brand">
+              <img src="images/logo.png" alt="Laureign Studios" class="qr-mobile-logo">
+              <div>
+                <h4 class="qr-mobile-brand-title">LAUREIGN STUDIOS</h4>
+                <p class="qr-mobile-brand-sub">Official Digital Rate Card &amp; Booking Pass</p>
+              </div>
+            </div>
+            
+            <div class="qr-mobile-display-plaque">
+              <div class="qr-mobile-qr-frame">
+                <div id="qrMobileCodeContainer" class="qr-mobile-code-container"></div>
+              </div>
+            </div>
+
+            <div class="qr-mobile-meta">
+              <div class="qr-mobile-dest-badge" id="qrMobileDestBadge">🌟 FULL STUDIO RATE CARD &amp; ALL PACKAGES</div>
+              <p class="qr-mobile-dest-text" id="qrMobileDestText">Point phone camera to scan or share directly</p>
+              <div class="qr-mobile-remit-pill">
+                <span>💳 <b>M-Pesa Till:</b> 0790048905 · <b>Paybill:</b> 542542 (Jane Akoth)</span>
+              </div>
+            </div>
+
+            <div class="qr-mobile-actions-grid">
+              <button type="button" class="qr-mobile-btn wa" onclick="shareQrOnWhatsApp()">
+                <span>📲 Share on WhatsApp</span>
+              </button>
+              <button type="button" class="qr-mobile-btn save" onclick="downloadQrPng()">
+                <span>🔳 Save QR to Photos</span>
+              </button>
+              <button type="button" class="qr-mobile-btn copy" onclick="copyQrTargetUrl()">
+                <span>📋 Copy Direct Link</span>
+              </button>
+              <a href="#" id="qrMobileOpenBtn" target="_blank" rel="noopener" class="qr-mobile-btn open">
+                <span>↗ Open Destination</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
         <!-- Control Bar: Destination + Target Domain / Vercel Switcher -->
         <div class="qr-controls-toolbar">
           <div class="qr-ctrl-group">
@@ -2298,8 +2452,8 @@
           <input type="url" id="qrCustomUrlInput" class="qr-select-control" placeholder="https://your-custom-link.com" oninput="onCustomUrlInput(this.value)">
         </div>
 
-        <!-- Action Buttons Toolbar -->
-        <div class="qr-actions-toolbar">
+        <!-- Action Buttons Toolbar (Poster Mode) -->
+        <div class="qr-actions-toolbar" id="qrPosterActionsToolbar" style="display:none;">
           <button type="button" class="qr-btn qr-btn-print" onclick="printQrStandee()" title="Open print dialog configured for true A4 poster paper">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
             <span>🖨️ Print True A4 Poster</span>
@@ -2323,7 +2477,7 @@
         </div>
 
         <!-- A4 Poster Viewport Pan/Zoom Wrapper -->
-        <div class="qr-poster-viewport-wrapper">
+        <div class="qr-poster-viewport-wrapper" id="qrPosterViewportWrapper" style="display:none;">
           <!-- THE FIXED A4 SMART STUDIO POSTER SHEET -->
           <div class="qr-a4-poster-sheet" id="printableQrStandeeCard">
             <!-- Decorative Brass Corner Rivets -->
