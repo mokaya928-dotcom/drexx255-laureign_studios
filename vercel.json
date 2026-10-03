@@ -19,6 +19,8 @@
     { "source": "/events/index.html", "destination": "/events/index.html" },
     { "source": "/laureighn-events", "destination": "/events/index.html" },
     { "source": "/laureighn-events/", "destination": "/events/index.html" },
+    { "source": "/laureign-events", "destination": "/events/index.html" },
+    { "source": "/laureign-events/", "destination": "/events/index.html" },
     { "source": "/events/css/(.*)", "destination": "/events/css/$1" },
     { "source": "/events/js/(.*)", "destination": "/events/js/$1" },
     { "source": "/events/(.*)", "destination": "/events/$1" },
