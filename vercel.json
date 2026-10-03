@@ -13,6 +13,16 @@
     { "source": "/qr-poster", "destination": "/packages/qr-poster.html" },
     { "source": "/packages/qr-poster", "destination": "/packages/qr-poster.html" },
 
+    { "source": "/events", "destination": "/events/index.html" },
+    { "source": "/events/", "destination": "/events/index.html" },
+    { "source": "/events/index", "destination": "/events/index.html" },
+    { "source": "/events/index.html", "destination": "/events/index.html" },
+    { "source": "/laureighn-events", "destination": "/events/index.html" },
+    { "source": "/laureighn-events/", "destination": "/events/index.html" },
+    { "source": "/events/css/(.*)", "destination": "/events/css/$1" },
+    { "source": "/events/js/(.*)", "destination": "/events/js/$1" },
+    { "source": "/events/(.*)", "destination": "/events/$1" },
+
     { "source": "/", "destination": "/packages/index.html" },
     { "source": "/packages", "destination": "/packages/index.html" },
     { "source": "/packages/", "destination": "/packages/index.html" },

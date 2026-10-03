@@ -3,6 +3,24 @@
   publish = "."
 
 [[redirects]]
+  from = "/events"
+  to = "/events/index.html"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/events/*"
+  to = "/events/:splat"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/laureighn-events"
+  to = "/events/index.html"
+  status = 200
+  force = false
+
+[[redirects]]
   from = "/"
   to = "/packages/index.html"
   status = 200

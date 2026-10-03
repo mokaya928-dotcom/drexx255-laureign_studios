@@ -7,7 +7,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Read hash on load to check if a specific category was requested directly
   const initialHash = (window.location.hash || "").replace("#", "").toLowerCase();
-  let currentPathway = ["studio", "outdoor", "events", "commercial"].includes(initialHash) ? initialHash : null;
+  let currentPathway = ["studio", "outdoor", "events", "commercial", "all"].includes(initialHash) ? initialHash : "studio";
   let currentSubcat = "all";
   let searchQuery = "";
   let currentSort = "recommended";
@@ -82,47 +82,39 @@ document.addEventListener("DOMContentLoaded", () => {
   // Render Sub-Category Pills for Active Pathway
   // ------------------------------------------------------------
   // ------------------------------------------------------------
+  // ------------------------------------------------------------
   // Render Sub-Category Pills for Active Pathway
   // ------------------------------------------------------------
   function renderSubcategories() {
     if (!subcategoryPillsWrap) return;
     if (!currentPathway) {
-      subcategoryPillsWrap.innerHTML = "";
-      subcategoryPillsWrap.style.display = "none";
-      return;
+      currentPathway = "studio";
     }
     subcategoryPillsWrap.style.display = "flex";
+
     if (currentPathway === "all") {
       subcategoryPillsWrap.innerHTML = `
-        <button type="button" class="subcat-pill subcat-pill-back" onclick="window.setPathwayExternal(null)" title="Return to Explore by Category" style="background:rgba(234,179,8,0.18);border-color:rgba(234,179,8,0.45);color:var(--gold-soft);font-weight:700;">
-          ‹ Explore by Category
+        <button type="button" class="subcat-pill active" onclick="window.selectCategory('all', false)">
+          🌟 All 39 Packages
         </button>
-        <button type="button" class="subcat-pill active" onclick="window.setPathwayExternal('all')">
-          🌟 All 30 Packages
+        <button type="button" class="subcat-pill" onclick="window.selectCategory('studio', true)">
+          📸 12 Studio Sessions
         </button>
-        <button type="button" class="subcat-pill" onclick="window.setPathwayExternal('studio')">
-          📸 11 Studio Sessions
+        <button type="button" class="subcat-pill" onclick="window.selectCategory('outdoor', true)">
+          🌿 12 Outdoor Sessions
         </button>
-        <button type="button" class="subcat-pill" onclick="window.setPathwayExternal('outdoor')">
-          🌿 7 Outdoor Sessions
+        <button type="button" class="subcat-pill" onclick="window.selectCategory('events', true)">
+          💍 10 Weddings &amp; Events
         </button>
-        <button type="button" class="subcat-pill" onclick="window.setPathwayExternal('events')">
-          💍 7 Weddings &amp; Events
-        </button>
-        <button type="button" class="subcat-pill" onclick="window.setPathwayExternal('commercial')">
+        <button type="button" class="subcat-pill" onclick="window.selectCategory('commercial', true)">
           🚀 5 Commercial Suites
         </button>
       `;
       return;
     }
+
     const pathwayObj = PATHWAYS.find(p => p.id === currentPathway);
     if (!pathwayObj) return;
-
-    const backBtn = `
-      <button type="button" class="subcat-pill subcat-pill-back" onclick="window.setPathwayExternal(null)" title="Return to Explore by Category" style="background:rgba(234,179,8,0.22);border-color:rgba(234,179,8,0.6);color:var(--gold-soft);font-weight:700;">
-        ‹ Return to Categories
-      </button>
-    `;
 
     const pillsHtml = pathwayObj.subcategories.map(sub => {
       const isAct = sub.id === currentSubcat ? 'active' : '';
@@ -133,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     }).join("");
 
-    subcategoryPillsWrap.innerHTML = backBtn + pillsHtml;
+    subcategoryPillsWrap.innerHTML = pillsHtml;
 
     subcategoryPillsWrap.querySelectorAll(".subcat-pill[data-subcat]").forEach(btn => {
       btn.addEventListener("click", () => {
@@ -154,6 +146,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let isManualScrolling = false;
 
   window.scrollToSection = function(sectionId, updateHash = true) {
+    if (["studio", "outdoor", "events", "commercial", "all"].includes(sectionId)) {
+      window.selectCategory(sectionId, true);
+      return;
+    }
     const el = document.getElementById(sectionId);
     if (!el) return;
     isManualScrolling = true;
@@ -307,25 +303,44 @@ document.addEventListener("DOMContentLoaded", () => {
     targets.forEach(t => scrollSpyObserver.observe(t));
   }
 
+  // Switch Category & Filter Cleanly
+  window.selectCategory = function(catId, doScroll = false) {
+    searchQuery = "";
+    if (searchInput) searchInput.value = "";
+    if (searchClearBtn) searchClearBtn.style.display = "none";
+    currentPathway = catId || "studio";
+    currentSubcat = "all";
+
+    if (window.location.hash !== '#' + currentPathway) {
+      history.replaceState(null, null, '#' + currentPathway);
+    }
+
+    updateStickyNav(currentPathway);
+    renderSubcategories();
+    renderPackages();
+
+    if (doScroll) {
+      const browseBar = document.getElementById("packagesBrowse");
+      if (browseBar) {
+        browseBar.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
+
+  window.resetSubcategory = function() {
+    currentSubcat = "all";
+    renderSubcategories();
+    renderPackages();
+  };
+
   // Switch Pathway (Legacy compatibility)
   function setPathway(pathwayId, doScroll) {
-    if (!pathwayId || pathwayId === "hub" || pathwayId === "all") {
-      if (doScroll) window.scrollToSection("studio");
-    } else {
-      window.scrollToSection(pathwayId, Boolean(doScroll));
-    }
+    window.selectCategory(pathwayId || "studio", Boolean(doScroll));
   }
 
   // Global helper for gateway tiles and reset buttons
   window.setPathwayExternal = (pid) => {
-    searchQuery = "";
-    if (searchInput) searchInput.value = "";
-    if (searchClearBtn) searchClearBtn.style.display = "none";
-    if (!pid || pid === "hub" || pid === "all") {
-      window.scrollToSection("studio");
-    } else {
-      window.scrollToSection(pid);
-    }
+    window.selectCategory(pid || "studio", true);
   };
 
   function getPackageShowcaseUrl(pkg) {
@@ -707,118 +722,153 @@ document.addEventListener("DOMContentLoaded", () => {
 
     currentRenderedPackages = PACKAGES_DATA;
 
-    // ----------------------------------------------------
-    // CHAPTER 1: STUDIO & PORTRAIT SESSIONS
-    // ----------------------------------------------------
-    const studioList = sortList(PACKAGES_DATA.filter(p => p.pathway === "studio"));
-    const studioCardsHtml = studioList.map((p, idx) => renderCardHtml(p, idx, idx < 2)).join("");
+    // Helper to generate a chapter's HTML & card list
+    function buildChapterSection(pathwayId, isSingleCategoryMode = false) {
+      const pathwayObj = PATHWAYS.find(p => p.id === pathwayId) || PATHWAYS[0];
+      let list = PACKAGES_DATA.filter(p => p.pathway === pathwayId);
 
-    const studioChapterHtml = `
-      <section class="chapter-section chapter-section-studio" id="studio" data-chapter="studio">
-        <header class="chapter-header apple-chapter-card">
-          <h2 class="chapter-title">Studio &amp; Portrait Sessions</h2>
-          <p class="chapter-desc">
-            Master continuous and strobe studio lighting, customized backdrops, graduation cap &amp; gown milestones, and high-fashion styled portraiture.
-          </p>
-        </header>
-        <div class="chapter-cards-grid" id="grid-studio">
-          ${studioCardsHtml}
-        </div>
-      </section>
-    `;
+      let filterBannerHtml = "";
+      if (isSingleCategoryMode && currentSubcat && currentSubcat !== "all") {
+        const subObj = pathwayObj.subcategories.find(s => s.id === currentSubcat);
+        const subName = subObj ? subObj.name : currentSubcat;
+        list = list.filter(p => p.subcat === currentSubcat);
+        filterBannerHtml = `
+          <div class="category-subcat-active-bar" style="grid-column: 1 / -1;">
+            <div class="subcat-active-pill-badge">
+              <span class="subcat-indicator-dot"></span>
+              <span>Showing: <b>${escapeHtml(subName)}</b></span>
+              <span class="subcat-count">(${list.length} package${list.length === 1 ? '' : 's'})</span>
+            </div>
+            <button type="button" class="btn-reset-subcat" onclick="window.resetSubcategory()">
+              <span>‹ Show All ${escapeHtml(pathwayObj.title)}</span>
+            </button>
+          </div>
+        `;
+      }
 
-    // Transition Divider Studio -> Outdoor
-    const toOutdoorDivider = `
-      <div class="chapter-transition-divider" aria-hidden="true">
-        <span class="chapter-divider-line"></span>
-      </div>
-    `;
+      list = sortList(list);
 
-    // ----------------------------------------------------
-    // CHAPTER 2: OUTDOOR & NATURAL LIGHT SESSIONS
-    // ----------------------------------------------------
-    const outdoorList = sortList(PACKAGES_DATA.filter(p => p.pathway === "outdoor"));
-    const outdoorCardsHtml = outdoorList.map((p, idx) => renderCardHtml(p, idx, false)).join("");
+      const cardsHtml = list.length > 0
+        ? list.map((p, idx) => renderCardHtml(p, idx, idx < 2)).join("")
+        : `
+          <div class="subcat-empty-msg" style="grid-column: 1 / -1; text-align: center; padding: 48px 20px;">
+            <h3 style="font-family: var(--font-display); font-size: 22px; color: var(--head); margin-bottom: 8px;">No packages found</h3>
+            <p style="color: var(--muted); margin-bottom: 16px;">No packages match this specific subcategory.</p>
+            <button type="button" class="btn-reset-subcat" onclick="window.resetSubcategory()" style="display:inline-flex;">‹ Show All ${escapeHtml(pathwayObj.title)}</button>
+          </div>
+        `;
 
-    const outdoorChapterHtml = `
-      <section class="chapter-section chapter-section-outdoor" id="outdoor" data-chapter="outdoor">
-        <header class="chapter-header apple-chapter-card">
-          <h2 class="chapter-title">Outdoor &amp; Natural Light Sessions</h2>
-          <p class="chapter-desc">
-            Sunlit golden hours, lush scenic gardens, parks, resorts &amp; on-location lifestyle portraiture across Kakamega &amp; Western Kenya.
-          </p>
-        </header>
-        <div class="chapter-cards-grid" id="grid-outdoor">
-          ${outdoorCardsHtml}
-        </div>
-      </section>
-    `;
+      let glideHtml = "";
+      if (isSingleCategoryMode) {
+        const nextMap = {
+          studio: {
+            nextId: "outdoor",
+            icon: "🌿",
+            title: "Looking for sunlit gardens or scenic resorts?",
+            btnText: "Explore Outdoor Sessions (12)",
+            desc: "Golden hour maternity, vibrant outdoor birthdays, family picnics, and romantic couple stories."
+          },
+          outdoor: {
+            nextId: "events",
+            icon: "💍",
+            title: "Planning a wedding, celebration or conference?",
+            btnText: "Explore Weddings & Events (10)",
+            desc: "Full-day holy matrimony, traditional ruracio, corporate summits, galas & dignified memorials."
+          },
+          events: {
+            nextId: "commercial",
+            icon: "🚀",
+            title: "Elevating your brand, products or company?",
+            btnText: "Explore Commercial & Branding (5)",
+            desc: "High-conversion e-commerce photography, luxury hotel showcases & corporate brand growth."
+          },
+          commercial: {
+            nextId: "studio",
+            icon: "📸",
+            title: "Looking for precision studio portraits?",
+            btnText: "Explore Studio Sessions (12)",
+            desc: "Graduation cap & gown milestones, executive headshots, crisp white shirts & luxury silk wraps."
+          }
+        };
 
-    // Transition Divider Outdoor -> Events
-    const toEventsDivider = `
-      <div class="chapter-transition-divider" aria-hidden="true">
-        <span class="chapter-divider-line"></span>
-      </div>
-    `;
+        const nextInfo = nextMap[pathwayId] || nextMap.studio;
 
-    // ----------------------------------------------------
-    // CHAPTER 3: WEDDINGS & EVENT COVERAGE
-    // ----------------------------------------------------
-    const eventsList = sortList(PACKAGES_DATA.filter(p => p.pathway === "events"));
-    const eventsCardsHtml = eventsList.map((p, idx) => renderCardHtml(p, idx, false)).join("");
+        glideHtml = `
+          <div class="category-next-glide-card" style="grid-column: 1 / -1;">
+            <div class="glide-icon-wrap">${nextInfo.icon}</div>
+            <div class="glide-text-wrap">
+              <div class="glide-eyebrow">Next Photoshoot Chapter</div>
+              <h3 class="glide-title">${nextInfo.title}</h3>
+              <p class="glide-desc">${nextInfo.desc}</p>
+            </div>
+            <div class="glide-actions">
+              <button type="button" class="btn-glide-primary" onclick="window.selectCategory('${nextInfo.nextId}', true)">
+                <span>${nextInfo.btnText}</span>
+                <span aria-hidden="true">→</span>
+              </button>
+              <button type="button" class="btn-glide-secondary" onclick="window.selectCategory('all', true)">
+                <span>🌟 View All 39 Packages</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }
 
-    const eventsChapterHtml = `
-      <section class="chapter-section chapter-section-events" id="events" data-chapter="events">
-        <header class="chapter-header apple-chapter-card">
-          <h2 class="chapter-title">Weddings &amp; Event Coverage</h2>
-          <p class="chapter-desc">
-            Full-day holy matrimony, traditional ruracio, private birthday bashes, corporate summits, galas &amp; dignified memorial tributes.
-          </p>
-        </header>
-        <div class="chapter-cards-grid" id="grid-events">
-          ${eventsCardsHtml}
-        </div>
-      </section>
-    `;
-
-    // Transition Divider Events -> Commercial
-    const toCommercialDivider = `
-      <div class="chapter-transition-divider" aria-hidden="true">
-        <span class="chapter-divider-line"></span>
-      </div>
-    `;
-
-    // ----------------------------------------------------
-    // CHAPTER 4: COMMERCIAL & BRAND GROWTH
-    // ----------------------------------------------------
-    const commercialList = sortList(PACKAGES_DATA.filter(p => p.pathway === "commercial"));
-    const commercialCardsHtml = commercialList.map((p, idx) => renderCardHtml(p, idx, false)).join("");
-
-    const commercialChapterHtml = `
-      <section class="chapter-section chapter-section-commercial" id="commercial" data-chapter="commercial">
-        <header class="chapter-header apple-chapter-card">
-          <h2 class="chapter-title">Commercial &amp; Brand Growth</h2>
-          <p class="chapter-desc">
-            High-conversion e-commerce product shoots, hotel &amp; luxury hospitality showcases, corporate executive suites &amp; graphic design services.
-          </p>
-        </header>
-        <div class="chapter-cards-grid" id="grid-commercial">
-          ${commercialCardsHtml}
-        </div>
-      </section>
-    `;
-
-    // Render all chapters continuously starting with Studio
-    packagesGrid.innerHTML = studioChapterHtml + toOutdoorDivider + outdoorChapterHtml + toEventsDivider + eventsChapterHtml + toCommercialDivider + commercialChapterHtml;
-
-    // Toggle floating return button on screen
-    const floatingReturnBtn = document.getElementById("floatingCategoryReturn");
-    if (floatingReturnBtn) {
-      floatingReturnBtn.style.display = "none";
+      return {
+        html: `
+          <section class="chapter-section chapter-section-${pathwayId}" id="${pathwayId}" data-chapter="${pathwayId}">
+            <header class="chapter-header apple-chapter-card">
+              <div class="chapter-eyebrow-row">
+                <span class="chapter-num-badge">${pathwayObj.icon} Chapter: ${escapeHtml(pathwayObj.title)}</span>
+                <span class="chapter-total-count">${list.length} Package${list.length === 1 ? '' : 's'}</span>
+              </div>
+              <h2 class="chapter-title">${pathwayObj.title}</h2>
+              <p class="chapter-desc">${pathwayObj.desc || pathwayObj.tagline}</p>
+            </header>
+            <div class="chapter-cards-grid" id="grid-${pathwayId}">
+              ${filterBannerHtml}
+              ${cardsHtml}
+              ${glideHtml}
+            </div>
+          </section>
+        `,
+        list: list
+      };
     }
 
+    if (currentPathway === "all") {
+      const studioRes = buildChapterSection("studio", false);
+      const outdoorRes = buildChapterSection("outdoor", false);
+      const eventsRes = buildChapterSection("events", false);
+      const commercialRes = buildChapterSection("commercial", false);
+
+      const divider = `
+        <div class="chapter-transition-divider" aria-hidden="true">
+          <span class="chapter-divider-line"></span>
+        </div>
+      `;
+
+      packagesGrid.innerHTML = studioRes.html + divider + outdoorRes.html + divider + eventsRes.html + divider + commercialRes.html;
+      currentRenderedPackages = PACKAGES_DATA;
+
+      const floatingReturnBtn = document.getElementById("floatingCategoryReturn");
+      if (floatingReturnBtn) floatingReturnBtn.style.display = "none";
+
+      attachCardListeners();
+      initScrollSpy();
+      return;
+    }
+
+    // Single Category Focus Mode (Clean, Uncluttered, Fast)
+    const activeTarget = ["studio", "outdoor", "events", "commercial"].includes(currentPathway) ? currentPathway : "studio";
+    const chapterData = buildChapterSection(activeTarget, true);
+    packagesGrid.innerHTML = chapterData.html;
+    currentRenderedPackages = chapterData.list;
+
+    const floatingReturnBtn = document.getElementById("floatingCategoryReturn");
+    if (floatingReturnBtn) floatingReturnBtn.style.display = "none";
+
     attachCardListeners();
-    initScrollSpy();
   }
 
   let currentRenderedPackages = [];
@@ -2338,13 +2388,49 @@ document.addEventListener("DOMContentLoaded", () => {
   enableHorizontalDragScroll(document.querySelector(".pathway-toggle-strip"));
   enableHorizontalDragScroll(subcategoryPillsWrap);
 
-  // Initial runs
-  renderPackages();
-  if (currentPathway && ["studio", "outdoor", "events", "commercial"].includes(currentPathway)) {
-    setTimeout(() => {
-      window.scrollToSection(currentPathway, false);
-    }, 120);
+  function initServicesTabs() {
+    const tabBtns = document.querySelectorAll(".services-tab-btn");
+    const tabPanes = document.querySelectorAll(".services-tab-pane");
+    const hub = document.querySelector(".services-tab-hub");
+    const toggleAllBtn = document.getElementById("btnToggleAllServices");
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.servicesTab;
+        if (hub) hub.classList.remove("is-expanded-all");
+        if (toggleAllBtn) {
+          toggleAllBtn.innerHTML = `<span class="mode-icon">⊞</span><span class="mode-text">View All Services Expanded</span>`;
+        }
+        tabBtns.forEach(b => {
+          const isAct = b === btn;
+          b.classList.toggle("active", isAct);
+          b.setAttribute("aria-selected", isAct ? "true" : "false");
+        });
+        tabPanes.forEach(pane => {
+          const isAct = pane.dataset.servicesPane === target;
+          pane.classList.toggle("active", isAct);
+        });
+      });
+    });
+
+    if (toggleAllBtn && hub) {
+      toggleAllBtn.addEventListener("click", () => {
+        const isExp = hub.classList.toggle("is-expanded-all");
+        if (isExp) {
+          toggleAllBtn.innerHTML = `<span class="mode-icon">⊟</span><span class="mode-text">Switch to Tabbed View</span>`;
+        } else {
+          toggleAllBtn.innerHTML = `<span class="mode-icon">⊞</span><span class="mode-text">View All Services Expanded</span>`;
+        }
+      });
+    }
   }
+
+  // Initial runs
+  renderSubcategories();
+  renderPackages();
+  initServicesTabs();
+  updateStickyNav(currentPathway || "studio");
+
   renderAddOns();
   updateCalculatorTotal();
 

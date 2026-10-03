@@ -58,6 +58,11 @@
           </button>
         </div>
 
+        <!-- Laureighn Events Showcase Link -->
+        <a href="../events/index.html" class="header-cta-events" style="display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg, rgba(212,175,55,0.18) 0%, rgba(184,134,11,0.1) 100%); border:1px solid rgba(212,175,55,0.45); color:#fbbf24; font-weight:700; font-size:12px; padding:7px 12px; border-radius:999px; text-decoration:none;" title="Experience Laureighn Events Showcase">
+          <span>✨ Events Showcase</span>
+        </a>
+
         <!-- Book on Calendar -->
         <a href="#packagesBrowse" class="header-cta-cal" title="Book Session or Reserve Date on Calendar">
           <span>📅 Book on Calendar</span>
@@ -98,6 +103,9 @@
       </div>
       <!-- Featured Hamburger Actions: Quotation & QR Standee -->
       <div style="margin:4px 8px 10px; display:flex; flex-direction:column; gap:8px;">
+        <a href="../events/index.html" class="drawer-link" style="display:flex; align-items:center; justify-content:center; gap:8px; background:linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(184,134,11,0.14) 100%); border:1px solid rgba(212,175,55,0.5); color:#fbbf24; font-weight:700; border-radius:10px; padding:11px 14px; font-size:13px; text-decoration:none; box-shadow:0 4px 14px rgba(212,175,55,0.15);">
+          <span>✨ Visit Laureighn Events (Portfolio Showcase) →</span>
+        </a>
         <a href="javascript:void(0)" onclick="openInvoiceModal(); typeof togglePackagesDrawer === 'function' ? togglePackagesDrawer(false) : (typeof toggleDrawer === 'function' ? toggleDrawer(false) : null);" class="drawer-link drawer-quote-btn" style="display:flex; align-items:center; justify-content:center; gap:8px; background:linear-gradient(135deg, rgba(16,185,129,0.2) 0%, rgba(5,150,105,0.14) 100%); border:1px solid rgba(16,185,129,0.5); color:#34d399; font-weight:700; border-radius:10px; padding:11px 14px; font-size:13px; text-decoration:none; box-shadow:0 4px 14px rgba(16,185,129,0.15);">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
           <span>📄 Instant Studio Quotation / Proposal</span>
@@ -115,12 +123,15 @@
       
       <!-- Quick Chapter Jumps on this page -->
       <div style="margin:6px 8px 12px; padding:10px 12px; background:rgba(255,255,255,0.04); border-radius:12px; border:1px solid rgba(255,255,255,0.08);">
-        <div style="font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--gold-soft); margin-bottom:8px;">Scroll to Chapter on this page:</div>
+        <div style="font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--gold-soft); margin-bottom:8px;">Jump to Category:</div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
-          <a href="#studio" onclick="window.scrollToSection('studio'); window.togglePackagesDrawer ? window.togglePackagesDrawer(false) : null;" class="drawer-link" style="padding:7px 10px; font-size:11.5px; font-weight:600; border-radius:8px; background:rgba(234,179,8,0.12); color:#fbbf24; text-decoration:none; justify-content:center; border:1px solid rgba(234,179,8,0.25);">📸 Studio (12)</a>
-          <a href="#outdoor" onclick="window.scrollToSection('outdoor'); window.togglePackagesDrawer ? window.togglePackagesDrawer(false) : null;" class="drawer-link" style="padding:7px 10px; font-size:11.5px; font-weight:600; border-radius:8px; background:rgba(16,185,129,0.12); color:#34d399; text-decoration:none; justify-content:center; border:1px solid rgba(16,185,129,0.25);">🌿 Outdoor (12)</a>
-          <a href="#events" onclick="window.scrollToSection('events'); window.togglePackagesDrawer ? window.togglePackagesDrawer(false) : null;" class="drawer-link" style="padding:7px 10px; font-size:11.5px; font-weight:600; border-radius:8px; background:rgba(59,130,246,0.12); color:#60a5fa; text-decoration:none; justify-content:center; border:1px solid rgba(59,130,246,0.25);">💍 Events (10)</a>
-          <a href="#commercial" onclick="window.scrollToSection('commercial'); window.togglePackagesDrawer ? window.togglePackagesDrawer(false) : null;" class="drawer-link" style="padding:7px 10px; font-size:11.5px; font-weight:600; border-radius:8px; background:rgba(236,72,153,0.12); color:#f472b6; text-decoration:none; justify-content:center; border:1px solid rgba(236,72,153,0.25);">🚀 Commercial (5)</a>
+          <a href="#studio" onclick="window.selectCategory('studio'); window.togglePackagesDrawer ? window.togglePackagesDrawer(false) : null;" class="drawer-link" style="padding:7px 10px; font-size:11.5px; font-weight:600; border-radius:8px; background:rgba(234,179,8,0.12); color:#fbbf24; text-decoration:none; justify-content:center; border:1px solid rgba(234,179,8,0.25);">📸 Studio (12)</a>
+          <a href="#outdoor" onclick="window.selectCategory('outdoor'); window.togglePackagesDrawer ? window.togglePackagesDrawer(false) : null;" class="drawer-link" style="padding:7px 10px; font-size:11.5px; font-weight:600; border-radius:8px; background:rgba(16,185,129,0.12); color:#34d399; text-decoration:none; justify-content:center; border:1px solid rgba(16,185,129,0.25);">🌿 Outdoor (12)</a>
+          <a href="#events" onclick="window.selectCategory('events'); window.togglePackagesDrawer ? window.togglePackagesDrawer(false) : null;" class="drawer-link" style="padding:7px 10px; font-size:11.5px; font-weight:600; border-radius:8px; background:rgba(59,130,246,0.12); color:#60a5fa; text-decoration:none; justify-content:center; border:1px solid rgba(59,130,246,0.25);">💍 Events (10)</a>
+          <a href="#commercial" onclick="window.selectCategory('commercial'); window.togglePackagesDrawer ? window.togglePackagesDrawer(false) : null;" class="drawer-link" style="padding:7px 10px; font-size:11.5px; font-weight:600; border-radius:8px; background:rgba(236,72,153,0.12); color:#f472b6; text-decoration:none; justify-content:center; border:1px solid rgba(236,72,153,0.25);">🚀 Commercial (5)</a>
+        </div>
+        <div style="margin-top:6px;">
+          <a href="#all" onclick="window.selectCategory('all'); window.togglePackagesDrawer ? window.togglePackagesDrawer(false) : null;" class="drawer-link" style="padding:7px 10px; font-size:11.5px; font-weight:700; border-radius:8px; background:rgba(255,255,255,0.08); color:#ffffff; text-decoration:none; justify-content:center; border:1px solid rgba(255,255,255,0.15);">🌟 View All Packages (39)</a>
         </div>
       </div>
 
@@ -242,21 +253,25 @@
           <span class="btn-icon">🔍</span>
           <span>Search</span>
         </button>
-        <button type="button" class="sticky-pathway-btn active" data-target="studio" onclick="window.scrollToSection('studio')">
+        <button type="button" class="sticky-pathway-btn active" data-target="studio" onclick="window.selectCategory('studio')">
           <span class="btn-icon">📸</span>
           <span>Studio (12)</span>
         </button>
-        <button type="button" class="sticky-pathway-btn" data-target="outdoor" onclick="window.scrollToSection('outdoor')">
+        <button type="button" class="sticky-pathway-btn" data-target="outdoor" onclick="window.selectCategory('outdoor')">
           <span class="btn-icon">🌿</span>
           <span>Outdoor (12)</span>
         </button>
-        <button type="button" class="sticky-pathway-btn" data-target="events" onclick="window.scrollToSection('events')">
+        <button type="button" class="sticky-pathway-btn" data-target="events" onclick="window.selectCategory('events')">
           <span class="btn-icon">💍</span>
           <span>Weddings &amp; Events (10)</span>
         </button>
-        <button type="button" class="sticky-pathway-btn" data-target="commercial" onclick="window.scrollToSection('commercial')">
+        <button type="button" class="sticky-pathway-btn" data-target="commercial" onclick="window.selectCategory('commercial')">
           <span class="btn-icon">🚀</span>
           <span>Commercial (5)</span>
+        </button>
+        <button type="button" class="sticky-pathway-btn" data-target="all" onclick="window.selectCategory('all')">
+          <span class="btn-icon">🌟</span>
+          <span>All Packages (39)</span>
         </button>
       </nav>
 
@@ -280,16 +295,53 @@
 
 
 
-  <!-- QUICK COMPARISON MATRIX -->
+  <!-- STUDIO SERVICES, ADD-ONS & TIER BREAKDOWN -->
   <section class="comparison-section" id="comparison">
     <div class="wrap">
-      <div class="section-head">
-        <div class="section-tag">Tier Breakdown</div>
-        <h2 class="section-title">Silver vs. Gold vs. Platinum</h2>
-        <p class="section-desc">Understand what makes each tier unique across our studio and event packages.</p>
+      <div class="section-head" style="text-align:center;">
+        <div class="section-tag">Studio Extras &amp; Service Guides</div>
+        <h2 class="section-title">Everything for Your Perfect Shoot</h2>
+        <p class="section-desc" style="max-width:680px; margin:8px auto 0;">
+          Explore our transparent tier breakdown, on-site makeup, luxury wardrobe rental, and archival wooden photo mounts.
+        </p>
       </div>
 
-      <div class="table-wrap">
+      <!-- Segmented Luxury Tabs for Services -->
+      <div class="services-tab-hub">
+        <div class="services-tab-nav-wrapper">
+          <div class="services-tab-nav" role="tablist" aria-label="Studio Services Navigation">
+            <button type="button" class="services-tab-btn active" data-services-tab="tiers" role="tab" aria-selected="true">
+              <span class="tab-icon">📊</span>
+              <span class="tab-title">Tier Comparison</span>
+              <span class="tab-badge">Silver · Gold · VIP</span>
+            </button>
+            <button type="button" class="services-tab-btn" data-services-tab="makeup" role="tab" aria-selected="false">
+              <span class="tab-icon">💄</span>
+              <span class="tab-title">Studio Makeup</span>
+              <span class="tab-badge">3 Options</span>
+            </button>
+            <button type="button" class="services-tab-btn" data-services-tab="wardrobe" role="tab" aria-selected="false">
+              <span class="tab-icon">👗</span>
+              <span class="tab-title">Wardrobe &amp; Gowns</span>
+              <span class="tab-badge">4 Styles</span>
+            </button>
+            <button type="button" class="services-tab-btn" data-services-tab="mounts" role="tab" aria-selected="false">
+              <span class="tab-icon">🖼️</span>
+              <span class="tab-title">Photo Mounts</span>
+              <span class="tab-badge">A4, A3, A2</span>
+            </button>
+          </div>
+          <div class="services-view-mode-bar">
+            <button type="button" class="btn-toggle-all-services" id="btnToggleAllServices" title="Expand all services into one view">
+              <span class="mode-icon">⊞</span>
+              <span class="mode-text">View All Services Expanded</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB PANE 1: TIER BREAKDOWN MATRIX (ACTIVE) -->
+        <div class="services-tab-pane active" data-services-pane="tiers" role="tabpanel">
+          <div class="table-wrap">
         <table class="compare-table">
           <thead>
             <tr>
@@ -374,9 +426,11 @@
           </tbody>
         </table>
       </div>
+    </div>
 
-      <!-- STUDIO MAKEUP SERVICES (ON ALL PACKAGES) -->
-      <div class="services-out-banner" style="margin-top:40px;">
+    <!-- TAB PANE 2: STUDIO MAKEUP SERVICES -->
+    <div class="services-tab-pane" data-services-pane="makeup" role="tabpanel">
+      <div class="services-out-banner" style="margin-top:0;">
         <div class="services-out-header">
           <span class="services-out-badge">💄 Camera-Ready Beauty</span>
           <h3 class="services-out-title">Professional Studio Makeup Services</h3>
@@ -456,9 +510,11 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- STUDIO WARDROBE & DRESSING HIRE (WITH SHOOT VS. STANDALONE HIRE ALONE) -->
-      <div class="services-out-banner" style="margin-top:28px;">
+    <!-- TAB PANE 3: STUDIO WARDROBE & DRESSING HIRE -->
+    <div class="services-tab-pane" data-services-pane="wardrobe" role="tabpanel">
+      <div class="services-out-banner" style="margin-top:0;">
         <div class="services-out-header">
           <span class="services-out-badge">👗 Studio Wardrobe &amp; Hire Out</span>
           <h3 class="services-out-title">Studio Dressing &amp; Outfit Rental Services</h3>
@@ -561,9 +617,11 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- PHOTO MOUNTS & ARCHIVAL WALL ART BANNER -->
-      <div class="photo-mounts-banner" style="margin-top:28px;">
+    <!-- TAB PANE 4: PHOTO MOUNTS & ARCHIVAL WALL ART -->
+    <div class="services-tab-pane" data-services-pane="mounts" role="tabpanel">
+      <div class="photo-mounts-banner" style="margin-top:0;">
         <div class="mounts-header">
           <span class="mounts-badge">🖼️ Archival Wall Art &amp; Keepsakes</span>
           <h3 class="mounts-title">Museum-Quality Wooden Photo Mounts</h3>
@@ -671,7 +729,9 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
+  </div>
+</section>
 
   <!-- STUDIO STANDARDS & CLIENT TRUST STRIP (ELIMINATES CLIENT DM QUESTIONS) -->
   <section class="studio-standards-sec">

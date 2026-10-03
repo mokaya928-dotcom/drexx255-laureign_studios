@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineEquip Pro Rentals · Cinema &amp; AV Equipment Quotation Engine</title>
+  <meta name="description" content="Commercial equipment booking and proforma quotation workstation for cinema cameras, lenses, lighting rigs, wireless audio, and drone production in Kenya.">
+  <meta name="theme-color" content="#0a0e17">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Scripts for PDF & QR Generation -->
+  <script src="js/qrcode.min.js"></script>
+  <script src="js/html2pdf.bundle.min.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #07090e;
+      --bg-surface: #0e121a;
+      --bg-card: #141923;
+      --bg-card-hover: #1b2230;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(0, 230, 153, 0.3);
+      --cyan-bright: #00f2a6;
+      --cyan-glow: rgba(0, 242, 166, 0.15);
+      --amber-accent: #f59e0b;
+      --text-main: #f3f4f6;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 120px;
+    }
+
+    /* Agency Demo Notification Header */
+    .agency-demo-banner {
+      background: linear-gradient(90deg, #1e1b4b 0%, #172554 50%, #064e3b 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 10px 16px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+    .agency-demo-banner .badge {
+      background: var(--cyan-bright);
+      color: #051410;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+    .agency-demo-banner a {
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+    .agency-demo-banner a:hover {
+      color: var(--cyan-bright);
+    }
+
+    /* Navigation Bar */
+    .app-nav {
+      background: rgba(14, 18, 26, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 16px 24px;
+      position: sticky;
+      top: 41px;
+      z-index: 990;
+    }
+    .app-nav-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #00f2a6 0%, #0284c7 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #04120f;
+      font-weight: 900;
+      font-size: 20px;
+      box-shadow: 0 4px 14px rgba(0, 242, 166, 0.25);
+    }
+    .brand-title {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-title span {
+      color: var(--cyan-bright);
+    }
+    .brand-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 242, 166, 0.1);
+      border: 1px solid rgba(0, 242, 166, 0.3);
+      color: var(--cyan-bright);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--cyan-bright);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--cyan-bright);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* Hero & Instructions Section */
+    .hero-section {
+      max-width: 1300px;
+      margin: 32px auto 24px;
+      padding: 0 24px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 28px;
+      background: linear-gradient(145deg, #101522 0%, #0d111a 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(0, 242, 166, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--amber-accent);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .hero-title span {
+      background: linear-gradient(90deg, #ffffff 0%, var(--cyan-bright) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 600px;
+      margin-bottom: 22px;
+    }
+
+    /* Workflow Feature Cards */
+    .workflow-box {
+      background: rgba(7, 9, 14, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+    }
+    .workflow-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .workflow-num {
+      width: 24px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--cyan-bright);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .workflow-text h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .workflow-text p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    /* Controls & Quotation Configuration Bar */
+    .config-strip {
+      max-width: 1300px;
+      margin: 0 auto 28px;
+      padding: 0 24px;
+    }
+    .config-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      align-items: center;
+    }
+    .config-field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .select-input, .text-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .select-input:focus, .text-input:focus {
+      border-color: var(--cyan-bright);
+    }
+
+    /* Filter Pills */
+    .filter-tabs {
+      max-width: 1300px;
+      margin: 0 auto 24px;
+      padding: 0 24px;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+    }
+    .filter-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .filter-pill:hover, .filter-pill.active {
+      background: var(--cyan-bright);
+      color: #04120f;
+      border-color: var(--cyan-bright);
+      font-weight: 700;
+    }
+
+    /* Inventory Catalog Grid */
+    .inventory-section {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .gear-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 22px;
+    }
+
+    .gear-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .gear-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 242, 166, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .gear-card.selected {
+      border-color: var(--cyan-bright);
+      background: #151d29;
+    }
+    .gear-card-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(7, 9, 14, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cyan-bright);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      z-index: 2;
+    }
+    .gear-img-wrap {
+      height: 180px;
+      background: #090c13;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .gear-img-wrap svg {
+      width: 64px;
+      height: 64px;
+      stroke: var(--text-dim);
+      transition: stroke 0.3s, transform 0.3s;
+    }
+    .gear-card:hover .gear-img-wrap svg {
+      stroke: var(--cyan-bright);
+      transform: scale(1.05);
+    }
+    .gear-card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .gear-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .gear-specs {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+    .gear-includes {
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 2px solid var(--cyan-bright);
+      padding: 6px 10px;
+      font-size: 11.5px;
+      color: #cbd5e1;
+      margin-bottom: 16px;
+      border-radius: 0 4px 4px 0;
+    }
+    .gear-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 16px;
+      margin-top: auto;
+    }
+    .price-box .rate {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      font-family: var(--font-mono);
+    }
+    .price-box .unit {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-family: var(--font-sans);
+    }
+    .btn-add-gear {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-add-gear:hover {
+      background: var(--cyan-bright);
+      color: #051410;
+      border-color: var(--cyan-bright);
+    }
+    .gear-card.selected .btn-add-gear {
+      background: var(--cyan-bright);
+      color: #051410;
+      border-color: var(--cyan-bright);
+    }
+
+    /* Stepper Controls */
+    .qty-stepper {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      background: #0d121c;
+      border: 1px solid var(--cyan-bright);
+      border-radius: var(--radius-sm);
+      padding: 2px;
+    }
+    .gear-card.selected .qty-stepper {
+      display: flex;
+    }
+    .gear-card.selected .btn-add-gear {
+      display: none;
+    }
+    .qty-btn {
+      background: transparent;
+      border: none;
+      color: var(--cyan-bright);
+      width: 28px;
+      height: 28px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .qty-btn:hover {
+      background: rgba(0, 242, 166, 0.2);
+    }
+    .qty-value {
+      font-size: 13px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      width: 22px;
+      text-align: center;
+    }
+
+    /* Fixed Bottom Action Drawer */
+    .floating-summary-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(14, 18, 26, 0.95);
+      backdrop-filter: blur(18px);
+      border-top: 1px solid rgba(0, 242, 166, 0.3);
+      padding: 14px 24px;
+      z-index: 900;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
+    }
+    .summary-bar-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .summary-metrics {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .metric-group .lbl {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+    .metric-group .val {
+      font-size: 22px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: #ffffff;
+    }
+    .metric-group .val.highlight {
+      color: var(--cyan-bright);
+    }
+    .summary-btns {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-subtle);
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary {
+      background: var(--cyan-bright);
+      color: #04120f;
+      border: none;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 18px rgba(0, 242, 166, 0.35);
+      transition: all 0.2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 22px rgba(0, 242, 166, 0.45);
+    }
+
+    /* Modal / Workstation Proforma Preview */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 6, 10, 0.85);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 2000;
+    }
+    .modal-overlay.open {
+      display: flex;
+    }
+    .modal-sheet {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 900px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    }
+    .modal-head {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-head h3 {
+      font-size: 18px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .modal-close:hover { color: #ffffff; }
+
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    /* Printable Proforma Sheet Styling */
+    .proforma-container {
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: 12px;
+      padding: 32px;
+      font-family: var(--font-sans);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .proforma-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+    .p-logo-group h2 {
+      font-size: 22px;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+    }
+    .p-logo-group p {
+      font-size: 12px;
+      color: #64748b;
+    }
+    .p-meta-group {
+      text-align: right;
+    }
+    .p-quote-ref {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 15px;
+      color: #0f766e;
+    }
+    .p-quote-date {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .p-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      background: #f8fafc;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+    .p-details-grid strong {
+      color: #0f172a;
+    }
+
+    .p-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+      font-size: 13px;
+    }
+    .p-table th {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .p-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+    }
+    .p-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+    .p-total-box {
+      margin-left: auto;
+      width: 320px;
+      border-top: 2px solid #0f172a;
+      padding-top: 12px;
+      font-size: 13px;
+    }
+    .p-total-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+    }
+    .p-total-row.grand {
+      font-size: 18px;
+      font-weight: 900;
+      color: #0f172a;
+      border-top: 1px dashed #cbd5e1;
+      margin-top: 8px;
+      padding-top: 8px;
+    }
+
+    /* Verification Badge & Security Box */
+    .p-security-box {
+      margin-top: 24px;
+      padding: 16px;
+      border: 1px dashed #0d9488;
+      border-radius: 8px;
+      background: #f0fdfa;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .p-security-text h5 {
+      font-size: 13px;
+      font-weight: 800;
+      color: #0f766e;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .p-security-text p {
+      font-size: 11.5px;
+      color: #334155;
+      line-height: 1.4;
+    }
+    .p-qr-holder {
+      width: 76px;
+      height: 76px;
+      background: #ffffff;
+      padding: 4px;
+      border-radius: 6px;
+      border: 1px solid #ccfbf1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .p-qr-holder canvas, .p-qr-holder img {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    /* Agency Contact Footer in Modal */
+    .modal-foot {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-subtle);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Agency Showcase Explainer Section */
+    .agency-explainer {
+      max-width: 1300px;
+      margin: 60px auto 0;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .agency-explainer-card {
+      background: linear-gradient(135deg, #0d121c 0%, #111827 100%);
+      border: 1px solid rgba(0, 242, 166, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+    .agency-pitch h3 {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.4px;
+    }
+    .agency-pitch p {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .agency-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .agency-checklist li {
+      font-size: 13.5px;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .agency-checklist li svg {
+      color: var(--cyan-bright);
+      flex-shrink: 0;
+    }
+    .agency-contact-box {
+      background: rgba(7, 9, 14, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: center;
+    }
+    .agency-contact-box h4 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+    .agency-contact-box p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; padding: 24px; }
+      .agency-explainer-card { grid-template-columns: 1fr; padding: 24px; }
+      .app-nav { top: 62px; }
+      .floating-summary-bar { padding: 12px 16px; }
+      .summary-bar-inner { gap: 12px; }
+      .metric-group .val { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. AGENCY DEMO BANNER -->
+  <div class="agency-demo-banner">
+    <span class="badge">Commercial SaaS Prototype</span>
+    <span>Ready-to-deploy quotation &amp; dispatch workstation engineered for Kenya's equipment rental &amp; AV production houses.</span>
+    <a href="#agencyInfo">Deploy for Your Company →</a>
+  </div>
+
+  <!-- 2. APPLICATION NAVIGATION -->
+  <header class="app-nav">
+    <div class="app-nav-inner">
+      <div class="brand-group">
+        <div class="brand-icon">🎬</div>
+        <div>
+          <div class="brand-title">APEX <span>CINE &amp; AV</span> RENTALS</div>
+          <div class="brand-subtitle">Commercial Dispatch &amp; Live Quotation Workstation</div>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <div class="btn-status-pill">
+          <div class="pulse-dot"></div>
+          <span>Q4 2026 Fleet Active</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. HERO & DISPATCH INTRO -->
+  <section class="hero-section">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-tag">⚡ Automated Equipment Dispatch Engine</div>
+        <h1 class="hero-title">Instant Proforma Quotation &amp; <span>Equipment Hold</span></h1>
+        <p class="hero-desc">
+          Select cinema camera bodies, prime glass, high-output lighting, and wireless audio rigs. Calculate multi-day shoot discounts, attach insured operators, and export authenticated proforma invoices stamped with registered Till safeguards.
+        </p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#catalog" class="btn-primary" style="text-decoration:none;">Browse Gear Catalog</a>
+          <button type="button" class="btn-secondary" onclick="openProformaModal()">View Current Proforma Sheet</button>
+        </div>
+      </div>
+      <div class="workflow-box">
+        <div class="workflow-item">
+          <div class="workflow-num">01</div>
+          <div class="workflow-text">
+            <h4>Select Equipment</h4>
+            <p>Pick camera packages, lenses, lighting, and sound gear with transparent daily rates.</p>
+          </div>
+        </div>
+        <div class="workflow-item">
+          <div class="workflow-num">02</div>
+          <div class="workflow-text">
+            <h4>Configure Shoot Days</h4>
+            <p>Auto-apply multi-day tier discounts (15% off for 3+ days, 25% off for full weeks).</p>
+          </div>
+        </div>
+        <div class="workflow-item">
+          <div class="workflow-num">03</div>
+          <div class="workflow-text">
+            <h4>Export Authenticated Proforma</h4>
+            <p>Download instant PDF with QR verification or dispatch directly to counter WhatsApp.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. RENTAL CONFIGURATION STRIP -->
+  <section class="config-strip">
+    <div class="config-card">
+      <div class="config-field">
+        <label>Shoot Duration (Days)</label>
+        <select id="rentalDuration" class="select-input" onchange="updateCalculations()">
+          <option value="1">1 Shoot Day (Standard Rate)</option>
+          <option value="2">2 Shoot Days (Standard Rate)</option>
+          <option value="3" selected>3 Shoot Days (15% Multi-Day Discount)</option>
+          <option value="4">4 Shoot Days (15% Multi-Day Discount)</option>
+          <option value="5">5 Shoot Days (15% Multi-Day Discount)</option>
+          <option value="7">7 Days / 1 Week (25% Weekly Discount)</option>
+          <option value="14">14 Days / 2 Weeks (30% Long-Run Discount)</option>
+        </select>
+      </div>
+
+      <div class="config-field">
+        <label>Production / Crew Add-on</label>
+        <select id="crewAddon" class="select-input" onchange="updateCalculations()">
+          <option value="0">Dry Hire Only (No Crew Included)</option>
+          <option value="5000">1st AC / Focus Puller (+Ksh 5,000/day)</option>
+          <option value="8000">Licensed Drone Pilot (+Ksh 8,000/day)</option>
+          <option value="6500">Location Sound Recordist (+Ksh 6,500/day)</option>
+          <option value="15000">Full Technical Crew 3-Pax (+Ksh 15,000/day)</option>
+        </select>
+      </div>
+
+      <div class="config-field">
+        <label>Gear Protection &amp; Waiver</label>
+        <select id="waiverPlan" class="select-input" onchange="updateCalculations()">
+          <option value="0.08">8% Equipment Damage Waiver (Recommended)</option>
+          <option value="0">Refundable Cash/Till Deposit Only (0%)</option>
+        </select>
+      </div>
+
+      <div class="config-field">
+        <label>Production / Client Name</label>
+        <input type="text" id="clientNameInput" class="text-input" placeholder="e.g. Media Production / Brand Shoot" value="Safari Commercial Production" oninput="updateProformaDetails()">
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FILTER TABS -->
+  <section class="filter-tabs" id="catalog">
+    <button class="filter-pill active" onclick="filterCatalog('all', this)">All Equipment (15)</button>
+    <button class="filter-pill" onclick="filterCatalog('camera', this)">Cinema Cameras</button>
+    <button class="filter-pill" onclick="filterCatalog('lens', this)">Cinema Lenses</button>
+    <button class="filter-pill" onclick="filterCatalog('lighting', this)">Studio &amp; Location Lighting</button>
+    <button class="filter-pill" onclick="filterCatalog('audio', this)">Wireless Audio</button>
+    <button class="filter-pill" onclick="filterCatalog('drone', this)">Drones &amp; Gimbals</button>
+  </section>
+
+  <!-- 6. GEAR INVENTORY GRID -->
+  <main class="inventory-section">
+    <div class="gear-grid" id="gearContainer">
+      <!-- Items dynamically populated via JavaScript below -->
+    </div>
+  </main>
+
+  <!-- 7. FLOATING ACTION & TOTAL BAR -->
+  <div class="floating-summary-bar">
+    <div class="summary-bar-inner">
+      <div class="summary-metrics">
+        <div class="metric-group">
+          <div class="lbl">Selected Items</div>
+          <div class="val" id="summaryItemCount">3 Items</div>
+        </div>
+        <div class="metric-group">
+          <div class="lbl">Shoot Duration</div>
+          <div class="val" id="summaryDays">3 Days</div>
+        </div>
+        <div class="metric-group">
+          <div class="lbl">Proforma Total</div>
+          <div class="val highlight" id="summaryGrandTotal">Ksh 88,065</div>
+        </div>
+      </div>
+      <div class="summary-btns">
+        <button type="button" class="btn-secondary" onclick="openProformaModal()">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          <span>Preview Proforma Sheet</span>
+        </button>
+        <button type="button" class="btn-primary" onclick="sendWhatsAppHold()">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+          <span>Reserve via WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. PROFORMA QUOTATION MODAL -->
+  <div class="modal-overlay" id="proformaModal">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <h3>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--cyan-bright)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          Official Proforma Quotation &amp; Dispatch Sheet
+        </h3>
+        <button class="modal-close" onclick="closeProformaModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Renderable / Downloadable Proforma Paper -->
+        <div class="proforma-container" id="printableProforma">
+          <div class="proforma-header">
+            <div class="p-logo-group">
+              <h2>APEX CINE &amp; AV RENTALS LTD</h2>
+              <p>Commercial Film Gear, AV Rigs &amp; Broadcast Dispatch</p>
+              <p>Kilimani Commercial Center, Argwings Kodhek Rd, Nairobi</p>
+              <p>Tel: +254 700 000 000 | Email: dispatch@apexcine.co.ke</p>
+            </div>
+            <div class="p-meta-group">
+              <div class="p-quote-ref" id="pQuoteRef">REF: ACR-2026-8941</div>
+              <div class="p-quote-date" id="pQuoteDate">Date: 30 September 2026</div>
+              <div style="font-size:11px; color:#0f766e; font-weight:700; margin-top:4px;">VALID FOR 72 HOURS</div>
+            </div>
+          </div>
+
+          <div class="p-details-grid">
+            <div>
+              <div><strong>Client / Production:</strong> <span id="pClientNameDisplay">Safari Commercial Production</span></div>
+              <div><strong>Shoot Duration:</strong> <span id="pDurationDisplay">3 Shoot Days</span></div>
+            </div>
+            <div>
+              <div><strong>Dispatch Station:</strong> Nairobi Central Hub</div>
+              <div><strong>Operator / Crew:</strong> <span id="pCrewDisplay">Dry Hire</span></div>
+            </div>
+          </div>
+
+          <!-- Items Table -->
+          <table class="p-table">
+            <thead>
+              <tr>
+                <th>Item Specification</th>
+                <th style="text-align:center;">Qty</th>
+                <th style="text-align:right;">Day Rate</th>
+                <th style="text-align:center;">Days</th>
+                <th style="text-align:right;">Amount (KSh)</th>
+              </tr>
+            </thead>
+            <tbody id="pTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+
+          <!-- Totals Calculation -->
+          <div class="p-total-box">
+            <div class="p-total-row">
+              <span>Gross Gear Subtotal:</span>
+              <strong id="pGrossSubtotal">KSh 0</strong>
+            </div>
+            <div class="p-total-row" id="pDiscountRow" style="color:#0f766e;">
+              <span>Multi-Day Discount:</span>
+              <strong id="pDiscountAmount">- KSh 0</strong>
+            </div>
+            <div class="p-total-row" id="pCrewRow">
+              <span>Crew / Assistant:</span>
+              <strong id="pCrewAmount">KSh 0</strong>
+            </div>
+            <div class="p-total-row" id="pWaiverRow">
+              <span>Equipment Waiver (8%):</span>
+              <strong id="pWaiverAmount">KSh 0</strong>
+            </div>
+            <div class="p-total-row grand">
+              <span>Total Proforma (KSh):</span>
+              <strong id="pGrandTotal">KSh 0</strong>
+            </div>
+          </div>
+
+          <!-- Security Safeguards & Live QR Seal -->
+          <div class="p-security-box">
+            <div class="p-security-text">
+              <h5>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                OFFICIAL MPESA PAYMENT SAFEGUARD &amp; ANTI-FRAUD SEAL
+              </h5>
+              <p>
+                <strong>Authorized Safaricom Till No: 582910 (Apex Cine Rentals EA Ltd).</strong><br>
+                Never send deposit funds to personal numbers. Scan this QR code with any smartphone camera to verify this quotation on the registered server.
+              </p>
+            </div>
+            <div class="p-qr-holder" id="proformaQrCode">
+              <!-- QR generated here -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-foot">
+        <div style="font-size:12.5px; color:var(--text-muted);">
+          Generated via CineEquip Pro Engine v4.2
+        </div>
+        <div style="display:flex; gap:10px;">
+          <button type="button" class="btn-secondary" onclick="downloadProformaPdf()">
+            📥 Download Proforma PDF
+          </button>
+          <button type="button" class="btn-primary" onclick="sendWhatsAppHold()">
+            💬 Send Quote to WhatsApp Desk
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. AGENCY VALUE PROPOSITION & CLIENT DEMO SECTION -->
+  <section class="agency-explainer" id="agencyInfo">
+    <div class="agency-explainer-card">
+      <div class="agency-pitch">
+        <div class="hero-tag">💼 Commercial Tech Agency Solution</div>
+        <h3>Own This Quotation &amp; Dispatch Engine For Your Business</h3>
+        <p>
+          Are your front-desk coordinators and sales reps wasting 15+ hours every week manually calculating gear packages, chasing deposits, and typing out rates on WhatsApp?
+        </p>
+        <ul class="agency-checklist">
+          <li>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            <span><strong>Zero Manual Typing:</strong> Clients pick camera rigs, AV setups, or tents directly on your website.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            <span><strong>Instant Authenticated Proformas:</strong> Formatted with your official Till, deposit rules, and QR safeguards.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            <span><strong>Ready in 5 Days:</strong> We brand it with your logo, your specific inventory rates, and host it on your custom domain.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="agency-contact-box">
+        <h4>Schedule a 10-Minute Walkthrough</h4>
+        <p>See what your specific rental fleet or event catalogue looks like running on this engine.</p>
+        <a href="https://wa.me/254790048905?text=Hello%20Agency%20Team%2C%20I%20saw%20the%20CineEquip%20Quotation%20Engine%20demo%20and%20want%20to%20discuss%20deploying%20it%20for%20our%20rental%20business." target="_blank" class="btn-primary" style="display:inline-flex; text-decoration:none; justify-content:center; width:100%;">
+          💬 WhatsApp the Agency Team
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- JAVASCRIPT ENGINE -->
+  <script>
+    // 1. GEAR INVENTORY DATABASE (Tailored for Kenyan Film & AV Market)
+    const GEAR_CATALOG = [
+      {
+        id: 'fx6',
+        category: 'camera',
+        badge: 'Top Pick',
+        title: 'Sony FX6 Cinema Line Full-Frame Kit',
+        specs: '4K 120fps, Dual Base ISO 800/12800, 15+ stops dynamic range, Electronic Variable ND, S-Cinetone.',
+        includes: 'Includes: 2x 160GB CFexpress Type-A, 2x BP-U60 Batteries, Dual Charger, Top Audio Handle.',
+        rate: 15000,
+        iconSvg: '<path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>'
+      },
+      {
+        id: 'fx3',
+        category: 'camera',
+        badge: 'Run & Gun',
+        title: 'Sony FX3 Cinema Rig + Cage',
+        specs: 'Full-Frame 4K, Active Cooling, In-Body Image Stabilization (IBIS), Dual XLR inputs, SmallRig cage.',
+        includes: 'Includes: 3x NP-FZ100 batteries, 128GB V90 SD card, NATO top handle, charger.',
+        rate: 8500,
+        iconSvg: '<path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>'
+      },
+      {
+        id: 'komodo',
+        category: 'camera',
+        badge: 'RED Cinema',
+        title: 'RED Komodo 6K Production Package',
+        specs: '6K Super35 Global Shutter Sensor, REDCODE RAW, Canon RF mount, SmallHD monitor rig.',
+        includes: 'Includes: 2x 512GB CFast 2.0 cards, V-mount battery plate, 2x 98Wh V-mounts, AC power.',
+        rate: 22000,
+        iconSvg: '<path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>'
+      },
+      {
+        id: 'bmpcc6k',
+        category: 'camera',
+        badge: 'Indie Film',
+        title: 'Blackmagic Pocket Cinema 6K Pro',
+        specs: '6K Super35 HDR sensor, Built-in ND filters, Dual native ISO, Tilta full camera cage.',
+        includes: 'Includes: 1TB Samsung T7 SSD, 4x NP-F570 batteries, D-tap power cable, charger.',
+        rate: 7000,
+        iconSvg: '<path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>'
+      },
+      {
+        id: 'gm2470',
+        category: 'lens',
+        badge: 'G-Master',
+        title: 'Sony FE 24-70mm f/2.8 GM II Zoom',
+        specs: 'The industry-standard flagship standard zoom. Ultra-fast XD Linear autofocus, compact lightweight.',
+        includes: 'Includes: Front/rear caps, protective UV filter, lens hood, padded case.',
+        rate: 3500,
+        iconSvg: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>'
+      },
+      {
+        id: 'gm70200',
+        category: 'lens',
+        badge: 'G-Master',
+        title: 'Sony FE 70-200mm f/2.8 GM OSS II',
+        specs: 'Premium telephoto cine zoom with Optical SteadyShot. Crisp edge-to-edge resolution at f/2.8.',
+        includes: 'Includes: Tripod collar, reversible hood with filter window, flight pouch.',
+        rate: 4000,
+        iconSvg: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>'
+      },
+      {
+        id: 'dzofilm',
+        category: 'lens',
+        badge: 'Cine Set',
+        title: 'DZOFilm Vespid Prime 5-Lens Set',
+        specs: '25mm, 35mm, 50mm, 75mm, 100mm T2.1 cine primes. Neutral color balance, smooth 270° focus throw.',
+        includes: 'Includes: Hard flight pelican case, PL and EF interchangeable mounts.',
+        rate: 14000,
+        iconSvg: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="7"/>'
+      },
+      {
+        id: 'aputure600d',
+        category: 'lighting',
+        badge: 'Heavy Light',
+        title: 'Aputure LS 600d Pro Daylight LED',
+        specs: '600W point-source daylight monster (equivalent to 1200W HMI). Weather-resistant, Bowens mount.',
+        includes: 'Includes: Control box, hyper reflector, Light Dome III 35-inch softbox, rolling case.',
+        rate: 6500,
+        iconSvg: '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>'
+      },
+      {
+        id: 'nanlite300b',
+        category: 'lighting',
+        badge: 'Bi-Color',
+        title: 'Nanlite Forza 300B II Bi-Color LED',
+        specs: '2700K–6500K CCT range, CRI 96, TLCI 97. Quiet fan modes for dialogue shoots.',
+        includes: 'Includes: Standard reflector, power brick, Bowens speedring, carry bag.',
+        rate: 4500,
+        iconSvg: '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>'
+      },
+      {
+        id: 't4ctubes',
+        category: 'lighting',
+        badge: 'RGBWW Tubes',
+        title: 'Amaran T4c RGBWW 4-Foot Tube 4-Pack',
+        specs: 'Full RGB color tuning, pixel effects, built-in rechargeable battery grip, magnetic mounts.',
+        includes: 'Includes: 4x 4ft tubes, 4x battery grips, 4x honeycomb grids, AC adapters, case.',
+        rate: 5500,
+        iconSvg: '<rect x="6" y="2" width="12" height="20" rx="2"/>'
+      },
+      {
+        id: 'ewdp',
+        category: 'audio',
+        badge: 'Wireless',
+        title: 'Sennheiser EW-DP Digital Wireless Lav Kit',
+        specs: 'Digital UHF system, 134dB input dynamic range, magnetic receiver mount, Bluetooth sync.',
+        includes: 'Includes: ME 2 omni lavalier mic, bodypack transmitter, camera receiver, 3.5mm/XLR cables.',
+        rate: 3000,
+        iconSvg: '<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>'
+      },
+      {
+        id: 'rodewireless',
+        category: 'audio',
+        badge: 'Dual Mic',
+        title: 'Rode Wireless PRO Dual Channel Set',
+        specs: '32-bit float internal onboard recording, timecode sync, 2 transmitters, smart gain assist.',
+        includes: 'Includes: 2x Lavalier II mics, charging case, magnetic clips, windshields.',
+        rate: 2500,
+        iconSvg: '<rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="12" cy="12" r="3"/>'
+      },
+      {
+        id: 'mixpre6',
+        category: 'audio',
+        badge: 'Pro Audio',
+        title: 'Sound Devices MixPre-6 II 32-Bit Recorder',
+        specs: '4 ultra-low-noise Kashmir preamps, 32-bit float recording, timecode I/O, USB interface.',
+        includes: 'Includes: Sennheiser MKH416 shotgun mic, K-Tek carbon boom pole, Rycote blimp.',
+        rate: 7000,
+        iconSvg: '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>'
+      },
+      {
+        id: 'rs3pro',
+        category: 'drone',
+        badge: 'Gimbal',
+        title: 'DJI Ronin RS3 Pro Gimbal Combo',
+        specs: 'Automated axis locks, 4.5kg tested payload, carbon fiber arms, LiDAR range finder support.',
+        includes: 'Includes: Focus motor, Ronin image transmitter, briefcase handle, extended grip.',
+        rate: 4500,
+        iconSvg: '<circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="6" y1="12" x2="18" y2="12"/>'
+      },
+      {
+        id: 'mavic3cine',
+        category: 'drone',
+        badge: '4K Aerial',
+        title: 'DJI Mavic 3 Pro Cine Drone Package',
+        specs: 'Triple-camera Hasselblad system, Apple ProRes 422 HQ, 1TB internal SSD, 43min flight time.',
+        includes: 'Includes: DJI RC Pro controller, 3x Intelligent Flight Batteries, ND filter set, hard case.',
+        rate: 20000,
+        iconSvg: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>'
+      }
+    ];
+
+    // Selected Items State: { itemId: quantity }
+    let selectedGear = {
+      'fx6': 1,
+      'gm2470': 1,
+      'aputure600d': 1
+    };
+
+    // 2. RENDER GEAR CATALOG
+    function renderCatalog(filter = 'all') {
+      const container = document.getElementById('gearContainer');
+      container.innerHTML = '';
+
+      GEAR_CATALOG.forEach(item => {
+        if (filter !== 'all' && item.category !== filter) return;
+
+        const isSelected = !!selectedGear[item.id];
+        const qty = selectedGear[item.id] || 0;
+
+        const card = document.createElement('div');
+        card.className = `gear-card ${isSelected ? 'selected' : ''}`;
+        card.id = `card-${item.id}`;
+
+        card.innerHTML = `
+          <div class="gear-card-badge">${item.badge}</div>
+          <div class="gear-img-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              ${item.iconSvg}
+            </svg>
+          </div>
+          <div class="gear-card-body">
+            <h3 class="gear-title">${item.title}</h3>
+            <p class="gear-specs">${item.specs}</p>
+            <div class="gear-includes">${item.includes}</div>
+            
+            <div class="gear-footer">
+              <div class="price-box">
+                <div class="rate">Ksh ${item.rate.toLocaleString()}</div>
+                <div class="unit">per shoot day</div>
+              </div>
+              
+              <button type="button" class="btn-add-gear" onclick="addGear('${item.id}')">
+                <span>+ Add Gear</span>
+              </button>
+
+              <div class="qty-stepper">
+                <button type="button" class="qty-btn" onclick="decreaseQty('${item.id}')">−</button>
+                <span class="qty-value" id="qty-${item.id}">${qty}</span>
+                <button type="button" class="qty-btn" onclick="increaseQty('${item.id}')">+</button>
+              </div>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // 3. SELECTION & QUANTITY HANDLERS
+    function addGear(id) {
+      selectedGear[id] = 1;
+      updateCardUI(id);
+      updateCalculations();
+    }
+
+    function increaseQty(id) {
+      selectedGear[id] = (selectedGear[id] || 0) + 1;
+      updateCardUI(id);
+      updateCalculations();
+    }
+
+    function decreaseQty(id) {
+      if (selectedGear[id] > 1) {
+        selectedGear[id] -= 1;
+      } else {
+        delete selectedGear[id];
+      }
+      updateCardUI(id);
+      updateCalculations();
+    }
+
+    function updateCardUI(id) {
+      const card = document.getElementById(`card-${id}`);
+      if (!card) return;
+      const qtyEl = document.getElementById(`qty-${id}`);
+      const qty = selectedGear[id] || 0;
+
+      if (qty > 0) {
+        card.classList.add('selected');
+        if (qtyEl) qtyEl.textContent = qty;
+      } else {
+        card.classList.remove('selected');
+      }
+    }
+
+    function filterCatalog(category, btn) {
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCatalog(category);
+    }
+
+    // 4. PRICING & CALCULATION ENGINE
+    function calculateTotals() {
+      const days = parseInt(document.getElementById('rentalDuration').value, 10) || 1;
+      const crewDailyRate = parseFloat(document.getElementById('crewAddon').value) || 0;
+      const waiverRate = parseFloat(document.getElementById('waiverPlan').value) || 0;
+
+      let grossGearSubtotal = 0;
+      let totalItemsCount = 0;
+      let lineItems = [];
+
+      for (const [id, qty] of Object.entries(selectedGear)) {
+        const item = GEAR_CATALOG.find(g => g.id === id);
+        if (item) {
+          const itemTotal = item.rate * qty * days;
+          grossGearSubtotal += itemTotal;
+          totalItemsCount += qty;
+          lineItems.push({
+            title: item.title,
+            qty: qty,
+            dailyRate: item.rate,
+            days: days,
+            total: itemTotal
+          });
+        }
+      }
+
+      // Multi-Day Discount Matrix
+      let discountPercent = 0;
+      if (days >= 7) {
+        discountPercent = 0.25; // 25% weekly discount
+      } else if (days >= 3) {
+        discountPercent = 0.15; // 15% discount for 3+ days
+      }
+
+      const discountAmount = Math.round(grossGearSubtotal * discountPercent);
+      const discountedGearSubtotal = grossGearSubtotal - discountAmount;
+
+      const crewTotal = crewDailyRate * days;
+      const waiverAmount = Math.round(discountedGearSubtotal * waiverRate);
+      const grandTotal = discountedGearSubtotal + crewTotal + waiverAmount;
+
+      return {
+        days,
+        totalItemsCount,
+        grossGearSubtotal,
+        discountPercent,
+        discountAmount,
+        discountedGearSubtotal,
+        crewTotal,
+        waiverAmount,
+        grandTotal,
+        lineItems
+      };
+    }
+
+    function updateCalculations() {
+      const calc = calculateTotals();
+
+      // Update bottom floating bar
+      document.getElementById('summaryItemCount').textContent = `${calc.totalItemsCount} ${calc.totalItemsCount === 1 ? 'Item' : 'Items'}`;
+      document.getElementById('summaryDays').textContent = `${calc.days} ${calc.days === 1 ? 'Shoot Day' : 'Shoot Days'}`;
+      document.getElementById('summaryGrandTotal').textContent = `Ksh ${calc.grandTotal.toLocaleString()}`;
+
+      // Update Proforma details if modal is open
+      updateProformaDetails();
+    }
+
+    // 5. UPDATE PROFORMA SHEET DOM
+    function updateProformaDetails() {
+      const calc = calculateTotals();
+      const clientName = document.getElementById('clientNameInput').value || 'Commercial Client';
+
+      document.getElementById('pClientNameDisplay').textContent = clientName;
+      document.getElementById('pDurationDisplay').textContent = `${calc.days} Shoot ${calc.days === 1 ? 'Day' : 'Days'}`;
+
+      const crewSelect = document.getElementById('crewAddon');
+      const selectedCrewText = crewSelect.options[crewSelect.selectedIndex].text.split('(')[0];
+      document.getElementById('pCrewDisplay').textContent = selectedCrewText;
+
+      // Render Table Rows
+      const tbody = document.getElementById('pTableBody');
+      tbody.innerHTML = '';
+
+      if (calc.lineItems.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:#94a3b8;">No equipment selected yet. Add cameras, lenses, or lighting from catalog.</td></tr>`;
+      } else {
+        calc.lineItems.forEach(line => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><strong>${line.title}</strong></td>
+            <td style="text-align:center;">${line.qty}</td>
+            <td style="text-align:right;">KSh ${line.dailyRate.toLocaleString()}</td>
+            <td style="text-align:center;">${line.days}</td>
+            <td style="text-align:right; font-weight:700;">KSh ${line.total.toLocaleString()}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      // Totals Box
+      document.getElementById('pGrossSubtotal').textContent = `KSh ${calc.grossGearSubtotal.toLocaleString()}`;
+
+      const discountRow = document.getElementById('pDiscountRow');
+      if (calc.discountAmount > 0) {
+        discountRow.style.display = 'flex';
+        document.getElementById('pDiscountAmount').textContent = `- KSh ${calc.discountAmount.toLocaleString()} (${calc.discountPercent * 100}% off)`;
+      } else {
+        discountRow.style.display = 'none';
+      }
+
+      const crewRow = document.getElementById('pCrewRow');
+      if (calc.crewTotal > 0) {
+        crewRow.style.display = 'flex';
+        document.getElementById('pCrewAmount').textContent = `KSh ${calc.crewTotal.toLocaleString()}`;
+      } else {
+        crewRow.style.display = 'none';
+      }
+
+      const waiverRow = document.getElementById('pWaiverRow');
+      if (calc.waiverAmount > 0) {
+        waiverRow.style.display = 'flex';
+        document.getElementById('pWaiverAmount').textContent = `KSh ${calc.waiverAmount.toLocaleString()}`;
+      } else {
+        waiverRow.style.display = 'none';
+      }
+
+      document.getElementById('pGrandTotal').textContent = `KSh ${calc.grandTotal.toLocaleString()}`;
+
+      // Generate Live Security QR Code
+      generateSecurityQr(calc.grandTotal);
+    }
+
+    // 6. QR CODE GENERATOR (Live Proforma Verification)
+    function generateSecurityQr(total) {
+      const qrContainer = document.getElementById('proformaQrCode');
+      qrContainer.innerHTML = '';
+
+      const verificationPayload = JSON.stringify({
+        ref: 'ACR-2026-8941',
+        till: '582910',
+        authorized_account: 'APEX CINE RENTALS EA',
+        amount_ksh: total,
+        status: 'VERIFIED_GENUINE_PROFORMA',
+        timestamp: new Date().toISOString()
+      });
+
+      if (typeof QRCode !== 'undefined') {
+        new QRCode(qrContainer, {
+          text: verificationPayload,
+          width: 68,
+          height: 68,
+          colorDark: '#0f766e',
+          colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.M
+        });
+      }
+    }
+
+    // 7. MODAL CONTROLS
+    function openProformaModal() {
+      updateProformaDetails();
+      document.getElementById('proformaModal').classList.add('open');
+    }
+
+    function closeProformaModal() {
+      document.getElementById('proformaModal').classList.remove('open');
+    }
+
+    // 8. PDF DOWNLOAD HANDLER
+    function downloadProformaPdf() {
+      const element = document.getElementById('printableProforma');
+      const opt = {
+        margin: [10, 10, 10, 10],
+        filename: 'Apex_Cine_Proforma_ACR-2026-8941.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      if (typeof html2pdf !== 'undefined') {
+        html2pdf().set(opt).from(element).save();
+      } else {
+        window.print();
+      }
+    }
+
+    // 9. WHATSAPP DISPATCH HANDLER (Pre-fills equipment reservation for counter desk)
+    function sendWhatsAppHold() {
+      const calc = calculateTotals();
+      const clientName = document.getElementById('clientNameInput').value || 'Client';
+
+      let itemsText = '';
+      calc.lineItems.forEach(item => {
+        itemsText += `• ${item.qty}x ${item.title} (${item.days}d) - KSh ${item.total.toLocaleString()}\n`;
+      });
+
+      const message = 
+`*NEW EQUIPMENT DISPATCH & PROFORMA HOLD*
+----------------------------------------
+*Client / Production:* ${clientName}
+*Shoot Duration:* ${calc.days} Day(s)
+*Quotation Ref:* ACR-2026-8941
+
+*Selected Gear List:*
+${itemsText}
+*Estimated Grand Total:* KSh ${calc.grandTotal.toLocaleString()}
+*Safeguard Till:* 582910 (Apex Cine Rentals EA)
+----------------------------------------
+_Please confirm gear availability and issue pickup lock._`;
+
+      const encoded = encodeURIComponent(message);
+      window.open(`https://wa.me/254790048905?text=${encoded}`, '_blank');
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCatalog();
+      updateCalculations();
+    });
+  </script>
+</body>
+</html>
