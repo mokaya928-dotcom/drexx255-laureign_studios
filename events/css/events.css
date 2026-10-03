@@ -220,9 +220,9 @@ h1, h2, h3, h4 {
 .nav-in {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 30px var(--pad) 20px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  padding: 24px var(--pad) 20px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   transition: padding .35s;
 }
@@ -239,24 +239,41 @@ h1, h2, h3, h4 {
   padding: 16px var(--pad);
 }
 
-.nav .links {
+.nav-right {
   display: flex;
-  gap: 30px;
-  font-size: .88rem;
-  color: #fff;
-  font-weight: 500;
-  letter-spacing: .02em;
+  align-items: center;
+  gap: 26px;
 }
 
-.nav .links a {
-  position: relative;
-  opacity: .85;
+.nav-btn-link {
+  font-size: .95rem;
+  font-weight: 500;
+  letter-spacing: .03em;
+  color: #fff;
+  opacity: .9;
+  text-decoration: none;
   transition: opacity .2s, color .2s;
 }
 
-.nav .links a:hover {
+.nav-btn-link:hover {
   opacity: 1;
   color: var(--yellow-bright);
+}
+
+.nav.solid .nav-btn-link {
+  color: var(--bone);
+}
+
+.nav.solid .nav-btn-link:hover {
+  color: var(--gold);
+}
+
+.nav-btn-cta {
+  padding: 11px 24px;
+  font-size: .84rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .nav .logo {
@@ -430,23 +447,48 @@ h1, h2, h3, h4 {
 .hero-slides {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+  background: #090A10;
 }
 
 .hero-slide {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 1.2s ease-in-out;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  will-change: opacity;
 }
 
+/* Retains 100% opacity underneath during crossfade to eliminate black gaps */
+.hero-slide.prev-active {
+  opacity: 1;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Smoothly fades in on top of the previous slide */
 .hero-slide.active {
   opacity: 1;
+  z-index: 2;
+  pointer-events: auto;
 }
 
 .hero-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 35%;
+  transform: scale(1);
+  transition: transform 6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
+  display: block;
+}
+
+.hero-slide.active img {
+  transform: scale(1.045);
 }
 
 .hero-slide::after {
@@ -454,6 +496,8 @@ h1, h2, h3, h4 {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(9,10,16,.3) 0%, rgba(9,10,16,.15) 40%, rgba(9,10,16,.7) 80%, rgba(9,10,16,.95) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .hero-frame {
@@ -630,7 +674,7 @@ section {
    ============================================================ */
 .sgrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
 
@@ -979,6 +1023,32 @@ section {
   box-shadow: 0 4px 14px rgba(58, 91, 165, .25);
 }
 
+.chip-f.chip-book {
+  border-style: dashed;
+  border-color: rgba(58, 91, 165, .4);
+  color: var(--bone);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chip-f.chip-book:hover {
+  background: rgba(58, 91, 165, .08);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.chip-f.chip-book .book-tag {
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  background: rgba(58, 91, 165, .14);
+  color: var(--gold);
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
 .masonry {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1037,6 +1107,9 @@ section {
 .hausal-vm-wrap {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
   margin: 44px 0 6px;
 }
 
@@ -1049,11 +1122,11 @@ section {
   color: #fff;
   border: 0;
   border-radius: var(--r-sm);
-  padding: 16px 44px;
+  padding: 16px 40px;
   font-family: var(--serif);
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: .16em;
+  letter-spacing: .14em;
   text-transform: uppercase;
   box-shadow: 0 3px 14px rgba(30, 52, 96, .45);
   transition: filter .25s ease, letter-spacing .25s ease, box-shadow .25s ease;
@@ -1061,8 +1134,21 @@ section {
 
 .hausal-vm:hover {
   filter: brightness(1.08);
-  letter-spacing: .2em;
+  letter-spacing: .18em;
   box-shadow: 0 6px 20px rgba(30, 52, 96, .55);
+}
+
+.hausal-return-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.hausal-return-btn:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45) !important;
 }
 
 .hausal-vm svg {
@@ -1074,6 +1160,74 @@ section {
 
 .hausal-vm.is-open svg {
   transform: rotate(180deg);
+}
+
+/* ============================================================
+   GLOBAL BACK TO TOP BUTTON (Whole Website)
+   Stacked neatly right above the floating WhatsApp button
+   ============================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 92px; /* Sits cleanly above the WhatsApp button at bottom: 24px */
+  right: 24px;
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 18px;
+  height: 46px;
+  background: rgba(18, 30, 56, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 24px rgba(10, 20, 40, .45);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+  transition: opacity .3s ease, transform .3s ease, visibility .3s ease, background .25s ease, box-shadow .25s ease;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: linear-gradient(135deg, #2e4f95 0%, #466db8 100%);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(10, 20, 40, .6);
+}
+
+.back-to-top svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  transition: transform .25s ease;
+}
+
+.back-to-top:hover svg {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .back-to-top {
+    right: 18px;
+    bottom: 84px;
+    height: 42px;
+    padding: 9px 14px;
+    font-size: 11px;
+  }
 }
 
 /* ============================================================
@@ -1707,21 +1861,67 @@ footer {
   position: fixed;
   inset: 0;
   z-index: 120;
-  background: rgba(5, 5, 7, .94);
+  background: rgba(5, 5, 7, .96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: none;
   align-items: center;
   justify-content: center;
+  padding: 24px 20px;
 }
 
 .lb.open {
   display: flex;
 }
 
+.lb-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
 .lb img {
-  max-width: 88vw;
-  max-height: 84vh;
+  max-width: 86vw;
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   border-radius: var(--r-md);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, .8);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, .85);
+  transition: transform .25s ease;
+}
+
+.lb-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 86vw;
+  margin-top: 14px;
+  gap: 16px;
+}
+
+.lb-caption {
+  font-family: var(--sans);
+  font-size: .95rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, .9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lb-counter {
+  font-family: var(--sans);
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: rgba(255, 255, 255, .6);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .lb .x {
@@ -1735,6 +1935,7 @@ footer {
   font-size: 2.6rem;
   opacity: .8;
   line-height: 1;
+  z-index: 10;
 }
 
 .lb .x:hover {
@@ -1753,6 +1954,7 @@ footer {
   padding: 20px;
   opacity: .8;
   line-height: 1;
+  z-index: 10;
 }
 
 .lb .pv:hover, .lb .nx:hover {
@@ -1761,6 +1963,24 @@ footer {
 
 .lb .pv { left: 16px; }
 .lb .nx { right: 16px; }
+
+@media (max-width: 600px) {
+  .lb {
+    padding: 16px 8px;
+  }
+  .lb img {
+    max-width: 94vw;
+    max-height: 72vh;
+  }
+  .lb-meta {
+    max-width: 94vw;
+    margin-top: 10px;
+    font-size: .82rem;
+  }
+  .lb .pv { left: 4px; padding: 10px; font-size: 2.4rem; }
+  .lb .nx { right: 4px; padding: 10px; font-size: 2.4rem; }
+  .lb .x { top: 16px; right: 18px; font-size: 2.2rem; }
+}
 
 /* ============================================================
    BOOKING MODAL (Step by Step)
@@ -2026,11 +2246,12 @@ footer {
 }
 
 @media (max-width: 900px) {
-  :root { --pad: 24px; }
-  .nav .links, .nav .booknav, .nav .navvisit { display: none; }
+  :root { --pad: 20px; }
+  .nav-btn-link, .nav-btn-cta, .nav .links, .nav .booknav, .nav .navvisit { display: none; }
   .burger { display: flex; }
-  .nav-in { grid-template-columns: auto 1fr auto; }
+  .nav-in { display: flex; justify-content: space-between; align-items: center; padding: 14px var(--pad); }
   .nav .logo { text-align: left; }
+  .nav .logo img { height: 44px; }
   .triptych { grid-template-columns: 1fr 1fr 1fr; }
   .triptych img { height: 280px; }
   .intro-cols { grid-template-columns: 1fr; gap: 20px; }
@@ -2041,13 +2262,51 @@ footer {
   .rgrid { grid-template-columns: 1fr; }
   .fgrid { grid-template-columns: 1fr 1fr; gap: 30px; }
   .blk { padding: 70px 0; }
-  .hero { height: auto; min-height: 0; }
-  .hero-slides { position: relative; height: 60vh; min-height: 380px; }
-  .hero-slide::after { background: linear-gradient(180deg, rgba(9,10,16,.2) 0%, rgba(9,10,16,.05) 30%, rgba(9,10,16,.4) 60%, rgba(9,10,16,.85) 82%, #090a10 100%); }
-  .hero-content { position: relative; padding: 30px 24px 50px; }
-  .hero h1 { font-size: clamp(2.6rem, 11vw, 3.8rem); }
-  .hero .sub { font-size: 1rem; max-width: none; }
-  .hero-frame::after { left: var(--pad); height: 40px; }
+  
+  /* Mobile Hero: Compact landscape preview showing the full uncropped moments without blank corners */
+  .hero {
+    height: auto;
+    min-height: 0;
+    padding-top: 76px;
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-slides {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    height: clamp(230px, 60vw, 380px);
+    overflow: hidden;
+  }
+  @supports (aspect-ratio: 3 / 2) {
+    .hero-slides { height: auto; }
+  }
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-slide.active img {
+    transform: none !important;
+  }
+  .hero-slide::after {
+    background: linear-gradient(180deg, rgba(9,10,16,.15) 0%, transparent 20%, transparent 75%, rgba(9,10,16,.5) 100%);
+  }
+  .hero-frame { display: none; }
+  .hero-content {
+    position: relative;
+    padding: 24px var(--pad) 44px;
+    z-index: 5;
+  }
+  .hero h1 { font-size: clamp(2.2rem, 8.5vw, 3.2rem); }
+  .hero .sub { font-size: 0.95rem; max-width: none; line-height: 1.55; }
   .band { padding: 80px 0; }
   .band-in { padding: 36px 20px; }
   .band-quote { font-size: 4rem; }

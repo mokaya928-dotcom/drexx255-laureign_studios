@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laureighn Events | Luxury Event Cinema, Corporate Summits &amp; Galas · Kenya</title>
-  <meta name="description" content="Laureighn Events: luxury corporate summits, milestone birthday celebrations, academic graduations, and high-profile galas across Kakamega, Nairobi and Kenya. Book your event on WhatsApp.">
+  <title>Laureighn Events | Weddings, Traditional Ruracio &amp; Koito, Birthdays, Graduations, Funerals &amp; Corporate Events · Kenya</title>
+  <meta name="description" content="Kenya's dedicated event photography &amp; videography team. Covering weddings, pre-weddings, traditional ruracio &amp; koito rites, birthday parties, graduation celebrations, respectful funerals &amp; corporate summits across Kakamega, Nairobi, and all 47 counties.">
   
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Laureighn Events · Where Every Celebration Becomes Art">
-  <meta property="og:description" content="Luxury event cinema, corporate summits, milestone celebrations, and academic galas across Kenya. Book your event on WhatsApp.">
-  <meta property="og:image" content="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg">
+  <meta property="og:title" content="Laureighn Events · Weddings, Ruracio, Celebrations &amp; Events in Kenya">
+  <meta property="og:description" content="From weddings and traditional ruracio &amp; koito dowry ceremonies, to birthday bashes, graduation parties, dignified funerals, and corporate events across Kakamega, Nairobi, and Kenya.">
+  <meta property="og:image" content="WEBSITE CONTENT/weddings/cover.jpeg">
   <meta name="theme-color" content="#1E3460">
 
   <!-- Favicon -->
@@ -21,32 +21,31 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Clean Editorial Stylesheet (Haus of AL Studios Style) -->
-  <link rel="stylesheet" href="css/events.css?v=20261003_v4">
+  <!-- Preload Landing Page Hero Wedding Cover Images for Zero Black Space -->
+  <link rel="preload" as="image" href="WEBSITE CONTENT/weddings/cover.jpeg" fetchpriority="high">
+  <link rel="preload" as="image" href="WEBSITE CONTENT/weddings/cover (2).jpeg">
+  <link rel="preload" as="image" href="WEBSITE CONTENT/weddings/cover (3).jpeg">
+  <link rel="preload" as="image" href="WEBSITE CONTENT/weddings/cover (4).jpeg">
+
+  <!-- Clean Editorial Stylesheet -->
+  <link rel="stylesheet" href="css/events.css?v=20261003_v8">
 </head>
 <body class="home">
 
-  <!-- NAVIGATION -->
+  <!-- NAVIGATION (Logo on Left, Only 3 Main Buttons on Right) -->
   <nav class="nav" id="nav">
     <div class="nav-in">
-      <div class="links">
-        <a href="#services"><span>Events</span></a>
-        <a href="#about"><span>The Cinema</span></a>
-        <a href="#portfolio"><span>Portfolio</span></a>
-        <a href="#packages"><span>Rate Card</span></a>
-        <a href="#how"><span>How It Works</span></a>
-      </div>
       <a href="#" class="logo">
-        <img class="logo-dark" src="images/logo.png" alt="Laureighn Events Crest">
+        <img class="logo-dark" src="images/logo.png" alt="Laureighn Events Logo">
         <div class="logo-text">
           <span class="brand-title">Laureighn</span>
           <span class="brand-sub">EVENTS · KENYA</span>
         </div>
       </a>
-      <div class="right">
-        <a href="../packages/index.html" class="navvisit" title="View Laureighn Studios Portrait &amp; Session Packages"><span>Studios Rates</span></a>
-        <a href="#contact" class="navvisit"><span>Contact</span></a>
-        <a href="#" class="booknav" onclick="openBk();return false"><span>Book an Event</span></a>
+      <div class="nav-right">
+        <a href="#portfolio" class="nav-btn-link"><span>Portfolio</span></a>
+        <a href="#packages" class="nav-btn-link"><span>Rate Card</span></a>
+        <a href="#" class="btn btn-pri nav-btn-cta" onclick="openBk();return false"><span>Book an Event</span></a>
         <button class="burger" onclick="document.querySelector('.mmenu').classList.add('open')" aria-label="Toggle navigation">
           <span></span><span></span><span></span>
         </button>
@@ -54,56 +53,51 @@
     </div>
   </nav>
 
-  <!-- MOBILE MENU -->
+  <!-- MOBILE MENU (Clean 3 Main Buttons) -->
   <div class="mmenu">
     <button class="x" onclick="this.parentElement.classList.remove('open')" aria-label="Close menu">&times;</button>
-    <a href="#services" onclick="this.parentElement.classList.remove('open')"><span>Events</span></a>
-    <a href="#about" onclick="this.parentElement.classList.remove('open')"><span>The Cinema</span></a>
     <a href="#portfolio" onclick="this.parentElement.classList.remove('open')"><span>Portfolio</span></a>
     <a href="#packages" onclick="this.parentElement.classList.remove('open')"><span>Rate Card</span></a>
-    <a href="#how" onclick="this.parentElement.classList.remove('open')"><span>How It Works</span></a>
-    <a href="../packages/index.html" onclick="this.parentElement.classList.remove('open')"><span>Studios Rates</span></a>
-    <a href="#contact" onclick="this.parentElement.classList.remove('open')"><span>Contact</span></a>
-    <a href="#" class="btn btn-pri" style="font-size:.88rem;padding:14px 32px" onclick="openBk();this.parentElement.classList.remove('open');return false">
+    <a href="#" class="btn btn-pri" style="font-size:.92rem;padding:14px 36px;margin-top:12px" onclick="openBk();this.parentElement.classList.remove('open');return false">
       <span>Book an Event</span>
     </a>
   </div>
 
-  <!-- HERO (100% Real Event Imagery from WEBSITE CONTENT) -->
+  <!-- HERO (100% Real Kenyan Event Imagery) -->
   <section class="hero">
     <div class="hero-slides" id="heroSlides">
       <div class="hero-slide active">
-        <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg" alt="Laureighn Events Corporate Leadership Summit" style="object-position:50% 25%">
+        <img src="WEBSITE CONTENT/weddings/cover.jpeg" alt="Holy Matrimony Wedding Celebration in Kenya" fetchpriority="high" decoding="async">
       </div>
       <div class="hero-slide">
-        <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2370.jpg" alt="Laureighn Events Milestone Celebration Gala" style="object-position:50% 20%">
+        <img src="WEBSITE CONTENT/weddings/cover (2).jpeg" alt="Romantic Wedding Couple Photography Moments" decoding="async">
       </div>
       <div class="hero-slide">
-        <img src="WEBSITE CONTENT/STUDIO SESSIONS/GRADUATION/LINET 0796300957/_R2A7247.JPG" alt="Laureighn Events Academic Graduation Honours" style="object-position:50% 25%">
+        <img src="WEBSITE CONTENT/weddings/cover (3).jpeg" alt="Luxury Wedding Matrimony &amp; Grand Celebration" decoding="async">
       </div>
       <div class="hero-slide">
-        <img src="WEBSITE CONTENT/STUDIO SESSIONS/FASHION/Lilian folder/3O7A0003.jpg" alt="Laureighn Events Red Carpet Gala Showcase" style="object-position:50% 25%">
+        <img src="WEBSITE CONTENT/weddings/cover (4).jpeg" alt="Joyous Wedding Celebration &amp; Reception Highlights" decoding="async">
       </div>
     </div>
     <div class="hero-frame"></div>
     <div class="hero-content">
       <h1>
-        <span class="word" style="animation-delay:.1s">Where</span>
-        <span class="word it" style="animation-delay:.25s">Every</span>
-        <span class="word" style="animation-delay:.4s">Moment</span><br>
-        <span class="word" style="animation-delay:.55s">Becomes</span>
-        <span class="word it" style="animation-delay:.7s">Art</span>
+        <span class="word" style="animation-delay:.1s">Every</span>
+        <span class="word it" style="animation-delay:.25s">Milestone.</span><br>
+        <span class="word" style="animation-delay:.4s">Every</span>
+        <span class="word it" style="animation-delay:.55s">Tradition.</span><br>
+        <span class="word" style="animation-delay:.7s">Every Celebration.</span>
       </h1>
       <p class="sub word" style="animation-delay:.85s">
-        Luxury event cinema, corporate summits, milestone celebrations, academic graduations, and high-profile galas across Kakamega, Nairobi, and Kenya. Documented with timeless elegance.
+        Kenya's trusted event photography and videography team. From holy matrimony weddings and traditional ruracio &amp; koito rites, to vibrant birthday parties, graduation celebrations, dignified funeral send-offs, and high-impact corporate summits across Kakamega, Nairobi, and all 47 counties.
       </p>
       <div class="cta-row word" style="animation-delay:1s">
         <a href="#" class="btn btn-pri" onclick="openWA();return false">
           <svg class="wa-ic" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.72-1.369A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.315 0-4.458-.764-6.182-2.054l-.344-.262-3.564 1.034 1.079-3.35-.287-.372A9.935 9.935 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
           <span>Book on WhatsApp</span>
         </a>
-        <a href="#portfolio" class="btn btn-ghost">
-          <span>View Event Portfolio</span>
+        <a href="#packages" class="btn btn-ghost">
+          <span>View Event Rates</span>
         </a>
       </div>
     </div>
@@ -112,134 +106,1358 @@
   <!-- MARQUEE STRIP -->
   <div class="marquee">
     <div class="marquee-t">
-      <span>CORPORATE SUMMITS ✦ <b>WOMEN IN BUSINESS GALA</b> ✦ 4K MOTION CINEMA ✦ <b>MILESTONE CELEBRATIONS</b> ✦ KAKAMEGA &amp; NAIROBI ✦ <b>DOCTORATE &amp; ACADEMIC GRADUATIONS</b> ✦ 48-HOUR SNEAK PEEKS ✦ <b>RED CARPET GALAS</b> ✦ VIP BANQUETS ✦</span>
-      <span>CORPORATE SUMMITS ✦ <b>WOMEN IN BUSINESS GALA</b> ✦ 4K MOTION CINEMA ✦ <b>MILESTONE CELEBRATIONS</b> ✦ KAKAMEGA &amp; NAIROBI ✦ <b>DOCTORATE &amp; ACADEMIC GRADUATIONS</b> ✦ 48-HOUR SNEAK PEEKS ✦ <b>RED CARPET GALAS</b> ✦ VIP BANQUETS ✦</span>
+      <span>WEDDINGS &amp; RECEPTIONS ✦ <b>TRADITIONAL RURACIO &amp; KOITO</b> ✦ PRE-WEDDING SHOOTS ✦ <b>BIRTHDAY PARTIES &amp; BASHES</b> ✦ GRADUATION CELEBRATIONS ✦ <b>DIGNIFIED FUNERALS &amp; MEMORIALS</b> ✦ CORPORATE SUMMITS &amp; AGMs ✦ <b>KAKAMEGA · NAIROBI · PAN-KENYA</b> ✦ 48-HOUR SNEAK PEEKS ✦ <b>FULL HD &amp; 4K VIDEO</b> ✦</span>
+      <span>WEDDINGS &amp; RECEPTIONS ✦ <b>TRADITIONAL RURACIO &amp; KOITO</b> ✦ PRE-WEDDING SHOOTS ✦ <b>BIRTHDAY PARTIES &amp; BASHES</b> ✦ GRADUATION CELEBRATIONS ✦ <b>DIGNIFIED FUNERALS &amp; MEMORIALS</b> ✦ CORPORATE SUMMITS &amp; AGMs ✦ <b>KAKAMEGA · NAIROBI · PAN-KENYA</b> ✦ 48-HOUR SNEAK PEEKS ✦ <b>FULL HD &amp; 4K VIDEO</b> ✦</span>
     </div>
   </div>
 
-  <!-- OUR EVENT PRODUCTIONS (100% Real Event Categories from WEBSITE CONTENT) -->
+  <!-- PHOTO GALLERY & EVENT HIGHLIGHTS (Near Top) -->
+  <section class="blk" id="portfolio">
+    <div class="wrap">
+      <div class="sechead">
+        <div>
+          <div class="label reveal">Event Gallery</div>
+          <h2 class="reveal d1">Moments We've Captured</h2>
+        </div>
+        <p class="reveal d2">
+          Explore real photos from recent weddings, traditional dowry ceremonies, birthdays, graduations, and corporate events across Kenya.
+        </p>
+      </div>
+
+      <!-- Event Category Filter Pills (Gallery Filters + Direct Booking for Services) -->
+      <div class="filterbar reveal">
+        <button class="chip-f on" data-cat="all">All Events</button>
+        <button class="chip-f" data-cat="weddings">Weddings</button>
+        <button class="chip-f" data-cat="pre-wedding">Pre-Wedding</button>
+        <button class="chip-f" data-cat="traditional">Traditional (Ruracio &amp; Koito)</button>
+        <button class="chip-f" data-cat="birthdays">Birthday Parties</button>
+        <button class="chip-f" data-cat="corporate">Corporate Events</button>
+        <button class="chip-f" data-cat="funerals">Funerals &amp; Memorials</button>
+        <button class="chip-f chip-book" data-book="Graduation Celebration" title="Book Academic Graduation Coverage"><span>Graduations &amp; Honors</span> <span class="book-tag">Book</span></button>
+        <button class="chip-f chip-book" data-book="Custom Event Production" title="Book Family &amp; Cultural Gathering Coverage"><span>Family Reunions &amp; Cultural Rites</span> <span class="book-tag">Book</span></button>
+      </div>
+
+      <!-- Masonry Grid with 100% Real Event Photos -->
+      <div class="masonry" id="gallery">
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/COVER (2).jpeg" alt="Holy Matrimony Wedding Celebration" loading="lazy">
+          <div class="ov"><span>Holy Matrimony Wedding Celebration</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/cover (3).jpeg" alt="Holy Matrimony Wedding Celebration" loading="lazy">
+          <div class="ov"><span>Holy Matrimony Wedding Celebration</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/cover (4).jpeg" alt="Holy Matrimony Wedding Celebration" loading="lazy">
+          <div class="ov"><span>Holy Matrimony Wedding Celebration</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/cover.jpeg" alt="Holy Matrimony Wedding Celebration" loading="lazy">
+          <div class="ov"><span>Holy Matrimony Wedding Celebration</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/0.jpg" alt="Kenyan Wedding Highlight 5" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 5</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/1 (3).jpeg" alt="Kenyan Wedding Highlight 6" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 6</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/1.jpg" alt="Kenyan Wedding Highlight 7" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 7</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/11 (1).jpeg" alt="Kenyan Wedding Highlight 8" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 8</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/11 (2).jpeg" alt="Kenyan Wedding Highlight 9" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 9</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/11 (3).jpeg" alt="Kenyan Wedding Highlight 10" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 10</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/11.jpg" alt="Kenyan Wedding Highlight 11" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 11</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/2.jpg" alt="Kenyan Wedding Highlight 12" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 12</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/22 (1).jpeg" alt="Kenyan Wedding Highlight 13" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 13</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/22 (4).jpeg" alt="Kenyan Wedding Highlight 14" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 14</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/22 (5).jpeg" alt="Kenyan Wedding Highlight 15" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 15</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/22 (7).jpeg" alt="Kenyan Wedding Highlight 16" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 16</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/22 (9).jpeg" alt="Kenyan Wedding Highlight 17" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 17</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/3.jpg" alt="Kenyan Wedding Highlight 18" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 18</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/33 (10).jpeg" alt="Kenyan Wedding Highlight 19" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 19</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/33 (11).jpeg" alt="Kenyan Wedding Highlight 20" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 20</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/33 (12).jpeg" alt="Kenyan Wedding Highlight 21" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 21</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/33 (13).jpeg" alt="Kenyan Wedding Highlight 22" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 22</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/33 (14).jpeg" alt="Kenyan Wedding Highlight 23" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 23</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/33 (15).jpeg" alt="Kenyan Wedding Highlight 24" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 24</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/33 (16).jpeg" alt="Kenyan Wedding Highlight 25" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 25</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/33 (17).jpeg" alt="Kenyan Wedding Highlight 26" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 26</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/33 (18).jpeg" alt="Kenyan Wedding Highlight 27" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 27</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/33 (19).jpeg" alt="Kenyan Wedding Highlight 28" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 28</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/33 (5).jpeg" alt="Kenyan Wedding Highlight 29" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 29</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/33 (6).jpeg" alt="Kenyan Wedding Highlight 30" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 30</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/33 (7).jpeg" alt="Kenyan Wedding Highlight 31" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 31</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/33 (8).jpeg" alt="Kenyan Wedding Highlight 32" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 32</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/33 (9).jpeg" alt="Kenyan Wedding Highlight 33" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 33</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/5.jpg" alt="Kenyan Wedding Highlight 34" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 34</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/6.jpg" alt="Kenyan Wedding Highlight 35" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 35</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/7.jpg" alt="Kenyan Wedding Highlight 36" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 36</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/8.jpg" alt="Kenyan Wedding Highlight 37" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 37</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/9.jpg" alt="Kenyan Wedding Highlight 38" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 38</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="weddings" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/weddings/S.jpg" alt="Kenyan Wedding Highlight 39" loading="lazy">
+          <div class="ov"><span>Kenyan Wedding Highlight 39</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="traditional" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/koito TRADITONAL WEDDINGS/COVER.webp" alt="Traditional Koito &amp; Ruracio Ceremony" loading="lazy">
+          <div class="ov"><span>Traditional Koito &amp; Ruracio Ceremony</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="traditional" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/koito TRADITONAL WEDDINGS/1791049546594.webp" alt="Cultural Dowry &amp; Elder Blessings 2" loading="lazy">
+          <div class="ov"><span>Cultural Dowry &amp; Elder Blessings 2</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="traditional" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/koito TRADITONAL WEDDINGS/1791056647782.jpeg" alt="Cultural Dowry &amp; Elder Blessings 3" loading="lazy">
+          <div class="ov"><span>Cultural Dowry &amp; Elder Blessings 3</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="traditional" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/koito TRADITONAL WEDDINGS/1791056686547.jpeg" alt="Cultural Dowry &amp; Elder Blessings 4" loading="lazy">
+          <div class="ov"><span>Cultural Dowry &amp; Elder Blessings 4</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="traditional" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/koito TRADITONAL WEDDINGS/1791056707216.jpeg" alt="Cultural Dowry &amp; Elder Blessings 5" loading="lazy">
+          <div class="ov"><span>Cultural Dowry &amp; Elder Blessings 5</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="traditional" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/koito TRADITONAL WEDDINGS/mogeni_1791049491635.webp" alt="Cultural Dowry &amp; Elder Blessings 6" loading="lazy">
+          <div class="ov"><span>Cultural Dowry &amp; Elder Blessings 6</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="traditional" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/koito TRADITONAL WEDDINGS/mogeni_1791049504407.webp" alt="Cultural Dowry &amp; Elder Blessings 7" loading="lazy">
+          <div class="ov"><span>Cultural Dowry &amp; Elder Blessings 7</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="traditional" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/koito TRADITONAL WEDDINGS/top_shooter_maurice_1791049124796.webp" alt="Cultural Dowry &amp; Elder Blessings 8" loading="lazy">
+          <div class="ov"><span>Cultural Dowry &amp; Elder Blessings 8</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="traditional" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/koito TRADITONAL WEDDINGS/top_shooter_maurice_1791049129412.webp" alt="Cultural Dowry &amp; Elder Blessings 9" loading="lazy">
+          <div class="ov"><span>Cultural Dowry &amp; Elder Blessings 9</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="traditional" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/koito TRADITONAL WEDDINGS/top_shooter_maurice_1791049163728.webp" alt="Cultural Dowry &amp; Elder Blessings 10" loading="lazy">
+          <div class="ov"><span>Cultural Dowry &amp; Elder Blessings 10</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="traditional" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/koito TRADITONAL WEDDINGS/What a beautiful Saturday to celebrate love but since my friends are not giving me a wedding (😔 (1).jpg" alt="Cultural Dowry &amp; Elder Blessings 11" loading="lazy">
+          <div class="ov"><span>Cultural Dowry &amp; Elder Blessings 11</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="traditional" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/koito TRADITONAL WEDDINGS/What a beautiful Saturday to celebrate love but since my friends are not giving me a wedding (😔.jpg" alt="Cultural Dowry &amp; Elder Blessings 12" loading="lazy">
+          <div class="ov"><span>Cultural Dowry &amp; Elder Blessings 12</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="pre-wedding" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/pre wedding/cover.JPG" alt="Romantic Pre-Wedding Session" loading="lazy">
+          <div class="ov"><span>Romantic Pre-Wedding Session</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="pre-wedding" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/pre wedding/1791047727654.jpeg" alt="Pre-Wedding Love Story 2" loading="lazy">
+          <div class="ov"><span>Pre-Wedding Love Story 2</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="pre-wedding" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/pre wedding/1791047727654w.jpeg" alt="Pre-Wedding Love Story 3" loading="lazy">
+          <div class="ov"><span>Pre-Wedding Love Story 3</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="pre-wedding" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/pre wedding/17910477276a54.jpeg" alt="Pre-Wedding Love Story 4" loading="lazy">
+          <div class="ov"><span>Pre-Wedding Love Story 4</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="pre-wedding" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/pre wedding/17910478a22819.jpeg" alt="Pre-Wedding Love Story 5" loading="lazy">
+          <div class="ov"><span>Pre-Wedding Love Story 5</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="pre-wedding" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/pre wedding/1791047q727654.jpeg" alt="Pre-Wedding Love Story 6" loading="lazy">
+          <div class="ov"><span>Pre-Wedding Love Story 6</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="pre-wedding" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/pre wedding/IMG_5122.JPG" alt="Pre-Wedding Love Story 7" loading="lazy">
+          <div class="ov"><span>Pre-Wedding Love Story 7</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="pre-wedding" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/pre wedding/IMG_5152.JPG" alt="Pre-Wedding Love Story 8" loading="lazy">
+          <div class="ov"><span>Pre-Wedding Love Story 8</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="pre-wedding" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/pre wedding/IMG_5163.JPG" alt="Pre-Wedding Love Story 9" loading="lazy">
+          <div class="ov"><span>Pre-Wedding Love Story 9</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="pre-wedding" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/pre wedding/IMG_5186.JPG" alt="Pre-Wedding Love Story 10" loading="lazy">
+          <div class="ov"><span>Pre-Wedding Love Story 10</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="pre-wedding" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/pre wedding/IMG_5189.JPG" alt="Pre-Wedding Love Story 11" loading="lazy">
+          <div class="ov"><span>Pre-Wedding Love Story 11</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="pre-wedding" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/pre wedding/IMG_5195.JPG" alt="Pre-Wedding Love Story 12" loading="lazy">
+          <div class="ov"><span>Pre-Wedding Love Story 12</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/cover.jpg" alt="Andrew Milestone Birthday Celebration 1" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 1</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2374.jpg" alt="Andrew Milestone Birthday Celebration 2" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 2</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2432.jpg" alt="Andrew Milestone Birthday Celebration 3" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 3</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg" alt="Andrew Milestone Birthday Celebration 4" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 4</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2467.jpg" alt="Andrew Milestone Birthday Celebration 5" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 5</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2489.jpg" alt="Andrew Milestone Birthday Celebration 6" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 6</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2499.jpg" alt="Andrew Milestone Birthday Celebration 7" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 7</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2531.jpg" alt="Andrew Milestone Birthday Celebration 8" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 8</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2575.jpg" alt="Andrew Milestone Birthday Celebration 9" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 9</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2592.jpg" alt="Andrew Milestone Birthday Celebration 10" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 10</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2621.jpg" alt="Andrew Milestone Birthday Celebration 11" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 11</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2629.jpg" alt="Andrew Milestone Birthday Celebration 12" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 12</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2656.jpg" alt="Andrew Milestone Birthday Celebration 13" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 13</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2668.jpg" alt="Andrew Milestone Birthday Celebration 14" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 14</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2679.jpg" alt="Andrew Milestone Birthday Celebration 15" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 15</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2737.jpg" alt="Andrew Milestone Birthday Celebration 16" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 16</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2760.jpg" alt="Andrew Milestone Birthday Celebration 17" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 17</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2792.jpg" alt="Andrew Milestone Birthday Celebration 18" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 18</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2830.jpg" alt="Andrew Milestone Birthday Celebration 19" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 19</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2845.jpg" alt="Andrew Milestone Birthday Celebration 20" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 20</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2854.jpg" alt="Andrew Milestone Birthday Celebration 21" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 21</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2890.jpg" alt="Andrew Milestone Birthday Celebration 22" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 22</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2908.jpg" alt="Andrew Milestone Birthday Celebration 23" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 23</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2986.jpg" alt="Andrew Milestone Birthday Celebration 24" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 24</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_3011.jpg" alt="Andrew Milestone Birthday Celebration 25" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 25</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_3021.jpg" alt="Andrew Milestone Birthday Celebration 26" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 26</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_3065.jpg" alt="Andrew Milestone Birthday Celebration 27" loading="lazy">
+          <div class="ov"><span>Andrew Milestone Birthday Celebration 27</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/cover (2).JPG" alt="Ariana &amp; Carianah Birthday Party 1" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 1</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/cover.JPG" alt="Ariana &amp; Carianah Birthday Party 2" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 2</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A4982.JPG" alt="Ariana &amp; Carianah Birthday Party 3" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 3</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5079.JPG" alt="Ariana &amp; Carianah Birthday Party 4" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 4</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5090.JPG" alt="Ariana &amp; Carianah Birthday Party 5" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 5</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5116.JPG" alt="Ariana &amp; Carianah Birthday Party 6" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 6</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5119.JPG" alt="Ariana &amp; Carianah Birthday Party 7" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 7</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5158.JPG" alt="Ariana &amp; Carianah Birthday Party 8" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 8</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5161.JPG" alt="Ariana &amp; Carianah Birthday Party 9" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 9</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5186.JPG" alt="Ariana &amp; Carianah Birthday Party 10" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 10</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5190.JPG" alt="Ariana &amp; Carianah Birthday Party 11" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 11</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5229.JPG" alt="Ariana &amp; Carianah Birthday Party 12" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 12</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5240.JPG" alt="Ariana &amp; Carianah Birthday Party 13" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 13</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5394.JPG" alt="Ariana &amp; Carianah Birthday Party 14" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 14</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5520.JPG" alt="Ariana &amp; Carianah Birthday Party 15" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 15</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5575.JPG" alt="Ariana &amp; Carianah Birthday Party 16" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 16</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5594.JPG" alt="Ariana &amp; Carianah Birthday Party 17" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 17</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5607.JPG" alt="Ariana &amp; Carianah Birthday Party 18" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 18</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5655.JPG" alt="Ariana &amp; Carianah Birthday Party 19" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 19</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5674.JPG" alt="Ariana &amp; Carianah Birthday Party 20" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 20</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5728.JPG" alt="Ariana &amp; Carianah Birthday Party 21" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 21</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5739.JPG" alt="Ariana &amp; Carianah Birthday Party 22" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 22</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5772.JPG" alt="Ariana &amp; Carianah Birthday Party 23" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 23</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5781.JPG" alt="Ariana &amp; Carianah Birthday Party 24" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 24</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5826.JPG" alt="Ariana &amp; Carianah Birthday Party 25" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 25</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5842.JPG" alt="Ariana &amp; Carianah Birthday Party 26" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 26</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5869.JPG" alt="Ariana &amp; Carianah Birthday Party 27" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 27</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5919.JPG" alt="Ariana &amp; Carianah Birthday Party 28" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 28</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A5992.JPG" alt="Ariana &amp; Carianah Birthday Party 29" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 29</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A6036.JPG" alt="Ariana &amp; Carianah Birthday Party 30" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 30</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/A.JPG" alt="Ariana &amp; Carianah Birthday Party 31" loading="lazy">
+          <div class="ov"><span>Ariana &amp; Carianah Birthday Party 31</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/cover (2).JPG" alt="Daleyza Joyful Birthday Celebration 1" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 1</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/cover (3).JPG" alt="Daleyza Joyful Birthday Celebration 2" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 2</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/cover (4).JPG" alt="Daleyza Joyful Birthday Celebration 3" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 3</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/cover.JPG" alt="Daleyza Joyful Birthday Celebration 4" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 4</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0033 - Copy.JPG" alt="Daleyza Joyful Birthday Celebration 5" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 5</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0033.JPG" alt="Daleyza Joyful Birthday Celebration 6" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 6</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0035 - Copy.JPG" alt="Daleyza Joyful Birthday Celebration 7" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 7</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0035.JPG" alt="Daleyza Joyful Birthday Celebration 8" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 8</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0037 - Copy.JPG" alt="Daleyza Joyful Birthday Celebration 9" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 9</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0037.JPG" alt="Daleyza Joyful Birthday Celebration 10" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 10</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0059 - Copy.JPG" alt="Daleyza Joyful Birthday Celebration 11" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 11</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0059.JPG" alt="Daleyza Joyful Birthday Celebration 12" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 12</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0117 - Copy.JPG" alt="Daleyza Joyful Birthday Celebration 13" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 13</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0117.JPG" alt="Daleyza Joyful Birthday Celebration 14" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 14</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0196 - Copy.JPG" alt="Daleyza Joyful Birthday Celebration 15" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 15</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0196.JPG" alt="Daleyza Joyful Birthday Celebration 16" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 16</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0203.JPG" alt="Daleyza Joyful Birthday Celebration 17" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 17</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0215.JPG" alt="Daleyza Joyful Birthday Celebration 18" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 18</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0275.JPG" alt="Daleyza Joyful Birthday Celebration 19" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 19</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0285.JPG" alt="Daleyza Joyful Birthday Celebration 20" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 20</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0391.JPG" alt="Daleyza Joyful Birthday Celebration 21" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 21</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0435.JPG" alt="Daleyza Joyful Birthday Celebration 22" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 22</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0447.JPG" alt="Daleyza Joyful Birthday Celebration 23" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 23</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0449.JPG" alt="Daleyza Joyful Birthday Celebration 24" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 24</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/_69A0451.JPG" alt="Daleyza Joyful Birthday Celebration 25" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 25</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/@A@ (12).JPG" alt="Daleyza Joyful Birthday Celebration 26" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 26</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/@A@ (26) - Copy.JPG" alt="Daleyza Joyful Birthday Celebration 27" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 27</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/@A@ (26).JPG" alt="Daleyza Joyful Birthday Celebration 28" loading="lazy">
+          <div class="ov"><span>Daleyza Joyful Birthday Celebration 28</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/cover (2).JPG" alt="Divia Milestone Birthday Gala 1" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 1</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/cover (3).JPG" alt="Divia Milestone Birthday Gala 2" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 2</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/cover.JPG" alt="Divia Milestone Birthday Gala 3" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 3</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/IMG_0457.jpg" alt="Divia Milestone Birthday Gala 4" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 4</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/IMG_0471.JPG" alt="Divia Milestone Birthday Gala 5" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 5</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/IMG_0473.JPG" alt="Divia Milestone Birthday Gala 6" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 6</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/IMG_0483.JPG" alt="Divia Milestone Birthday Gala 7" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 7</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/IMG_0519.JPG" alt="Divia Milestone Birthday Gala 8" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 8</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/IMG_0520.JPG" alt="Divia Milestone Birthday Gala 9" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 9</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/IMG_0538.JPG" alt="Divia Milestone Birthday Gala 10" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 10</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/IMG_0545.JPG" alt="Divia Milestone Birthday Gala 11" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 11</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/IMG_0556.JPG" alt="Divia Milestone Birthday Gala 12" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 12</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/IMG_0583.JPG" alt="Divia Milestone Birthday Gala 13" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 13</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/IMG_0597.JPG" alt="Divia Milestone Birthday Gala 14" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 14</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/IMG_0605.JPG" alt="Divia Milestone Birthday Gala 15" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 15</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/IMG_0619.JPG" alt="Divia Milestone Birthday Gala 16" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 16</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/IMG_0621.JPG" alt="Divia Milestone Birthday Gala 17" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 17</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/IMG_0629.JPG" alt="Divia Milestone Birthday Gala 18" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 18</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/PRI_6649.JPG" alt="Divia Milestone Birthday Gala 19" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 19</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/PRI_6813.JPG" alt="Divia Milestone Birthday Gala 20" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 20</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/PRI_6893.JPG" alt="Divia Milestone Birthday Gala 21" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 21</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/PRI_6897.JPG" alt="Divia Milestone Birthday Gala 22" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 22</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/PRI_6914.JPG" alt="Divia Milestone Birthday Gala 23" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 23</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/PRI_6932.JPG" alt="Divia Milestone Birthday Gala 24" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 24</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/PRI_6979.JPG" alt="Divia Milestone Birthday Gala 25" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 25</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DIVIA/PRI_6991.JPG" alt="Divia Milestone Birthday Gala 26" loading="lazy">
+          <div class="ov"><span>Divia Milestone Birthday Gala 26</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8077.JPG" alt="Imani Milestone Birthday Feasts 1" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 1</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8084.JPG" alt="Imani Milestone Birthday Feasts 2" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 2</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8086.JPG" alt="Imani Milestone Birthday Feasts 3" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 3</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8088.JPG" alt="Imani Milestone Birthday Feasts 4" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 4</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8090.JPG" alt="Imani Milestone Birthday Feasts 5" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 5</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8099.JPG" alt="Imani Milestone Birthday Feasts 6" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 6</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8103.JPG" alt="Imani Milestone Birthday Feasts 7" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 7</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8109.JPG" alt="Imani Milestone Birthday Feasts 8" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 8</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8114.JPG" alt="Imani Milestone Birthday Feasts 9" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 9</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8122.JPG" alt="Imani Milestone Birthday Feasts 10" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 10</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8205.JPG" alt="Imani Milestone Birthday Feasts 11" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 11</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8305.JPG" alt="Imani Milestone Birthday Feasts 12" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 12</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8312.JPG" alt="Imani Milestone Birthday Feasts 13" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 13</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8314.JPG" alt="Imani Milestone Birthday Feasts 14" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 14</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8315.JPG" alt="Imani Milestone Birthday Feasts 15" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 15</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8316.JPG" alt="Imani Milestone Birthday Feasts 16" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 16</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8387.JPG" alt="Imani Milestone Birthday Feasts 17" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 17</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8399.JPG" alt="Imani Milestone Birthday Feasts 18" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 18</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8423.JPG" alt="Imani Milestone Birthday Feasts 19" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 19</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="birthdays" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/IMANI/_DSC8428.JPG" alt="Imani Milestone Birthday Feasts 20" loading="lazy">
+          <div class="ov"><span>Imani Milestone Birthday Feasts 20</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/cover (2).jpg" alt="Women in Business Corporate Summit" loading="lazy">
+          <div class="ov"><span>Women in Business Corporate Summit</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/cover.jpg" alt="Women in Business Corporate Summit" loading="lazy">
+          <div class="ov"><span>Women in Business Corporate Summit</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg" alt="Corporate Keynote &amp; Plenary Session 3" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 3</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03280.jpg" alt="Corporate Keynote &amp; Plenary Session 4" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 4</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03282.jpg" alt="Corporate Keynote &amp; Plenary Session 5" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 5</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03286.jpg" alt="Corporate Keynote &amp; Plenary Session 6" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 6</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03288.jpg" alt="Corporate Keynote &amp; Plenary Session 7" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 7</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03291.jpg" alt="Corporate Keynote &amp; Plenary Session 8" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 8</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03299.jpg" alt="Corporate Keynote &amp; Plenary Session 9" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 9</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03303.jpg" alt="Corporate Keynote &amp; Plenary Session 10" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 10</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03310.jpg" alt="Corporate Keynote &amp; Plenary Session 11" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 11</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03317.jpg" alt="Corporate Keynote &amp; Plenary Session 12" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 12</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03325.jpg" alt="Corporate Keynote &amp; Plenary Session 13" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 13</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03329.jpg" alt="Corporate Keynote &amp; Plenary Session 14" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 14</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03332.jpg" alt="Corporate Keynote &amp; Plenary Session 15" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 15</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03348.JPG" alt="Corporate Keynote &amp; Plenary Session 16" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 16</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03356.JPG" alt="Corporate Keynote &amp; Plenary Session 17" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 17</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03360.jpg" alt="Corporate Keynote &amp; Plenary Session 18" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 18</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03362.jpg" alt="Corporate Keynote &amp; Plenary Session 19" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 19</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03369.jpg" alt="Corporate Keynote &amp; Plenary Session 20" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 20</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03371.jpg" alt="Corporate Keynote &amp; Plenary Session 21" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 21</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03375.jpg" alt="Corporate Keynote &amp; Plenary Session 22" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 22</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03387.jpg" alt="Corporate Keynote &amp; Plenary Session 23" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 23</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03389.jpg" alt="Corporate Keynote &amp; Plenary Session 24" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 24</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03396.jpg" alt="Corporate Keynote &amp; Plenary Session 25" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 25</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03398.jpg" alt="Corporate Keynote &amp; Plenary Session 26" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 26</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03404.JPG" alt="Corporate Keynote &amp; Plenary Session 27" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 27</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03408.jpg" alt="Corporate Keynote &amp; Plenary Session 28" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 28</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03419.jpg" alt="Corporate Keynote &amp; Plenary Session 29" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 29</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03423.jpg" alt="Corporate Keynote &amp; Plenary Session 30" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 30</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03426.jpg" alt="Corporate Keynote &amp; Plenary Session 31" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 31</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03427.jpg" alt="Corporate Keynote &amp; Plenary Session 32" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 32</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03429.jpg" alt="Corporate Keynote &amp; Plenary Session 33" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 33</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03430.jpg" alt="Corporate Keynote &amp; Plenary Session 34" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 34</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03436.jpg" alt="Corporate Keynote &amp; Plenary Session 35" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 35</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03439.jpg" alt="Corporate Keynote &amp; Plenary Session 36" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 36</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03450.jpg" alt="Corporate Keynote &amp; Plenary Session 37" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 37</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03457.jpg" alt="Corporate Keynote &amp; Plenary Session 38" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 38</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03478.jpg" alt="Corporate Keynote &amp; Plenary Session 39" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 39</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03489.jpg" alt="Corporate Keynote &amp; Plenary Session 40" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 40</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03503.jpg" alt="Corporate Keynote &amp; Plenary Session 41" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 41</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03511.jpg" alt="Corporate Keynote &amp; Plenary Session 42" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 42</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03526.jpg" alt="Corporate Keynote &amp; Plenary Session 43" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 43</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03539.jpg" alt="Corporate Keynote &amp; Plenary Session 44" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 44</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03544.jpg" alt="Corporate Keynote &amp; Plenary Session 45" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 45</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03545.jpg" alt="Corporate Keynote &amp; Plenary Session 46" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 46</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03547.jpg" alt="Corporate Keynote &amp; Plenary Session 47" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 47</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03549.jpg" alt="Corporate Keynote &amp; Plenary Session 48" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 48</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03551.jpg" alt="Corporate Keynote &amp; Plenary Session 49" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 49</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03557.jpg" alt="Corporate Keynote &amp; Plenary Session 50" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 50</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03561.jpg" alt="Corporate Keynote &amp; Plenary Session 51" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 51</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03564.jpg" alt="Corporate Keynote &amp; Plenary Session 52" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 52</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03566.jpg" alt="Corporate Keynote &amp; Plenary Session 53" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 53</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03573.jpg" alt="Corporate Keynote &amp; Plenary Session 54" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 54</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03579.jpg" alt="Corporate Keynote &amp; Plenary Session 55" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 55</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03591.jpg" alt="Corporate Keynote &amp; Plenary Session 56" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 56</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03596.jpg" alt="Corporate Keynote &amp; Plenary Session 57" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 57</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03598.jpg" alt="Corporate Keynote &amp; Plenary Session 58" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 58</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03605.jpg" alt="Corporate Keynote &amp; Plenary Session 59" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 59</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03625.jpg" alt="Corporate Keynote &amp; Plenary Session 60" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 60</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03628.jpg" alt="Corporate Keynote &amp; Plenary Session 61" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 61</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03631.jpg" alt="Corporate Keynote &amp; Plenary Session 62" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 62</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03635.jpg" alt="Corporate Keynote &amp; Plenary Session 63" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 63</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03652.jpg" alt="Corporate Keynote &amp; Plenary Session 64" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 64</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03654.jpg" alt="Corporate Keynote &amp; Plenary Session 65" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 65</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03656.jpg" alt="Corporate Keynote &amp; Plenary Session 66" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 66</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03658.jpg" alt="Corporate Keynote &amp; Plenary Session 67" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 67</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03659.jpg" alt="Corporate Keynote &amp; Plenary Session 68" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 68</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03662.jpg" alt="Corporate Keynote &amp; Plenary Session 69" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 69</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03663.jpg" alt="Corporate Keynote &amp; Plenary Session 70" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 70</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03667.jpg" alt="Corporate Keynote &amp; Plenary Session 71" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 71</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03668.jpg" alt="Corporate Keynote &amp; Plenary Session 72" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 72</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03669.jpg" alt="Corporate Keynote &amp; Plenary Session 73" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 73</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03670.jpg" alt="Corporate Keynote &amp; Plenary Session 74" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 74</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03671.jpg" alt="Corporate Keynote &amp; Plenary Session 75" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 75</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03679.jpg" alt="Corporate Keynote &amp; Plenary Session 76" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 76</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03680.jpg" alt="Corporate Keynote &amp; Plenary Session 77" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 77</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03683.jpg" alt="Corporate Keynote &amp; Plenary Session 78" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 78</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03687.jpg" alt="Corporate Keynote &amp; Plenary Session 79" loading="lazy">
+          <div class="ov"><span>Corporate Keynote &amp; Plenary Session 79</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="funerals" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/burial/cover.jpg" alt="Dignified Memorial &amp; Burial Ceremony" loading="lazy">
+          <div class="ov"><span>Dignified Memorial &amp; Burial Ceremony</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="funerals" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/burial/Attended the burial ceremony of the late Mama Teresa Nyaboke Omoke, beloved mother to Hon. Richa (1).jpg" alt="Memorial Service &amp; Graveside Tributes 2" loading="lazy">
+          <div class="ov"><span>Memorial Service &amp; Graveside Tributes 2</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="funerals" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/burial/Attended the burial ceremony of the late Mama Teresa Nyaboke Omoke, beloved mother to Hon. Richa (2).jpg" alt="Memorial Service &amp; Graveside Tributes 3" loading="lazy">
+          <div class="ov"><span>Memorial Service &amp; Graveside Tributes 3</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="funerals" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/burial/This afternoon at the Don Bosco Catholic Nairobi condoling the family of the late Mama Teresa Ny (1).jpg" alt="Memorial Service &amp; Graveside Tributes 4" loading="lazy">
+          <div class="ov"><span>Memorial Service &amp; Graveside Tributes 4</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="funerals" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/burial/This afternoon at the Don Bosco Catholic Nairobi condoling the family of the late Mama Teresa Ny (2).jpg" alt="Memorial Service &amp; Graveside Tributes 5" loading="lazy">
+          <div class="ov"><span>Memorial Service &amp; Graveside Tributes 5</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="funerals" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/burial/This afternoon at the Don Bosco Catholic Nairobi condoling the family of the late Mama Teresa Ny (3).jpg" alt="Memorial Service &amp; Graveside Tributes 6" loading="lazy">
+          <div class="ov"><span>Memorial Service &amp; Graveside Tributes 6</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="funerals" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/burial/This afternoon at the Don Bosco Catholic Nairobi condoling the family of the late Mama Teresa Ny (4).jpg" alt="Memorial Service &amp; Graveside Tributes 7" loading="lazy">
+          <div class="ov"><span>Memorial Service &amp; Graveside Tributes 7</span></div>
+        </div>
+        <div class="gitem reveal" data-cat="funerals" onclick="openLB(this)">
+          <img src="WEBSITE CONTENT/burial/This afternoon at the Don Bosco Catholic Nairobi condoling the family of the late Mama Teresa Ny.jpg" alt="Memorial Service &amp; Graveside Tributes 8" loading="lazy">
+          <div class="ov"><span>Memorial Service &amp; Graveside Tributes 8</span></div>
+        </div>
+      </div>
+
+      <!-- View More CTA -->
+      <div class="hausal-vm-wrap" id="portActionsWrap">
+        <button class="hausal-vm" id="portMoreBtn" onclick="togglePortfolioMore()">
+          <span>View More Photos</span>
+          <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </button>
+        <button class="hausal-vm hausal-return-btn" id="portReturnBtn" onclick="scrollToGalleryTop()" style="display:none">
+          <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+          <span>Return Up &uarr;</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR EVENT PRODUCTIONS (Real Kenyan Event Categories) -->
   <section class="blk alt" id="services">
     <div class="wrap">
       <div class="sechead">
         <div>
-          <div class="label reveal">Event Coverage</div>
-          <h2 class="reveal d1">Our Event Productions</h2>
+          <div class="label reveal">Services</div>
+          <h2 class="reveal d1">Events We Specialize In</h2>
         </div>
         <p class="reveal d2">
-          We bring high-end cinema equipment, multi-angle camera teams, wireless stage audio, and rapid 48-hour delivery to elevate every high-profile event across Kenya.
+          From holy matrimony vows and traditional ruracio negotiations to milestone birthdays, graduations, dignified family send-offs, and high-impact corporate summits. We bring multi-camera crews, crystal-clear audio, and fast 48-hour delivery.
         </p>
       </div>
 
       <div class="sgrid">
-        <!-- 01 Corporate Summits & Conferences -->
+        <!-- 01 Weddings -->
         <div class="scard reveal">
           <div class="ph">
-            <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03286.jpg" alt="Corporate Summits &amp; Conferences" loading="lazy">
+            <img src="WEBSITE CONTENT/weddings/cover.jpeg" alt="Holy Matrimony Wedding Photography &amp; Film Kenya" loading="lazy">
           </div>
           <div class="bd">
-            <h3>Corporate Summits</h3>
-            <div class="price">From KSh 15,000</div>
-            <p>High-profile executive summits, keynote addresses, panel discussions, awards banquets, and Women in Business corporate conferences.</p>
-            <a href="#" class="pick" onclick="openBk('Corporate Summit');return false">Book Summit →</a>
+            <h3>Weddings &amp; Matrimony</h3>
+            <div class="price">Tailored Package Quote</div>
+            <p>Church vows, bridal party preparations, couple portraits, lively reception dancing, and cinematic films across Kenya.</p>
+            <a href="#" class="pick" onclick="openBk('Wedding Coverage');return false">Book Wedding →</a>
           </div>
         </div>
 
-        <!-- 02 Milestone Celebrations -->
+        <!-- 02 Traditional Weddings (Ruracio & Koito) -->
         <div class="scard reveal d1">
           <div class="ph">
-            <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2374.jpg" alt="Milestone Birthday Celebrations &amp; Galas" loading="lazy">
+            <img src="WEBSITE CONTENT/koito TRADITONAL WEDDINGS/COVER.webp" alt="Traditional Koito &amp; Ruracio Ceremony Coverage" loading="lazy">
           </div>
           <div class="bd">
-            <h3>Milestone Celebrations</h3>
-            <div class="price">From KSh 15,000</div>
-            <p>Milestone birthday galas, private anniversary banquets, champagne toasts, cake cutting ceremonies, and celebratory evening dinners.</p>
-            <a href="#" class="pick" onclick="openBk('Milestone Celebration');return false">Book Celebration →</a>
+            <h3>Traditional Weddings (Ruracio &amp; Koito)</h3>
+            <div class="price">Tailored Package Quote</div>
+            <p>Dowry negotiations, elder blessings, kitenge regalia, family unification songs, and cultural rites preserved with pride.</p>
+            <a href="#" class="pick" onclick="openBk('Traditional Wedding (Ruracio/Koito)');return false">Book Traditional →</a>
           </div>
         </div>
 
-        <!-- 03 Graduation Galas -->
+        <!-- 03 Pre-Wedding Shoot -->
         <div class="scard reveal d2">
           <div class="ph">
-            <img src="WEBSITE CONTENT/STUDIO SESSIONS/GRADUATION/LINET 0796300957/_R2A7258.JPG" alt="Graduation Honours &amp; Galas" loading="lazy">
+            <img src="WEBSITE CONTENT/pre wedding/cover.JPG" alt="Pre-Wedding &amp; Love Story Shoot" loading="lazy">
           </div>
           <div class="bd">
-            <h3>Graduation Galas</h3>
-            <div class="price">From KSh 15,000</div>
-            <p>Academic conferment ceremonies, doctorate and masters celebrations, sash and robe honours, and family lawn reception banquets.</p>
-            <a href="#" class="pick" onclick="openBk('Graduation Gala');return false">Book Graduation →</a>
+            <h3>Pre-Wedding &amp; Love Story</h3>
+            <div class="price">Tailored Package Quote</div>
+            <p>Romantic couple sessions, scenic outdoor locations, save-the-date cards, and social media reels before the big day.</p>
+            <a href="#" class="pick" onclick="openBk('Pre-Wedding Shoot');return false">Book Pre-Wedding →</a>
           </div>
         </div>
 
-        <!-- 04 Red Carpet & Galas -->
+        <!-- 04 Birthday Parties & Bashes -->
         <div class="scard reveal d3">
           <div class="ph">
-            <img src="WEBSITE CONTENT/STUDIO SESSIONS/FASHION/Lilian folder/3O7A0005.jpg" alt="Red Carpet Galas &amp; Fashion Showcases" loading="lazy">
+            <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2374.jpg" alt="Birthday Parties &amp; Milestone Celebrations" loading="lazy">
           </div>
           <div class="bd">
-            <h3>Red Carpet Galas</h3>
-            <div class="price">From KSh 25,000</div>
-            <p>Black-tie galas, runway fashion showcases, celebrity red carpets, awards ceremonies, and VIP banquet documentary cinema.</p>
-            <a href="#" class="pick" onclick="openBk('Red Carpet Gala');return false">Book Gala →</a>
+            <h3>Birthday Parties &amp; Bashes</h3>
+            <div class="price">Tailored Package Quote</div>
+            <p>Kids birthdays, milestone 21st, 30th, 40th, 50th galas, decor details, cake-cutting ceremonies, and evening dinner bashes.</p>
+            <a href="#" class="pick" onclick="openBk('Birthday Party');return false">Book Birthday →</a>
+          </div>
+        </div>
+
+        <!-- 05 Academic Graduations & Honors -->
+        <div class="scard reveal d1">
+          <div class="ph">
+            <img src="WEBSITE CONTENT/weddings/33 (11).jpeg" alt="Academic Graduations &amp; Celebration Lunches" loading="lazy">
+          </div>
+          <div class="bd">
+            <h3>Graduations &amp; Academic Honors</h3>
+            <div class="price">Tailored Package Quote</div>
+            <p>Conferment ceremonies, academic gowns, cap toss celebrations, family banquets, and celebration dinners across Kenya.</p>
+            <a href="#" class="pick" onclick="openBk('Graduation Celebration');return false">Book Graduation →</a>
+          </div>
+        </div>
+
+        <!-- 06 Dignified Funerals & Memorials -->
+        <div class="scard reveal d2">
+          <div class="ph">
+            <img src="WEBSITE CONTENT/burial/cover.jpg" alt="Dignified Funerals &amp; Memorial Send-Offs" loading="lazy">
+          </div>
+          <div class="bd">
+            <h3>Dignified Funerals &amp; Memorials</h3>
+            <div class="price">Tailored Package Quote</div>
+            <p>Respectful celebration of life, church mass recording, elder speeches, dignified procession, and archival family photobooks.</p>
+            <a href="#" class="pick" onclick="openBk('Funeral / Memorial Service');return false">Book Memorial →</a>
+          </div>
+        </div>
+
+        <!-- 07 Corporate Events & Summits -->
+        <div class="scard reveal d3">
+          <div class="ph">
+            <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg" alt="Corporate Summits, Conferences &amp; AGMs" loading="lazy">
+          </div>
+          <div class="bd">
+            <h3>Corporate Events &amp; Summits</h3>
+            <div class="price">Tailored Package Quote</div>
+            <p>High-profile summits, keynote addresses, panel discussions, awards banquets, Women in Business summits, and company AGMs.</p>
+            <a href="#" class="pick" onclick="openBk('Corporate Summit / Conference');return false">Book Corporate Event →</a>
+          </div>
+        </div>
+
+        <!-- 08 Family & Milestone Celebrations -->
+        <div class="scard reveal d1">
+          <div class="ph">
+            <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/DALEYZA/cover.JPG" alt="Family &amp; Milestone Celebrations" loading="lazy">
+          </div>
+          <div class="bd">
+            <h3>Milestone &amp; Family Celebrations</h3>
+            <div class="price">Tailored Package Quote</div>
+            <p>Private family milestones, reunions, anniversaries, thanksgiving luncheons, and custom gatherings nationwide.</p>
+            <a href="#" class="pick" onclick="openBk('Custom Event Production');return false">Inquire for Celebration →</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PARALLAX BAND (from WEBSITE CONTENT) -->
+  <!-- PARALLAX BAND -->
   <section class="band">
     <div class="band-bg">
-      <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03282.jpg" alt="Laureighn Events Timeless Visuals" loading="lazy">
+      <img src="WEBSITE CONTENT/weddings/cover (3).jpeg" alt="Laureighn Events Memorable Celebrations" loading="lazy">
     </div>
     <div class="band-in reveal">
       <span class="band-quote">&ldquo;</span>
-      <h2>We don't just capture events.<br><em>We make them timeless.</em></h2>
+      <h2>Real moments. Deep traditions.<br><em>Captured with pride and clarity.</em></h2>
       <div class="band-rule"></div>
-      <p>Every celebration is a collaboration. Your heritage, our eye, styled to last for generations to come.</p>
+      <p>Whether you're exchanging holy vows, paying dowry at home, celebrating a milestone birthday, or laying a hero to rest—we preserve every memory for a lifetime.</p>
       <a href="#" class="btn btn-pri" onclick="openWA();return false">
         <span>Reserve Your Event Date</span>
       </a>
     </div>
   </section>
 
-  <!-- INTRO / THE PRODUCTION HOUSE (100% Real Event Triptych from WEBSITE CONTENT) -->
+  <!-- INTRO / ABOUT US -->
   <section class="blk dark intro-dark" id="about">
     <div class="wrap">
       <div class="intro-ed">
         <div class="gold-line reveal" style="margin:0 auto 20px"></div>
-        <div class="label reveal d1">The Production House</div>
-        <h2 class="reveal d2">Documenting celebrations through <em>cinematic light</em> and intention</h2>
-        <p class="lead reveal d3">Every corporate keynote, academic conferment, and milestone gala is an heirloom preserved for generations.</p>
+        <div class="label reveal d1">Our Production Crew</div>
+        <h2 class="reveal d2">Documenting Kenyan celebrations with <em>heart, color &amp; respect</em></h2>
+        <p class="lead reveal d3">No complicated corporate talk. We capture the laughter, sacred traditions, family reunions, and major milestones that bring Kenya together.</p>
       </div>
 
-      <!-- Real Event Triptych: Graduation + Corporate Summit + Milestone Celebration -->
+      <!-- Real Event Triptych: Traditional Ruracio + Milestone Birthday + Family Graduation -->
       <div class="triptych reveal d3">
-        <img src="WEBSITE CONTENT/STUDIO SESSIONS/GRADUATION/LINET 0796300957/_R2A7261.JPG" alt="Graduation Honours Ceremony" loading="lazy" style="object-position:50% 20%">
-        <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg" alt="Women In Business Corporate Summit" loading="lazy" style="object-position:50% 25%">
-        <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2370.jpg" alt="Milestone Celebration Gala" loading="lazy" style="object-position:50% 20%">
+        <img src="WEBSITE CONTENT/koito TRADITONAL WEDDINGS/COVER.webp" alt="Joyous Traditional Koito Celebration" loading="lazy" style="object-position:50% 25%">
+        <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/cover.jpg" alt="Milestone Birthday Celebration" loading="lazy" style="object-position:50% 20%">
+        <img src="WEBSITE CONTENT/pre wedding/cover.JPG" alt="Romantic Pre-Wedding Shoot" loading="lazy" style="object-position:50% 25%">
       </div>
 
       <div class="intro-cols reveal d4">
         <p>
-          Laureighn Events is a premier Kenyan visual production house operating across Kakamega, Nairobi, and destination event venues pan-Kenya. We specialise in documenting corporate leadership summits, milestone birthday galas, academic graduations, and high-fashion galas. We treat every event as an unrepeatable occasion.
+          Laureighn Events operates full-time production crews across Kakamega and Nairobi, traveling seamlessly across all 47 counties of Kenya. We understand the rhythm of Kenyan events: the early-morning family excitement, the song and dance when guests arrive at the homestead gate, the sanctity of church vows, the speeches over a graduation feast, and the quiet reverence of a memorial send-off.
         </p>
         <p>
-          From multi-microphone audio capture for keynote speeches and toasts to high-definition gimbal cinema, our production crew works with unobtrusive elegance. We deliver rapid 48-hour social media sneak peeks, followed by meticulously colour-graded master photos and archival fine-art photobooks.
+          Equipped with professional Sony cameras, multi-angle camera teams, wireless lapel microphones for clear speeches, and licensed 4K aerial drones, we ensure nothing is missed. You receive a priority 48-hour social sneak peek to share on WhatsApp and Instagram while the excitement is fresh, followed by full high-resolution galleries and archival photobooks.
         </p>
       </div>
 
       <div class="intro-feats reveal d5">
         <div class="ft">
           <div class="n">500+</div>
-          <div class="l">High-Profile Events</div>
-        </div>
-        <div class="ft">
-          <div class="n">5.0 ★</div>
-          <div class="l">Client Rating</div>
+          <div class="l">Events Documented</div>
         </div>
         <div class="ft">
           <div class="n">48h</div>
-          <div class="l">Sneak Peek Delivery</div>
+          <div class="l">WhatsApp Sneak Peek</div>
+        </div>
+        <div class="ft">
+          <div class="n">47</div>
+          <div class="l">Counties Pan-Kenya</div>
         </div>
       </div>
 
@@ -251,201 +1469,25 @@
     </div>
   </section>
 
-  <!-- PORTFOLIO GALLERY (100% Real Event Imagery from WEBSITE CONTENT) -->
-  <section class="blk" id="portfolio">
-    <div class="wrap">
-      <div class="sechead">
-        <div>
-          <div class="label reveal">Curated Works</div>
-          <h2 class="reveal d1">Event Portfolio</h2>
-        </div>
-      </div>
-
-      <!-- Event Category Filter Pills -->
-      <div class="filterbar reveal">
-        <button class="chip-f on" data-cat="all">All Events</button>
-        <button class="chip-f" data-cat="corporate">Corporate Summits</button>
-        <button class="chip-f" data-cat="milestone">Milestone Celebrations</button>
-        <button class="chip-f" data-cat="graduation">Graduation Galas</button>
-        <button class="chip-f" data-cat="family">Family Gatherings</button>
-        <button class="chip-f" data-cat="gala">Red Carpet &amp; Galas</button>
-      </div>
-
-      <!-- Masonry Grid with 100% Real Event Photos from WEBSITE CONTENT -->
-      <div class="masonry" id="gallery">
-        <!-- 01 Corporate Summits & Conferences -->
-        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg" alt="Women In Business Gala Stage" loading="lazy">
-          <div class="ov"><span>Women In Business Gala</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03282.jpg" alt="Executive Keynote Address" loading="lazy">
-          <div class="ov"><span>Executive Keynote</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03286.jpg" alt="Leadership Summit Panel Discussion" loading="lazy">
-          <div class="ov"><span>Leadership Summit Panel</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03291.jpg" alt="VIP Networking &amp; Dinner" loading="lazy">
-          <div class="ov"><span>VIP Networking Gala</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03303.jpg" alt="Executive Award Presentation" loading="lazy">
-          <div class="ov"><span>Awards Presentation</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="corporate" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03317.jpg" alt="Corporate Summit Delegates" loading="lazy">
-          <div class="ov"><span>Executive Delegates</span></div>
-        </div>
-
-        <!-- 02 Milestone Celebrations & Birthday Events -->
-        <div class="gitem reveal" data-cat="milestone" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2370.jpg" alt="Milestone Birthday Celebration Gala" loading="lazy">
-          <div class="ov"><span>Milestone Celebration Gala</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="milestone" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2374.jpg" alt="Champagne Toast &amp; Cake Ceremony" loading="lazy">
-          <div class="ov"><span>Champagne Toast &amp; Cake</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="milestone" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2432.jpg" alt="Celebration Evening Dinner Party" loading="lazy">
-          <div class="ov"><span>Celebration Evening Dinner</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="milestone" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/A.JPG" alt="Twin Celebration Festival" loading="lazy">
-          <div class="ov"><span>Twin Celebration Festival</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="milestone" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ARIANA AND CARIANAH/_J0A4982.JPG" alt="Garden Birthday Celebration" loading="lazy">
-          <div class="ov"><span>Garden Celebration</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="milestone" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/STUDIO SESSIONS/JOJO BD/FRP_8724.jpg" alt="Jojo Milestone Celebration" loading="lazy">
-          <div class="ov"><span>Jojo Milestone Gala</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="milestone" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/STUDIO SESSIONS/GLO BD/NDC_0542.JPG" alt="Evening Milestone Banquet" loading="lazy">
-          <div class="ov"><span>Evening Milestone Banquet</span></div>
-        </div>
-
-        <!-- 03 Graduation Events -->
-        <div class="gitem reveal" data-cat="graduation" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/STUDIO SESSIONS/GRADUATION/LINET 0796300957/_R2A7247.JPG" alt="Doctorate Honours Ceremony" loading="lazy">
-          <div class="ov"><span>Doctorate Honours Gala</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="graduation" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/STUDIO SESSIONS/GRADUATION/LINET 0796300957/_R2A7258.JPG" alt="Academic Conferment Honours" loading="lazy">
-          <div class="ov"><span>Academic Conferment</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="graduation" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/STUDIO SESSIONS/GRADUATION/LINET 0796300957/_R2A7261.JPG" alt="Graduation Robes &amp; Sash" loading="lazy">
-          <div class="ov"><span>Graduation Sash &amp; Robes</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="graduation" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/STUDIO SESSIONS/GRADUATION/HADDY/SHE_1757.JPG" alt="Academic Excellence Honours" loading="lazy">
-          <div class="ov"><span>Academic Excellence</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="graduation" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/STUDIO SESSIONS/GRADUATION/New folder/PRI_5363.jpg" alt="Family Graduation Lawn Reception" loading="lazy">
-          <div class="ov"><span>Family Graduation Reception</span></div>
-        </div>
-
-        <!-- 04 Family Gatherings -->
-        <div class="gitem reveal" data-cat="family" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/STUDIO SESSIONS/FAMILY/IMG_0010.JPG" alt="Heritage Family Gathering" loading="lazy">
-          <div class="ov"><span>Heritage Family Gathering</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="family" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/STUDIO SESSIONS/FAMILY/IMG_0015.JPG" alt="Generations Family Celebration" loading="lazy">
-          <div class="ov"><span>Generations Celebration</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="family" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/STUDIO SESSIONS/FAMILY/IMG_0036.JPG" alt="Family Milestone Reunion" loading="lazy">
-          <div class="ov"><span>Family Milestone Reunion</span></div>
-        </div>
-
-        <!-- 05 Red Carpet & Galas -->
-        <div class="gitem reveal" data-cat="gala" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/STUDIO SESSIONS/FASHION/Lilian folder/3O7A0003.jpg" alt="High-Fashion Gala Look" loading="lazy">
-          <div class="ov"><span>High-Fashion Gala Look</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="gala" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/STUDIO SESSIONS/FASHION/Lilian folder/3O7A0005.jpg" alt="Red Carpet Couture Gala" loading="lazy">
-          <div class="ov"><span>Red Carpet Couture</span></div>
-        </div>
-        <div class="gitem reveal" data-cat="gala" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/STUDIO SESSIONS/MODEL/ggr.jpg" alt="Black-Tie Gala Evening" loading="lazy">
-          <div class="ov"><span>Black-Tie Gala Evening</span></div>
-        </div>
-      </div>
-
-      <!-- View More CTA -->
-      <div class="hausal-vm-wrap">
-        <button class="hausal-vm" id="portMoreBtn" onclick="togglePortfolioMore()">
-          <span>View More Event Works</span>
-          <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- BEHIND THE LENS / MOMENTS IN FOCUS (100% Real Event Highlights from WEBSITE CONTENT) -->
-  <section class="blk alt" id="hausal-reels">
-    <div class="wrap">
-      <div class="sechead">
-        <div>
-          <div class="label reveal">Event Visuals</div>
-          <h2 class="reveal d1">Moments in Focus</h2>
-        </div>
-        <p class="reveal d2">
-          Experience our high-definition colour science, red-carpet precision, and candid emotional storytelling crafted for corporate summits and milestone galas.
-        </p>
-      </div>
-
-      <div class="film-grid reveal">
-        <!-- Moment 1: Corporate Summit Stage -->
-        <div class="film-cell" data-label="Corporate Summit &amp; Stage Keynote" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg" alt="Corporate Summit Keynote" style="width:100%;height:100%;object-fit:cover">
-        </div>
-
-        <!-- Moment 2: Red Carpet Gala Fashion -->
-        <div class="film-cell" data-label="Red Carpet Couture Gala" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/STUDIO SESSIONS/FASHION/Lilian folder/3O7A0003.jpg" alt="Red Carpet Gala" style="width:100%;height:100%;object-fit:cover">
-        </div>
-
-        <!-- Moment 3: Milestone Celebration Toast -->
-        <div class="film-cell" data-label="Milestone Celebration Toast &amp; Gala" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2370.jpg" alt="Milestone Celebration" style="width:100%;height:100%;object-fit:cover">
-        </div>
-
-        <!-- Moment 4: Graduation Honours Conferment -->
-        <div class="film-cell" data-label="Graduation Honours Conferment" onclick="openLB(this)">
-          <img src="WEBSITE CONTENT/STUDIO SESSIONS/GRADUATION/LINET 0796300957/_R2A7247.JPG" alt="Graduation Honours" style="width:100%;height:100%;object-fit:cover">
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- STATS BAND -->
   <section class="stats-band">
     <div class="wrap">
       <div class="stats">
         <div class="stat">
           <div class="n" data-target="500">500+</div>
-          <div class="l">High-Profile Events Documented</div>
+          <div class="l">Kenyan Events Documented</div>
         </div>
         <div class="stat">
           <div class="n" data-target="100">100%</div>
-          <div class="l">Cinematic Production Precision</div>
+          <div class="l">Reliable On-Time Delivery</div>
         </div>
         <div class="stat">
           <div class="n" data-target="48">48h</div>
-          <div class="l">Rapid Sneak Peek Delivery</div>
+          <div class="l">WhatsApp Sneak Peek Delivery</div>
         </div>
         <div class="stat">
           <div class="n">4K</div>
-          <div class="l">Cinema Grade Master Visuals</div>
+          <div class="l">Full HD &amp; 4K Video</div>
         </div>
       </div>
     </div>
@@ -456,11 +1498,11 @@
     <div class="wrap">
       <div class="sechead">
         <div>
-          <div class="label reveal">The Experience</div>
+          <div class="label reveal">The Process</div>
           <h2 class="reveal d1">How It Works</h2>
         </div>
         <p class="reveal d2">
-          From first briefing to receiving your heirloom event gallery, we ensure flawless coordination, unobtrusive presence, and effortless communication.
+          From first WhatsApp chat to receiving your complete high-resolution gallery and keepsake album, our booking process is clear and effortless.
         </p>
       </div>
 
@@ -468,37 +1510,37 @@
         <div class="step reveal">
           <div class="num">01</div>
           <h3>Inquire &amp; Reserve Date</h3>
-          <p>Tap "Book on WhatsApp" or use our booking form. Share your event date, venue location, and production requirements to check crew availability.</p>
+          <p>Tap "Book on WhatsApp" or select your package. Share your event date, venue location, and event schedule to lock in our crew.</p>
         </div>
         <div class="step reveal d1">
           <div class="num">02</div>
-          <h3>Creative Consultation</h3>
-          <p>We review your programme of events, keynote speakers, lighting conditions, audio microphone placement, and stage timeline.</p>
+          <h3>Programme &amp; Briefing</h3>
+          <p>We review your order of events, keynote speakers, elder blessings, church timeline, and family photo list ahead of time.</p>
         </div>
         <div class="step reveal d2">
           <div class="num">03</div>
           <h3>Event Day Production</h3>
-          <p>Our cinema crew arrives ahead of time with professional camera bodies, audio transmitters, backup gear, and quiet elegance to capture every moment.</p>
+          <p>Our camera team arrives early with backup equipment, wireless mics, and discreet presence so you and your guests enjoy every moment.</p>
         </div>
         <div class="step reveal d3">
           <div class="num">04</div>
-          <h3>Gallery Delivery</h3>
-          <p>Receive your 48-hour social sneak peek photos, followed by your full high-resolution online gallery, colour-graded edits, and luxury photobooks.</p>
+          <h3>48-Hour Sneak Peek &amp; Gallery</h3>
+          <p>Receive your 48-hour social highlights for WhatsApp and Instagram, followed by your full high-res cloud gallery and printed photobooks.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PACKAGES / THE RATE CARD (100% Event Focused) -->
+  <!-- PACKAGES / THE RATE CARD (100% Real Kenyan Event Packages) -->
   <section class="blk alt" id="packages">
     <div class="wrap">
       <div class="sechead">
         <div>
-          <div class="label reveal">Investment</div>
+          <div class="label reveal">Transparent Rates</div>
           <h2 class="reveal d1">The Event Rate Card</h2>
         </div>
         <p class="reveal d2">
-          Transparent, all-inclusive event cinema and photography packages. Every tier includes professional coverage, master colour grading, and private cloud delivery.
+          Clear, all-inclusive photography and videography packages for weddings, traditional ruracio, birthdays, graduations, burials, and corporate events across Kenya. No hidden fees.
         </p>
       </div>
 
@@ -510,138 +1552,226 @@
             <col class="c-price">
           </colgroup>
           <tbody>
-            <!-- CATEGORY 1: Corporate Summits & Conferences -->
+            <!-- CATEGORY 1: Weddings & Pre-Wedding Packages -->
             <tr class="rm-cat rm-cat-first">
               <td colspan="3">
-                <span>Corporate Summits &amp; Executive Conferences</span>
+                <span>Weddings &amp; Pre-Wedding Packages</span>
                 <span class="rm-cat-count">4 Options</span>
               </td>
             </tr>
             <tr class="rm-row">
               <td>
-                <span class="rm-name">Half-Day Corporate Photography</span>
+                <span class="rm-name">Pre-Wedding &amp; Love Story Shoot</span>
               </td>
               <td class="rm-desc-cell">
-                <span class="rm-desc">Up to 6 hours coverage · 1 Photographer · High-resolution retouched photographs · Coverage of keynote speakers, panel discussions, VIP delegates &amp; branding · Curated cloud gallery</span>
+                <span class="rm-desc">Outdoor couple session · Save-the-date graphics · 10 to 15 retouched portraits + vertical 4K social reel</span>
               </td>
-              <td class="rm-price">KSh 15,000</td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+            <tr class="rm-row">
+              <td>
+                <span class="rm-name">Silver Wedding Photography (Full-Day)</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">1 Lead Photographer · Full-day coverage from bridal prep to reception dancing · 150+ magazine retouched photos · Private cloud gallery</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+            <tr class="rm-row">
+              <td>
+                <span class="rm-name">Gold Wedding Coverage (Photo + Video) ★ Most Popular</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">2-Person Crew (1 Photographer + 1 Videographer) · Full-day coverage · 3–5 min 4K Highlight Video · 48-Hour priority social teasers · 250+ Retouched photos</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+            <tr class="rm-row">
+              <td>
+                <span class="rm-name">Platinum VIP Wedding Production (Photo + Video + Keepsakes)</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">3-Person Full Crew (2 Photographers + 1 Videographer) · Full ceremony documentary video + 60s reel · Luxury Hardcover Lay-flat Printed Photobook (30 pages) · Laser-engraved Wooden USB Keepsake Box · 400+ Retouched photos</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+
+            <!-- CATEGORY 2: Traditional Weddings & Dowry Rites (Ruracio & Koito) -->
+            <tr class="rm-cat">
+              <td colspan="3">
+                <span>Traditional Weddings &amp; Dowry Ceremonies (Ruracio &amp; Koito)</span>
+                <span class="rm-cat-count">Cultural Rites</span>
+              </td>
+            </tr>
+            <tr class="rm-row">
+              <td>
+                <span class="rm-name">Half-Day Dowry Negotiations &amp; Elder Blessings</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">Up to 5 hours · 1 Lead Photographer · Family introductions, dowry negotiations, elder blessings, colorful kitenge regalia portraits &amp; 100+ high-res images</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+            <tr class="rm-row">
+              <td>
+                <span class="rm-name">Full-Day Traditional Ruracio / Koito (Photo + Video)</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">Full-day celebration · 1 Photographer + 1 Videographer · Delegation arrival, speeches, songs, elder blessing audio &amp; 4K cultural highlight video · 250+ photos</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+            <tr class="rm-row">
+              <td>
+                <span class="rm-name">Royal Cultural Celebration Crew (Photo + Video + Drone)</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">Full production crew (2 Photographers + 1 Videographer + Drone Pilot) · Full cultural video documentary · Archival audio of elder libations &amp; speeches · Hardcover family photobook</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+
+            <!-- CATEGORY 3: Birthday Parties & Celebrations -->
+            <tr class="rm-cat">
+              <td colspan="3">
+                <span>Birthday Parties &amp; Milestone Celebrations</span>
+                <span class="rm-cat-count">Kids &amp; Adults</span>
+              </td>
+            </tr>
+            <tr class="rm-row">
+              <td>
+                <span class="rm-name">Half-Day Birthday Party Photography</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">Up to 4 hours coverage · 1 Photographer · Decor, guest arrivals, cake-cutting ceremony, champagne toasts &amp; group photos · 80+ retouched photos</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+            <tr class="rm-row">
+              <td>
+                <span class="rm-name">Full Birthday Celebration (Photo + Video Reel)</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">1 Photographer + 1 Videographer · Full party documentation · 1x 60s 4K vertical birthday reel for TikTok &amp; Instagram · 150+ high-res photos · 48h delivery</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+            <tr class="rm-row">
+              <td>
+                <span class="rm-name">VIP Milestone Birthday Gala (Photo + Video + Wall Mount)</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">Evening celebration &amp; dinner party · 2-Person crew · Highlight video · Speeches &amp; cake cutting · Complimentary A4 framed birthday wall mount</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+
+            <!-- CATEGORY 4: Graduation Ceremonies & Family Receptions -->
+            <tr class="rm-cat">
+              <td colspan="3">
+                <span>Graduation Ceremonies &amp; Family Receptions</span>
+                <span class="rm-cat-count">Academic Milestones</span>
+              </td>
+            </tr>
+            <tr class="rm-row">
+              <td>
+                <span class="rm-name">Graduation Ceremony &amp; Family Lunch Reception</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">Up to 5 hours · 1 Photographer · Campus cap toss &amp; regalia moments + family thanksgiving reception at home or venue · 70+ retouched photos</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+            <tr class="rm-row">
+              <td>
+                <span class="rm-name">Full-Day Graduation Celebration (Photo + Video Highlight)</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">Full-day coverage · 1 Photographer + 1 Videographer · Procession, family portraits, speeches, feast &amp; dancing · 1x 4K highlight video · 150+ photos</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+
+            <!-- CATEGORY 5: Dignified Funerals & Memorial Send-Offs -->
+            <tr class="rm-cat">
+              <td colspan="3">
+                <span>Dignified Funerals, Burials &amp; Memorial Send-Offs</span>
+                <span class="rm-cat-count">Memorial Tributes</span>
+              </td>
+            </tr>
+            <tr class="rm-row">
+              <td>
+                <span class="rm-name">Silver Burial Photography (Respectful Full-Day)</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">Full-day respectful coverage · 1 Photographer · Family tributes, church service, eulogies &amp; graveside rites · 200+ color-graded high-resolution photos</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+            <tr class="rm-row">
+              <td>
+                <span class="rm-name">Gold Funeral Coverage (Photo + Video Recording) ★ Popular</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">Full-day photo + video crew · Complete church service &amp; eulogy recording with crystal-clear wireless audio · 5–7 min Memorial tribute video highlight · 300+ photos</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+            <tr class="rm-row">
+              <td>
+                <span class="rm-name">Platinum Memorial Tribute Production (Full Crew + Hardcover Photobook)</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">Full production crew (2 Photographers + 2 Videographers) · 4K Memorial Documentary Film + all speeches recording · Luxury Hardcover Printed Memorial Photobook for the family · Custom USB box</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+
+            <!-- CATEGORY 6: Corporate Events, Summits & AGMs -->
+            <tr class="rm-cat">
+              <td colspan="3">
+                <span>Corporate Events, Summits, AGMs &amp; Galas</span>
+                <span class="rm-cat-count">Corporate</span>
+              </td>
+            </tr>
+            <tr class="rm-row">
+              <td>
+                <span class="rm-name">Half-Day Corporate Summit Photography</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">Up to 6 hours · 1 Lead Photographer · Keynotes, panel discussions, VIP delegates &amp; branding · Same-day press release photos + 48h full gallery</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
             </tr>
             <tr class="rm-row">
               <td>
                 <span class="rm-name">Half-Day Corporate Videography</span>
               </td>
               <td class="rm-desc-cell">
-                <span class="rm-desc">Up to 6 hours · 1 Videographer · 1 Cinematic Highlight Video · 1 Social Media Reel · High-fidelity wireless stage audio · 4K colour-graded master</span>
+                <span class="rm-desc">Up to 6 hours · 1 Videographer · 1 Highlight Video · 1 Social Reel · Wireless stage audio for speakers</span>
               </td>
-              <td class="rm-price">KSh 20,000</td>
+              <td class="rm-price">Custom Quote</td>
             </tr>
             <tr class="rm-row">
               <td>
-                <span class="rm-name">Full-Day Corporate Photography</span>
+                <span class="rm-name">Full-Day Corporate Conference &amp; Gala Photography</span>
               </td>
               <td class="rm-desc-cell">
-                <span class="rm-desc">Full-day conference &amp; gala coverage · 2 Photographers · Comprehensive keynote &amp; breakout session documentation · Same-day press release photos + 48h gallery</span>
+                <span class="rm-desc">Full-day coverage · 2 Photographers · Keynotes, breakout sessions, exhibition booths &amp; gala dinner · Comprehensive high-resolution gallery</span>
               </td>
-              <td class="rm-price">KSh 60,000</td>
+              <td class="rm-price">Custom Quote</td>
             </tr>
             <tr class="rm-row">
               <td>
-                <span class="rm-name">Full-Day Corporate Cinema &amp; Film</span>
+                <span class="rm-name">Full-Day Corporate Video Production</span>
               </td>
               <td class="rm-desc-cell">
-                <span class="rm-desc">Full-day coverage · 2 Videographers · 1 hr 30 min full summit documentary video · 1 executive highlight film · 2 vertical social media reels</span>
+                <span class="rm-desc">Full-day summit · 2 Videographers · Full documentary summit video · 1 executive highlight video · 2 vertical social media reels</span>
               </td>
-              <td class="rm-price">KSh 85,000</td>
+              <td class="rm-price">Custom Quote</td>
             </tr>
 
-            <!-- CATEGORY 2: Milestone Celebrations & Birthday Galas -->
-            <tr class="rm-cat">
-              <td colspan="3">
-                <span>Milestone Celebrations &amp; Birthday Galas</span>
-                <span class="rm-cat-count">Private Galas</span>
-              </td>
-            </tr>
-            <tr class="rm-row">
-              <td>
-                <span class="rm-name">Half-Day Milestone Celebration Photography</span>
-              </td>
-              <td class="rm-desc-cell">
-                <span class="rm-desc">Up to 5 hours coverage · 1 Photographer · Decor, red carpet, cake cutting, toasts &amp; family guest photos · Curated online gallery with 48h delivery</span>
-              </td>
-              <td class="rm-price">KSh 15,000</td>
-            </tr>
-            <tr class="rm-row">
-              <td>
-                <span class="rm-name">Full-Day Milestone Birthday Gala (Photo + Cinema)</span>
-              </td>
-              <td class="rm-desc-cell">
-                <span class="rm-desc">Full celebration coverage · 1 Photographer + 1 Videographer · Complete event documentary · 1 social media celebration reel · 40 retouched portraits</span>
-              </td>
-              <td class="rm-price">KSh 40,000</td>
-            </tr>
-            <tr class="rm-row">
-              <td>
-                <span class="rm-name">Evening Reception &amp; Dinner Party Coverage</span>
-              </td>
-              <td class="rm-desc-cell">
-                <span class="rm-desc">Evening celebration · 4 hours coverage · Low-light party cinematography &amp; photography · Dance floor &amp; candid guest moments</span>
-              </td>
-              <td class="rm-price">KSh 25,000</td>
-            </tr>
-
-            <!-- CATEGORY 3: Graduation & Academic Gatherings -->
-            <tr class="rm-cat">
-              <td colspan="3">
-                <span>Graduation &amp; Academic Celebrations</span>
-                <span class="rm-cat-count">Academic &amp; Family</span>
-              </td>
-            </tr>
-            <tr class="rm-row">
-              <td>
-                <span class="rm-name">Graduation Ceremony &amp; Family Reception</span>
-              </td>
-              <td class="rm-desc-cell">
-                <span class="rm-desc">Up to 5 hours coverage · 1 Photographer · Campus conferment moments + family celebration reception at home or venue · Complimentary 4K reel</span>
-              </td>
-              <td class="rm-price">KSh 15,000</td>
-            </tr>
-            <tr class="rm-row">
-              <td>
-                <span class="rm-name">Full-Day Graduation Celebration (Photo + Video)</span>
-              </td>
-              <td class="rm-desc-cell">
-                <span class="rm-desc">Full-day coverage · 1 Photographer + 1 Videographer · Procession, family portraits, speeches, banquet &amp; dancing · 1 highlight video</span>
-              </td>
-              <td class="rm-price">KSh 35,000</td>
-            </tr>
-
-            <!-- CATEGORY 4: Family Gatherings & Heritage Celebrations -->
-            <tr class="rm-cat">
-              <td colspan="3">
-                <span>Family Reunions &amp; Heritage Gatherings</span>
-                <span class="rm-cat-count">Family</span>
-              </td>
-            </tr>
-            <tr class="rm-row">
-              <td>
-                <span class="rm-name">Half-Day Family Gathering Coverage</span>
-              </td>
-              <td class="rm-desc-cell">
-                <span class="rm-desc">Up to 4 hours · Group portraits, elder blessings, dinner &amp; celebratory moments · 30 retouched high-resolution images</span>
-              </td>
-              <td class="rm-price">KSh 15,000</td>
-            </tr>
-            <tr class="rm-row">
-              <td>
-                <span class="rm-name">Full-Day Heritage Family Reunion</span>
-              </td>
-              <td class="rm-desc-cell">
-                <span class="rm-desc">Full-day celebration · 2 Photographers · Comprehensive family documentation, individual household portraits &amp; candid moments</span>
-              </td>
-              <td class="rm-price">KSh 35,000</td>
-            </tr>
-
-            <!-- CATEGORY 5: Event Production Add-Ons & Keepsakes -->
+            <!-- CATEGORY 7: Event Production Add-Ons & Keepsakes -->
             <tr class="rm-cat">
               <td colspan="3">
                 <span>Event Production Add-Ons &amp; Keepsakes</span>
@@ -650,48 +1780,48 @@
             </tr>
             <tr class="rm-row">
               <td>
+                <span class="rm-name">4K Aerial Drone Video &amp; Photo</span>
+              </td>
+              <td class="rm-desc-cell">
+                <span class="rm-desc">Licensed drone operator · Venue establishing shots, outdoor procession &amp; homestead aerial overview</span>
+              </td>
+              <td class="rm-price">Custom Quote</td>
+            </tr>
+            <tr class="rm-row">
+              <td>
                 <span class="rm-name">Additional Photographer or Videographer</span>
               </td>
               <td class="rm-desc-cell">
-                <span class="rm-desc">Dedicated extra professional camera operator for multi-zone guest coverage</span>
+                <span class="rm-desc">Dedicated extra professional camera operator for large guest coverage</span>
               </td>
-              <td class="rm-price">KSh 15,000</td>
+              <td class="rm-price">Custom Quote</td>
             </tr>
             <tr class="rm-row">
               <td>
-                <span class="rm-name">4K Aerial Drone Cinematography</span>
+                <span class="rm-name">Archival Framed Wall Mounts</span>
               </td>
               <td class="rm-desc-cell">
-                <span class="rm-desc">Licensed drone pilot · Aerial venue establishing shots &amp; outdoor ceremony overview</span>
+                <span class="rm-desc">A4 (3,000) · A3 (5,000) · A2 (8,000) · A1 (12,000) · A0 (15,000) premium glass/wooden mounts</span>
               </td>
-              <td class="rm-price">KSh 20,000</td>
+              <td class="rm-price">Custom Quote</td>
             </tr>
             <tr class="rm-row">
               <td>
-                <span class="rm-name">After-Party Evening Extension</span>
+                <span class="rm-name">Luxury Hardcover Lay-Flat Photobooks</span>
               </td>
               <td class="rm-desc-cell">
-                <span class="rm-desc">3–4 hours extended evening dance-floor &amp; reception coverage</span>
+                <span class="rm-desc">A4 20pg (20,000) · A4 30pg (25,000) · A3 20pg (30,000) · A3 30pg (35,000) premium leather or linen albums</span>
               </td>
-              <td class="rm-price">KSh 40,000</td>
+              <td class="rm-price">Custom Quote</td>
             </tr>
             <tr class="rm-row">
               <td>
-                <span class="rm-name">Archival Exhibition Wall Mounts</span>
+                <span class="rm-name">Live Streaming Setup (YouTube / Zoom / Facebook)</span>
               </td>
               <td class="rm-desc-cell">
-                <span class="rm-desc">A4 (3,000) · A3 (5,000) · A2 (8,000) · A1 (12,000) · A0 (15,000) framed mounts</span>
+                <span class="rm-desc">Multi-camera livestream setup with dedicated audio mix for diaspora family members</span>
               </td>
-              <td class="rm-price">From KSh 3,000</td>
-            </tr>
-            <tr class="rm-row">
-              <td>
-                <span class="rm-name">Luxury Lay-Flat Photobooks</span>
-              </td>
-              <td class="rm-desc-cell">
-                <span class="rm-desc">A4 20pg (20,000) · A4 30pg (25,000) · A3 20pg (30,000) · A3 30pg (35,000) leather-bound albums</span>
-              </td>
-              <td class="rm-price">From KSh 20,000</td>
+              <td class="rm-price">Custom Quote</td>
             </tr>
           </tbody>
         </table>
@@ -701,31 +1831,31 @@
       <div class="rate-terms reveal">
         <div class="rate-terms-head">
           <span style="color:var(--yellow-bright);font-size:1.6rem">✦</span>
-          <span>Event Booking &amp; Production Standards</span>
+          <span>Event Booking Standards &amp; Policies</span>
         </div>
         <div class="rate-terms-grid">
           <div>
             <h4>Date Reservation</h4>
-            <p>A 50% deposit secures your event date on our master production calendar. Your date and crew are locked once confirmed, with the balance due on or before event day.</p>
+            <p>A deposit confirms your event date on our master calendar. This locks your crew and gear, with the balance cleared on or before the event day.</p>
           </div>
           <div>
             <h4>High-Resolution Delivery</h4>
-            <p>Every event package includes all colour-graded, high-resolution master photographs. No watermarks. Full printing and personal rights included.</p>
+            <p>Every event package includes all color-graded, high-resolution master photographs. No watermarks. Full personal and printing rights included.</p>
           </div>
           <div>
             <h4>48-Hour Sneak Peeks</h4>
-            <p>All corporate summits and major galas receive a 48-hour sneak peek gallery of 30–50 highlight photos for immediate social sharing and media press releases.</p>
+            <p>All weddings, ruracio ceremonies, birthdays, and summits receive a 48-hour sneak peek gallery of 30–50 highlight photos for instant WhatsApp and social media sharing.</p>
           </div>
           <div>
             <h4>Pan-Kenya Travel</h4>
-            <p>Transport within Nairobi and Kakamega metropolitan zones is fully included. Upcountry and destination travel across Kenya is billed at transparent standard rates.</p>
+            <p>We operate daily in Kakamega and Nairobi. Upcountry travel across all 47 counties of Kenya is billed at transparent standard transport rates.</p>
           </div>
         </div>
       </div>
 
       <div class="rate-foot reveal">
         <p class="note">
-          Planning an upcoming corporate summit, conference, milestone gala, or graduation celebration? A 50% deposit confirms your spot. Tell us your date and venue, and our visual team will manage the rest.
+          Planning an upcoming wedding, ruracio, birthday party, graduation feast, funeral send-off, or corporate conference? Lock your date early on our calendar.
         </p>
         <a href="#" class="btn btn-pri" onclick="openWA();return false">
           <span>Book on WhatsApp</span>
@@ -734,13 +1864,13 @@
     </div>
   </section>
 
-  <!-- CLIENT LOVE / REVIEWS -->
+  <!-- CLIENT REVIEWS -->
   <section class="blk" id="reviews">
     <div class="wrap">
       <div class="sechead">
         <div>
           <div class="label reveal">Client Love</div>
-          <h2 class="reveal d1">What They Say</h2>
+          <h2 class="reveal d1">What Clients Say Across Kenya</h2>
         </div>
       </div>
 
@@ -748,25 +1878,49 @@
         <div class="rcard reveal">
           <div class="st">★★★★★</div>
           <p>
-            Laureighn Events covered our Women in Business summit in Nairobi. The 48-hour sneak peeks allowed us to push immediate press releases, and the gala photos were world-class!
+            "Laureighn Events captured our wedding in Karen from the morning bridal preparations right to the evening dance floor. The 48-hour highlight video had our whole family emotional. Outstanding quality!"
           </p>
-          <div class="who">Dr. Wanjiku M. · Executive Conference</div>
+          <div class="who">Sharon &amp; Kelvin M. · Holy Matrimony, Nairobi</div>
         </div>
 
         <div class="rcard reveal d1">
           <div class="st">★★★★★</div>
           <p>
-            Our milestone celebration dinner was captured with exceptional elegance. The champagne toasts, cake cutting, and guest portraits looked like they were straight out of a luxury magazine.
+            "They handled our traditional ruracio in Western Kenya with so much respect. Captured every negotiation, elder blessing, and traditional song with vibrant color and rich sound. Highly recommended!"
           </p>
-          <div class="who">Andrew &amp; Friends · Milestone Gala</div>
+          <div class="who">Brian &amp; Brenda O. · Traditional Ruracio, Kakamega</div>
         </div>
 
         <div class="rcard reveal d2">
           <div class="st">★★★★★</div>
           <p>
-            The graduation honours photos and family lawn reception were captured flawlessly. The lighting direction, crisp colours, and prompt delivery made our celebration unforgettable!
+            "Covered our Women in Business conference in Nairobi. Prompt keynote documentation, rapid press-release photos on the same day, and a highlight reel that received praise from our board."
           </p>
-          <div class="who">Linet K. · Academic Honours Gala</div>
+          <div class="who">Dr. Wanjiku M. · Women in Business Summit</div>
+        </div>
+
+        <div class="rcard reveal">
+          <div class="st">★★★★★</div>
+          <p>
+            "During a painful time laying our beloved father to rest, the Laureighn crew was so gentle, respectful, and quiet. The memorial tribute video and family photobook brought comfort to our entire family."
+          </p>
+          <div class="who">The Omondi Family · Memorial Send-Off, Kisumu</div>
+        </div>
+
+        <div class="rcard reveal d1">
+          <div class="st">★★★★★</div>
+          <p>
+            "My 30th birthday dinner bash was a movie! The cake cutting, champagne toasts, and guest photos look incredible. The social reel they made was viral within hours of posting."
+          </p>
+          <div class="who">Andrew K. · Milestone Birthday Celebration</div>
+        </div>
+
+        <div class="rcard reveal d2">
+          <div class="st">★★★★★</div>
+          <p>
+            "Our daughter's graduation celebration was documented with so much pride. The gown cap toss, the family prayer, and the garden feast photos were delivered so quickly. Excellent service!"
+          </p>
+          <div class="who">Mr. &amp; Mrs. Chebet · Graduation Party, Eldoret</div>
         </div>
       </div>
     </div>
@@ -777,56 +1931,56 @@
     <div class="wrap">
       <div class="sechead">
         <div>
-          <div class="label reveal">FAQ</div>
+          <div class="label reveal">Common Questions</div>
           <h2 class="reveal d1">Frequently Asked Questions</h2>
         </div>
       </div>
 
       <div class="faq-list reveal d2">
         <details class="faq-item">
-          <summary>How do I book a corporate summit or secure our event date?</summary>
+          <summary>How do I book an event date with Laureighn Events?</summary>
           <div class="faq-a">
-            Tap "Book on WhatsApp" or use our interactive booking form below. Provide your planned date, event type, and venue location. A 50% deposit locks in your date and crew.
+            Tap "Book on WhatsApp" or use our interactive booking form below. Provide your planned event date, event type (wedding, ruracio, birthday, graduation, funeral, or corporate), and venue. A deposit locks in your date and crew on our production calendar.
           </div>
         </details>
 
         <details class="faq-item">
-          <summary>Where are your production crews based?</summary>
+          <summary>Do you travel outside Kakamega and Nairobi?</summary>
           <div class="faq-a">
-            We have dedicated production hubs in Kakamega and Nairobi. We travel seamlessly across all 47 counties of Kenya for summits, conferences, and celebrations.
+            Yes, absolutely! We travel across all 47 counties of Kenya including Kisumu, Eldoret, Nakuru, Naivasha, Mombasa, Machakos, Nyeri, and rural homesteads for traditional ceremonies and burials. Travel logistics are calculated transparently.
           </div>
         </details>
 
         <details class="faq-item">
-          <summary>Do you travel for events outside Kakamega &amp; Nairobi?</summary>
+          <summary>How do you handle traditional ruracio and koito negotiations?</summary>
           <div class="faq-a">
-            Yes! We regularly document corporate summits, galas, and celebrations in Kisumu, Nakuru, Eldoret, Naivasha, Mombasa, and beyond. Travel quotes are shared transparently upon inquiry.
+            Our crews understand cultural etiquette across Luhya, Kikuyu, Kalenjin, Luo, Kisii, and other Kenyan traditions. We work quietly during delicate negotiation moments and capture elder blessings with wireless lapel microphones for clear audio.
           </div>
         </details>
 
         <details class="faq-item">
-          <summary>How and when do I receive my photos and videos?</summary>
+          <summary>How fast do we receive our photos and video reels?</summary>
           <div class="faq-a">
-            We share a 48-hour sneak peek for social media and press releases right after event day. Full retouched online galleries and cinematic video cuts are delivered via a private high-resolution cloud link within 2 to 3 days.
+            We deliver a priority 48-hour sneak peek for WhatsApp and social media (30–50 photos + short teaser). Full edited high-resolution galleries and highlight videos are delivered in 2–3 weeks for weddings or 3–5 days for corporate summits and parties.
           </div>
         </details>
 
         <details class="faq-item">
-          <summary>Can we customize our event production package?</summary>
+          <summary>Can you provide live streaming for relatives abroad / in the diaspora?</summary>
           <div class="faq-a">
-            Absolutely. Every event has unique logistics. We frequently build custom coverage combinations including 4K drone cinematography, multi-camera crews, and extra photobooks.
+            Yes! We offer professional multi-camera live streaming setups for YouTube, Zoom, or Facebook with clean audio feeds, allowing relatives anywhere in the world to join the celebration or memorial service in real-time.
           </div>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT CTA PHOTO BAND (Real Event Photo Backdrop from WEBSITE CONTENT) -->
+  <!-- CONTACT CTA PHOTO BAND -->
   <section class="cta-band dark" id="contact">
     <div class="wrap">
       <div class="cta-panel">
-        <h2 class="reveal d1">Let us document your celebration with <em>elegance</em></h2>
-        <p class="reveal d2">Secure your event date on our production calendar. We handle the concept, the cinema lighting, and the magic.</p>
+        <h2 class="reveal d1">Let us capture your celebration with <em>heart &amp; excellence</em></h2>
+        <p class="reveal d2">Secure your event date on our calendar. We handle the cameras, professional audio, lighting, and storytelling.</p>
         <div class="reveal d3" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
           <a href="#" class="btn btn-pri" onclick="openWA();return false">
             <svg class="wa-ic" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.72-1.369A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.315 0-4.458-.764-6.182-2.054l-.344-.262-3.564 1.034 1.079-3.35-.287-.372A9.935 9.935 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
@@ -838,7 +1992,7 @@
         </div>
         <a class="cta-loc reveal d2" href="https://wa.me/254790048905" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
-          <span>Kakamega &amp; Nairobi, Kenya</span>
+          <span>Kakamega &amp; Nairobi · Available Pan-Kenya</span>
         </a>
       </div>
     </div>
@@ -853,31 +2007,32 @@
             <img class="flogo" src="images/logo.png" alt="Laureighn Events Logo">
             <span class="flogo-title">Laureighn Events</span>
           </div>
-          <div class="tg">Where every celebration becomes art</div>
+          <div class="tg">Every Milestone. Every Tradition. Every Celebration.</div>
           <p>
-            Luxury corporate summits, milestone celebrations, academic graduations, and high-profile event cinema across Kenya.
+            Kenya's premier photography &amp; videography team for weddings, traditional ruracio &amp; koito, birthdays, graduations, burials, and corporate summits.
           </p>
         </div>
 
         <div class="fcol">
-          <div class="ct">EVENT PRODUCTIONS</div>
+          <div class="ct">EVENTS WE COVER</div>
           <ul>
-            <li><a href="#services">Corporate Summits &amp; Galas</a></li>
-            <li><a href="#services">Milestone Birthday Celebrations</a></li>
-            <li><a href="#services">Academic Graduation Galas</a></li>
-            <li><a href="#services">Family &amp; Heritage Reunions</a></li>
-            <li><a href="#services">Red Carpet Showcases</a></li>
+            <li><a href="#services">Weddings &amp; Pre-Weddings</a></li>
+            <li><a href="#services">Traditional Ruracio &amp; Koito</a></li>
+            <li><a href="#services">Milestone Birthday Bashes</a></li>
+            <li><a href="#services">Graduation Ceremonies &amp; Parties</a></li>
+            <li><a href="#services">Dignified Funerals &amp; Memorials</a></li>
+            <li><a href="#services">Corporate Summits &amp; AGMs</a></li>
           </ul>
         </div>
 
         <div class="fcol">
-          <div class="ct">THE CINEMA</div>
+          <div class="ct">QUICK LINKS</div>
           <ul>
-            <li><a href="#about">The Production House</a></li>
+            <li><a href="#about">About Our Crew</a></li>
             <li><a href="#portfolio">Event Portfolio</a></li>
             <li><a href="#packages">The Rate Card</a></li>
             <li><a href="#how">How It Works</a></li>
-            <li><a href="../packages/index.html">Laureighn Studios Site</a></li>
+            <li><a href="../packages/index.html">Laureighn Studios Main Site</a></li>
           </ul>
         </div>
 
@@ -889,7 +2044,7 @@
             <li>Instagram · <a href="https://instagram.com/laureign_events" target="_blank" rel="noopener">@laureign_events</a></li>
             <li>TikTok · <a href="https://www.tiktok.com/@laureign_events" target="_blank" rel="noopener">@laureign_events</a></li>
             <li>Email · <a href="mailto:laureignevents@gmail.com">laureignevents@gmail.com</a></li>
-            <li>Location · Kakamega &amp; Nairobi, Kenya</li>
+            <li>Locations · Kakamega &amp; Nairobi, Kenya</li>
           </ul>
         </div>
       </div>
@@ -927,34 +2082,44 @@
           <div class="bk-q">What event are you planning?</div>
           <div class="bk-sub">Select your event category below to tailor our crew and equipment.</div>
           <div class="bk-options">
-            <div class="bk-opt" data-session="Corporate Summit">
-              <h4>Corporate Summit</h4>
-              <p>Conferences, leadership summits, gala dinners &amp; keynote speeches.</p>
-              <span class="pr">from KSh 15,000</span>
+            <div class="bk-opt" data-session="Wedding Coverage">
+              <h4>Wedding (Holy Matrimony &amp; Reception)</h4>
+              <p>Full-day wedding photography, 4K film, bridal prep &amp; evening party.</p>
+              <span class="pr">Custom Quote</span>
             </div>
-            <div class="bk-opt" data-session="Milestone Celebration">
-              <h4>Milestone Celebration</h4>
-              <p>Milestone birthday galas, private anniversary dinners &amp; banquets.</p>
-              <span class="pr">from KSh 15,000</span>
+            <div class="bk-opt" data-session="Traditional Wedding (Ruracio/Koito)">
+              <h4>Traditional Wedding (Ruracio &amp; Koito)</h4>
+              <p>Dowry negotiations, elder blessings, kitenge regalia &amp; cultural songs.</p>
+              <span class="pr">Custom Quote</span>
             </div>
-            <div class="bk-opt" data-session="Graduation Gala">
-              <h4>Graduation Gala</h4>
-              <p>Conferment ceremonies, academic honors &amp; family celebrations.</p>
-              <span class="pr">from KSh 15,000</span>
+            <div class="bk-opt" data-session="Pre-Wedding Shoot">
+              <h4>Pre-Wedding / Save-the-Date</h4>
+              <p>Outdoor couple portraits, save-the-date graphics &amp; vertical reels.</p>
+              <span class="pr">Custom Quote</span>
             </div>
-            <div class="bk-opt" data-session="Family Gathering">
-              <h4>Family Reunion</h4>
-              <p>Heritage family gatherings, anniversaries &amp; milestone reunions.</p>
-              <span class="pr">from KSh 15,000</span>
+            <div class="bk-opt" data-session="Birthday Party">
+              <h4>Birthday Party Celebration</h4>
+              <p>Kids parties, milestone 21st, 30th, 40th, 50th birthdays &amp; dinners.</p>
+              <span class="pr">Custom Quote</span>
             </div>
-            <div class="bk-opt" data-session="Red Carpet Gala">
-              <h4>Red Carpet Gala</h4>
-              <p>Black-tie galas, fashion showcases, VIP lounges &amp; awards.</p>
-              <span class="pr">from KSh 25,000</span>
+            <div class="bk-opt" data-session="Graduation Celebration">
+              <h4>Graduation Ceremony &amp; Party</h4>
+              <p>Campus regalia moments, cap tosses &amp; family thanksgiving lunches.</p>
+              <span class="pr">Custom Quote</span>
+            </div>
+            <div class="bk-opt" data-session="Funeral / Memorial Service">
+              <h4>Funeral &amp; Memorial Send-Off</h4>
+              <p>Respectful celebration of life, church service recording &amp; family photobook.</p>
+              <span class="pr">Custom Quote</span>
+            </div>
+            <div class="bk-opt" data-session="Corporate Summit / Conference">
+              <h4>Corporate Summit &amp; AGM</h4>
+              <p>Conferences, leadership summits, AGMs, dinners &amp; keynote speeches.</p>
+              <span class="pr">Custom Quote</span>
             </div>
             <div class="bk-opt" data-session="Custom Event Production">
-              <h4>Custom Production</h4>
-              <p>Multi-day festivals, concerts, VIP tours &amp; pan-Kenya events.</p>
+              <h4>Custom Event Coverage</h4>
+              <p>Multi-day festivals, concerts, VIP roadshows &amp; pan-Kenya events.</p>
               <span class="pr">Custom Quote</span>
             </div>
           </div>
@@ -976,7 +2141,7 @@
           <div class="bk-field">
             <label>Event Duration / Schedule</label>
             <div class="bk-pills" id="bkTime">
-              <div class="bk-pill" data-time="Half Day (Up to 6 Hours)">Half Day (6h)</div>
+              <div class="bk-pill" data-time="Half Day (Up to 5-6 Hours)">Half Day (5-6h)</div>
               <div class="bk-pill" data-time="Full Day (10 - 12 Hours)">Full Day (12h)</div>
               <div class="bk-pill" data-time="Evening Reception (4 - 5 Hours)">Evening Only (4h)</div>
               <div class="bk-pill" data-time="Multi-Day Event">Multi-Day</div>
@@ -991,17 +2156,17 @@
         <!-- STEP 3: Contact & Venue Details -->
         <div class="bk-panel" data-panel="3">
           <div class="bk-q">Final details</div>
-          <div class="bk-sub">Tap confirm and WhatsApp will open with your event inquiry ready to dispatch.</div>
+          <div class="bk-sub">Tap confirm and WhatsApp will open with your event inquiry ready to send.</div>
           <div class="bk-field">
             <label for="bkName">Your Name / Host Name</label>
-            <input type="text" id="bkName" placeholder="e.g. Cynthia Moraa">
+            <input type="text" id="bkName" placeholder="e.g. Cynthia Moraa / Kelvin Mwangi">
           </div>
           <div class="bk-field">
             <label for="bkPhone">WhatsApp Number</label>
             <input type="tel" id="bkPhone" placeholder="07XX XXX XXX">
           </div>
           <div class="bk-field">
-            <label for="bkLocation">Event City / Venue Name</label>
+            <label for="bkLocation">Event Town / Venue Name</label>
             <input type="text" id="bkLocation" placeholder="e.g. Kakamega Golf Hotel or Safari Park Nairobi">
           </div>
           <div class="bk-nav">
@@ -1020,10 +2185,22 @@
     <button class="x" onclick="closeLB()">&times;</button>
     <button class="pv" onclick="lbNav(-1)">&#8249;</button>
     <button class="nx" onclick="lbNav(1)">&#8250;</button>
-    <img id="lbImg" src="" alt="Laureighn Events Lightbox View">
+    <div class="lb-inner">
+      <img id="lbImg" src="" alt="Laureighn Events Lightbox View">
+      <div class="lb-meta">
+        <div class="lb-caption" id="lbCaption">Event Highlight</div>
+        <div class="lb-counter" id="lbCounter">1 / 15</div>
+      </div>
+    </div>
   </div>
 
+  <!-- GLOBAL FLOATING BACK TO TOP BUTTON (Whole Website) -->
+  <button id="backToTopBtn" class="back-to-top" onclick="scrollToPageTop()" title="Back to top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+    <span>Top</span>
+  </button>
+
   <!-- JAVASCRIPT CONTROLLER -->
-  <script src="js/events.js?v=20261003_v4"></script>
+  <script src="js/events.js?v=20261003_v8"></script>
 </body>
 </html>

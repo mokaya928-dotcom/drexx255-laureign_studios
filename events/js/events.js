@@ -15,16 +15,67 @@ document.addEventListener("DOMContentLoaded", () => {
     nav.classList.toggle("solid", window.scrollY > 80);
   }
 
-  // 2. HERO SLIDESHOW (Crossfade with Preload)
+  // 2. HERO SLIDESHOW (Smooth Zero-Black-Space Crossfade every 3 Seconds)
   const slides = document.querySelectorAll(".hero-slide");
-  let currentSlide = 0;
   if (slides.length > 1) {
-    setInterval(() => {
+    let currentSlide = 0;
+    const SLIDE_DURATION = 3000; // 3 seconds interval as requested
+    const FADE_DURATION = 900;   // 0.9s smooth crossfade
+
+    // Preload & decode all slide images into GPU memory in advance
+    slides.forEach(slide => {
+      const img = slide.querySelector("img");
+      if (img && img.src) {
+        const pre = new Image();
+        pre.src = img.src;
+        if (pre.decode) {
+          pre.decode().catch(() => {});
+        }
+      }
+    });
+
+    let slideTimer = null;
+
+    function goToNextSlide() {
+      const prevSlide = currentSlide;
       const nextSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.remove("active");
+
+      // 1. Keep previous slide 100% visible underneath at z-index: 1
+      slides[prevSlide].classList.remove("active");
+      slides[prevSlide].classList.add("prev-active");
+
+      // 2. Fade in next slide ON TOP at z-index: 2
       slides[nextSlide].classList.add("active");
+
+      // 3. Once crossfade finishes, cleanly release prev-active
+      setTimeout(() => {
+        slides[prevSlide].classList.remove("prev-active");
+      }, FADE_DURATION);
+
       currentSlide = nextSlide;
-    }, 4500);
+    }
+
+    function startSlideshow() {
+      if (slideTimer) clearInterval(slideTimer);
+      slideTimer = setInterval(goToNextSlide, SLIDE_DURATION);
+    }
+
+    function stopSlideshow() {
+      if (slideTimer) {
+        clearInterval(slideTimer);
+        slideTimer = null;
+      }
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        stopSlideshow();
+      } else {
+        startSlideshow();
+      }
+    });
+
+    startSlideshow();
   }
 
   // 3. REVEAL ANIMATIONS ON SCROLL
@@ -49,28 +100,39 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { passive: true });
   }
 
-  // 5. PORTFOLIO CATEGORY FILTERING
+  // 5. PORTFOLIO CATEGORY FILTERING & 15-IMAGE VIEW LIMITER
   const filterBtns = document.querySelectorAll(".filterbar .chip-f");
-  const galleryItems = document.querySelectorAll("#gallery .gitem");
 
   filterBtns.forEach(btn => {
     btn.addEventListener("click", () => {
+      const bookTarget = btn.getAttribute("data-book");
+      if (bookTarget) {
+        // Open booking modal directly pre-selected for this event
+        openBk(bookTarget);
+        return;
+      }
+
       filterBtns.forEach(b => b.classList.remove("on"));
       btn.classList.add("on");
 
-      const cat = btn.getAttribute("data-cat");
-      galleryItems.forEach(item => {
-        const itemCat = item.getAttribute("data-cat");
-        if (cat === "all" || itemCat === cat) {
-          item.style.display = "block";
-          // Trigger slight fade-in
-          item.style.opacity = "1";
-        } else {
-          item.style.display = "none";
+      currentCategory = btn.getAttribute("data-cat") || "all";
+      // Reset expanded state to false so new category starts clean with 15 photos
+      isPortfolioExpanded = false;
+      updateGalleryDisplay();
+
+      // Smooth scroll if user was scrolled deep down in gallery
+      const gallery = document.getElementById("gallery");
+      if (gallery) {
+        const rect = gallery.getBoundingClientRect();
+        if (rect.top < -150) {
+          gallery.scrollIntoView({ behavior: "smooth", block: "start" });
         }
-      });
+      }
     });
   });
+
+  // Initial display setup (limits to first 15 photos on page load)
+  updateGalleryDisplay();
 
   // 6. STATS NUMBER COUNT-UP ANIMATION
   function initStats() {
@@ -242,11 +304,129 @@ function openWA() {
   openBk();
 }
 
-// 2. LIGHTBOX VIEWER
+// ============================================================
+// 2. GALLERY ENGINE (15-Photo Initial Limiter, View More & Return Up)
+// ============================================================
+const GALLERY_INITIAL_LIMIT = 15;
+let currentCategory = "all";
+let isPortfolioExpanded = false;
+
+function updateGalleryDisplay() {
+  const gallery = document.getElementById("gallery");
+  if (!gallery) return;
+
+  const galleryItems = Array.from(gallery.querySelectorAll(".gitem"));
+  const btn = document.getElementById("portMoreBtn");
+  const returnBtn = document.getElementById("portReturnBtn");
+
+  // Collect all items matching the active category
+  const matching = galleryItems.filter(item => {
+    const itemCat = item.getAttribute("data-cat");
+    return currentCategory === "all" || itemCat === currentCategory;
+  });
+
+  const totalMatching = matching.length;
+
+  // Render items: show first 15 if not expanded, or all matching if expanded
+  galleryItems.forEach(item => {
+    const itemCat = item.getAttribute("data-cat");
+    const isMatch = (currentCategory === "all" || itemCat === currentCategory);
+
+    if (!isMatch) {
+      item.style.display = "none";
+      return;
+    }
+
+    const idx = matching.indexOf(item);
+    if (!isPortfolioExpanded && idx >= GALLERY_INITIAL_LIMIT) {
+      item.style.display = "none";
+    } else {
+      item.style.display = "block";
+      item.style.opacity = "1";
+    }
+  });
+
+  // Manage View More & Return Up buttons
+  if (totalMatching <= GALLERY_INITIAL_LIMIT) {
+    if (btn) btn.style.display = "none";
+    if (returnBtn) returnBtn.style.display = "none";
+  } else {
+    if (btn) {
+      btn.style.display = "inline-flex";
+      const span = btn.querySelector("span");
+      if (isPortfolioExpanded) {
+        if (span) span.textContent = `Show Less (First ${GALLERY_INITIAL_LIMIT})`;
+        btn.classList.add("is-open");
+      } else {
+        const remaining = totalMatching - GALLERY_INITIAL_LIMIT;
+        if (span) span.textContent = `View More Photos (+${remaining} More)`;
+        btn.classList.remove("is-open");
+      }
+    }
+    if (returnBtn) {
+      returnBtn.style.display = isPortfolioExpanded ? "inline-flex" : "none";
+    }
+  }
+}
+
+function togglePortfolioMore() {
+  isPortfolioExpanded = !isPortfolioExpanded;
+  updateGalleryDisplay();
+
+  if (isPortfolioExpanded) {
+    // When expanding, smoothly scroll down so new photos glide into view
+    const gallery = document.getElementById("gallery");
+    if (gallery) {
+      const matching = Array.from(gallery.querySelectorAll(".gitem")).filter(item => {
+        const itemCat = item.getAttribute("data-cat");
+        return currentCategory === "all" || itemCat === currentCategory;
+      });
+      if (matching[GALLERY_INITIAL_LIMIT]) {
+        matching[GALLERY_INITIAL_LIMIT].scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+  } else {
+    // When collapsing, smoothly glide back to the top of the portfolio
+    scrollToGalleryTop();
+  }
+}
+
+// Smoothly scroll back to the top of the entire website
+function scrollToPageTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+function scrollToGalleryTop() {
+  const portSection = document.getElementById("portfolio");
+  if (portSection) {
+    portSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+// Global Back-to-Top Button (Applies across the whole website)
+window.addEventListener("scroll", () => {
+  const bttBtn = document.getElementById("backToTopBtn") || document.getElementById("galleryTopBtn");
+  if (!bttBtn) return;
+
+  // Show as soon as user scrolls down past 350px anywhere on the page
+  if (window.scrollY > 350) {
+    bttBtn.classList.add("visible");
+  } else {
+    bttBtn.classList.remove("visible");
+  }
+}, { passive: true });
+
+// ============================================================
+// 3. LIGHTBOX VIEWER (Caption, Counter, Touch Swipe & Arrows)
+// ============================================================
 let currentLbIndex = 0;
 let lbImagesList = [];
 
 function openLB(itemEl) {
+  // Collect all currently visible items in the current view
   const allVisibleItems = Array.from(document.querySelectorAll("#gallery .gitem")).filter(el => el.style.display !== "none");
   lbImagesList = allVisibleItems.map(el => {
     const img = el.querySelector("img");
@@ -254,7 +434,7 @@ function openLB(itemEl) {
     return {
       src: img ? img.src : "",
       alt: img ? img.alt : "",
-      caption: caption ? caption.textContent : ""
+      caption: caption ? caption.textContent : (img ? img.alt : "Laureighn Events Showcase")
     };
   });
 
@@ -271,9 +451,18 @@ function updateLBView() {
   if (!lbImagesList.length) return;
   const current = lbImagesList[currentLbIndex];
   const lbImg = document.getElementById("lbImg");
+  const lbCaption = document.getElementById("lbCaption");
+  const lbCounter = document.getElementById("lbCounter");
+
   if (lbImg) {
     lbImg.src = current.src;
     lbImg.alt = current.caption || current.alt || "Laureighn Events Showcase";
+  }
+  if (lbCaption) {
+    lbCaption.textContent = current.caption || current.alt || "Laureighn Events";
+  }
+  if (lbCounter) {
+    lbCounter.textContent = `${currentLbIndex + 1} / ${lbImagesList.length}`;
   }
 }
 
@@ -287,6 +476,29 @@ function lbNav(dir) {
   if (!lbImagesList.length) return;
   currentLbIndex = (currentLbIndex + dir + lbImagesList.length) % lbImagesList.length;
   updateLBView();
+}
+
+// Touch swipe support for mobile lightbox
+let lbTouchStartX = 0;
+let lbTouchEndX = 0;
+const lbEl = document.getElementById("lb");
+if (lbEl) {
+  lbEl.addEventListener("touchstart", (e) => {
+    if (e.changedTouches && e.changedTouches[0]) {
+      lbTouchStartX = e.changedTouches[0].screenX;
+    }
+  }, { passive: true });
+
+  lbEl.addEventListener("touchend", (e) => {
+    if (e.changedTouches && e.changedTouches[0]) {
+      lbTouchEndX = e.changedTouches[0].screenX;
+      const diff = lbTouchEndX - lbTouchStartX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) lbNav(-1); // Swipe right -> prev
+        else lbNav(1); // Swipe left -> next
+      }
+    }
+  }, { passive: true });
 }
 
 // Keyboard Navigation for Lightbox & Modal
@@ -305,7 +517,7 @@ window.addEventListener("keydown", (e) => {
   }
 });
 
-// 3. VIDEO REEL MUTE / UNMUTE
+// 4. VIDEO REEL MUTE / UNMUTE
 function toggleMute(btn, event) {
   event.stopPropagation();
   const cell = btn.closest(".film-cell");
@@ -315,30 +527,4 @@ function toggleMute(btn, event) {
 
   video.muted = !video.muted;
   btn.textContent = video.muted ? "🔇" : "🔊";
-}
-
-// 4. PORTFOLIO EXPANSION TOGGLE
-let isPortfolioExpanded = false;
-function togglePortfolioMore() {
-  const btn = document.getElementById("portMoreBtn");
-  const textSpan = btn ? btn.querySelector("span") : null;
-
-  isPortfolioExpanded = !isPortfolioExpanded;
-
-  if (btn) btn.classList.toggle("is-open", isPortfolioExpanded);
-
-  if (isPortfolioExpanded) {
-    if (textSpan) textSpan.textContent = "Show Less";
-    // Scroll smoothly to newly exposed items
-    const gallery = document.getElementById("gallery");
-    if (gallery) {
-      gallery.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-  } else {
-    if (textSpan) textSpan.textContent = "View More Curated Works";
-    const portSection = document.getElementById("portfolio");
-    if (portSection) {
-      portSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }
 }

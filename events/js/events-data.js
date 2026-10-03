@@ -8,7 +8,7 @@
 const EVENTS_CATEGORIES = [
   { id: "all", label: "All Selected Works", icon: "✨", countBadge: "30+" },
   { id: "weddings", label: "Holy Matrimony & Weddings", icon: "💍", countBadge: "Weddings" },
-  { id: "traditional", label: "Traditional & Cultural Ruracio", icon: "👑", countBadge: "Cultural" },
+  { id: "traditional", label: "Traditional Ruracio & Koito", icon: "👑", countBadge: "Cultural" },
   { id: "corporate", label: "Corporate Summits & Galas", icon: "🏛️", countBadge: "Corporate" },
   { id: "birthdays", label: "Milestone Birthdays & Bashes", icon: "🎂", countBadge: "Birthdays" },
   { id: "graduations", label: "Graduations & Honors", icon: "🎓", countBadge: "Graduation" },
@@ -27,8 +27,8 @@ const EVENTS_PROJECTS = [
     year: "2026",
     badge: "💍 Signature Matrimony",
     summary: "Full-day wedding cinema & high-fashion documentary photography. From intimate dawn bridal preparation and cathedral vow exchange to a breathtaking marquee garden reception with 400 esteemed guests.",
-    cover: "../packages/images/work-1.jpg",
-    coverThumb: "../packages/images/work-1_thumb.jpg",
+    cover: "WEBSITE CONTENT/weddings/cover.jpeg",
+    coverThumb: "WEBSITE CONTENT/weddings/cover.jpeg",
     guestCount: "400 Guests",
     duration: "Full-Day (14 Hours)",
     crew: "2 Cinema Operators, 2 Master Photographers, 1 Drone Pilot",
@@ -47,25 +47,25 @@ const EVENTS_PROJECTS = [
       role: "Bride & Groom"
     },
     gallery: [
-      { url: "../packages/images/work-1.jpg", caption: "The Grand Regal Couple · Golden Hour Cathedral Grounds" },
-      { url: "../packages/samples/events/wedding-coverage/work-1.jpg", caption: "The Holy Vows Exchange & Altar Blessing" },
-      { url: "../packages/images/work-7.jpg", caption: "Timeless Bridal Portrait · Master Softbox Illumination" },
-      { url: "../packages/images/work-4.jpg", caption: "Bridal Party Joy & Champagne Toast" },
-      { url: "../packages/images/work-9.jpg", caption: "Evening Reception Elegance & Marquee Lighting" },
-      { url: "../packages/samples/events/wedding-coverage/cover.jpg", caption: "First Dance Romance Under The Stars" }
+      { url: "WEBSITE CONTENT/weddings/cover.jpeg", caption: "The Grand Regal Couple · Golden Hour Cathedral Grounds" },
+      { url: "WEBSITE CONTENT/weddings/cover (2).jpeg", caption: "The Holy Vows Exchange & Altar Blessing" },
+      { url: "WEBSITE CONTENT/weddings/cover (3).jpeg", caption: "Evening Reception Elegance & Marquee Lighting" },
+      { url: "WEBSITE CONTENT/weddings/cover (4).jpeg", caption: "Timeless Bridal Moments & Joyous Matrimony" },
+      { url: "WEBSITE CONTENT/weddings/2.jpg", caption: "Bridal Party Joy & Celebration" },
+      { url: "WEBSITE CONTENT/weddings/7.jpg", caption: "First Dance Romance Under The Stars" }
     ]
   },
   {
     id: "royal-traditional-ruracio",
-    title: "The Royal Cultural Dowry Rites & Traditional Ruracio",
+    title: "Cultural Dowry Rites & Traditional Ruracio / Koito",
     category: "traditional",
-    categoryLabel: "Traditional Ruracio",
+    categoryLabel: "Ruracio & Koito",
     location: "Western Kenya Circuit",
     year: "2026",
     badge: "👑 Cultural Heritage",
     summary: "A deeply vibrant celebration of ancestral unity, traditional negotiations, elder blessings, colorful kitenge regalia, and exhilarating African rhythm.",
-    cover: "../packages/samples/events/traditional-wedding/cover.jpg",
-    coverThumb: "../packages/samples/events/traditional-wedding/cover_thumb.jpg",
+    cover: "WEBSITE CONTENT/koito TRADITONAL WEDDINGS/COVER.webp",
+    coverThumb: "WEBSITE CONTENT/koito TRADITONAL WEDDINGS/COVER.webp",
     guestCount: "350 Guests",
     duration: "Full-Day (10 Hours)",
     crew: "2 Cinematographers, 1 Master Portrait Photographer",
@@ -84,11 +84,11 @@ const EVENTS_PROJECTS = [
       role: "Couple & Families"
     },
     gallery: [
-      { url: "../packages/samples/events/traditional-wedding/cover.jpg", caption: "Regal Cultural Regalia & Ancestral Pride" },
-      { url: "../packages/samples/events/traditional-wedding/BRA (2).jpg", caption: "The Joyous Entrance of the Bridal Delegation" },
-      { url: "../packages/samples/events/traditional-wedding/BRA (5).jpg", caption: "Traditional Attire Details & Intricate Beadwork" },
-      { url: "../packages/samples/events/traditional-wedding/BRA (17).jpg", caption: "Elder Blessings & Ceremonial Libations" },
-      { url: "../packages/samples/events/traditional-wedding/BRA (22).jpg", caption: "Generational Family Unity & Celebration" }
+      { url: "WEBSITE CONTENT/koito TRADITONAL WEDDINGS/COVER.webp", caption: "Regal Cultural Regalia & Ancestral Pride" },
+      { url: "WEBSITE CONTENT/koito TRADITONAL WEDDINGS/COVER.webp", caption: "The Joyous Entrance of the Bridal Delegation" },
+      { url: "WEBSITE CONTENT/koito TRADITONAL WEDDINGS/COVER.webp", caption: "Traditional Attire Details & Intricate Beadwork" },
+      { url: "WEBSITE CONTENT/koito TRADITONAL WEDDINGS/COVER.webp", caption: "Elder Blessings & Ceremonial Libations" },
+      { url: "WEBSITE CONTENT/koito TRADITONAL WEDDINGS/COVER.webp", caption: "Generational Family Unity & Celebration" }
     ]
   },
   {
@@ -100,8 +100,8 @@ const EVENTS_PROJECTS = [
     year: "2026",
     badge: "🎂 21st Milestone Extravaganza",
     summary: "An extravagant 21st milestone celebration featuring couture evening gown portraits, custom golden balloon architecture, champagne tower toast, and electric dance floor.",
-    cover: "../packages/samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8315.JPG",
-    coverThumb: "../packages/samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8315.JPG",
+    cover: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg",
+    coverThumb: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg",
     guestCount: "120 VIP Guests",
     duration: "6 Hours Coverage",
     crew: "1 Master Fashion Photographer, 1 Cinema Reel Specialist",
@@ -119,14 +119,14 @@ const EVENTS_PROJECTS = [
       role: "Host & Celebrant"
     },
     gallery: [
-      { url: "../packages/samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8315.JPG", caption: "The Birthday Queen · Golden Gown Glamour" },
-      { url: "../packages/samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8387.JPG", caption: "Champagne Toast & Sparkling Cheers" },
-      { url: "../packages/samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8399.JPG", caption: "Candids with Best Friends & VIP Guests" },
-      { url: "../packages/samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8122.JPG", caption: "Cake Cutting Ceremony & Golden Sparklers" },
-      { url: "../packages/samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8316.JPG", caption: "Sunset Glow & Garden Pavilion Elegance" },
-      { url: "../packages/samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8423.JPG", caption: "Dance Floor Energy & Celebration Vibe" },
-      { url: "../packages/samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8084.JPG", caption: "Chic Decor, Floral Walls & Velvet Accents" },
-      { url: "../packages/samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8099.JPG", caption: "Candid Laughter & Memorable Moments" }
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "The Birthday Queen · Golden Gown Glamour" },
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "Champagne Toast & Sparkling Cheers" },
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "Candids with Best Friends & VIP Guests" },
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "Cake Cutting Ceremony & Golden Sparklers" },
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "Sunset Glow & Garden Pavilion Elegance" },
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "Dance Floor Energy & Celebration Vibe" },
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "Chic Decor, Floral Walls & Velvet Accents" },
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "Candid Laughter & Memorable Moments" }
     ]
   },
   {
@@ -138,8 +138,8 @@ const EVENTS_PROJECTS = [
     year: "2026",
     badge: "🏛️ Executive Summit & Gala",
     summary: "High-level 2-day business conference, keynote addresses, fireside panel discussions, executive step-and-repeat headshot lounge, and prestigious corporate awards dinner.",
-    cover: "../packages/samples/events/corporate-event/COPORATE EVENT COVERAGE.jpg",
-    coverThumb: "../packages/samples/events/corporate-event/COPORATE EVENT COVERAGE_thumb.jpg",
+    cover: "WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg",
+    coverThumb: "WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg",
     guestCount: "280 Delegates & CEOs",
     duration: "2-Day Summit (16 Hours)",
     crew: "2 Event Documentarians, 1 Sound Engineer, 1 Quick-Turnaround Media Editor",
@@ -158,14 +158,14 @@ const EVENTS_PROJECTS = [
       role: "Regional Enterprise Consortium"
     },
     gallery: [
-      { url: "../packages/samples/events/corporate-event/COPORATE EVENT COVERAGE.jpg", caption: "Grand Summit Stage & Keynote Presentation" },
-      { url: "../packages/samples/events/corporate-event/CORPORATE PORTRAIT SHOOT.jpg", caption: "Executive Leadership Step-and-Repeat Lounge" },
-      { url: "../packages/samples/events/corporate-event/DSC02822.jpgj_status.jpg", caption: "Distinguished Panelist Symposium & Audience Q&A" },
-      { url: "../packages/samples/events/corporate-event/DSC02830.jpgh_status.jpg", caption: "VIP Bilateral Networking & Corporate Handshakes" },
-      { url: "../packages/samples/events/corporate-event/DSC02836.jpgh_status.jpg", caption: "Keynote Address by Industry Managing Director" },
-      { url: "../packages/samples/events/corporate-event/DSC02840.jpgh_status.jpg", caption: "Innovation Exhibition Booths & Product Demos" },
-      { url: "../packages/samples/events/corporate-event/DSC02856.jpgu.jpgg_status.jpg", caption: "Corporate Awards Banquet & Trophy Presentations" },
-      { url: "../packages/samples/events/corporate-event/DSC02891.jpgj_status.jpg", caption: "Gala Dinner Toast & Commemorative Delegates Group Shot" }
+      { url: "WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg", caption: "Grand Summit Stage & Keynote Presentation" },
+      { url: "WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg", caption: "Executive Leadership Step-and-Repeat Lounge" },
+      { url: "WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg", caption: "Distinguished Panelist Symposium & Audience Q&A" },
+      { url: "WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg", caption: "VIP Bilateral Networking & Corporate Handshakes" },
+      { url: "WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg", caption: "Keynote Address by Industry Managing Director" },
+      { url: "WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg", caption: "Innovation Exhibition Booths & Product Demos" },
+      { url: "WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg", caption: "Corporate Awards Banquet & Trophy Presentations" },
+      { url: "WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03278.jpg", caption: "Gala Dinner Toast & Commemorative Delegates Group Shot" }
     ]
   },
   {
@@ -177,8 +177,8 @@ const EVENTS_PROJECTS = [
     year: "2026",
     badge: "🎓 Doctoral Convocation",
     summary: "Full academic convocation gown documentation, ceremonial hooding, multi-generational family banquet, honorary speeches, and bespoke wooden wall portrait mounts.",
-    cover: "../packages/samples/events/graduation-events/cover.jpg",
-    coverThumb: "../packages/samples/events/graduation-events/cover_thumb.jpg",
+    cover: "WEBSITE CONTENT/pre wedding/1791047727654.jpeg",
+    coverThumb: "WEBSITE CONTENT/pre wedding/1791047727654.jpeg",
     guestCount: "150 Family & Dignitaries",
     duration: "Full-Day Coverage (8 Hours)",
     crew: "1 Lead Portraitist, 1 Cinema Operator",
@@ -197,15 +197,15 @@ const EVENTS_PROJECTS = [
       role: "PhD Graduate & Honoree"
     },
     gallery: [
-      { url: "../packages/samples/events/graduation-events/cover.jpg", caption: "Honorary Convocation Cap & Gown Portrait" },
-      { url: "../packages/samples/events/graduation-events/PRI_4998.jpg", caption: "Ceremonial Hooding & Academic Regalia Pride" },
-      { url: "../packages/samples/events/graduation-events/PRI_5013.jpg", caption: "Triumphant Convocation Walk Across Campus" },
-      { url: "../packages/samples/events/graduation-events/PRI_5363.jpg", caption: "Three Generations of Family Standing in Pride" },
-      { url: "../packages/samples/events/graduation-events/PRI_5412.jpg", caption: "Celebratory Toast at the Evening Country Feast" },
-      { url: "../packages/samples/events/graduation-events/PRI_5893.jpg", caption: "Candid Smiles & Joyful Hugs from Siblings" },
-      { url: "../packages/samples/events/graduation-events/SHE_1757.JPG", caption: "Formal Executive Degree Portrait Session" },
-      { url: "../packages/samples/events/graduation-events/SHE_1765.JPG", caption: "Traditional Blessings & Family Prayer Dedication" },
-      { url: "../packages/samples/events/graduation-events/SHE_1773.JPG", caption: "Evening Dance & Celebratory Festivities" }
+      { url: "WEBSITE CONTENT/pre wedding/1791047727654.jpeg", caption: "Honorary Convocation Cap & Gown Portrait" },
+      { url: "WEBSITE CONTENT/pre wedding/1791047727654.jpeg", caption: "Ceremonial Hooding & Academic Regalia Pride" },
+      { url: "WEBSITE CONTENT/pre wedding/1791047727654.jpeg", caption: "Triumphant Convocation Walk Across Campus" },
+      { url: "WEBSITE CONTENT/pre wedding/1791047727654.jpeg", caption: "Three Generations of Family Standing in Pride" },
+      { url: "WEBSITE CONTENT/pre wedding/1791047727654.jpeg", caption: "Celebratory Toast at the Evening Country Feast" },
+      { url: "WEBSITE CONTENT/pre wedding/1791047727654.jpeg", caption: "Candid Smiles & Joyful Hugs from Siblings" },
+      { url: "WEBSITE CONTENT/pre wedding/1791047727654.jpeg", caption: "Formal Executive Degree Portrait Session" },
+      { url: "WEBSITE CONTENT/pre wedding/1791047727654.jpeg", caption: "Traditional Blessings & Family Prayer Dedication" },
+      { url: "WEBSITE CONTENT/pre wedding/1791047727654.jpeg", caption: "Evening Dance & Celebratory Festivities" }
     ]
   },
   {
@@ -217,8 +217,8 @@ const EVENTS_PROJECTS = [
     year: "2026",
     badge: "🎂 Twin Milestone Fairytale",
     summary: "Pastel wonderland themed 1st birthday party celebrating twin blessings. Balloon architecture, bespoke dual-cake display, joyful baby candids, and playful family portraits.",
-    cover: "../packages/samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2460.jpg",
-    coverThumb: "../packages/samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2460.jpg",
+    cover: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg",
+    coverThumb: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg",
     guestCount: "80 Guests & Little Ones",
     duration: "5 Hours Coverage",
     crew: "1 Master Event Photographer, 1 Assistant",
@@ -236,10 +236,10 @@ const EVENTS_PROJECTS = [
       role: "Proud Parents"
     },
     gallery: [
-      { url: "../packages/samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2460.jpg", caption: "Joyful Twin Milestone Celebration & Balloon Fantasy" },
-      { url: "../packages/samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2370.jpg", caption: "Bespoke Pastel Decor & Custom Birthday Stage" },
-      { url: "../packages/samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2374.jpg", caption: "Sweet Moments With Mom & Dad" },
-      { url: "../packages/samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2432.jpg", caption: "Playful Toddler Candids & Joyful Games" }
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "Joyful Twin Milestone Celebration & Balloon Fantasy" },
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "Bespoke Pastel Decor & Custom Birthday Stage" },
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "Sweet Moments With Mom & Dad" },
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "Playful Toddler Candids & Joyful Games" }
     ]
   },
   {
@@ -251,8 +251,8 @@ const EVENTS_PROJECTS = [
     year: "2026",
     badge: "🎂 Black-Tie Milestone",
     summary: "A distinguished evening gala commemorating an executive's milestone decade. Tuxedo dress code, saxophone performances, heartfelt tributes, and bespoke vintage cocktail bar.",
-    cover: "../packages/samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2370.jpg",
-    coverThumb: "../packages/samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2370.jpg",
+    cover: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg",
+    coverThumb: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg",
     guestCount: "95 Distinguished Guests",
     duration: "5 Hours Evening Coverage",
     crew: "1 Senior Portraitist, 1 Cinema Reel Producer",
@@ -270,11 +270,11 @@ const EVENTS_PROJECTS = [
       role: "Host & Celebrant"
     },
     gallery: [
-      { url: "../packages/samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2370.jpg", caption: "The Distinguished Host · Black-Tie Arrival" },
-      { url: "../packages/samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2374.jpg", caption: "Brotherhood Toasts & Vintage Cocktail Lounge" },
-      { url: "../packages/samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2432.jpg", caption: "Live Saxophone Melodies & Ambiance" },
-      { url: "../packages/samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2460.jpg", caption: "Tribute Speeches & Heartfelt Laughter" },
-      { url: "../packages/samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2467.jpg", caption: "Late-Night Celebration & Dance Floor Finale" }
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "The Distinguished Host · Black-Tie Arrival" },
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "Brotherhood Toasts & Vintage Cocktail Lounge" },
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "Live Saxophone Melodies & Ambiance" },
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "Tribute Speeches & Heartfelt Laughter" },
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg", caption: "Late-Night Celebration & Dance Floor Finale" }
     ]
   },
   {
@@ -286,8 +286,8 @@ const EVENTS_PROJECTS = [
     year: "2026",
     badge: "🏨 Luxury Hospitality Showcase",
     summary: "Architectural resort photography, twilight swimming pool ambiance, fine-dining gastronomy plating, executive suites, and corporate cocktail launch.",
-    cover: "../packages/samples/events/hotel-events/cover.jpg",
-    coverThumb: "../packages/samples/events/hotel-events/cover_thumb.jpg",
+    cover: "WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03291.jpg",
+    coverThumb: "WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03291.jpg",
     guestCount: "180 VIP Invitees",
     duration: "Full-Day & Twilight (10 Hours)",
     crew: "2 Commercial Media Specialists, 1 Aerial Drone Pilot",
@@ -306,10 +306,10 @@ const EVENTS_PROJECTS = [
       role: "Luxury Resort & Golf Club"
     },
     gallery: [
-      { url: "../packages/samples/events/hotel-events/cover.jpg", caption: "Lush Resort Landscape & Grand Entrance" },
-      { url: "../packages/samples/events/hotel-events/HOTEL AND HOSPITALITY SHOOT.jpg", caption: "Executive Lounge & Cocktail Bar Experience" },
-      { url: "../packages/samples/events/hotel-events/work-5.jpg", caption: "Fine-Dining Culinary Plating & Gourmet Artistry" },
-      { url: "../packages/images/work-5.jpg", caption: "Twilight Garden Pavilion & Luxury Suite Ambiance" }
+      { url: "WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03291.jpg", caption: "Lush Resort Landscape & Grand Entrance" },
+      { url: "WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03291.jpg", caption: "Executive Lounge & Cocktail Bar Experience" },
+      { url: "WEBSITE CONTENT/WOMEN IN BUSINESS EVENT( COOPORATE  EVENTS)/DSC03291.jpg", caption: "Fine-Dining Culinary Plating & Gourmet Artistry" },
+      { url: "WEBSITE CONTENT/weddings/cover (2).jpeg", caption: "Twilight Garden Pavilion & Luxury Suite Ambiance" }
     ]
   },
   {
@@ -321,8 +321,8 @@ const EVENTS_PROJECTS = [
     year: "2026",
     badge: "🍸 Electric Nightlife & Beats",
     summary: "Dynamic low-light cinema prime lenses, synchronized second-curtain rear flash, laser light trails, VIP bottle service, and pulsating crowd excitement.",
-    cover: "../packages/samples/events/club-events/cover.jpg",
-    coverThumb: "../packages/samples/events/club-events/cover_thumb.jpg",
+    cover: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2432.jpg",
+    coverThumb: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2432.jpg",
     guestCount: "600+ Clubgoers",
     duration: "Late Night (10 PM - 4 AM)",
     crew: "1 Nightlife Visual Specialist",
@@ -340,9 +340,9 @@ const EVENTS_PROJECTS = [
       role: "Premier VIP Lounge"
     },
     gallery: [
-      { url: "../packages/samples/events/club-events/cover.jpg", caption: "Headliner DJ on the Decks & Laser Symphony" },
-      { url: "../packages/images/work-3.jpg", caption: "VIP Booth Cheers & Bottle Parade" },
-      { url: "../packages/images/work-8.jpg", caption: "Electric Crowd Energy & Dance Floor Trance" }
+      { url: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2432.jpg", caption: "Headliner DJ on the Decks & Laser Symphony" },
+      { url: "WEBSITE CONTENT/weddings/cover (2).jpeg", caption: "VIP Booth Cheers & Bottle Parade" },
+      { url: "WEBSITE CONTENT/weddings/cover (2).jpeg", caption: "Electric Crowd Energy & Dance Floor Trance" }
     ]
   },
   {
@@ -354,8 +354,8 @@ const EVENTS_PROJECTS = [
     year: "2026",
     badge: "🏍️ High-Speed Convoy",
     summary: "Adrenaline-fueled rolling vehicle tracking shots, highway convoy formations, heavy engine chrome details, and sunset rider camaraderie.",
-    cover: "../packages/samples/events/fun-club-events/cover.jpg",
-    coverThumb: "../packages/samples/events/fun-club-events/cover_thumb.jpg",
+    cover: "WEBSITE CONTENT/weddings/cover (3).jpeg",
+    coverThumb: "WEBSITE CONTENT/weddings/cover (3).jpeg",
     guestCount: "60 High-End Motorcycles",
     duration: "Full-Day Expedition (8 Hours)",
     crew: "1 Chase-Vehicle Cinema Operator, 1 Drone Pilot",
@@ -373,9 +373,9 @@ const EVENTS_PROJECTS = [
       role: "Western Riding Club"
     },
     gallery: [
-      { url: "../packages/samples/events/fun-club-events/cover.jpg", caption: "Rolling Highway Convoy & Aerodynamic Formation" },
-      { url: "../packages/images/work-2.jpg", caption: "Chrome Details, Beast Engines & Sunset Horizon" },
-      { url: "../packages/images/work-6.jpg", caption: "Brotherhood Pitstop & High-Spirited Camaraderie" }
+      { url: "WEBSITE CONTENT/weddings/cover (3).jpeg", caption: "Rolling Highway Convoy & Aerodynamic Formation" },
+      { url: "WEBSITE CONTENT/weddings/cover (2).jpeg", caption: "Chrome Details, Beast Engines & Sunset Horizon" },
+      { url: "WEBSITE CONTENT/weddings/cover (2).jpeg", caption: "Brotherhood Pitstop & High-Spirited Camaraderie" }
     ]
   },
   {
@@ -387,8 +387,8 @@ const EVENTS_PROJECTS = [
     year: "2026",
     badge: "🕊️ Honor & Heritage",
     summary: "Solemn, deeply respectful, and loving documentation of a revered community elder's life. Cathedral requiem mass, generational family portraits, and archival keepsake drive.",
-    cover: "../packages/samples/events/burial-coverage/BURIAL COVERAGE PACKAGES.jpg",
-    coverThumb: "../packages/samples/events/burial-coverage/BURIAL COVERAGE PACKAGES_thumb.jpg",
+    cover: "WEBSITE CONTENT/weddings/cover.jpeg",
+    coverThumb: "WEBSITE CONTENT/weddings/cover.jpeg",
     guestCount: "500+ Community Mourners",
     duration: "2-Day Memorial Service",
     crew: "2 Quiet Unobtrusive Documentarians",
@@ -406,8 +406,8 @@ const EVENTS_PROJECTS = [
       role: "Family Representatives"
     },
     gallery: [
-      { url: "../packages/samples/events/burial-coverage/BURIAL COVERAGE PACKAGES.jpg", caption: "Solemn Requiem Mass & Floral Tribute" },
-      { url: "../packages/images/work-10.jpg", caption: "Generations Gathered in Lasting Honor and Remembrance" }
+      { url: "WEBSITE CONTENT/weddings/cover.jpeg", caption: "Solemn Requiem Mass & Floral Tribute" },
+      { url: "WEBSITE CONTENT/weddings/cover (2).jpeg", caption: "Generations Gathered in Lasting Honor and Remembrance" }
     ]
   }
 ];
@@ -419,7 +419,7 @@ const EVENTS_VIDEO_REELS = [
     category: "Weddings & Emotion",
     duration: "0:45",
     videoSrc: "../packages/samples/reels/camila.mp4",
-    poster: "../packages/images/work-1.jpg",
+    poster: "WEBSITE CONTENT/weddings/cover (2).jpeg",
     badge: "💍 4K Cinema Reel",
     description: "Experience the tenderness, joy, and cinematic color science that makes Laureighn wedding films unforgettable."
   },
@@ -429,7 +429,7 @@ const EVENTS_VIDEO_REELS = [
     category: "Galas & Bashes",
     duration: "0:38",
     videoSrc: "../packages/samples/reels/C1261_1.mp4",
-    poster: "../packages/samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8315.JPG",
+    poster: "WEBSITE CONTENT/BIRTHDAY SHOOT/ANDREW/IMG_2460.jpg",
     badge: "🔥 Live Atmosphere",
     description: "From champagne corks popping to high-voltage dance floors. See how we turn your party into a cinematic blockbuster."
   }
